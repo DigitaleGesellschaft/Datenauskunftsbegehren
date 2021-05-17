@@ -1,0 +1,8 @@
+<IfModule mod_headers.c>
+  <FilesMatch "-[a-z0-9]{8}\.(js|css)$">
+   Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+  <FilesMatch "(main\.js|index.html|global.css|bundle.css|data.json)$">
+   Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

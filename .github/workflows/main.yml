@@ -1,0 +1,25 @@
+name: Build Site
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install nodejs
+      run: sudo apt install nodejs
+    - name: Install npm 7
+      run: |
+        npm install npm@7
+    - name: npm install
+      run: |
+        npm install
+    - name: build
+      run: |
+        npm run build
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Public
+        path: public/

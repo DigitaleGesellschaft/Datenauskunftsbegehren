@@ -1,0 +1,9 @@
+/node_modules/
+/public/build/
+/public/index.html
+/public/data.json
+
+.DS_Store
+
+local.key
+local.cert

@@ -1,0 +1,29 @@
+{
+  "name": "svelte-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rm -f ./public/build/* && rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public --no-clear --http2 --key local.key --cert local.cert",
+    "deploy": "npm run build && rsync -ar -e 'ssh -p 55022' --stats --progress ./public/* developer@www.digitale-gesellschaft.ch:~/wwwtest/auskunftsbegehren"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-html": "^0.2.3",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-styles": "^3.14.1",
+    "rollup-plugin-svelte": "^7.1.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.38.2"
+  },
+  "dependencies": {
+    "cropperjs": "^1.5.11",
+    "date-fns": "^2.20.2",
+    "image-capture": "^0.4.0",
+    "sirv-cli": "^1.0.0",
+    "svelte-select": "^3.17.0"
+  }
+}
