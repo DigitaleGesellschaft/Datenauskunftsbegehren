@@ -17,7 +17,7 @@
 
 <div class="share">
   {#if hasShareApi}
-    💡 Du kannst dir den Brief mit deinen Daten senden: <button class="circle" on:click={share}><ShareIcon></ShareIcon></button>
+    💡 Du kannst dir den Brief mit deinen Eingaben senden: <button class="circle" on:click={share}><ShareIcon></ShareIcon></button>
   {:else}
     💡 Du kannst die Webadresse (URL) speichern. Sie enthält alle deine Eingaben.
   {/if}
