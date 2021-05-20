@@ -72,6 +72,9 @@
   left: 0;
   top: 0;
   flex-shrink: 0;
+  /* accessibility wise this is not the best, therefore only for -moz because
+  firefox on linux renderes the native checkbox otherwise. The opacity doesn't seem to work */
+  -moz-appearance: none;
 }
 
 .c-custom-checkbox input[type="checkbox"] + svg {
