@@ -19,12 +19,6 @@ Install the dependencies...
 npm install
 ```
 
-...create a self-signed cert for HTTPS (you need this for Webcam access)...
-```
-openssl req  -nodes -new -x509  -keyout local.key -out local.cert
-```
-Use `localhost` as the hostname.
-
 ...then start [Rollup](https://rollupjs.org):
 
 ```bash
