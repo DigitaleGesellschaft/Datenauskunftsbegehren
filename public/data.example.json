@@ -1,0 +1,1418 @@
+{
+  "types": [
+    {
+      "handle": "address",
+      "label": "Adresshandel",
+      "serviceLabel": "Adresshandel",
+      "paragraphs": [
+        "Unter Personendaten sind insbesondere auch die für die Zielgruppen verwendeten Personendaten und das daraus erstellte Profil zu verstehen."
+      ]
+    },
+    {
+      "handle": "gastro",
+      "label": "Gastrodaten",
+      "serviceLabel": "Gastronomie",
+      "paragraphs": [
+        "Unter Personendaten sind insbesondere auch die für das Contact Tracing erhobenen Gastrodaten zu verstehen."
+      ]
+    },
+    {
+      "handle": "credit",
+      "label": "Kreditauskunft",
+      "serviceLabel": "Kreditauskunft",
+      "paragraphs": [
+        "Unter Personendaten sind insbesondere auch die für die Bonitätsprüfung verwendeten Personendaten und das daraus erstellte Profil zu verstehen."
+      ]
+    },
+    {
+      "handle": "payback",
+      "label": "Kundenkarten-Anbieter",
+      "serviceLabel": "Kundenkarte",
+      "paragraphs": [
+        "Unter Personendaten sind insbesondere auch die für die Kundenkarte verwendeten Personendaten und das daraus erstellte Profil zu verstehen."
+      ]
+    },
+    {
+      "handle": "mobile",
+      "label": "Mobilfunkprovider",
+      "serviceLabel": "Mobilfunk",
+      "paragraphs": [
+        "Unter Personendaten sind insbesondere auch die gestützt auf Art. 22 Abs. 2 sowie Art. 26 Abs. 5 des Bundesgesetzes vom 18. März 2016 betreffend die Überwachung des Post- und Fernmeldeverkehrs (BÜPF) erhobenen und aufbewahrten Rand-, Identifikations- und Standortdaten des Fernmeldeverkehrs sowie die Informationen aus den NAT-Übersetzungsvorgängen inkl. den Ziel-IP-Adressen (https://www.srf.ch/news/article/14981983) zu verstehen.",
+        "Bitte beachten Sie, dass Art. 45 FMG i.V.m. Art. 80 f FDV das Auskunftsrecht nach dem Bundesgesetz über den Datenschutz nicht einzuschränken vermag (vgl. BVGE A-4941/2014 12.7.4 sowie den Erläuterungsbericht zur Revision von Verordnungen zum FMG vom 15. Oktober 2014 hinsichtlich Art. 81 Abs. 1 FDV).",
+        "Hiermit bestätige ich, dass mein Handy mit der Nummer {tel:mobileNumber:Handy-Nummer} in der für die Datenauskunft relevanten Zeit nicht durch Drittpersonen verwendet wurde."
+      ]
+    },
+    {
+      "handle": "mobility",
+      "label": "Mobilität",
+      "serviceLabel": "Mobilität",
+      "paragraphs": [
+        "Unter Personendaten sind insbesondere auch die durch die Benutzung der Fahrzeuge anfallenden Bewegungsdaten zu verstehen."
+      ]
+    },
+    {
+      "handle": "online",
+      "label": "Online-Portal",
+      "serviceLabel": "Online-Portal",
+      "paragraphs": [
+        "Unter Personendaten sind insbesondere auch die durch die Benutzung Ihres/r Online-Portals/e aufgezeichnete Kundenaktivität zu verstehen. Für das Login verwende ich die Kennung {email:loginEmail:E-Mail-Adresse}."
+      ]
+    },
+    {
+      "handle": "wlan",
+      "label": "WLAN-Anbieter",
+      "serviceLabel": "WLAN",
+      "paragraphs": [
+        "Unter Personendaten sind insbesondere auch die gestützt auf Art. 22 Abs. 2 sowie Art. 26 Abs. 5 des Bundesgesetzes vom 18. März 2016 betreffend die Überwachung des Post- und Fernmeldeverkehrs (BÜPF) erhobenen und aufbewahrten Rand-, Identifikations- und Standortdaten des Fernmeldeverkehrs sowie die Informationen aus den NAT-Übersetzungsvorgängen inkl. den Ziel-IP-Adressen (https://www.srf.ch/news/article/14981983) zu verstehen. Meine Registrierung an Ihrem WLAN-Angebot wurde mit der Handy-Nummer {tel:mobileNumber:Handy-Nummer} vorgenommen.",
+        "Bitte beachten Sie, dass Art. 45 FMG i.V.m. Art. 80 f FDV das Auskunftsrecht nach dem Bundesgesetz über den Datenschutz nicht einzuschränken vermag (vgl. BVGE A-4941/2014 12.7.4 sowie den Erläuterungsbericht zur Revision von Verordnungen zum FMG vom 15. Oktober 2014 hinsichtlich Art. 81 Abs. 1 FDV)."
+      ]
+    }
+  ],
+  "orgs": [
+    {
+      "name": "ARP Schweiz AG",
+      "address": "ARP Schweiz AG\nBirkenstrasse 43b\n6343 Rotkreuz",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "AZ Direct",
+      "address": "AZ Direct AG\nDatenschutzbeauftragter\nLorzenparkstrasse 10\n6330 Cham",
+      "types": [
+        "address"
+      ]
+    },
+    {
+      "name": "Agrisano",
+      "address": "Agrisano Krankenkasse AG\nLaurstrasse 10\n5201 Brugg AG"
+    },
+    {
+      "name": "Aleno AG",
+      "address": "Aleno AG\nAegertenstrasse 6\n8003 Zürich ",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Allianz Suisse",
+      "address": "Allianz Suisse Versicherungs-Gesellschaft AG\nRichtiplatz 1\n8304 Wallisellen"
+    },
+    {
+      "name": "Amorana.ch",
+      "address": "Amorana.ch\nBluebox Shop AG\nNeue Winterthurerstrasse 99\n8304 Wallisellen",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Assura",
+      "address": "Assura-Basis SA\nAvenue C.-F. Ramuz 70\n1009 Pully"
+    },
+    {
+      "name": "Atupri",
+      "address": "Atupri Gesundheitsversicherung\nZieglerstrasse 29\nPostfach\n3001 Bern"
+    },
+    {
+      "name": "Avis",
+      "address": "Avis Budget Autovermietung AG\nHofwisenstraße 36\n8153 Rümlang",
+      "types": [
+        "mobility"
+      ]
+    },
+    {
+      "name": "Axa",
+      "address": "Axa Versicherungen AG\nGeneral-Guisan-Strasse 40\n8400 Winterthur"
+    },
+    {
+      "name": "Baloise",
+      "address": "Basler Versicherung AG\nAeschengraben 21\n4002 Basel"
+    },
+    {
+      "name": "Bank Julius Bär",
+      "address": "Bank Julius Bär & Co. AG\nBahnhofstrasse 36\nPostfach\n8010 Zürich",
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter personenbezogene Daten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "November 2020"
+        },
+        "bullets": [
+          "Personalien",
+          "Legitimationsdaten",
+          "Authentifikationsdaten",
+          "Daten aus der Erfüllung vertraglicher Verpflichtungen",
+          "Werbe- und Vertriebsdaten",
+          "Dokumentationsdaten",
+          "Buchführungsdaten, Angaben zu meinem persönlichen Hintergrund und zu meiner Finanzlage",
+          "Besonders schützenswerte Personendaten wie etwa meine biometrischen Daten, Informationen über meine religiösen, weltanschaulichen oder politischen Ansichten oder Tätigkeiten sowie über meine Gesundheit und strafrechtliche Verurteilungen oder Sanktionen",
+          "Daten zu verbundenen Dritten",
+          "Daten, die bei der Nutzung von Webseiten, mobilen Anwendungen oder anderen elektronischen Dienstleistungen übermittelt und automatisch erfasst werden",
+          "Andere, mit den genannten Kategorien vergleichbare Daten"
+        ]
+      }
+    },
+    {
+      "name": "Barney.id (Ophion Consulting GmbH)",
+      "address": "Ophion Consulting GmbH\nEigerplatz 12\n3007 Bern",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Bauhaus",
+      "address": "Bauhaus Fachcentren AG\nSägetstrasse 5\n3123 Belp/Bern",
+      "types": [
+        "payback"
+      ]
+    },
+    {
+      "name": "Bisnode",
+      "address": "Bisnode D&B Schweiz AG\nGrossmattstrasse 9\n8902 Urdorf",
+      "types": [
+        "credit"
+      ]
+    },
+    {
+      "name": "Blick (Ringier)",
+      "address": "Ringier AG\nBrühlstrasse 5\n4800 Zofingen",
+      "types": [
+        "online"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "30. März 2021"
+        },
+        "bullets": [
+          {
+            "text": "Personendaten",
+            "bullets": [
+              "Für ein Abonnement für ein Blick-Produkt (Zeitung oder E-Paper)",
+              "Für ein Wettbewerb, Gewinnspiel, eine Verlosung, ein Kreuzworträtsel",
+              "Für Werbung über die Medienprodukte und Dienstleistungen (Direktmarketing)",
+              "Durch Ringier Connect"
+            ]
+          },
+          {
+            "text": "«Nicht personenbezogene» Daten",
+            "bullets": [
+              "Durch Tracking-Tools",
+              "Durch Elemente von anderen Webseiten, z.B. Plug-ins"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "BonusCard (Cornèr Bank)",
+      "address": "Cornèr Bank AG\nZweigniederlassung BonusCard (Zürich)\nPostfach\n8021 Zürich"
+    },
+    {
+      "name": "BRACK.CH AG",
+      "address": "BRACK.CH AG\nHintermättlistrasse 3\n5506 Mägenwil",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "BuCK Bern",
+      "address": "BuCK Bern\nSandrainstrasse 25\n3007 Bern",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "CH Media",
+      "address": "CH Media Holding AG\nNeumattstrasse 1\n5001 Aarau",
+      "types": [
+        "online"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "8. November 2018"
+        },
+        "bullets": [
+          "Nicht anonyme Nutzung",
+          "«Anonyme» Nutzung der Webseiten",
+          "Einbindungen von Angeboten Dritter"
+        ]
+      }
+    },
+    {
+      "name": "CRIF",
+      "address": "CRIF AG\nHagenholzstrasse 81\n8050 Zürich",
+      "types": [
+        "credit"
+      ]
+    },
+    {
+      "name": "CSS Kranken-Versicherung AG",
+      "address": "CSS KrankenVersicherung AG\nDatenschutzbeauftragter\nTribschenstrasse 21\nPostfach 2568\n6002 Luzern"
+    },
+    {
+      "name": "Carvolution",
+      "address": "Carvolution AG\nNeufeldweg 2\n4913 Bannwil",
+      "types": [
+        "mobility"
+      ]
+    },
+    {
+      "name": "Cembra",
+      "address": "Cembra Money Bank AG\nData Governance Officer\nBändliweg 20\n8048 Zürich"
+    },
+    {
+      "name": "Conforama Schweiz AG",
+      "address": "Conforama Schweiz AG\nRoute de Reculan 6\nCH-1024 Ecublens",
+      "types": [
+        "payback",
+        "online"
+      ]
+    },
+    {
+      "name": "Cohaga AG",
+      "address": "Cohaga AG\nBlumenbergplatz 1\n9000 St. Gallen",
+      "types": [
+        "address"
+      ]
+    },
+    {
+      "name": "Concordia",
+      "address": "CONCORDIA Kranken und Unfallversicherung AG\nBundesplatz 15\n6002 Luzern"
+    },
+    {
+      "name": "Coop Mobile (Swisscom)",
+      "address": "Coop Mobile\nContact Center\n3050 Bern",
+      "types": [
+        "mobile"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Januar 2019 (Swisscom)"
+        },
+        "bullets": [
+          "Bearbeitung von Daten zur Leistungserbringung und Vertragsabwicklung",
+          "Bearbeitung von Daten aus dem Fernmeldeverkehr",
+          {
+            "text": "Datenbearbeitungen zu Marketingzwecken von Swisscom",
+            "bullets": [
+              "Identifikations- und Kontaktdaten",
+              "Vertrags- und Abonnementsdaten",
+              "Kundenaktivitätsdaten",
+              "Online-Daten",
+              "Bildung von Kundensegmenten und -profilen"
+            ]
+          },
+          "Bereitstellung von Daten für Werbevermarktung Dritter",
+          "Gewinnung und Weitergabe von Informationen aus Datenanalysen (Smart Data)"
+        ]
+      }
+    },
+    {
+      "name": "Coop Rechtsschutz",
+      "address": "Coop Rechtsschutz AG\nDatenschutzberater\nEntfelderstrasse 2\n5001 Aarau"
+    },
+    {
+      "name": "Cornèrcard (Cornèr Bank)",
+      "address": "Cornèr Banca SA\nCornèrcard\nvia Canova 16\n6900 Lugano"
+    },
+    {
+      "name": "Credit Suisse",
+      "address": "Credit Suisse (Schweiz) AG\nData Protection Office Switzerland\n8070 Zürich",
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter personenbezogene Daten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Mai 2021"
+        },
+        "bullets": [
+          {
+            "text": "Zweck der Verarbeitung",
+            "bullets": [
+              "Zur Erfüllung von vertraglichen Pflichten",
+              {
+                "text": "Im Rahmen der Interessenabwägung",
+                "bullets": [
+                  "Konsultation von und Datenaustausch mit Auskunftstellen (z. B. Betreibungsregister)",
+                  "Prüfung und Optimierung von Verfahren zur Bedarfsanalyse zwecks direkter Kundenansprache",
+                  "Werbung oder Markt- und Meinungsforschung",
+                  "Geltendmachung rechtlicher Ansprüche und Verteidigung bei rechtlichen Streitigkeiten",
+                  "Verhinderung und Aufklärung von Straftaten",
+                  "Videoüberwachungen",
+                  "Massnahmen zur Gebäude- und Anlagensicherheit (z. B. Zutrittskontrollen)",
+                  "Massnahmen zur Geschäftssteuerung und Weiterentwicklung von Dienstleistungen und Produkten",
+                  "Risikosteuerung bei Credit Suisse",
+                  "Personendaten aus öffentlich zugänglichen Quellen zum Zwecke der Kundenacquisition"
+                ]
+              },
+              "Aufgrund meiner Einwilligung",
+              "Aufgrund gesetzlicher Vorgaben oder im öffentlichen Interesse"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "Creditreform",
+      "address": "Schweizerischer Verband Creditreform\nTeufener Strasse 36\n9000 St. Gallen",
+      "types": [
+        "credit"
+      ]
+    },
+    {
+      "name": "Dataserv AG",
+      "address": "Dataserv AG\nAspstrasse 12\n8472 Seuzach",
+      "types": [
+        "address"
+      ]
+    },
+    {
+      "name": "Digitec Galaxus AG",
+      "address": "Digitec Galaxus AG\nPfingstweidstrasse 60b\n8005 Zürich ",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Dosenbach",
+      "address": "Dosenbach-Ochsner AG\nAllmendstrasse 25\n8953 Dietikon",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "DynaTag AG",
+      "address": "DynaTag AG\nVia Albaredo 59\n6645 Brione s. Minusio",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "EGK Grundversicherungen AG",
+      "address": "EGK Grundversicherungen AG\nBrislachstrasse 2\nPostfach\n4242 Laufen"
+    },
+    {
+      "name": "Erotik Markt",
+      "address": "CNP Entertainment AG\nFürtistrasse 11\n8832 Wollerau",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Etables (Contency GmbH)",
+      "address": "Contency GmbH\nBahnhofstrasse 6\n9050 Appenzell",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "EUROPCAR",
+      "address": "EUROPCAR Schweiz\nAMAG Services AG\nSteinackerstrasse 20\n8302 Kloten",
+      "types": [
+        "mobility"
+      ]
+    },
+    {
+      "name": "Ex Libris AG",
+      "address": "Ex Libris AG\nGrünaustrasse 23\n8953 Dietikon",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Excard",
+      "address": "Excard\nUntere Hauptgasse 6\n3600 Thun",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Filum (Bambit AG)",
+      "address": "Bambit AG\nBubenbergplatz 10 \n3011 Bern",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Fressnapf Schweiz AG",
+      "address": "Fressnapf Schweiz AG\nAllmendstrasse 23\n8953 Dietikon",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Fust",
+      "address": "Dipl. Ing. Fust AG\nBuchental 4\n9245 Oberbüren-Uzwil",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Future Targeting GmbH",
+      "address": "Future Targeting GmbH\nSchachenstrasse 82\n8645 Rapperswil-Jona",
+      "types": [
+        "address"
+      ]
+    },
+    {
+      "name": "GaschtReg (Pally Online GmbH)",
+      "address": "Pally Online gmbG\nWiesentalstrasse 106\n7000 Chur",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Generali",
+      "address": "Generali (Holding) AG\nSoodmattenstrasse 10\n8134 Adliswil"
+    },
+    {
+      "name": "Geschenkidee.ch",
+      "address": "Geschenkidee.ch GmbH\nFlurstrasse 55\nPostfach\n8021 Zürich",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Globus",
+      "address": "Magazine zum Globus AG\nLintheschergasse 7\n8001 Zürich",
+      "types": [
+        "payback"
+      ]
+    },
+    {
+      "name": "Greg (Precom Group AG)",
+      "address": "Precom Group AG\nBahnhofstrasse 2\n6048 Horw",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Groupe Mutuel",
+      "address": "Groupe Mutuel\nAvenir Assurance Maladie\nRue des Cèdres 5\n1919 Martigny"
+    },
+    {
+      "name": "GuestLOG (Inaffect AG)",
+      "address": "Inaffect AG\nAuf der Mauer 9\nCH-8001 Zürich",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "GuestReg",
+      "address": "GuestReg.ch\nHeinz Lehner\nMattenstrasse 32\n2503 Biel/Bienne",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "HSW-Direktmarketing AG",
+      "address": "HSW-Direktmarketing AG\nIrchelstrasse 25\n8427 Rorbas",
+      "types": [
+        "address"
+      ]
+    },
+    {
+      "name": "Helsana",
+      "address": "Helsana Versicherungen AG\nPostfach\n8081 Zürich"
+    },
+    {
+      "name": "Helvetic Airways",
+      "address": "Helvetic Airways\nEgglirain 24\n8832 Wilen"
+    },
+    {
+      "name": "Hertz",
+      "address": "Herold Fahrzeugvermietung AG\nHertz International Franchisee\nRütistrasse 22\n8952 Schlieren",
+      "types": [
+        "mobility"
+      ]
+    },
+    {
+      "name": "Hofstetter Partners Direct AG",
+      "address": "Hofstetter Partners Direct AG\nZilstr. 72\n9016 St.Gallen",
+      "types": [
+        "address"
+      ]
+    },
+    {
+      "name": "IKO",
+      "address": "IKO Verein zur Führung einer Informationsstelle für Konsumkredit\nPostfach\n8048 Zürich",
+      "types": [
+        "credit"
+      ]
+    },
+    {
+      "name": "Ikea AG",
+      "address": "Ikea AG\nMüslistrasse 16\n8957 Spreitenbach ",
+      "types": [
+        "payback",
+        "online"
+      ]
+    },
+    {
+      "name": "IMPORT PARFUMERIE",
+      "address": "IMPORT PARFUMERIE\nThiersteineralllee 12\n4053 Basel ",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Interdiscount",
+      "address": "Interdiscount\nBernstrasse 90\n3303 Jegenstorf",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Intrum",
+      "address": "Intrum AG\nEschenstrasse 12\n8603 Schwerzenbach",
+      "types": [
+        "credit"
+      ]
+    },
+    {
+      "name": "Jelmoli AG",
+      "address": "Jelmoli AG\nSeidengasse 1\n8001 Zürich",
+      "types": [
+        "payback"
+      ]
+    },
+    {
+      "name": "JouJou",
+      "address": "Condomplanet SàRL\nChemin des Sauges 25\n1405 Pomy ",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Jumbo",
+      "address": "Jumbo-Markt AG\nIndustriestrasse 34\nPostfach 222\nCH-8305 Dietlikon",
+      "types": [
+        "payback",
+        "online"
+      ]
+    },
+    {
+      "name": "KPT Krankenkasse",
+      "address": "KPT Krankenkasse AG\nWankdorfallee 3\nPostfach\n3001 Bern"
+    },
+    {
+      "name": "KünzlerBachmann",
+      "address": "KünzlerBachmann Directmarketing AG\nZürcherstrasse 601\n9015 St.Gallen",
+      "types": [
+        "address"
+      ]
+    },
+    {
+      "name": "LANDI Schweiz AG",
+      "address": "LANDI Schweiz AG\nSchulriederstrasse 5\n3293 Dotzigen",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Lunchgate AG",
+      "address": "Lunchgate AG\nBadenerstrasse 255\n8003 Zürich",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "M-Budget Mobile (Swisscom)",
+      "address": "M-Budget Mobile (Swisscom)\nContact Center\n3050 Bern",
+      "types": [
+        "mobile"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Januar 2019 (Swisscom)"
+        },
+        "bullets": [
+          "Bearbeitung von Daten zur Leistungserbringung und Vertragsabwicklung",
+          "Bearbeitung von Daten aus dem Fernmeldeverkehr",
+          {
+            "text": "Datenbearbeitungen zu Marketingzwecken von Swisscom",
+            "bullets": [
+              "Identifikations- und Kontaktdaten",
+              "Vertrags- und Abonnementsdaten",
+              "Kundenaktivitätsdaten",
+              "Online-Daten",
+              "Bildung von Kundensegmenten und -profilen"
+            ]
+          },
+          "Bereitstellung von Daten für Werbevermarktung Dritter",
+          "Gewinnung und Weitergabe von Informationen aus Datenanalysen (Smart Data)"
+        ]
+      }
+    },
+    {
+      "name": "MS Direct AG",
+      "address": "MS Direct AG\nFürstenlandstrasse 35\n9001 St. Gallen"
+    },
+    {
+      "name": "Manor",
+      "address": "eManor\nRebgasse 34\n4058 Basel",
+      "types": [
+        "payback",
+        "online"
+      ]
+    },
+    {
+      "name": "McDonald’s",
+      "address": "McDonald’s Suisse Restaurants Sàrl\nCase postale\nCH-1023 Crissier",
+      "types": [
+        "online",
+        "payback"
+      ]
+    },
+    {
+      "name": "Media Markt Schweiz AG",
+      "address": "Media Markt Schweiz AG\nAllmendstrasse 23\nCH-8953 Dietikon",
+      "types": [
+        "online",
+        "payback"
+      ]
+    },
+    {
+      "name": "microspot.ch",
+      "address": "microspot.ch\nMoosstrasse 23\nCH-3302 Moosseedorf",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Migros",
+      "address": "Migros-Genossenschafts-Bund\nM-Infoline\nLimmatstrasse 152\n8005 Zürich",
+      "types": [
+        "payback",
+        "online",
+        "wlan"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Mai 2020"
+        },
+        "bullets": [
+          {
+            "text": "Zwecke",
+            "bullets": [
+              "Kommunikation",
+              "Kauf von Waren und Inanspruchnahme von Leistungen",
+              "Treue- und Bonusprogramme",
+              "Besuch von Webseiten",
+              "Online-Angebote und Apps",
+              "Information und Direktmarketing",
+              "Teilnahme an Wettbewerben, Gewinnspielen und ähnlichen Veranstaltungen",
+              "Betreten ihrer Räumlichkeiten"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "Mindful (Ticketcorner AG)",
+      "address": "Ticketcorner AG\nRiedmatt-Center\n8153 Rümlang",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Mobiliar",
+      "address": "Schweizerische Mobiliar Versicherungsgesellschaft AG\nDatenschutzstelle\nBundesgasse 35\n3001 Bern"
+    },
+    {
+      "name": "Mobility",
+      "address": "Mobility Cooperative\nSuurstoffi 16\nCH-6343 Rotkreuz",
+      "types": [
+        "mobility"
+      ]
+    },
+    {
+      "name": "Möbel Pfister AG",
+      "address": "Möbel Pfister AG\nBernstrasse Ost 49\nCH 5034 Suhr",
+      "types": [
+        "payback",
+        "online"
+      ]
+    },
+    {
+      "name": "Moneyhouse",
+      "address": "Moneyhouse\nNeue Zürcher Zeitung AG\nFalkenstrasse 11\n8008 Zürich",
+      "types": [
+        "credit"
+      ]
+    },
+    {
+      "name": "Monzoon",
+      "address": "Monzoon Networks AG\nSpinnerei-Lettenstrasse\n8192 Zweidlen/ZH",
+      "types": [
+        "wlan"
+      ]
+    },
+    {
+      "name": "Mycontactdetails (ProtecData AG)",
+      "address": "ProtecData AG\nOberdorf 43\n5623 Boswil ",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "NZZ",
+      "address": "NZZ-Mediengruppe\nGeneralsekretariat / Datenschutzverantwortlicher\nFalkenstrasse 11\n8008 Zürich",
+      "types": [
+        "online"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "1. Januar 2021"
+        },
+        "bullets": [
+          "Nicht anonyme Nutzung",
+          "«Anonyme» Nutzung der Webseiten",
+          "Plug-Ins und andere Einbindungen von Angeboten Dritter"
+        ]
+      }
+    },
+    {
+      "name": "neon Switzerland AG",
+      "address": "neon Switzerland AG\nBadenerstrasse 557\n8048 Zürich"
+    },
+    {
+      "name": "Nespresso",
+      "address": "Nestlé Nespresso SA\nAvenue d'Ouchy 4-6\n1006 Lausanne",
+      "types": [
+        "online",
+        "payback"
+      ]
+    },
+    {
+      "name": "OBI Bau- und Heimwerkermärkte",
+      "address": "OBI Bau- und Heimwerkermärkte\nSystemzentrale (Schweiz) GmbH\nRheinweg 11\n8200 Schaffhausen",
+      "types": [
+        "payback",
+        "online"
+      ]
+    },
+    {
+      "name": "ÖKK",
+      "address": "ÖKK Kranken- und Unfallversicherungen AG\nBahnhofstrasse 13\n7302 Landquart"
+    },
+    {
+      "name": "Ochsner Sport AG",
+      "address": "Ochsner Sport AG\nAllmendstrasse 25\n8953 Dietikon",
+      "types": [
+        "online",
+        "payback"
+      ]
+    },
+    {
+      "name": "Orell Füssli Thalia AG",
+      "address": "Orell Füssli Thalia AG\nDietzingerstrasse 3\n8036 Zürich",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Yoordi (Wasmeier Solutions)",
+      "address": "Wasmeier Solutions\nBerninastrasse 11\n8057 Zürich",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Plüsch (Digelec)",
+      "address": "DIGELEC für digitale Kommunikation\nSeestrasse 26\n3806 Bönigen",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Pogastro (Precom Group AG)",
+      "address": "Precom Group AG\nBahnhofstrasse 2\n6048 Horw",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Post",
+      "address": "Post CH AG\nWankdorfallee 4\n3030 Bern",
+      "types": [
+        "wlan"
+      ]
+    },
+    {
+      "name": "Postauto",
+      "address": "PostAuto AG\nEngehaldenstrasse 39\n3030 Bern",
+      "types": [
+        "wlan"
+      ]
+    },
+    {
+      "name": "Postfinance",
+      "address": "PostFinance AG\nDatenschutzbeauftragte(r)\nMingerstrasse 20\n3030 Bern",
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter personenbezogene Daten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Mai 2021"
+        },
+        "bullets": [
+          {
+            "text": "Zwecke der Bearbeitungen",
+            "bullets": [
+              "Bereitstellung/Optimierung der Website sowie Aufrechterhaltung ihrer Sicherheit und Stabilität",
+              "Operative und strategische Abläufe",
+              "Erfüllung rechtlicher Verpflichtungen",
+              "Zielgerichtete und personalisierte Inhalte und Angebote",
+              "Kontaktaufnahme im öffentlichen Bereich der Website und Newsletter",
+              "Kommunikation mit Chatbot und Voicebot",
+              "Kommunikation via E-Mail im Besonderen"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "Protekta",
+      "address": "Protekta Rechtsschutz-Versicherung AG\nDatenschutzstelle\nMonbijoustrasse 5\n3011 Bern"
+    },
+    {
+      "name": "PubliBike",
+      "address": "PubliBike Ltd\nEngehaldenstrasse 39\n3030 Bern",
+      "types": [
+        "mobility"
+      ]
+    },
+    {
+      "name": "QUALIPET Digital AG",
+      "address": "QUALIPET Digital AG\nReinacherstrasse 269\n4053 Basel",
+      "types": [
+        "online",
+        "payback"
+      ]
+    },
+    {
+      "name": "QuickTicket (Bulp GmbH)",
+      "address": "Bulp GmbH\nLibellenweg 5\n3510 Konolfingen",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Raiffeisen Schweiz",
+      "address": "Raiffeisen Schweiz\nDatenschutzbeauftragter\nRaiffeisenplatz 4\n9001 St. Gallen",
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter personenbezogene Daten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "1. Januar 2021"
+        },
+        "bullets": [
+          "Für den Abschluss und die Abwicklung unserer Verträge",
+          "Zur Erfüllung gesetzlicher Vorgaben",
+          {
+            "text": "Im berechtigten Interesse der Raiffeisen Gruppe oder Dritter",
+            "bullets": [
+              "Marktfor­schung",
+              "Produktentwicklung",
+              "Aus­gestaltung und Steuerung von Produkten, Dienstleistungen und Ange­boten",
+              "Werbung",
+              "Marketing"
+            ]
+          },
+          "Mit der Einwilligung des Kunden"
+        ]
+      }
+    },
+    {
+      "name": "Ricardo",
+      "address": "Ricardo AG\nTheilerstrasse 1a\nPostfach 1160\n6301 Zug",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Rohner Direktpartner",
+      "address": "Rohner Direktpartner\nHans Rohner\nIn der Hinterzelg 2\n8700 Küsnacht ZH",
+      "types": [
+        "address"
+      ]
+    },
+    {
+      "name": "SBB",
+      "address": "SBB AG\nDatenschutzbeauftragter\nHilfikerstrasse 1\n3000 Bern 65",
+      "types": [
+        "wlan",
+        "online"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Oktober 2020"
+        },
+        "bullets": [
+          {
+            "text": "Arten von Daten",
+            "bullets": [
+              "Daten beim Kauf von Leistungen",
+              "Daten bei der Nutzung des SBB Shops",
+              "Daten bei der Nutzung der Webseiten",
+              "Daten bei der Nutzung des SwissPass-Kundenkontos",
+              "Daten bei der Kontaktaufnahme",
+              "Daten bei der Nutzung des SBB WiFi",
+              "Daten bei der Nutzung des Carsharing-Angebots"
+            ]
+          },
+          {
+            "text": "Daten für Werbung und Marketing",
+            "bullets": [
+              "Daten für die Marketing-Aktivitäten",
+              "Daten für den E-Mail Newsletter",
+              "Daten für Werbeanzeigen auf den Webseiten und Apps",
+              "Daten für optimierte Websiteinhalte",
+              "Daten für die Marktforschung",
+              "Daten für die Verwaltung und Abmeldung der Dienste"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "SWICA Krankenversicherung",
+      "address": "SWICA Krankenversicherung\nRömerstrasse 38\n8401 Winterthur"
+    },
+    {
+      "name": "Salt",
+      "address": "Salt Mobile AG\nDatenschutz\nRue du Caudray 4\n1020 Renens",
+      "types": [
+        "mobile"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Mai 2021"
+        },
+        "bullets": [
+          "Kontakt- und Identifikationsdaten",
+          "Finanzdaten",
+          "die Nutzungsdaten",
+          "die Informationen über Produkte und Dienstleistungen, die ich bei ihnen gekauft haben",
+          "Informationen über den Besuch von Salt-Websites",
+          "Fernmeldedaten nach dem Bundesgesetz über die Überwachung des Post- und Fernmeldewesens"
+        ]
+      }
+    },
+    {
+      "name": "Sanitas Grundversicherungen AG",
+      "address": "Sanitas Grundversicherungen AG\nJägergasse 3\nPostfach 2010\n8021 Zürich"
+    },
+    {
+      "name": "Sixt",
+      "address": "Sixt rent-a-car AG\nSchwarzwaldallee 242\n4058 Basel",
+      "types": [
+        "mobility"
+      ]
+    },
+    {
+      "name": "Starbucks",
+      "address": "Starbucks Coffee Switzerland GmbH\nIndustriestrasse 27\n8604 Volketswil",
+      "types": [
+        "payback",
+        "wlan"
+      ]
+    },
+    {
+      "name": "STEG Electronics AG",
+      "address": "STEG Electronics AG\nBodenhof 4\n6014 Luzern",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Supercard (Coop)",
+      "address": "Coop Supercard\nKundendienst\nPostfach 160\n4132 Muttenz",
+      "types": [
+        "payback"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "6. Juni 2019"
+        },
+        "bullets": [
+          {
+            "text": "Kundenprofil",
+            "bullets": [
+              "Kontaktdaten",
+              "Einkaufsdaten",
+              "Daten durch Zugriff auf die digitalen Kanäle"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "Suva",
+      "address": "Suva\nGeneralsekretariat\nFluhmattstrasse 1\n6002 Luzern"
+    },
+    {
+      "name": "Swiss Bankers",
+      "address": "Swiss Bankers Prepaid Services AG\nKramgasse 4\n3506 Grosshöchstetten"
+    },
+    {
+      "name": "Swiss Life",
+      "address": "Swiss Life AG\nGeneral-Guisan-Quai 40\n8022 Zürich"
+    },
+    {
+      "name": "Swiss",
+      "address": "Swiss International Air Lines Ltd.\nBetrieblicher Datenschutzverantwortlicher\nZRHS/CJ\nPostfach\n8058 Zürich Flughafen"
+    },
+    {
+      "name": "Swisscard AECS",
+      "address": "Swisscard AECS GmbH\nDatenschutz\nNeugasse 18\nPostfach\n8810 Horgen"
+    },
+    {
+      "name": "Swisscom",
+      "address": "Swisscom (Schweiz) AG\nSwisscom Contact Center\n3050 Bern",
+      "types": [
+        "mobile",
+        "wlan",
+        "online"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Januar 2019"
+        },
+        "bullets": [
+          "Bearbeitung von Daten zur Leistungserbringung und Vertragsabwicklung",
+          "Bearbeitung von Daten aus dem Fernmeldeverkehr",
+          {
+            "text": "Datenbearbeitungen zu Marketingzwecken von Swisscom",
+            "bullets": [
+              "Identifikations- und Kontaktdaten",
+              "Vertrags- und Abonnementsdaten",
+              "Kundenaktivitätsdaten",
+              "Online-Daten",
+              "Bildung von Kundensegmenten und -profilen"
+            ]
+          },
+          "Bereitstellung von Daten für Werbevermarktung Dritter",
+          "Gewinnung und Weitergabe von Informationen aus Datenanalysen (Smart Data)"
+        ]
+      }
+    },
+    {
+      "name": "Sympany",
+      "address": "Sympany\nDatenschutz\nPeter Merian-Weg 4\n4002 Basel"
+    },
+    {
+      "name": "Tages-Anzeiger (TX Group)",
+      "address": "TX Group AG\nGroup Data Protection Officer\nWerdstrasse 21\n8004 Zürich",
+      "types": [
+        "online"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Januar 2020"
+        },
+        "bullets": [
+          "Besuch der Portale",
+          "Registrierung eines Benutzerkontos",
+          "Nutzung eines Portals als registrierter Nutzer",
+          "Kauf / Bezug einer kostenpflichtigen Dienstleistung",
+          "Teilnahme an Gewinnspielen, Wettbewerben (Veranstaltungen)",
+          "Nutzerumfragen und Marktforschung",
+          "Direktmarketing und Online-Werbung",
+          "Bearbeitung der Personendaten zu Marketing- und Analysezwecken",
+          "Tracking- und Analyse-Tools",
+          "Plug-Ins und andere Einbindungen von Angeboten Dritter",
+          "Standortinformationen"
+        ]
+      }
+    },
+    {
+      "name": "Tanatek AG",
+      "address": "Tanatek AG\nPoststr. 30\n6300 Zug",
+      "types": [
+        "address"
+      ]
+    },
+    {
+      "name": "Tastier AG",
+      "address": "Tastier AG\nAemtlerstrasse 16\n8003 Zürich",
+      "types": [
+        "gastro"
+      ]
+    },
+    {
+      "name": "Tchibo (Schweiz) AG",
+      "address": "Tchibo (Schweiz) AG\nBirkenweg 4\n8304 Wallisellen",
+      "types": [
+        "online",
+        "payback"
+      ]
+    },
+    {
+      "name": "Ticketcorner AG",
+      "address": "Ticketcorner AG\nRiedmatt-Center\nCH-8153 Rümlang",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "TopCard",
+      "address": "TopCard Service AG\nData Protection Office\nFlughofstrasse 35\nPostfach\n8152 Glattbrugg "
+    },
+    {
+      "name": "TWINT",
+      "address": "TWINT AG\nStauffacherstrasse 41\nCH-8004 Zürich"
+    },
+    {
+      "name": "UBS",
+      "address": "UBS Switzerland AG\nBahnhofstrasse 45\n8001 Zürich",
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter personenbezogene Daten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Mai 2021"
+        },
+        "bullets": [
+          "Persönliche Informationen",
+          "Finanzinformationen",
+          "Steuerlich relevante Dokumente und Informationen",
+          "Berufliche Informationen",
+          "Mein Wissen und meine Erfahrung in Anlagefragen",
+          "Einzelheiten unserer gegenseitigen Geschäftsbeziehung",
+          "Aufzeichnungen über Telefonate",
+          "Details zur Mandatserteilung",
+          "Kennungen, wie z. B. Kunden- oder Kontonummern",
+          "Daten beim Zugriff auf unsere Website",
+          "besondere Kategorien von personenbezogenen Daten wie z. B. biometrischen Daten, politische Einstellungen oder Zugehörigkeiten, Informationen über Gesundheit, rassische oder ethnische Herkunft, religiöse oder weltanschauliche Überzeugungen und Informationen bezüglich strafrechtlicher Verurteilungen oder Straftaten"
+        ]
+      }
+    },
+    {
+      "name": "UPC",
+      "address": "UPC Schweiz GmbH\nPostfach\n8021 Zürich",
+      "types": [
+        "mobile"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Februar 2016"
+        },
+        "bullets": [
+          "Kontaktdaten",
+          "Kontodaten",
+          "Servicedaten",
+          "Allgemeine Anwendungsinformationen",
+          "Nutzungsdaten",
+          "Daten über lokale Inhalte",
+          "Sonstige Personendaten"
+        ]
+      }
+    },
+    {
+      "name": "Vaudoise",
+      "address": "Vaudoise Assurances\nPlace de Milan\nCase postale 120\n1001 Lausanne"
+    },
+    {
+      "name": "Visana",
+      "address": "Visana\nWeltpoststrasse 19/21\nPostfach 253\n3000 Bern 15"
+    },
+    {
+      "name": "Viseca",
+      "address": "Viseca Card Services SA\nHagenholzstrasse 56\n8050 Zürich"
+    },
+    {
+      "name": "Walter Schmid AG",
+      "address": "Walter Schmid AG\nAuenstrasse 10\n8600 Dübendorf",
+      "types": [
+        "address"
+      ]
+    },
+    {
+      "name": "Weltbild Verlag GmbH",
+      "address": "Weltbild Verlag GmbH\nDorfstrasse 11\n4612 Wangen b. Olten",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "Wingo (Swisscom)",
+      "address": "Wingo\nContact Center\n3050 Bern",
+      "types": [
+        "mobile"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Januar 2019 (Swisscom)"
+        },
+        "bullets": [
+          "Bearbeitung von Daten zur Leistungserbringung und Vertragsabwicklung",
+          "Bearbeitung von Daten aus dem Fernmeldeverkehr",
+          {
+            "text": "Datenbearbeitungen zu Marketingzwecken von Swisscom",
+            "bullets": [
+              "Identifikations- und Kontaktdaten",
+              "Vertrags- und Abonnementsdaten",
+              "Kundenaktivitätsdaten",
+              "Online-Daten",
+              "Bildung von Kundensegmenten und -profilen"
+            ]
+          },
+          "Bereitstellung von Daten für Werbevermarktung Dritter",
+          "Gewinnung und Weitergabe von Informationen aus Datenanalysen (Smart Data)"
+        ]
+      }
+    },
+    {
+      "name": "Yallo (Sunrise)",
+      "address": "Sunrise UPC GmbH (Yallo)\nThurgauerstrasse 101B\nPostfach\n8050 Zürich",
+      "types": [
+        "mobile"
+      ],
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter Personendaten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Mai 2021"
+        },
+        "bullets": [
+          {
+            "text": "Nutzung der Dienste und Produkte",
+            "bullets": [
+              "Personendaten",
+              "Standortdaten",
+              "Nutzungsdaten (Telefon, Internet oder TV)"
+            ]
+          },
+          "Betrieb der Apps",
+          "Online Kauf",
+          "Bestellung eines Newsletters",
+          "Nutzung des Chats bzw. Messengers",
+          "Gewinnspiele"
+        ]
+      }
+    },
+    {
+      "name": "ZEK",
+      "address": "Zentralstelle für Kreditinformation (ZEK)\nPostfach\n8048 Zürich",
+      "types": [
+        "credit"
+      ]
+    },
+    {
+      "name": "Zürcher Kantonalbank ZKB",
+      "address": "Zürcher Kantonalbank\nSitz Zürich\nBahnhofstrasse 9\n8001 Zürich",
+      "privacyStatement": {
+        "paragraphs": [
+          "Unter personenbezogene Daten sind insbesondere auch die folgenden in Ihrer Datenschutzerklärung vom {string:privacyStatementDate} aufgeführten Kategorien, resp. Bearbeitungen von Daten zur Person und zur Kundenaktivität zu verstehen:"
+        ],
+        "variables": {
+          "privacyStatementDate": "Mai 2018"
+        },
+        "bullets": [
+          "Stamm- und Bestandesdaten",
+          "Steuerlich relevante Dokumente und Informationen",
+          "Transaktions- bzw. Auftrags- und Risikomanagementdaten",
+          "Aufzeichnungen über Telefonate",
+          "Marketingdaten wie z.B. Bedürfnisse, Wünsche, Präferenzen",
+          "Technische Daten"
+        ]
+      }
+    },
+    {
+      "name": "Zürich Versicherungs-Gesellschaft",
+      "address": "Zürich Versicherungs-Gesellschaft AG\nDatenschutz\nPostfach\nCH 8085 Zürich"
+    },
+    {
+      "name": "eat.ch",
+      "address": "eat.ch GmbH\nWerdstrasse 21\n8004 Zürich",
+      "types": [
+        "online"
+      ]
+    },
+    {
+      "name": "sana24",
+      "address": "sana24 AG\nWeltpoststrasse 19/21\nPostfach 253\n3000 Bern 15"
+    },
+    {
+      "name": "tutti.ch",
+      "address": "tutti.ch\nTX Markets AG\nWerdstrasse 21\nPostfach\n8021 Zürich",
+      "types": [
+        "online"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "handle": "call",
+      "label": "Ich habe einen Werbeanruf erhalten",
+      "paragraphs": [
+        "Am {date:eventDate:Wann} habe ich von Ihnen einen Werbeanruf auf die Nummer {tel:number:Telefon-Nr.} erhalten."
+      ]
+    },
+    {
+      "handle": "rumor",
+      "label": "Ich habe vernommen, dass ...",
+      "paragraphs": [
+        "Im Zusammenhang mit {string:eventSummary:Angelegenheit oder Datensammlung angeben} werden Personendaten bearbeitet."
+      ]
+    },
+    {
+      "handle": "mailing",
+      "label": "Ich habe ein Werbemail erhalten",
+      "paragraphs": [
+        "Am {date:eventDate:Wann} habe ich von Ihnen ein Werbemail an die Adresse {email:eventEmail:E-Mail-Adresse} gesendet bekommen."
+      ]
+    },
+    {
+      "handle": "snailmailing",
+      "label": "Mir wurde Werbung per Post zugestellt",
+      "paragraphs": [
+        "Am {date:eventDate:Wann} habe ich von Ihnen Werbung per Post zugesendet bekommen."
+      ]
+    }
+  ]
+}

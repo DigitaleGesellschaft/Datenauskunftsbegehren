@@ -22,12 +22,14 @@ mkcert localhost 127.0.0.1 && \
 mv localhost+1-key.pem local.key && \ 
 mv localhost+1.pem local.cert
 ```
+
+* Make sample data locally available: `cp ./public/data.example.json ./public/data.json` 
+
 * If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
 
 
 
 ### Run local development environment
-
 
 Install the dependencies...
 
@@ -35,7 +37,7 @@ Install the dependencies...
 npm install
 ```
 
-...then start [Rollup](https://rollupjs.org):
+… then start [Rollup](https://rollupjs.org):
 
 ```bash
 npm run dev
