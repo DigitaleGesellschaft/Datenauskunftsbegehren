@@ -43,7 +43,7 @@ npm install
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see the App runnning.
+Navigate to [localhost:5000](http://localhost:5000). You should see the App running.
 
 ### Building and running in production mode
 
