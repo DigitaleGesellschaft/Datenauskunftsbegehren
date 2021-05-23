@@ -4,6 +4,7 @@
 /public/data.json
 
 .DS_Store
+.idea
 
 local.key
 local.cert
