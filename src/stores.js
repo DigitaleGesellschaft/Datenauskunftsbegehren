@@ -1,9 +1,23 @@
 import { readable, writable, get } from 'svelte/store';
-import {nl2br, br2nl, ab2str} from './lib.js'
+import {nl2br, br2nl, ab2str, debounce} from './lib.js'
 import d from './data.js';
 export const data = readable(d)
 
 let lastStep
+
+function setUserDataToHash(data, pushState = false) {
+  // we version everything so we can break the data model in the future
+  // but still support v1
+  data.v = 1
+  const hash = encodeURI(JSON.stringify(data))
+  const title = `Datenauskunftsbegehren - ${data.step}`;
+  if (pushState) {
+    window.history.pushState({step: data.step}, title, `#${hash}`)
+  } else {
+    window.history.replaceState({step: data.step}, title, `#${hash}`)
+  }
+}
+const debouncedSetUserDataToHash = debounce((val, pushState) => setUserDataToHash(val, pushState), 200)
 
 const currentUserData = getUserDataFromHash()
 export const userData = writable(currentUserData)
@@ -17,7 +31,7 @@ userData.subscribe(val => {
       pushState = true;
     }
   }
-  setUserDataToHash(val, pushState)
+  debouncedSetUserDataToHash(val, pushState);
 })
 
 window.addEventListener('hashchange', (event) => {
@@ -35,19 +49,6 @@ function getUserDataFromHash() {
     console.error("URL fragment parsing failed!")
     console.error(err)
     return {}
-  }
-}
-
-function setUserDataToHash(data, pushState = false) {
-  // we version everything so we can break the data model in the future
-  // but still support v1
-  data.v = 1
-  const hash = encodeURI(JSON.stringify(data))
-  const title = `Datenauskunftsbegehren - ${data.step}`;
-  if (pushState) {
-    window.history.pushState({step: data.step}, title, `#${hash}`)
-  } else {
-    window.history.replaceState({step: data.step}, title, `#${hash}`)
   }
 }
 
