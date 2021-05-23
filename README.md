@@ -10,8 +10,24 @@ This is the code behind: https://www.digitale-gesellschaft.ch/auskunftsbegehren
 Please open issues here for anything you find not working correctly with the Application. If you miss any organisation or company in the data, feel free to open Pull Requests at the [Data Repository](https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data).
 
 ## Develop
-### Setup local development environment
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+
+### Prerequisites
+
+* Install [Node.js LTS](https://nodejs.org)
+* Create self signed SSL Certificate for localhost, required for `npm run dev`. Recommended CLI: [mkcert](https://github.com/FiloSottile/mkcert)
+
+```bash
+mkcert -install && \
+mkcert localhost 127.0.0.1 && \ 
+mv localhost+1-key.pem local.key && \ 
+mv localhost+1.pem local.cert
+```
+* If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+
+
+
+### Run local development environment
+
 
 Install the dependencies...
 
@@ -26,8 +42,6 @@ npm run dev
 ```
 
 Navigate to [localhost:5000](http://localhost:5000). You should see the App runnning.
-
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
 
 ### Building and running in production mode
 
