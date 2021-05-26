@@ -1,4 +1,5 @@
 import PrivacyStatement from './PrivacyStatement.js'
+import History from './History.js'
 
 export default class Org {
   constructor () {
@@ -8,9 +9,6 @@ export default class Org {
   async load ({data, types}) {
     this.data = data;
     this.name = data.name;
-    if (!this.name) {
-      debugger
-    }
     this.address = data.address;
 
     if (data.privacyStatement) {
@@ -20,6 +18,11 @@ export default class Org {
 
     this.types = types
       .filter(type => this.data.types && this.data.types.includes(type.handle))
+
+    this.history = new History();
+    if (data.history) {
+      await this.history.load({data: data.history})
+    }
   }
 
   hasType (type) {

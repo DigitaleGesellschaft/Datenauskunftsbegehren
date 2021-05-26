@@ -1,8 +1,10 @@
 import { readable, writable, get } from 'svelte/store';
-import {nl2br, br2nl, ab2str} from './lib.js'
+import {nl2br, br2nl} from './lib.js'
 import { throttle } from 'lodash-es';
-import d from './data.js';
+import {data as d, validateUserData, getValidUserData, getOrgHistoryMessage} from './data.js';
+
 export const data = readable(d)
+export const messages = writable([])
 
 window.addEventListener('hashchange', (event) => {
   userData.update(() => {
@@ -14,7 +16,17 @@ function getUserDataFromHash() {
   const hash = window.location.hash;
   if (hash.length === 0) return {}
   try {
-    return JSON.parse(decodeURI(hash.slice(1)))
+    const data = JSON.parse(decodeURI(hash.slice(1)))
+    const validState = validateUserData(data)
+    if (validState.isValid) {
+      return data
+    } else {
+      messages.update(messages => {
+        messages.push(...validState.messages)
+        return messages
+      })
+      return getValidUserData(data)
+    }
   } catch (err) {
     console.error("URL fragment parsing failed!")
     console.error(err)
@@ -47,9 +59,25 @@ function setUserDataToHash(data) {
   }
 }
 
-// Safari throws if replaceState is called more than 100 times in 30s
+// We should not call replaceState than 100 times in 30s
+// as some browsers throw if done so.
 // we throttle to update max once per 300ms
 const setUserDataToHashThrottled = throttle(setUserDataToHash, 300, {
+  leading: true,
+  trailing: true
+})
+
+function updateMessages(userData) {
+  const orgHistoryMessage = getOrgHistoryMessage(userData)
+  messages.update(messages => {
+    const newMessages = messages
+      .filter(message => message.type === 'error')
+    if (orgHistoryMessage) newMessages.push(orgHistoryMessage)
+    return newMessages
+  })
+}
+
+const updateMessagesThrottled = throttle(updateMessages, 300, {
   leading: true,
   trailing: true
 })
@@ -58,6 +86,7 @@ const currentUserData = getUserDataFromHash()
 export const userData = writable(currentUserData)
 userData.subscribe(val => {
   setUserDataToHashThrottled(val)
+  updateMessagesThrottled(val)
 })
 
 export const userAddressHtml = writable(nl2br(currentUserData.address))

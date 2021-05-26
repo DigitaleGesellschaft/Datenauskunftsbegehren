@@ -30,7 +30,7 @@ async function init() {
   }
 
   const dataModule = await import('./data.js')
-  const data = dataModule.default
+  const data = dataModule.data
 
   const res = await fetch('./data.json')
   if (res.ok) {
