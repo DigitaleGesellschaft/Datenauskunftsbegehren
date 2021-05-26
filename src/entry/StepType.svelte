@@ -6,7 +6,7 @@
 
   $: selectedType = $data.getType($userData.types[0])
   $: variables = selectedType ? selectedType.variables : []
-  $: orgsWithType = $data.orgs.filter(org => org.hasType(selectedType))
+  $: orgsWithType = $data.getCurrentlySelectableOrgs().filter(org => org.hasType(selectedType))
 
 </script>
 

@@ -62,6 +62,10 @@ export default class Data {
     return this.orgs;
   }
 
+  getCurrentlySelectableOrgs() {
+    return this.orgs.filter(org => org.history.isCurrentlyValid())
+  }
+
   getType (typeHandle) {
     return this.types.find(type => type.handle === typeHandle)
   }

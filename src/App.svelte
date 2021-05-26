@@ -5,6 +5,7 @@
   import Letter from './letter/Letter.svelte'
   import Entry from './entry/Entry.svelte'
   import Share from './Share.svelte'
+  import Messages from './Messages.svelte'
   import IcsDownload from './IcsDownload.svelte'
   import DigigesLogo from './DigigesLogo.svelte'
 
@@ -50,6 +51,8 @@
 </script>
 <Header on:step={setStep} activeStep={$userData.step}></Header>
 <main>
+
+  <Messages></Messages>
 
   {#if !$userData.step}
     <div class="init">

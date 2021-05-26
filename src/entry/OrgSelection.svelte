@@ -11,7 +11,7 @@
   let wrapper;
   let isTouch = false;
   
-  $: orgOptions = (options ? options : $data.orgs)
+  $: orgOptions = (options ? options : $data.getCurrentlySelectableOrgs())
     .map(o => o.name);
 
   function handleSelect(event) {
