@@ -3,7 +3,7 @@
   import 'image-capture';
 
   import { tick, onMount, onDestroy } from 'svelte';
-  import { debounce } from '../lib.js'
+  import { debounce } from 'lodash-es';
 
   import { idImages } from '../stores.js'
   import 'cropperjs/dist/cropper.css';
@@ -122,7 +122,7 @@
   }
 
   onMount(() => {
-    const debouncedSetSizes = debounce(setSizes, 300, true)
+    const debouncedSetSizes = debounce(setSizes, 300, {leading: true, trailing: true});
     debouncedSetSizes();
     resizeObserver = new ResizeObserver(() => {
       debouncedSetSizes()
