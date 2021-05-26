@@ -163,10 +163,6 @@ export default {
     !production && livereload({
       watch: 'public',
       // other livereload options
-      https: {
-        key: fs.readFileSync('local.key'),
-        cert: fs.readFileSync('local.cert')
-      }
     }),
 
     // If we're building for production (npm run build
