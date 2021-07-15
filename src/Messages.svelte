@@ -50,4 +50,10 @@
     flex-grow: 0;
     flex-shrink: 0;
   }
+
+  @media print {
+    .messages {
+      display: none;
+    }
+  }
 </style>
