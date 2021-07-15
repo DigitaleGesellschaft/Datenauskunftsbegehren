@@ -5,7 +5,6 @@ import html from '@rollup/plugin-html';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import styles from "rollup-plugin-styles";
-import fs from 'fs'
 
 const production = !process.env.ROLLUP_WATCH;
 
