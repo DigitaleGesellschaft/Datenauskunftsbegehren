@@ -1,6 +1,7 @@
 import Org from './Org.js';
 import Type from './Type.js';
 import Event from './Event.js';
+import Paragraph from './Paragraph.js'
 
 export default class Data {
   constructor () {
@@ -79,5 +80,15 @@ export default class Data {
 
   getEvent (event) {
     return this.events.find(e => e.handle === event)
+  }
+
+  getCustomOpening(customOpening) {
+    const p = new Paragraph()
+    return p.load({
+      text: customOpening
+    })
+      .then(() => {
+        return p
+      })
   }
 }

@@ -13,6 +13,7 @@
   let selectedOrg
   let selectedTypes
   let selectedEvent
+  let customOpening
   let orgAddressTo
   let hidePrivacyStatementParagraphs = false
 
@@ -22,6 +23,7 @@
     selectedEvent = $data.getEvent($userData.event)
     orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
   }
+
 
   let imageRemoved = { front: false, back: false}
   function removeIdImage(side) {
@@ -60,6 +62,8 @@
         return userData;
       })
     }
+
+    customOpening = $data.getCustomOpening($userData.customOpening)
 
     letterNode.addEventListener('keydown', event => {
       if (!event.target.contentEditable) return
@@ -151,6 +155,12 @@
         {#each event.paragraphs as paragraph}
           <Paragraph paragraph={paragraph}></Paragraph>
         {/each}
+      {/await}
+    {/if}
+
+    {#if customOpening}
+      {#await customOpening then paragraph}
+        <Paragraph paragraph={paragraph}></Paragraph>
       {/await}
     {/if}
 
