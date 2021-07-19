@@ -168,7 +168,7 @@
       Ich bitte Sie, mir gestützt auf Art. 8 Abs. 2 u. 4 des Bundesgesetzes über den Datenschutz vom 19. Juni 1992 (DSG) innerhalb von 30 Tagen mitzuteilen,
     </p>
     <ol>
-      <li contenteditable spellcheck="false">sämtliche personenbezogenen Daten, die über mich in Ihrer/n Datensammlung(en) vorhanden sind,</li>
+      <li contenteditable spellcheck="false">sämtliche Personendaten, die über mich in Ihrer/n Datensammlung(en) vorhanden sind,</li>
       <li contenteditable spellcheck="false">von welcher Herkunft sie sind,</li>
       <li contenteditable spellcheck="false">den Zweck und gegebenenfalls die Rechtsgrundlage der Bearbeitung,</li>
       <li contenteditable spellcheck="false">wie lange sie aufbewahrt werden, und</li>
