@@ -63,7 +63,7 @@
       })
     }
 
-    customOpening = $data.getCustomOpening($userData.customOpening)
+    customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
     letterNode.addEventListener('keydown', event => {
       if (!event.target.contentEditable) return
