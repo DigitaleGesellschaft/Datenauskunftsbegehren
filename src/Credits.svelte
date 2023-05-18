@@ -61,7 +61,7 @@
     <li><strong>Kampagne</strong>: Vanessa Peter und das Team der Hochschule der Künste in Bern</li>
     <li>Danke an viele Freund*innen für die Ideen ♥️</li>
     <li>Built for the Web using HTML, CSS, JavaScript and <a target="_blank" rel="noopener noreferrer" href="https://svelte.dev/">Svelte</a></li>
-    <li>Icons from <a target="_blank" rel="noopener noreferrer" ref="https://thenounproject.com">the Noun Project</a>: 
+    <li>Icons from <a target="_blank" rel="noopener noreferrer" href="https://thenounproject.com">the Noun Project</a>: 
       <ul>
         <li>
           <span class="icon-credit-line">
