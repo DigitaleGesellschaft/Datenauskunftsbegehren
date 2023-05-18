@@ -9,16 +9,18 @@ export default class PrivacyStatement {
 
   async load ({data}) {
     const promises = []
-    
-    this.bullets = data.bullets
-      .map(bullet => {
-        const b = new Bullet({org: this.org});
-        const loaded = b.load({
-          data: bullet
+
+    if (data.bullets) {
+      this.bullets = data.bullets
+        .map(bullet => {
+          const b = new Bullet({org: this.org});
+          const loaded = b.load({
+            data: bullet
+          })
+          promises.push(loaded);
+          return b;
         })
-        promises.push(loaded);
-        return b;
-      })
+    }
 
     if (data.paragraphs) { 
       this.paragraphs = data.paragraphs
