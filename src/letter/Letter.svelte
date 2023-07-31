@@ -165,7 +165,7 @@
     {/if}
 
     <p contenteditable spellcheck="false">
-      Ich bitte Sie, mir gestützt auf Art. 8 Abs. 2 u. 4 des Bundesgesetzes über den Datenschutz vom 19. Juni 1992 (DSG) innerhalb von 30 Tagen mitzuteilen,
+      Ich bitte Sie, mir gestützt auf Art. 25 Abs. 2 u. 4 des Bundesgesetzes über den Datenschutz vom 25. September 2020 (DSG) innerhalb von 30 Tagen mitzuteilen,
     </p>
     <ol>
       <li contenteditable spellcheck="false">sämtliche Personendaten, die über mich in Ihrer/n Datensammlung(en) vorhanden sind,</li>
@@ -213,7 +213,7 @@
       Die Vollständigkeit und Richtigkeit der mir zugestellten Informationen wollen Sie mir bitte bestätigen.
     </p>
     <p contenteditable spellcheck="false" class="no-break-after">
-      Sollten Sie diese Auskunft wider Erwarten nicht oder nicht vollständig erteilen können, bitte ich Sie, gestützt auf Art. 9 DSG, um eine begründete Antwort, wieso die Auskunft nicht oder nicht vollständig erteilt werden kann.
+      Sollten Sie diese Auskunft wider Erwarten nicht oder nicht vollständig erteilen können, bitte ich Sie, gestützt auf Art. 26 DSG, um eine begründete Antwort, wieso die Auskunft nicht oder nicht vollständig erteilt werden kann.
     </p>
     <p contenteditable spellcheck="false" class="no-break-after">
       Die beiliegende Kopie eines amtlichen Ausweises dient ausschliesslich als Beleg der Identität für das vorliegende Auskunftsbegehren.
