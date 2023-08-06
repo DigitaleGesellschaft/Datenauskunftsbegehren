@@ -30,7 +30,7 @@
       {#if $userData.entry}
         <button class="two" on:click="{() => dispatch('reset')}">Eingabe zurücksetzen</button>
       {/if}
-      <button class="two solid" on:click="{() => dispatch('step', 'letter')}">❯ Brief generieren</button>
+      <button class="two solid" on:click="{() => dispatch('step', 'letter1')}">❯ Brief generieren</button>
     </div>
 </div>
 

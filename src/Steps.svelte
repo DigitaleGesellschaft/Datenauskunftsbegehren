@@ -8,9 +8,9 @@
   <button class="step" class:active={activeStep === 'entry' || !activeStep} on:click="{() => dispatch('step', 'entry')}">Eingabe</button>
   <!-- ➤ -->
   ❯
-  <button class="step" class:active={activeStep === 'letter'} on:click="{() => dispatch('step', 'letter')}">Brief</button>
+  <button class="step" class:active={activeStep === 'letter1'} on:click="{() => dispatch('step', 'letter1')}">Brief</button>
   ❯
-  <button class="step" class:active={activeStep === 'print'} on:click="{() => dispatch('step', 'print')}">Drucken</button>
+  <button class="step" class:active={activeStep === 'print1'} on:click="{() => dispatch('step', 'print1')}">Drucken</button>
 </div>
 <style>
   .steps {

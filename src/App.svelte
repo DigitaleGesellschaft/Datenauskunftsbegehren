@@ -24,7 +24,7 @@
 
     await tick();
     
-    if (step === 'print') {
+    if (step === 'print1') {
       const timeout = window.setTimeout(() => {
         canPrint = false;
         window.scrollTo({top: 0, behavior: 'smooth'})
@@ -67,7 +67,7 @@
     </div>
   {/if}
 
-  {#if $userData.step === 'print' && canPrint === true}
+  {#if $userData.step === 'print1' && canPrint === true}
     <div class="step-ui step-print">
       <div>
         <h2>Geschafft</h2>
@@ -90,7 +90,7 @@
     </div>
   {/if}
 
-  {#if $userData.step === 'print' && canPrint === false}
+  {#if $userData.step === 'print1' && canPrint === false}
     <div class="step-ui">
       <div>
         <h2>Sende dir die Webadresse</h2>
@@ -99,12 +99,12 @@
     </div>
   {/if}
 
-  {#if $userData.step === 'letter' || $userData.step === 'id' || $userData.step === 'print'}
+  {#if $userData.step === 'letter1' || $userData.step === 'id' || $userData.step === 'print1'}
     <Share></Share>
     <Letter></Letter>
     <div class="actions">
       <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'print'})}">Jetzt drucken ❯</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
     </div>
     <Share></Share>
   {/if}
