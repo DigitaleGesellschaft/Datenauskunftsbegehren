@@ -2,7 +2,7 @@
   import { onMount, tick } from 'svelte';
 
   import Header from './Header.svelte'
-  import Letter from './letter/Letter.svelte'
+  import Letter1 from './letter/Letter1.svelte'
   import Entry from './entry/Entry.svelte'
   import Share from './Share.svelte'
   import Messages from './Messages.svelte'
@@ -101,7 +101,7 @@
 
   {#if $userData.step === 'letter1' || $userData.step === 'id' || $userData.step === 'print1'}
     <Share></Share>
-    <Letter></Letter>
+    <Letter1></Letter1>
     <div class="actions">
       <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
       <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
