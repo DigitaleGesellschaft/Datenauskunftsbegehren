@@ -348,7 +348,7 @@
   margin-top: 7mm;
 }
 .date, .address-to {
-  margin-left: 90mm;
+  margin-left: 98mm;
 }
 
 h1, h2 {
