@@ -52,7 +52,8 @@
     const id = await getHash({text: JSON.stringify(get(userData))}) + Date.now() + Math.floor(Math.random() * Math.pow(10, 3));
     uid = `${id.slice(0,icsMaxLineLength - (uid.length + 'UID:'.length))}${uid}`;
 
-    const description = `Vor ${getDeadlineDays()} Tagen hast du ein Auskunftsbegehren generiert. Hast du eine Antwort erhalten? Hier kannst du den Brief nochmals ansehen:`;
+    const description = `Vor ${getDeadlineDays()} Tagen hast du ein Auskunftsbegehren generiert. Hast du eine Antwort erhalten?\\n\\nHier kannst du den Brief nochmals ansehen:`;
+    const comeback = `Bei Fragen kannst Du uns gern über auskunftsbegehren@digitale-gesellschaft.ch kontaktieren.`;
 
     return `BEGIN:VCALENDAR
 VERSION:2.0
@@ -65,8 +66,8 @@ UID:${uid}
 SUMMARY:Datenauskunftsbegehren, Antwort erhalten?
 DTSTAMP:${lightFormat(Date.now(), format)}
 DTSTART:${lightFormat(answerShouldArriveAt, format)}
-DESCRIPTION:${getStringChunks(description, 75).join('\\n')}\\n${window.location}
-DURATION:PT30M
+DESCRIPTION:${description}\\n${window.location}\\n\\n${comeback}
+DURATION:PT15M
 END:VEVENT
 END:VCALENDAR
 `
