@@ -258,7 +258,6 @@
     {#if $idImages && $idImages.front && !$idImages.back}
       <IdCapture side="back"></IdCapture>
     {/if}
-      
   </section>
 </div>
 <style>
