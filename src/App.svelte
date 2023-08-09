@@ -83,8 +83,9 @@
           Rückmeldungen nehmen wir unter <a href="mailto:auskunftsbegehren@digitale-gesellschaft.ch">auskunftsbegehren@digitale-gesellschaft.ch</a> gerne entgegen.
         </p>
         <p>
-          Falls du über die Aktivitäten der Digitalen Gesellschaft auf dem Laufenden gehalten werden möchtest, abonniere jetzt den <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/newsletter/">monatlichen Newsletter</a> 
-          oder unterstütze uns als <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/">Mitglied, Spender oder Gönnerin</a>.
+        Unser Generator wurde von IT- und Rechtskundigen der Digitalen Gesellschaft in unzähligen Stunden entwickelt und steht allen frei zur Verfügung. 
+        Als <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/">Mitglied, Spender oder Gönnerin</a> unterstützst du unsere Arbeit. 
+        Falls du über unsere Aktivitäten auf dem Laufenden gehalten werden möchtest, abonniere jetzt den <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/newsletter/">monatlichen Newsletter</a>.
         </p>
       </div>
     </div>
