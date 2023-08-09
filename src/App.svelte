@@ -2,7 +2,8 @@
   import { onMount, tick } from 'svelte';
 
   import Header from './Header.svelte'
-  import Letter from './letter/Letter1.svelte'
+  import Letter1 from './letter/Letter1.svelte'
+  import Letter2a from './letter/Letter2a.svelte'
   import Entry from './entry/Entry.svelte'
   import Share from './Share.svelte'
   import Messages from './Messages.svelte'
@@ -24,7 +25,7 @@
 
     await tick();
     
-    if (step === 'print') {
+    if (step === 'print1') {
       const timeout = window.setTimeout(() => {
         canPrint = false;
         window.scrollTo({top: 0, behavior: 'smooth'})
@@ -67,7 +68,7 @@
     </div>
   {/if}
 
-  {#if $userData.step === 'print' && canPrint === true}
+  {#if $userData.step === 'print1' && canPrint === true}
     <div class="step-ui step-print">
       <div>
         <h2>Geschafft</h2>
@@ -83,14 +84,15 @@
           Rückmeldungen nehmen wir unter <a href="mailto:auskunftsbegehren@digitale-gesellschaft.ch">auskunftsbegehren@digitale-gesellschaft.ch</a> gerne entgegen.
         </p>
         <p>
-          Falls du über die Aktivitäten der Digitalen Gesellschaft auf dem Laufenden gehalten werden möchtest, abonniere jetzt den <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/newsletter/">monatlichen Newsletter</a> 
-          oder unterstütze uns als <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/">Mitglied, Spender oder Gönnerin</a>.
+        Unser Generator wurde von IT- und Rechtskundigen der Digitalen Gesellschaft in unzähligen Stunden entwickelt und steht allen frei zur Verfügung. 
+        Als <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/">Mitglied, Spender oder Gönnerin</a> unterstützt du unsere Arbeit.
+        Falls du über unsere Aktivitäten auf dem Laufenden gehalten werden möchtest, abonniere jetzt den <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/newsletter/">monatlichen Newsletter</a>.
         </p>
       </div>
     </div>
   {/if}
 
-  {#if $userData.step === 'print' && canPrint === false}
+  {#if $userData.step === 'print1' && canPrint === false}
     <div class="step-ui">
       <div>
         <h2>Sende dir die Webadresse</h2>
@@ -99,12 +101,19 @@
     </div>
   {/if}
 
-  {#if $userData.step === 'letter' || $userData.step === 'id' || $userData.step === 'print'}
-    <Share></Share>
-    <Letter></Letter>
+  {#if $userData.step === 'letter1' || $userData.step === 'id' || $userData.step === 'print1'}
+    <Letter1></Letter1>
     <div class="actions">
       <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'print'})}">Jetzt drucken ❯</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
+    </div>
+    <Share></Share>
+  {/if}
+  {#if $userData.step === 'letter2a'}
+    <Letter2a></Letter2a>
+    <div class="actions">
+      <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
     </div>
     <Share></Share>
   {/if}
