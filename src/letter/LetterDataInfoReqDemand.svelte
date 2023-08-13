@@ -126,8 +126,7 @@
     </p>
 
     <p contenteditable spellcheck="false">
-      Mit Datum vom TT. MMMM JJJJ habe ich bei Ihnen ein Datenauskunftsbegehren gestellt. Mit Ihrer Auskunft vom TT. MMMM JJJJ haben Sie dieses beantwortet.<br>
-      Leider ist die Auskunft unvollständig.
+      Am TT. MMMM JJJJ stellte ich ein Datenauskunftsbegehren, das bis heute unbeantwortet geblieben ist.
     </p>
     <p contenteditable spellcheck="false">
     Es fehlen insbesondere folgende Daten:

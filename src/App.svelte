@@ -2,8 +2,21 @@
   import { onMount, tick } from 'svelte';
 
   import Header from './Header.svelte'
-  import Letter1 from './letter/Letter1.svelte'
-  import Letter2a from './letter/Letter2a.svelte'
+  // Auskunftsbegehren
+  import LetterDataInfoReq from './letter/LetterDataInfoReq.svelte'
+  // Auskunftsbegehren - Ausbleibende Auskunft
+  // Keine Reaktion auf Auskunftsbegehren
+  import LetterDataInfoReqRemind from './letter/LetterDataInfoReqRemind.svelte'
+  // Auskunftsbegehren - Unvollständige Auskunft
+  // Unvollständige Auskunft nach Auskunftsbegehren
+  import LetterDataInfoReqDemand from './letter/LetterDataInfoReqDemand.svelte'
+  // Auskunftsbegehren - Korrektur von Daten
+  // Berichtigungsbegehren nach erteilter Auskunft
+  import LetterDataInfoReqChange from './letter/LetterDataInfoReqChange.svelte'
+  // Auskunftsbegehren - Löschung von Daten
+  // Löschbegehren nach erteilter Auskunft
+  import LetterDataInfoReqDelete from './letter/LetterDataInfoReqDelete.svelte'
+
   import Entry from './entry/Entry.svelte'
   import Share from './Share.svelte'
   import Messages from './Messages.svelte'
@@ -102,7 +115,7 @@
   {/if}
 
   {#if $userData.step === 'letter1' || $userData.step === 'id' || $userData.step === 'print1'}
-    <Letter1></Letter1>
+    <LetterDataInfoReq></LetterDataInfoReq>
     <div class="actions">
       <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
       <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
@@ -110,9 +123,37 @@
     <Share></Share>
   {/if}
   {#if $userData.step === 'letter2a'}
-    <Letter2a></Letter2a>
+    <LetterDataInfoReqRemind></LetterDataInfoReqRemind>
     <div class="actions">
       <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'letter1'})}">❮ zum Auskunftsbegehren</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
+    </div>
+    <Share></Share>
+  {/if}
+  {#if $userData.step === 'letter2b'}
+    <LetterDataInfoReqDemand></LetterDataInfoReqDemand>
+    <div class="actions">
+      <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'letter1'})}">❮ zum Auskunftsbegehren</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
+    </div>
+    <Share></Share>
+  {/if}
+  {#if $userData.step === 'letter3a'}
+    <LetterDataInfoReqChange></LetterDataInfoReqChange>
+    <div class="actions">
+      <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'letter1'})}">❮ zum Auskunftsbegehren</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
+    </div>
+    <Share></Share>
+  {/if}
+  {#if $userData.step === 'letter3b'}
+    <LetterDataInfoReqDelete></LetterDataInfoReqDelete>
+    <div class="actions">
+      <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'letter1'})}">❮ zum Auskunftsbegehren</button>
       <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
     </div>
     <Share></Share>
