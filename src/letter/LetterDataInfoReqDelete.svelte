@@ -4,7 +4,7 @@
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
 
-  let letter3bNode
+  let LetterDataInfoReqDeleteNode
   let selectedOrg
   let selectedTypes
   let selectedEvent
@@ -40,7 +40,7 @@
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
-    letter3bNode.addEventListener('keydown', event => {
+    LetterDataInfoReqDeleteNode.addEventListener('keydown', event => {
       if (!event.target.contentEditable) return
       if (event.code === 'Backspace') {
         const length = event.target.innerText.replace(/[\n\r\s]+/, '').length;
@@ -62,8 +62,9 @@
     })
   })
 </script>
+
 <div id="letter-container">
-  <section id="letter" bind:this={letter3bNode}>
+  <section id="letter" bind:this={LetterDataInfoReqDeleteNode}>
     <div class="letter-head">
       <div class="address-from">
         <span
@@ -126,20 +127,20 @@
     </p>
 
     <p contenteditable spellcheck="false">
-      Mit Datum vom TT. MMMM JJJJ habe ich bei Ihnen ein Datenauskunftsbegehren gestellt. Mit Ihrer Auskunft vom TT. MMMM JJJJ haben Sie dieses beantwortet.
+      Ich danke Ihnen für die Auskunft vom TT. MMMM JJJJ.
     </p>
     <p contenteditable spellcheck="false">
-      Dabei habe ich festgestellt, dass Sie Daten bearbeiten, deren Bearbeitung ich widersprechen möchte. Ich beantrage gemäss Art. 32 DSG (bzw. Art. 41 Abs. 2 DSG für Bundesorgane) vom 25. September 2020, dass die folgende Daten in Ihrer Datensammlung gelöscht werden:
+      Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Personendaten zu löschen:
     </p>
     <ul>
       <li contenteditable spellcheck="false">[Auflistung der zu löschenden Daten oder sämtliche Daten]</li>
       <li contenteditable spellcheck="false">...</li>
     </ul>
     <p contenteditable spellcheck="false">
-      In diesem Rahmen sollen keine Daten mehr bearbeitet werden. Falls die Daten an Dritte weitergegeben wurden, so muss diesen die Löschung mitgeteilt werden (Art. 32 Abs. 4 DSG bzw. Art. 41 Abs. 2 DSG für Bundesorgane).
+      Ich verlange ferner, dass Sie die Löschung Dritten, von welchen Sie die zu löschenden Daten erhalten oder denen Sie die zu löschenden Daten weitergegeben haben, entsprechend informieren.
     </p>
     <p contenteditable spellcheck="false">
-      Darf ich Sie um entsprechende Bearbeitung bitten? Die Löschung wollen Sie mir bitte bestätigen.
+      Ich bitte Sie schliesslich, die Löschung zu bestätigen. Sollten Sie die Löschung ganz oder teilweise verweigern, ersuche ich Sie um eine entsprechende Begründung.
     </p>
 
     <div class="no-break-inside">
@@ -159,6 +160,7 @@
     </div>
   </section>
 </div>
+
 <style>
 
 #letter-container {

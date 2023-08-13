@@ -4,7 +4,9 @@
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
 
-  let letter2bNode
+  // Unvollständige Auskunft
+  // Unvollständige Auskunft nach Auskunftsbegehren
+  let LetterDataInfoReqDemandNode
   let selectedOrg
   let selectedTypes
   let selectedEvent
@@ -40,7 +42,7 @@
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
-    letter2bNode.addEventListener('keydown', event => {
+    LetterDataInfoReqDemandNode.addEventListener('keydown', event => {
       if (!event.target.contentEditable) return
       if (event.code === 'Backspace') {
         const length = event.target.innerText.replace(/[\n\r\s]+/, '').length;
@@ -62,8 +64,9 @@
     })
   })
 </script>
+
 <div id="letter-container">
-  <section id="letter" bind:this={letter2bNode}>
+  <section id="letter" bind:this={LetterDataInfoReqDemandNode}>
     <div class="letter-head">
       <div class="address-from">
         <span
@@ -126,20 +129,20 @@
     </p>
 
     <p contenteditable spellcheck="false">
-      Am TT. MMMM JJJJ stellte ich ein Datenauskunftsbegehren, das bis heute unbeantwortet geblieben ist.
+      Mein Datenauskunftsbegehren vom TT. MMMM JJJJ wurde mit Ihrer Auskunft vom TT. MMMM JJJJ nicht vollständig beantwortet.
     </p>
     <p contenteditable spellcheck="false">
-    Es fehlen insbesondere folgende Daten:
+      Ich gehe davon aus, dass insbesondere folgende Informationen fehlen:
     </p>
     <ul>
       <li contenteditable spellcheck="false">[Auflistung der fehlenden Daten]</li>
       <li contenteditable spellcheck="false">...</li>
     </ul>
     <p contenteditable spellcheck="false">
-      Gemäss Art. 18 Abs. 2 der Verordnung zum Bundesgesetz über den Datenschutz vom 31. August 2022 (VDSG) muss eine Beschränkung der Auskunft in einem begründeten Entscheid erteilt werden. Ich bitte Sie, mir eine vollständige Auskunft nachzureichen oder gegebenenfalls die Beschränkung der Auskunft in einem Entscheid zu begründen.
+      Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen Angaben geliefert werden, wieso eine Auskunft eingeschränkt wurde. Ich bitte Sie entsprechend, vollständig Auskunft zu erteilen oder Angaben zu liefern, wieso die Auskunft eingeschränkt wurde..
     </p>
     <p contenteditable spellcheck="false">
-      Darf ich Sie um entsprechende Bearbeitung bitten? Ich möchte Sie darauf hinweisen, dass bei einer vorsätzlich falschen oder unvollständigen Antwort eine Busse bis zu 250'000 Franken droht (Art. 60 DSG vom 25. September 2020).
+      Sollten Sie weiterhin keine vollständige Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten. Ich weise ausserdem darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art. 60 DSG).
     </p>
 
     <div class="no-break-inside">
@@ -159,6 +162,7 @@
     </div>
   </section>
 </div>
+
 <style>
 
 #letter-container {

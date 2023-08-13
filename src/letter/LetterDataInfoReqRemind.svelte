@@ -4,7 +4,9 @@
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
 
-  let letter2aNode
+  // Ausbleibende Auskunft
+  // Keine Reaktion auf Auskunftsbegehren
+  let LetterDataInfoReqRemindNode
   let selectedOrg
   let selectedTypes
   let selectedEvent
@@ -40,7 +42,7 @@
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
-    letter2aNode.addEventListener('keydown', event => {
+    LetterDataInfoReqRemindNode.addEventListener('keydown', event => {
       if (!event.target.contentEditable) return
       if (event.code === 'Backspace') {
         const length = event.target.innerText.replace(/[\n\r\s]+/, '').length;
@@ -62,8 +64,9 @@
     })
   })
 </script>
+
 <div id="letter-container">
-  <section id="letter" bind:this={letter2aNode}>
+  <section id="letter" bind:this={LetterDataInfoReqRemindNode}>
     <div class="letter-head">
       <div class="address-from">
         <span
@@ -118,7 +121,7 @@
     </div>
 
     <h1 class="subject" contenteditable spellcheck="false">
-      Datenauskunftsbegehren
+      Datenauskunftsbegehren / Ausbleibende Auskunft
     </h1>
 
     <p class="salutation" contenteditable spellcheck="false">
@@ -126,16 +129,13 @@
     </p>
 
     <p contenteditable spellcheck="false">
-      Mit Datum vom TT. MMMM JJJJ habe ich bei Ihnen ein Datenauskunftsbegehren gestellt, welches bis heute leider unbeantwortet geblieben ist.
+      Am TT. MMMM JJJJ stellte ich ein Datenauskunftsbegehren, das bis heute unbeantwortet geblieben ist.
     <p>
     <p contenteditable spellcheck="false">
-      Gemäss Art. 18 Abs. 2 der Verordnung zum Bundesgesetz über den Datenschutz vom 31. August 2022 (VDSG) muss eine Auskunft oder der begründete Entscheid über die Beschränkung des Auskunftsrechts innert 30 Tagen seit dem Eingang des Auskunftsbegehrens erteilt werden. Diese Frist ist mittlerweile verstrichen.<br/>
+      Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen die Auskunft oder die Information über eine verzögerte Auskunft innerhalb von 30 Tagen erfolgen. Ebenfalls innerhalb von 30 Tagen muss mitgeteilt werden, wenn die Auskunft verweigert oder aufgeschoben wird.
     </p>
     <p contenteditable spellcheck="false">
-      Kann die Auskunft nicht innert 30 Tagen erteilt werden, so muss die gesuchstellende Person hierüber benachrichtigt werden, und ihr ist die Frist mitzuteilen, in der die Auskunft erfolgen wird.
-    </p>
-    <p contenteditable spellcheck="false">
-      Darf ich Sie um entsprechende Bearbeitung bitten? Ich möchte Sie darauf hinweisen, dass bei einer vorsätzlich unvollständigen Antwort eine Busse bis zu 250'000 Franken droht (Art. 60 DSG vom 25. September 2020).
+      Ich bitte Sie entsprechend, die Auskunft zu erteilen. Sollten Sie weiterhin keine Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten.  Ich weise ausserdem vorsorglich darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art. 60 DSG).
     </p>
 
     <div class="no-break-inside">
@@ -155,6 +155,7 @@
     </div>
   </section>
 </div>
+
 <style>
 
 #letter-container {

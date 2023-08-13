@@ -4,7 +4,7 @@
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
 
-  let letter3aNode
+  let LetterDataInfoReqChangeNode
   let selectedOrg
   let selectedTypes
   let selectedEvent
@@ -40,7 +40,7 @@
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
-    letter3aNode.addEventListener('keydown', event => {
+    LetterDataInfoReqChangeNode.addEventListener('keydown', event => {
       if (!event.target.contentEditable) return
       if (event.code === 'Backspace') {
         const length = event.target.innerText.replace(/[\n\r\s]+/, '').length;
@@ -62,8 +62,9 @@
     })
   })
 </script>
+
 <div id="letter-container">
-  <section id="letter" bind:this={letter3aNode}>
+  <section id="letter" bind:this={LetterDataInfoReqChangeNode}>
     <div class="letter-head">
       <div class="address-from">
         <span
@@ -126,20 +127,20 @@
     </p>
 
     <p contenteditable spellcheck="false">
-      Mit Datum vom TT. MMMM JJJJ habe ich bei Ihnen ein Datenauskunftsbegehren gestellt. Mit Ihrer Auskunft vom TT. MMMM JJJJ haben Sie dieses beantwortet. Dabei habe ich leider festgestellt, dass die von Ihnen bearbeiteten Daten unrichtig sind.
+      Ich danke Ihnen für die Auskunft vom TT. MMMM JJJJ. Aufgrund Ihrer Auskunft stellte ich fest, dass von Ihnen bearbeitete Personendaten unrichtig sind.
     </p>
     <p contenteditable spellcheck="false">
-      Gestützt auf Art. 32 Abs. 1 DSG (bzw. Art. 41 Abs. 2 DSG für Bundesorgane) vom 25. September 2020 verlange ich, dass die folgenden unrichtigen Daten gelöscht und berichtigt werden:
+      Ich ersuche Sie deshalb, dass folgende Personendaten berichtigt werden:
     </p>
     <ul>
-      <li contenteditable spellcheck="false">[Auflistung der zu berichtigenden Daten]</li>
+      <li contenteditable spellcheck="false">[Auflistung der zu berichtigenden Daten und gewünschte Berichtigung]</li>
       <li contenteditable spellcheck="false">...</li>
     </ul>
     <p contenteditable spellcheck="false">
-      Falls die Daten an Dritte weitergegeben wurden, so muss diesen die Berichtigung mitgeteilt werden (Art. 32 Abs. 4 DSG bzw. Art. 41 Abs. 2 DSG für Bundesorgane).
+      Ich verlange ferner, dass Sie die Berichtigung Dritten, von welchen Sie die unrichtigen Daten erhalten oder denen Sie die unrichtigen Daten weitergegeben haben, entsprechend informieren.
     </p>
     <p contenteditable spellcheck="false">
-      Darf ich Sie um entsprechende Bearbeitung bitten? Die Löschung und Berichtigung der Daten wollen Sie mir bitte bestätigen.
+      Ich bitte Sie schliesslich, die Berichtigung zu bestätigen.
     </p>
 
     <div class="no-break-inside">
@@ -159,6 +160,7 @@
     </div>
   </section>
 </div>
+
 <style>
 
 #letter-container {

@@ -9,7 +9,9 @@
   import { data, userData, userAddressHtml, orgAddressHtml, idImages } from '../stores.js';
   import {nl2br} from '../lib.js';
 
-  let letterNode
+  // Erstes Anschreiben
+  // Auskunftsbegehren
+  let letterDataInfoReqNode
   let selectedOrg
   let selectedTypes
   let selectedEvent
@@ -23,7 +25,6 @@
     selectedEvent = $data.getEvent($userData.event)
     orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
   }
-
 
   let imageRemoved = { front: false, back: false}
   function removeIdImage(side) {
@@ -54,7 +55,6 @@
     range.detach();
   }
 
-
   onMount(() => {
     if (!$userData.date || $userData.date === '' || $userData.date === '<br>') {
       userData.update(userData => {
@@ -65,7 +65,7 @@
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
-    letterNode.addEventListener('keydown', event => {
+    letterDataInfoReqNode.addEventListener('keydown', event => {
       if (!event.target.contentEditable) return
       if (event.code === 'Backspace') {
         const length = event.target.innerText.replace(/[\n\r\s]+/, '').length;
@@ -76,6 +76,7 @@
           setCaretToEndOf(prevSibling)
         }
       }
+
       if (event.code === 'Enter') {
         if (['LI'].includes(event.target.nodeName)) {
           event.preventDefault();
@@ -87,8 +88,9 @@
     })
   })
 </script>
+
 <div id="letter-container">
-  <section id="letter" bind:this={letterNode}>
+  <section id="letter" bind:this={letterDataInfoReqNode}>
     <div class="letter-head">
       <div class="address-from">
         <span
@@ -147,7 +149,7 @@
     </h1>
 
     <p class="salutation" contenteditable spellcheck="false">
-      Sehr geehrte Damen und Herren
+      Sehr geehrte Angesprochene
     </p>
 
     {#if selectedEvent}
@@ -165,14 +167,22 @@
     {/if}
 
     <p contenteditable spellcheck="false">
-      Ich bitte Sie, mir gestützt auf Art. 8 Abs. 2 u. 4 des Bundesgesetzes über den Datenschutz vom 19. Juni 1992 (DSG) innerhalb von 30 Tagen mitzuteilen,
+      Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz vom 25. September 2020 (DSG), mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.
+    </p>
+    <p>
+      Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist.
+    </p>
+    <p>
+      Ich ersuche Sie in diesem Rahmen, mir in jedem Fall folgende Informationen mitzuteilen:
     </p>
     <ol>
-      <li contenteditable spellcheck="false">sämtliche Personendaten, die über mich in Ihrer/n Datensammlung(en) vorhanden sind,</li>
-      <li contenteditable spellcheck="false">von welcher Herkunft sie sind,</li>
-      <li contenteditable spellcheck="false">den Zweck und gegebenenfalls die Rechtsgrundlage der Bearbeitung,</li>
-      <li contenteditable spellcheck="false">wie lange sie aufbewahrt werden, und</li>
-      <li contenteditable spellcheck="false">an wen sie allenfalls weitergegeben wurden.</li>
+      <li contenteditable spellcheck="false">Identität und Kontaktdaten aller Verantwortlichen</li>
+      <li contenteditable spellcheck="false">Alle bearbeiteten Personendaten als solche</li>
+      <li contenteditable spellcheck="false">Bearbeitungszweck der Personendaten</li>
+      <li contenteditable spellcheck="false">Aufbewahrungsdauer der Personendaten</li>
+      <li contenteditable spellcheck="false">Herkunft der Personendaten</li>
+      <li contenteditable spellcheck="false">Empfängerinnen und Empfänger der Personendaten</li>
+      <li contenteditable spellcheck="false">Vorliegen einer automatisierten Einzelentscheidung und deren Logik</li>
     </ol>
 
     {#if selectedOrg && !selectedEvent}
@@ -207,16 +217,16 @@
     {/each}
 
     <p contenteditable spellcheck="false" class="no-break-after">
-      Bitte teilen Sie mir die Daten in digitaler Form (z.B. als PDF- oder CSV-Dateien auf einem USB-Stick) mit.
+      Ich bitte Sie, die Auskunft in elektronischer Form zu erteilen, zum Beispiel als PDF- oder CSV-Dateien zum sicheren Download.
     </p>
     <p contenteditable spellcheck="false" class="no-break-after">
-      Die Vollständigkeit und Richtigkeit der mir zugestellten Informationen wollen Sie mir bitte bestätigen.
+      Ich bitte Sie weiter, die Richtigkeit und Vollständigkeit der erteilten Auskunft zu bestätigen.
     </p>
     <p contenteditable spellcheck="false" class="no-break-after">
-      Sollten Sie diese Auskunft wider Erwarten nicht oder nicht vollständig erteilen können, bitte ich Sie, gestützt auf Art. 9 DSG, um eine begründete Antwort, wieso die Auskunft nicht oder nicht vollständig erteilt werden kann.
+      Sollten Sie die Auskunft wider Erwarten nicht, oder nicht vollständig oder noch nicht erteilen können, ersuche ich Sie um Angaben, wieso die Auskunft verweigert, eingeschränkt oder aufgeschoben wird.
     </p>
     <p contenteditable spellcheck="false" class="no-break-after">
-      Die beiliegende Kopie eines amtlichen Ausweises dient ausschliesslich als Beleg der Identität für das vorliegende Auskunftsbegehren.
+      Die beiliegende Kopie eines amtlichen Ausweises dient ausschliesslich dem Zweck, mich mit angemessenen Massnahmen zu identifizieren. Die Ausweis-Kopie darf für keinen anderen Zweck verwendet werden.
     </p>
     <div class="no-break-inside">
       <p contenteditable spellcheck="false" class="no-break-after">
@@ -260,6 +270,7 @@
     {/if}
   </section>
 </div>
+
 <style>
 
 #letter-container {
@@ -341,7 +352,6 @@
     display: none;
   }
 }
-
 
 .address-to {
   margin-top: 7mm;
