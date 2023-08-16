@@ -1,15 +1,17 @@
 import Org from './Org.js';
 import Type from './Type.js';
 import Event from './Event.js';
+import FollowUp from './FollowUp.js'
 import Paragraph from './Paragraph.js'
 
 export default class Data {
   constructor () {
-    this.types = [];
     this.orgs = [];
+    this.types = [];
+    this.followups = [];
   }
 
-  async load (data) {
+  async load (data){
     const promises = []
     this.data = data;
 
@@ -35,7 +37,13 @@ export default class Data {
         promises.push(e.load({data: event}))
         return e
       })
-      
+
+    const followups = data.followups
+      .map(followup => {
+          const e = new FollowUp()
+          promises.push(e.load({data: followup}))
+          return e
+      })
 
     await Promise.all(promises)
 
@@ -53,6 +61,11 @@ export default class Data {
       .sort((a, b) => {
         return a.label.toLowerCase().localeCompare(b.label.toLowerCase())
       })
+
+      this.followups = followups
+          .sort((a , b) => {
+              return a.label.toLowerCase().localeCompare(b.label.toLowerCase())
+          })
   }
 
   getOrg(name) {
@@ -81,6 +94,17 @@ export default class Data {
   getEvent (event) {
     return this.events.find(e => e.handle === event)
   }
+
+    getFollowUps (onlyFollowUps) {
+        if (onlyFollowUps) {
+            return this.followups.filter(followup => onlyFollowUps.includes(followup.handle))
+        }
+        return this.followups
+    }
+
+    getFollowUp(followup) {
+        return this.followups.find(followup => followup.handle === followup)
+    }
 
   getCustomOpening(customOpening) {
     const p = new Paragraph()

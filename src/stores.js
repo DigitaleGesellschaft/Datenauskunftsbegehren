@@ -36,7 +36,7 @@ function getUserDataFromHash() {
 
 let lastStep
 function setUserDataToHash(data) {
-  // we version everything so we can break the data model in the future
+  // we version everything, so we can break the data model in the future
   // but still support v1
   data.v = 1
   const hash = encodeURI(JSON.stringify(data))
@@ -112,6 +112,7 @@ orgAddressHtml.subscribe(orgAddressEntry => {
   })
 })
 userData.subscribe(val => {
+  console.log("subscribe: " + val)
   if (val.address) {
     // only update if different
     const isSame = br2nl(get(userAddressHtml)) === val.address

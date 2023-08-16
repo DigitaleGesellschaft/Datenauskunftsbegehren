@@ -5,7 +5,14 @@ export default {
     one: {
       org: 'Direkt ein Unternehmen oder eine Behörde auswählen',
       type: 'Ein Unternehmen oder eine Behörde über den Geschäftsbereich auswählen',
-      event: 'Ein Datenauskunftsbegehren aus einem speziellen Grund stellen'
+      event: 'Ein Datenauskunftsbegehren aus einem speziellen Grund stellen',
+      followup: 'Zu einem bereits gestellten Datenauskunftsbegehren nachfassen',
+      id: 'Eine Kopie Deines amtlichen Ausweises bereitstellem',
+      idcap_front: 'hier Kamera aktivieren um den Ausweis zu fotografieren',
+      idcap_back: 'hier Kamera aktivieren um die Rückseite zu fotografieren',
+      idimp_front: 'hier die Ausweis-Vorderseite vom Dateisystem laden',
+      idimp_back: 'hier die Ausweis-Rückseite vom Dateisystem laden',
+      idimp_both: 'hier die Ausweis-Vorder und -Rückseite in einem Bild vom Dateisystem laden'
     }
   }
 }

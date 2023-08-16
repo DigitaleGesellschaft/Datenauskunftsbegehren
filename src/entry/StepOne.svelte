@@ -6,6 +6,7 @@
 
   $: types = $data && $data.types ? $data.types : []
   $: events = $data && $data.events ? $data.events : []
+  $: followups = $data && $data.followups ? $data.followups : []
 
 </script>
 
@@ -34,6 +35,14 @@
   </section>
 </div>
 
+<div class="separator"><span>oder</span></div>
+
+<section>
+  <h2>{texts.steps.one.followup}</h2>
+  {#each followups as followup}
+    <button class="one" on:click="{() => {$userData.entry = 'followup'; $userData.followup = [followup.handle]}}">{followup.label}</button>
+  {/each}
+</section>
 <style>
 
   section {
