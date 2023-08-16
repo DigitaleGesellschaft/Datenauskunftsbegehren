@@ -26,7 +26,7 @@
     orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
   }
 
-  let imageRemoved = { front: false, back: false}
+  let imageRemoved = { both: false, front: false, back: false}
   function removeIdImage(side) {
     imageRemoved[side] = true
     const newIdImages = {
@@ -242,19 +242,26 @@
         Beilage: Amtlicher Ausweis (Kopie)
       </p>
     </div>
-    {#if ($idImages && $idImages.front) || ($idImages && $idImages.back)}
+    {#if ($idImages && $idImages.both) || ($idImages && $idImages.front) || ($idImages && $idImages.back)}
       <p class="attachments">
-        {#if $idImages.front || imageRemoved.front}
+        {#if $idImages.both || imageRemoved.both}
           <div class="image">
-            <img src="{$idImages.front}">
-            <RemoveNodeAction on:removed={() => removeIdImage('front')}></RemoveNodeAction>
+            <img alt="ID image, both" src="{$idImages.both}">
+            <RemoveNodeAction on:removed={() => removeIdImage('both')}></RemoveNodeAction>
           </div>
-        {/if}
-        {#if $idImages.back || imageRemoved.back}
-          <div class="image">
-            <img src="{$idImages.back}">
-            <RemoveNodeAction on:removed={() => removeIdImage('back')}></RemoveNodeAction>
-          </div>
+        {:else}
+          {#if $idImages.front || imageRemoved.front}
+            <div class="image">
+              <img alt="ID image, front" src="{$idImages.front}">
+              <RemoveNodeAction on:removed={() => removeIdImage('front')}></RemoveNodeAction>
+            </div>
+          {/if}
+          {#if $idImages.back || imageRemoved.back}
+            <div class="image">
+              <img alt="ID image, back" src="{$idImages.back}">
+              <RemoveNodeAction on:removed={() => removeIdImage('back')}></RemoveNodeAction>
+            </div>
+          {/if}
         {/if}
       </p>
     {/if}
