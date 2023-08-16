@@ -20,7 +20,7 @@
     const numChunks = Math.ceil(string.length / length)
     const chunks = []
     for (let i = 0, start = 0; i < numChunks; ++i, start += length) {
-      chunks.push(string.substr(start, length))
+      chunks.push(string.slice(start, length))
     }
     return chunks
   }
@@ -80,9 +80,9 @@ END:VCALENDAR
     const event = await getIcs();
 
     const mimeType = 'text/calendar';
-    var blob = new Blob([event], { type: mimeType });
+    let blob = new Blob([event], { type: mimeType });
 
-    var a = document.createElement('a');
+    let a = document.createElement('a');
     a.download = 'auskunftsbegehren.ics';
     a.href = URL.createObjectURL(blob);
     a.dataset.downloadurl = [mimeType, a.download, a.href].join(':');
