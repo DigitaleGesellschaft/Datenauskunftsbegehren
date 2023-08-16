@@ -37,11 +37,7 @@
   }
 
   function handleBulletHiddenChange(event) {
-    if (event.detail === 'all') {
-      hidePrivacyStatementParagraphs = true
-    } else {
-      hidePrivacyStatementParagraphs = false
-    }
+    hidePrivacyStatementParagraphs = event.detail === 'all';
   }
 
   function setCaretToEndOf(node) {
