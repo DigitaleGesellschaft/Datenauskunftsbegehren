@@ -24,11 +24,16 @@
   import DigigesLogo from './DigigesLogo.svelte'
 
   import texts from './texts.js'
-  
+
   import { userData, userAddressHtml, orgAddressHtml } from './stores.js'
 
   let canPrint = undefined;
 
+  /**
+   * Aktualisiert den Workflow-Schritt ("step") als Reaktion auf Nutzereingaben (Navigation)
+   * @param detail technischer Bezeicher des Workflow-Schrittes im Code, siehe "Steps.svelte"
+   * @returns {Promise<void>} userData Struktur mit aktuellem Workflow-Schritt ("step")
+   */
   async function setStep({detail}) {
     const step = detail;
     userData.update(userData => {
@@ -43,7 +48,7 @@
         canPrint = false;
         window.scrollTo({top: 0, behavior: 'smooth'})
       }, 200)
-      window.addEventListener("beforeprint", () => { 
+      window.addEventListener("beforeprint", () => {
         window.clearTimeout(timeout);
         canPrint = true;
         window.scrollTo({top: 0, behavior: 'smooth'})
@@ -62,7 +67,40 @@
     document.querySelector('#loader').remove();
     document.querySelector('.nomodule-message').remove();
   })
+
+  /**
+   * Text variants explaining the dispatch of the various letters after printing
+   * @returns {undefined} or string with the current object in the workflow
+   */
+  function getCausa() {
+    console.log("userData.step = " + $userData.step);
+    let causa = undefined;
+    switch ($userData.step) {
+      case 'print1':
+      case 'letter1':
+        causa = "das Datenauskunftsbegehren";
+        break;
+      case 'print2':
+      case 'letter2a':
+        causa = "die Mahnung zum Datenauskunftsbegehren";
+        break;
+      case 'print3':
+      case 'letter2b':
+        causa = "die Einforderung zum Datenauskunftsbegehren";
+        break;
+      case 'print4':
+      case 'letter3a':
+        causa = "die Aufforderung zur Datenänderung";
+        break;
+      case 'print5':
+      case 'letter3b':
+        causa = "die Aufforderung zur Datenlöschung";
+        break;
+    }
+    return causa;
+  }
 </script>
+
 <Header on:step={setStep} activeStep={$userData.step}></Header>
 <main>
 
@@ -81,37 +119,37 @@
     </div>
   {/if}
 
-  {#if $userData.step === 'print1' && canPrint === true}
-    <div class="step-ui step-print">
-      <div>
-        <h2>Geschafft</h2>
-        <p>
-          Nun musst du das Datenauskunftsbegehren noch <strong>eingeschrieben per Post versenden</strong>.
-        </p>
-        <p>
-          Ab dem Eingang bleiben 30 Tage für die Beantwortung.
-          Speichere einen Termin im Kalender, um dich für ein allfälliges Nachfragen erinnern zu lassen, falls du bis dahin keine Antwort erhalten hast.
-        </p>
-        <IcsDownload></IcsDownload>
-        <p>
-          Rückmeldungen nehmen wir unter <a href="mailto:auskunftsbegehren@digitale-gesellschaft.ch">auskunftsbegehren@digitale-gesellschaft.ch</a> gerne entgegen.
-        </p>
-        <p>
-        Unser Generator wurde von IT- und Rechtskundigen der Digitalen Gesellschaft in unzähligen Stunden entwickelt und steht allen frei zur Verfügung. 
-        Als <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/">Mitglied, Spender oder Gönnerin</a> unterstützt du unsere Arbeit.
-        Falls du über unsere Aktivitäten auf dem Laufenden gehalten werden möchtest, abonniere jetzt den <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/newsletter/">monatlichen Newsletter</a>.
-        </p>
+  {#if $userData.step === 'print1'}
+    {#if canPrint === true}
+      <div class="step-ui step-print">
+        <div>
+          <h2>Geschafft</h2>
+          <p>
+            Nun musst du {getCausa()} noch <strong>eingeschrieben per Post versenden</strong>.
+          </p>
+          <p>
+            Ab dem Eingang bleiben 30 Tage für die Beantwortung.
+            Speichere einen Termin im Kalender, um dich für ein allfälliges Nachfragen erinnern zu lassen, falls du bis dahin keine Antwort erhalten hast.
+          </p>
+          <IcsDownload></IcsDownload>
+          <p>
+            Rückmeldungen nehmen wir unter <a href="mailto:auskunftsbegehren@digitale-gesellschaft.ch">auskunftsbegehren@digitale-gesellschaft.ch</a> gerne entgegen.
+          </p>
+          <p>
+          Unser Generator wurde von IT- und Rechtskundigen der Digitalen Gesellschaft in unzähligen Stunden entwickelt und steht allen frei zur Verfügung.
+          Als <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/">Mitglied, Spender oder Gönnerin</a> unterstützt du unsere Arbeit.
+          Falls du über unsere Aktivitäten auf dem Laufenden gehalten werden möchtest, abonniere jetzt den <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/newsletter/">monatlichen Newsletter</a>.
+          </p>
+        </div>
       </div>
-    </div>
-  {/if}
-
-  {#if $userData.step === 'print1' && canPrint === false}
-    <div class="step-ui">
-      <div>
-        <h2>Sende dir die Webadresse</h2>
-        <p>Auf deinem Gerät ist Drucken leider nicht möglich. Verwende die Möglichkeit, die Webadresse (URL) zu senden, um sie dir beispielsweise per E-Mail zu schicken. Du kannst sie dann auf einem passenden Gerät mit Drucker öffnen. Die eingegebenen Daten sind in der URL gespeichert.</p>
+    {:else}
+      <div class="step-ui">
+        <div>
+          <h2>Sende dir die Webadresse</h2>
+          <p>Auf deinem Gerät ist Drucken leider nicht möglich. Verwende die Möglichkeit, die Webadresse (URL) zu senden, um sie dir beispielsweise per E-Mail zu schicken. Du kannst sie dann auf einem passenden Gerät mit Drucker öffnen. Die eingegebenen Daten sind in der URL gespeichert.</p>
+        </div>
       </div>
-    </div>
+    {/if}
   {/if}
 
   {#if $userData.step === 'letter1' || $userData.step === 'id' || $userData.step === 'print1'}
@@ -185,7 +223,6 @@
     background: var(--color-ui-three);
     border: 1px solid var(--color-ui-one);
     border-radius: 12px;
-
     margin: 12px;
     max-width: 800px;
   }
