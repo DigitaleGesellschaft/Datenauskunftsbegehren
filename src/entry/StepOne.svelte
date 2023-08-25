@@ -1,12 +1,13 @@
 <script>
   import { data, userData } from '../stores.js';
-  import texts from '../texts.js';
+  import { default as texts } from '../texts.js'
 
   import OrgSelection from './OrgSelection.svelte';
 
   $: types = $data && $data.types ? $data.types : []
   $: events = $data && $data.events ? $data.events : []
-  $: followups = $data && $data.followups ? $data.followups : []
+  $: desires = $data && $data.desires ? $data.desires : []
+
 
 </script>
 
@@ -35,14 +36,16 @@
   </section>
 </div>
 
-<div class="separator"><span>oder</span></div>
+  <div class="separator"><span>oder</span></div>
 
-<section>
-  <h2>{texts.steps.one.followup}</h2>
-  {#each followups as followup}
-    <button class="one" on:click="{() => {$userData.entry = 'followup'; $userData.followup = [followup.handle]}}">{followup.label}</button>
-  {/each}
-</section>
+  <section>
+    <h2>{texts.steps.one.followup}</h2>
+    {#each desires as desire}
+      <button class="one" on:click="{() => {$userData.entry = 'followup'; $userData.desire = desire.handle}}">{desire.label}</button>
+    {/each}
+  </section>
+</div>
+
 <style>
 
   section {

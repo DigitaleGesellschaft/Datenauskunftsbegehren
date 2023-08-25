@@ -4,13 +4,17 @@
   import UserAddress from './UserAddress.svelte';
   import OrgSelection from './OrgSelection.svelte';
 
-  $: selectedFollowUp = $data.getFollowUp($userData.types[0])
-  $: variables = selectedFollowUp ? selectedFollowUp.variables : []
-  $: selectedOrg = $data.getOrg($userData.org)
+  let selectedDesire
+  let selectedOrg
 
+  $: {
+    selectedDesire = $data.getDesire($userData.desire)
+    selectedOrg = $data.getOrg($userData.org)
+  }
 </script>
-{#if selectedFollowUp}
-  <h2>FU Mach noch einige Angaben für das Auskunftsbegehren «{selectedFollowUp.label}»</h2>
+
+{#if selectedDesire }
+  <h2>Mach noch einige Angaben für das Auskunftsbegehren<br> «{selectedDesire.label}»</h2>
   <div class="data-entry-form">
     {#if variables.length > 0}
       <section>
@@ -31,4 +35,6 @@
       <textarea id="orgAddress" bind:value={$userData.orgAddressEntry} rows="4"></textarea>
     </section>
   </div>
+  {:else}
+  <h2>Etwas hat nicht funktioniert "userData.step" ist "undef" oder nicht in der Auswahl. userData.desire: {$userData.desire}</h2>
 {/if}

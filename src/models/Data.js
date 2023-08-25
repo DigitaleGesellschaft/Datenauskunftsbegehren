@@ -1,17 +1,17 @@
 import Org from './Org.js';
 import Type from './Type.js';
 import Event from './Event.js';
-import FollowUp from './FollowUp.js'
+import Desire from './Desire.js'
 import Paragraph from './Paragraph.js'
 
 export default class Data {
   constructor () {
     this.orgs = [];
     this.types = [];
-    this.followups = [];
+    this.desires = [];
   }
 
-  async load (data){
+  async load (data) {
     const promises = []
     this.data = data;
 
@@ -38,10 +38,10 @@ export default class Data {
         return e
       })
 
-    const followups = data.followups
-      .map(followup => {
-          const e = new FollowUp()
-          promises.push(e.load({data: followup}))
+    const desires = data.desires
+      .map(desire => {
+          const e = new Desire()
+          promises.push(e.load({data: desire}))
           return e
       })
 
@@ -62,7 +62,7 @@ export default class Data {
         return a.label.toLowerCase().localeCompare(b.label.toLowerCase())
       })
 
-      this.followups = followups
+      this.desires = desires
           .sort((a , b) => {
               return a.label.toLowerCase().localeCompare(b.label.toLowerCase())
           })
@@ -95,16 +95,9 @@ export default class Data {
     return this.events.find(e => e.handle === event)
   }
 
-    getFollowUps (onlyFollowUps) {
-        if (onlyFollowUps) {
-            return this.followups.filter(followup => onlyFollowUps.includes(followup.handle))
-        }
-        return this.followups
-    }
-
-    getFollowUp(followup) {
-        return this.followups.find(followup => followup.handle === followup)
-    }
+  getDesire(desire) {
+    return this.desires.find(e => e.handle === desire)
+  }
 
   getCustomOpening(customOpening) {
     const p = new Paragraph()

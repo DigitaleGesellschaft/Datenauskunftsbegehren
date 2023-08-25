@@ -111,6 +111,19 @@ orgAddressHtml.subscribe(orgAddressEntry => {
     return userData;
   })
 })
+
+export const userDesire = writable(currentUserData.desire)
+userDesire.subscribe(desire => {
+  userData.update(userData => {
+    if (!desire || desire === '') {
+      delete userData.desire
+    } else {
+      userData.desire = desire
+    }
+    return userData;
+  })
+})
+
 userData.subscribe(val => {
   console.log("subscribe: " + val)
   if (val.address) {
@@ -127,6 +140,16 @@ userData.subscribe(val => {
     const isEmpty = val.orgAddressEntry.length === 0
     if (!isSame || isEmpty) {
       orgAddressHtml.set(nl2br(val.orgAddressEntry))
+    }
+  }
+  /**
+   * ggf. erweitern auf "step / desire", datum versand / datum antwort des jeweiligen begehrens
+   */
+  if (val.desire) {
+    const isSame = get(userDesire) === val.desire
+    const isEmpty = val.desire.length === 0
+    if (!isSame || isEmpty) {
+      userDesire.set(val.desire)
     }
   }
 })

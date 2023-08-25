@@ -25,7 +25,7 @@
 
   import texts from './texts.js'
 
-  import { userData, userAddressHtml, orgAddressHtml } from './stores.js'
+  import {userData, userAddressHtml, orgAddressHtml, userDesire} from './stores.js'
 
   let canPrint = undefined;
 
@@ -42,8 +42,8 @@
     })
 
     await tick();
-    
-    if (step === 'print1') {
+
+    if (step === 'print') {
       const timeout = window.setTimeout(() => {
         canPrint = false;
         window.scrollTo({top: 0, behavior: 'smooth'})
@@ -61,6 +61,7 @@
     userData.set({})
     userAddressHtml.set('')
     orgAddressHtml.set('')
+    userDesire.set('')
   }
 
   onMount(async () => {
@@ -203,6 +204,7 @@
     </a>
   </footer>
 </main>
+
 <style>
 
   .init {
