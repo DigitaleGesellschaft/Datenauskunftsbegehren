@@ -1,8 +1,9 @@
 <script>
   import { onMount, createEventDispatcher } from 'svelte'
+  import EyeIcon from '../icons/EyeIcon.svelte'
+
   const dispatch = createEventDispatcher();
 
-  import EyeIcon from '../icons/EyeIcon.svelte'
   let node;
 
   export let title = "";

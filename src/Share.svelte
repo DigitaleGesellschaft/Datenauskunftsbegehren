@@ -5,25 +5,29 @@
 
   function share() {
     if (navigator.share) {
-      navigator.share({
-        title: "Datenauskunftsbegehren",
-        text: "Dein Datenauskunftsbegehren:",
-        url: window.location,
-      })
+      try {
+        navigator.share({
+          title: "Datenauskunftsbegehren",
+          text: "Dein Datenauskunftsbegehren:",
+          url: window.location,
+        })
+      } catch (e) {
+        console.log("Exception: " + e.toLocaleString());
+      }
     }
   }
   
 </script>
 
 <div class="share">
+  💡 Die Webadresse (URL) enthält all Deine Eingaben. Du kannst sie speichern
   {#if hasShareApi}
-    💡 Du kannst dir den Brief mit deinen Eingaben senden: <button class="circle" on:click={share}><ShareIcon></ShareIcon></button>
-  {:else}
-    💡 Du kannst die Webadresse (URL) speichern. Sie enthält alle deine Eingaben.
-  {/if}
+    oder Dir senden: <button class="circle" on:click={share}><ShareIcon></ShareIcon></button>
+  {/if}.
 </div>
 
 <style>
+
   .share {
     padding: 12px;
 

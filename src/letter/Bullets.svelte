@@ -1,10 +1,9 @@
 <script>
   import { createEventDispatcher, onMount } from 'svelte';
-  const dispatch = createEventDispatcher();
-
+  import HideNodeAction from './HideNodeAction.svelte';
   import { userData } from '../stores.js'
 
-  import HideNodeAction from './HideNodeAction.svelte';
+  const dispatch = createEventDispatcher();
 
   export let bullets = [];
   export let isChild = false
