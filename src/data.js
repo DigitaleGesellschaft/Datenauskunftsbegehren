@@ -7,8 +7,14 @@ function isValidOrg(org) {
 }
 
 export function validateUserData(userData) {
-  // if the user was already at step letter or print, we treat everything as valid
-  if (userData.step === 'letter1' || userData.step === 'print1') return {
+  // if the user was already past step entry, that is any letter or print, we treat everything as valid
+   if (userData.step === 'data_info_request' ||
+      userData.step === 'unanswered' ||
+      userData.step === 'incomplete_answer' ||
+      userData.step === 'data_correction' ||
+      userData.step === 'data_deletion' ||
+      userData.step === 'print')
+      return {
     isValid: true
   }
   const messages = [];

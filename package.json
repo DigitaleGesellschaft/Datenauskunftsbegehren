@@ -20,7 +20,6 @@
     "svelte": "^3.49.0"
   },
   "dependencies": {
-    "cropperjs": "^1.5.11",
     "date-fns": "^2.20.2",
     "image-capture": "^0.4.0",
     "lodash-es": "^4.17.21",

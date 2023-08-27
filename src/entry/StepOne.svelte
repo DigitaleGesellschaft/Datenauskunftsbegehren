@@ -34,7 +34,6 @@
       <button class="one" on:click="{() => {$userData.entry = 'event'; $userData.event = event.handle}}">{event.label}</button>
     {/each}
   </section>
-</div>
 
   <div class="separator"><span>oder</span></div>
 

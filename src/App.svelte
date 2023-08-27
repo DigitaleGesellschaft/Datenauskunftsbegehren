@@ -23,17 +23,13 @@
   import IcsDownload from './IcsDownload.svelte'
   import DigigesLogo from './DigigesLogo.svelte'
 
-  import texts from './texts.js'
+  import { default as texts, getCausa } from './texts.js'
 
   import {userData, userAddressHtml, orgAddressHtml, userDesire} from './stores.js'
 
-  let canPrint = undefined;
+  // hack: override state mix with multiple letter types after printing one and recalling the letter view
+  let canPrint = true;
 
-  /**
-   * Aktualisiert den Workflow-Schritt ("step") als Reaktion auf Nutzereingaben (Navigation)
-   * @param detail technischer Bezeicher des Workflow-Schrittes im Code, siehe "Steps.svelte"
-   * @returns {Promise<void>} userData Struktur mit aktuellem Workflow-Schritt ("step")
-   */
   async function setStep({detail}) {
     const step = detail;
     userData.update(userData => {
@@ -69,37 +65,6 @@
     document.querySelector('.nomodule-message').remove();
   })
 
-  /**
-   * Text variants explaining the dispatch of the various letters after printing
-   * @returns {undefined} or string with the current object in the workflow
-   */
-  function getCausa() {
-    console.log("userData.step = " + $userData.step);
-    let causa = undefined;
-    switch ($userData.step) {
-      case 'print1':
-      case 'letter1':
-        causa = "das Datenauskunftsbegehren";
-        break;
-      case 'print2':
-      case 'letter2a':
-        causa = "die Mahnung zum Datenauskunftsbegehren";
-        break;
-      case 'print3':
-      case 'letter2b':
-        causa = "die Einforderung zum Datenauskunftsbegehren";
-        break;
-      case 'print4':
-      case 'letter3a':
-        causa = "die Aufforderung zur Datenänderung";
-        break;
-      case 'print5':
-      case 'letter3b':
-        causa = "die Aufforderung zur Datenlöschung";
-        break;
-    }
-    return causa;
-  }
 </script>
 
 <Header on:step={setStep} activeStep={$userData.step}></Header>
@@ -120,13 +85,13 @@
     </div>
   {/if}
 
-  {#if $userData.step === 'print1'}
+  {#if $userData.step === 'print'}
     {#if canPrint === true}
       <div class="step-ui step-print">
         <div>
           <h2>Geschafft</h2>
           <p>
-            Nun musst du {getCausa()} noch <strong>eingeschrieben per Post versenden</strong>.
+            Nun musst du {getCausa($userData.desire, 'print')} noch <strong>eingeschrieben per Post versenden</strong>.
           </p>
           <p>
             Ab dem Eingang bleiben 30 Tage für die Beantwortung.
@@ -153,49 +118,33 @@
     {/if}
   {/if}
 
-  {#if $userData.step === 'letter1' || $userData.step === 'id' || $userData.step === 'print1'}
-    <LetterDataInfoReq></LetterDataInfoReq>
-    <div class="actions">
-      <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
-    </div>
-    <Share></Share>
-  {/if}
-  {#if $userData.step === 'letter2a'}
-    <LetterDataInfoReqRemind></LetterDataInfoReqRemind>
-    <div class="actions">
-      <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'letter1'})}">❮ zum Auskunftsbegehren</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
-    </div>
-    <Share></Share>
-  {/if}
-  {#if $userData.step === 'letter2b'}
-    <LetterDataInfoReqDemand></LetterDataInfoReqDemand>
-    <div class="actions">
-      <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'letter1'})}">❮ zum Auskunftsbegehren</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
-    </div>
-    <Share></Share>
-  {/if}
-  {#if $userData.step === 'letter3a'}
-    <LetterDataInfoReqChange></LetterDataInfoReqChange>
-    <div class="actions">
-      <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'letter1'})}">❮ zum Auskunftsbegehren</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
-    </div>
-    <Share></Share>
-  {/if}
-  {#if $userData.step === 'letter3b'}
-    <LetterDataInfoReqDelete></LetterDataInfoReqDelete>
-    <div class="actions">
-      <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'letter1'})}">❮ zum Auskunftsbegehren</button>
-      <button class="one no-print" on:click="{() => setStep({detail: 'print1'})}">Jetzt drucken ❯</button>
-    </div>
-    <Share></Share>
+  {#if $userData.step && $userData.step !== 'entry' }
+    {#if $userData.entry !== 'followup' }
+      {#if $userData.step === 'data_info_request' || $userData.step === 'print' }
+        <Share></Share>
+        <LetterDataInfoReq></LetterDataInfoReq>
+        <div class="actions">
+          <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe1</button>
+          <button class="one no-print" on:click="{() => setStep({detail: 'print'})}">Jetzt drucken1 ❯</button>
+        </div>
+      {/if}
+    {/if}
+    {#if $userData.entry === 'followup' }
+      <Share></Share>
+      {#if $userData.step === 'unanswered' || $userData.step === 'print' }
+        <LetterDataInfoReqRemind></LetterDataInfoReqRemind>
+      {:else if $userData.desire === 'incomplete_answer' || $userData.step === 'print' }
+        <LetterDataInfoReqDemand></LetterDataInfoReqDemand>
+      {:else if $userData.desire === 'data_correction' || $userData.step === 'print' }
+        <LetterDataInfoReqChange></LetterDataInfoReqChange>
+      {:else if $userData.desire === 'data_deletion' || $userData.step === 'print' }
+        <LetterDataInfoReqDelete></LetterDataInfoReqDelete>
+      {/if}
+      <div class="actions">
+        <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
+        <button class="one no-print" on:click="{() => setStep({detail: 'print'})}">Jetzt drucken ❯</button>
+      </div>
+    {/if}
   {/if}
 
   <footer>

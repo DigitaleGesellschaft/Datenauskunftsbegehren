@@ -1,14 +1,22 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+
   import StepOne from './StepOne.svelte';
   import StepOrg from './StepOrg.svelte';
   import StepType from './StepType.svelte';
   import StepEvent from './StepEvent.svelte';
   import StepFollowUp from './StepFollowUp.svelte';
 
-  const dispatch = createEventDispatcher();
-
   import { userData } from '../stores.js';
+
+  function selectLetterType() {
+      let step = 'data_info_request';
+      if ( $userData.entry === 'followup' ) {
+          step = $userData.desire
+      }
+      dispatch('step', step);
+  }
 
 </script>
 
@@ -17,30 +25,27 @@
       <StepOne></StepOne>
     {/if}
 
-    {#if $userData.org && $userData.entry === 'org'}
+    {#if $userData.org && $userData.entry === 'org' }
       <StepOrg></StepOrg>
     {/if}
 
-    {#if $userData.entry === 'type' && ($userData.types && $userData.types.length === 1)}
+    {#if $userData.entry === 'type' && ($userData.types && $userData.types.length === 1) }
       <StepType></StepType>
     {/if}
 
-    {#if $userData.entry === 'event' && ($userData.event)}
+    {#if $userData.entry === 'event' && ($userData.events && $userData.events.length > 0) }
       <StepEvent></StepEvent>
     {/if}
 
-    {#if $userData.entry === 'followup' && ($userData.followups && $userData.followups.length === 1)}
+    {#if $userData.entry === 'followup' }
         <StepFollowUp></StepFollowUp>
     {/if}
 
     <div class="actions">
-      {#if $userData.entry}
-        <button class="two" on:click="{() => dispatch('reset')}">Eingabe zurücksetzen</button>
-      {/if}
-        <!--
-        Wie kann hier abhängig von der Auswahl (inkl. follow up) zu einem bestimmten Brief gesprungen werden?
-        -->
-      <button class="two solid" on:click="{() => dispatch('step', 'letter1')}">❯ Brief generieren</button>
+        {#if $userData.entry}
+            <button class="two" on:click="{() => dispatch('reset')}">Eingaben zurücksetzen</button>
+        {/if}
+        <button class="two solid" on:click="{selectLetterType}">❯ Brief generieren</button>
     </div>
 </div>
 

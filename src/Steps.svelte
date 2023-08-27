@@ -8,38 +8,29 @@
 
 </script>
 
-<!--
-  Wie können activeStep und dispatch variant umgesetzt werden?
-
-  Etwa so?
-    <StepLeDaInRequest>
-    <StepLeDaInRemind>
-    <StepLeDaInDemand>
-    <StepLeDaInChange>
-    <StepLeDaInDelete>
--->
-
 <div class="steps">
   <button class="step" class:active={activeStep === 'entry' || !activeStep} on:click="{() => dispatch('step', 'entry')}">Eingabe</button>
   <!-- ➤ -->
   ❯
-  {#if $userData.step === 'letter1' }
-    <button class="step" class:active={activeStep === 'letter1'} on:click="{() => dispatch('step', 'letter1')}">Brief</button>
+  {#if activeStep && activeStep !== 'entry' && $userData.desire === 'data_info_request' }
+    <button class="step" class:active={activeStep === 'data_info_request' } on:click="{() => dispatch('step', 'data_info_request')}">Brief Auskunft</button>
     ❯
-  {:else if $userData.step === 'letter2a' }
-    <button class="step" class:active={activeStep === 'letter2a'} on:click="{() => dispatch('step', 'letter2a')}">Brief</button>
+  {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'unanswered' }
+    <button class="step" class:active={activeStep === 'unanswered'} on:click="{() => dispatch('step', 'unanswered')}">Brief Mahnung</button>
     ❯
-  {:else if $userData.step === 'letter2b' }
-    <button class="step" class:active={activeStep === 'letter2b'} on:click="{() => dispatch('step', 'letter2b')}">Brief</button>
+  {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'incomplete_answer' }
+    <button class="step" class:active={activeStep === 'incomplete_answer'} on:click="{() => dispatch('step', 'incomplete_answer')}">Brief Einforderung</button>
     ❯
-  {:else if $userData.step === 'letter3a' }
-    <button class="step" class:active={activeStep === 'letter3a'} on:click="{() => dispatch('step', 'letter3a')}">Brief</button>
+  {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'data_correction' }
+    <button class="step" class:active={activeStep === 'data_correction'} on:click="{() => dispatch('step', 'data_correction')}">Brief Korrektur</button>
     ❯
-  {:else if $userData.step === 'letter3b' }
-    <button class="step" class:active={activeStep === 'letter3b'} on:click="{() => dispatch('step', 'letter3b')}">Brief</button>
+  {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'data_deletion' }
+    <button class="step" class:active={activeStep === 'data_deletion'} on:click="{() => dispatch('step', 'data_deletion')}">Brief Löschung</button>
     ❯
   {/if}
-  <button class="step" class:active={activeStep === 'print1'} on:click="{() => dispatch('step', 'print1')}">Drucken</button>
+  {#if  activeStep && activeStep !== 'entry' }
+    <button class="step" class:active={activeStep === 'print'} on:click="{() => dispatch('step', 'print')}">Drucken</button>
+  {/if}
 </div>
 <style>
   .steps {

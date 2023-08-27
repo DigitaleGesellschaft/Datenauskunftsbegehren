@@ -8,16 +8,12 @@
   // Keine Reaktion auf Auskunftsbegehren
   let LetterDataInfoReqRemindNode
   let selectedOrg
-  let selectedTypes
-  let selectedEvent
   let customOpening
   let orgAddressTo
   let hidePrivacyStatementParagraphs = false
 
   $: {
     selectedOrg = $data.getOrg($userData.org)
-    selectedTypes = $data.getTypes($userData.types || [])
-    selectedEvent = $data.getEvent($userData.event)
     orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
   }
 

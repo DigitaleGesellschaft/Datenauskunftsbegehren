@@ -16,3 +16,50 @@ export default {
     }
   }
 }
+
+/**
+ * Text variants along workflow objectives to show up after printing / before writing calendar ICS data
+ * @returns {undefined} or string with current workflow objective
+ */
+export function getCausa(desire, mode) {
+  let causa = undefined;
+  let prefix = undefined;
+  switch (desire) {
+    case 'data_info_request':
+      causa = "Datenauskunftsbegehren";
+      break;
+    case 'unanswered':
+      causa = "Mahnung zum Datenauskunftsbegehren";
+      break;
+    case 'incomplete_answer':
+      causa = "Einforderung zum Datenauskunftsbegehren";
+      break;
+    case 'data_correction':
+      causa = "Aufforderung zur Datenänderung";
+      break;
+    case 'data_deletion':
+      causa = "Aufforderung zur Datenlöschung";
+      break;
+  }
+  if (desire === 'data_info_request') {
+    switch (mode) {
+      case 'print' :
+        prefix = 'das';
+        break;
+      case 'cal' :
+        prefix = 'ein';
+        break;
+    }
+  } else {
+    switch (mode) {
+      case 'print' :
+        prefix = 'die';
+        break;
+      case 'cal' :
+        prefix = 'eine';
+        break;
+    }
+  }
+
+  return prefix + " " + causa;
+}

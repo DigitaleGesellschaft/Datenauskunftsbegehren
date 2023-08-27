@@ -29,6 +29,7 @@
   function removeIdImage(side) {
     imageRemoved[side] = true
     const newIdImages = {
+      // see js spreed syntax (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
       ...$idImages
     }
     delete newIdImages[side]

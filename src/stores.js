@@ -125,7 +125,6 @@ userDesire.subscribe(desire => {
 })
 
 userData.subscribe(val => {
-  console.log("subscribe: " + val)
   if (val.address) {
     // only update if different
     const isSame = br2nl(get(userAddressHtml)) === val.address
@@ -155,6 +154,7 @@ userData.subscribe(val => {
 })
 
 const currentImages = get(userData).idImages ? get(userData).idImages : {
+  both: undefined,
   front: undefined,
   back: undefined
 }
