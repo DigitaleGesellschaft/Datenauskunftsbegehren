@@ -13,7 +13,7 @@
   }
 </script>
 {#if selectedEvent}
-  <h2>Mach noch einige Angaben für das Auskunftsbegehren</h2>
+  <h2>Mach noch einige Angaben für das Auskunftsbegehren aus speziellem Grund «{selectedEvent.name}»</h2>
   <div class="data-entry-form">
     {#if selectedEvent.handle !== 'rumor' && variables.length > 0}
     <section>

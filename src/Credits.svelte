@@ -28,24 +28,25 @@
   <h2>Hinweise für angeschriebene Organisationen</h2>
   <p>
     Ab dem Zeitpunkt des Eingangs müssen Datenauskunftsbegehren innert 30 Tagen beantwortet werden. Falls die Frist nicht ausreicht, muss entsprechend informiert und die Frist, 
-    in der die Auskunft erfolgt, mitgeteilt werden. Falls die Auskunft nicht oder nicht vollständig erteilt werden kann, 
-    muss dieser Entscheid begründet werden. <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/cc/1993/1962_1962_1962/de#art_1">Art. 1 Abs. 4 VDSG</a>)</span>
+    in der die Auskunft erfolgt, mitgeteilt werden. Falls die Auskunft nicht oder nicht vollständig erteilt werden kann,
+    muss dieser Entscheid begründet werden. <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_18">Art. 18 Abs. 1 VDSG</a>)</span>
   </p>
   <p>
     Das Zusammenstellen der Daten kann einen grösseren Arbeitsaufwand bedeuten. Dennoch ist die Auskunft in der Regel kostenlos zu erteilen.
-    Falls der Zweck oder der Inhalt des Begehrens unklar ist, lohnt es sich allenfalls – gemeinsam mit der gesuchstellenden Person – 
-    die Auskunft einzugrenzen. <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/cc/1993/1962_1962_1962/de#art_2">Art. 2 VDSG</a>)</span>
+    Falls der Zweck oder der Inhalt des Begehrens unklar ist, lohnt es sich allenfalls – gemeinsam mit der gesuchstellenden Person –
+    die Auskunft einzugrenzen.<span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_25">Art. 25 DSG</a>)</span>
+    <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_19">Art. 19 VDSG</a>)</span>
   </p>
   <h2>Weitere Schritte</h2>
   <p>
     Bleibt eine Antwort aus oder ist sie unvollständig, kann mit einem zweiten Brief nachgefasst und darauf hingewiesen werden. Im Anschluss kann gegen private Inhaber von Datensammlungen 
-    am Wohnsitz der betroffenen Person oder am Wohnsitz des Inhabers der Datensammlung eine gerichtliche Klage zur Durchsetzung 
-    des Auskunftsrechts eingereicht werden. <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/cc/1993/1945_1945_1945/de#art_15">Art. 15 DSG</a>)</span>
+    am Wohnsitz der betroffenen Person oder am Wohnsitz des Inhabers der Datensammlung eine gerichtliche Klage zur Durchsetzung
+    des Auskunftsrechts eingereicht werden. <span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_25">Art. 25 DSG</a>)</span>
   </p>
   <p>
     Ebenfalls kann die Berichtigung von falschen oder die Löschung von Daten (sowie die weitere Beschaffung) verlangt werden, 
-    sofern diese Datenbearbeitung nicht durch ein überwiegendes privates oder öffentliches Interesse oder 
-    durch ein Gesetz gerechtfertigt ist. <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/cc/1993/1945_1945_1945/de#art_13">Art. 13 DSG</a>)</span>
+    sofern diese Datenbearbeitung nicht durch ein überwiegendes privates oder öffentliches Interesse oder
+    durch ein Gesetz gerechtfertigt ist. <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_32">Art. 32 DSG</a>)</span>
   </p>
   <h2>Vielen Dank für die finanzielle Unterstützung</h2>
   <div class="logo-block">
@@ -53,11 +54,12 @@
       Das Projekt wird vom <a target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch/de/themen/schwerpunkt-digitalisierung/">Programm «Digitalisierung + Gesellschaft»</a> 
       der <a target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch/de/">Stiftung Mercator Schweiz</a> gefördert.
     </p>
-    <a class="logo-link" target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch/de/"><img width="100px" src="./mercator.png"></a>
+    <a class="logo-link" target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch/de/"><img alt="Logo Stiftung Mercator" width="100px" src="../mercator_logo.png"></a>
   </div>
   <h2>Credits</h2>
   <ul>
-    <li><strong>Konzept und Umsetzung</strong>: Beni Buess, Erik Schönenberger, Simon Gantenbein</li>
+    <li><strong>Konzept und Umsetzung</strong>: Beni Buess, Erik Schönenberger, Simon Gantenbein, Nikolaus Langner</li>
+    <li><strong>Ergänzungen und Überarbeitungen</strong>: Anna Walter, Erik Schönenberger, Martin Steiger</li>
     <li><strong>Kampagne</strong>: Vanessa Peter und das Team der Hochschule der Künste in Bern</li>
     <li>Danke an viele Freund*innen für die Ideen ♥️</li>
     <li>Built for the Web using HTML, CSS, JavaScript and <a target="_blank" rel="noopener noreferrer" href="https://svelte.dev/">Svelte</a></li>

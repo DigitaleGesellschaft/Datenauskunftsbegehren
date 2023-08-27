@@ -1,12 +1,14 @@
 import Org from './Org.js';
 import Type from './Type.js';
 import Event from './Event.js';
+import Desire from './Desire.js'
 import Paragraph from './Paragraph.js'
 
 export default class Data {
   constructor () {
-    this.types = [];
     this.orgs = [];
+    this.types = [];
+    this.desires = [];
   }
 
   async load (data) {
@@ -35,7 +37,13 @@ export default class Data {
         promises.push(e.load({data: event}))
         return e
       })
-      
+
+    const desires = data.desires
+      .map(desire => {
+          const e = new Desire()
+          promises.push(e.load({data: desire}))
+          return e
+      })
 
     await Promise.all(promises)
 
@@ -53,6 +61,11 @@ export default class Data {
       .sort((a, b) => {
         return a.label.toLowerCase().localeCompare(b.label.toLowerCase())
       })
+
+      this.desires = desires
+          .sort((a , b) => {
+              return a.label.toLowerCase().localeCompare(b.label.toLowerCase())
+          })
   }
 
   getOrg(name) {
@@ -80,6 +93,10 @@ export default class Data {
 
   getEvent (event) {
     return this.events.find(e => e.handle === event)
+  }
+
+  getDesire(desire) {
+    return this.desires.find(e => e.handle === desire)
   }
 
   getCustomOpening(customOpening) {

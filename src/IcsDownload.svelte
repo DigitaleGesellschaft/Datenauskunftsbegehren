@@ -1,11 +1,11 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { userData } from './stores.js'
   import { get } from 'svelte/store';
   import { getHash } from './lib.js'
-
   import { addDays, isSaturday, isSunday, lightFormat, addMinutes } from 'date-fns'
+  import { userData } from './stores.js'
+  import { getCausa } from './texts.js'
 
   let answerShouldArriveAtDate
   let answerShouldArriveAtTime
@@ -20,18 +20,17 @@
     const numChunks = Math.ceil(string.length / length)
     const chunks = []
     for (let i = 0, start = 0; i < numChunks; ++i, start += length) {
-      chunks.push(string.substr(start, length))
+      chunks.push(string.slice(start, length))
     }
     return chunks
   }
 
   function getDeadlineDays() {
-    const baseDays = 30;
-    const additionalDays = 10;
-    const totalDays = baseDays + additionalDays;
+    const processingPeriod = 30;
+    const additionalWaitingPeriod = 10;
     const now = Date.now();
-    const daysToAdd = isSaturday(now) ? 2 + totalDays : isSunday(now) ? 1 + totalDays  : totalDays;
-    return daysToAdd;
+    const weekendDays = isSaturday(now) ? 2 : isSunday(now) ? 1 : 0;
+    return processingPeriod + additionalWaitingPeriod + weekendDays;
   }
 
   function getTodayPlusDeadline() {
@@ -52,21 +51,40 @@
     const id = await getHash({text: JSON.stringify(get(userData))}) + Date.now() + Math.floor(Math.random() * Math.pow(10, 3));
     uid = `${id.slice(0,icsMaxLineLength - (uid.length + 'UID:'.length))}${uid}`;
 
-    const description = `Vor ${getDeadlineDays()} Tagen hast du ein Auskunftsbegehren generiert. Hast du eine Antwort erhalten? Hier kannst du den Brief nochmals ansehen:`;
+    const description = 'Vor ' + getDeadlineDays() + ' Tagen hast du ' + getCausa($userData.desire, 'cal') + ' generiert. Hast du eine Antwort erhalten?';
+    /**
+     * In der URL ist der aktuelle Schritt des minimalistischen Workflows notiert.
+     * Enthält die URL die ursprünglichen Einstellungen (Name, Adresse, Konversationspartner),
+     * kann in die Auswahl der Aktionen des Nachfassenen gesprungen werden.
+     */
+    let followup_url = '';
+    try {
+      followup_url = window.location.href.replace('print', 'entry');
+    } catch (e) {
+      console.log("Exception: " + e.toLocaleString());
+    }
+    const followup = 'Hier kannst Du Briefe zum Nachfassen oder weitere Auskunftsbegehren erstellen';
+    const comeback = 'Bei Fragen kannst Du uns gern über auskunftsbegehren@digitale-gesellschaft.ch kontaktieren.';
 
+    /**
+     * CAL massages due to recent updates to the standards and tools
+     * 1. X-PUBLISHED-TTL:PT1H
+     *    There seems to be no server at all for this as we provide with an individual reminder
+     *    If there is a server, it should use REFRESH-INTERVAL (RFC-7968)
+     */
     return `BEGIN:VCALENDAR
 VERSION:2.0
 CALSCALE:GREGORIAN
 PRODID:digiges/auskunftsbegehren
 METHOD:PUBLISH
-X-PUBLISHED-TTL:PT1H
+REFRESH-INTERVAL:PT12H
 BEGIN:VEVENT
 UID:${uid}
 SUMMARY:Datenauskunftsbegehren, Antwort erhalten?
 DTSTAMP:${lightFormat(Date.now(), format)}
 DTSTART:${lightFormat(answerShouldArriveAt, format)}
-DESCRIPTION:${getStringChunks(description, 75).join('\\n')}\\n${window.location}
-DURATION:PT30M
+DESCRIPTION:${description}\\n${followup}: ${followup_url}\\n\\n${comeback}
+DURATION:PT15M
 END:VEVENT
 END:VCALENDAR
 `
@@ -80,9 +98,9 @@ END:VCALENDAR
     const event = await getIcs();
 
     const mimeType = 'text/calendar';
-    var blob = new Blob([event], { type: mimeType });
+    let blob = new Blob([event], { type: mimeType });
 
-    var a = document.createElement('a');
+    let a = document.createElement('a');
     a.download = 'auskunftsbegehren.ics';
     a.href = URL.createObjectURL(blob);
     a.dataset.downloadurl = [mimeType, a.download, a.href].join(':');

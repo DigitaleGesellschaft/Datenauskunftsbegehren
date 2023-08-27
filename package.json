@@ -1,6 +1,6 @@
 {
   "name": "datenauskunftsbegehren.ch",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "build": "rm -f ./public/build/* && rollup -c",
@@ -17,10 +17,9 @@
     "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-svelte": "^7.1.0",
     "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.38.2"
+    "svelte": "^3.49.0"
   },
   "dependencies": {
-    "cropperjs": "^1.5.11",
     "date-fns": "^2.20.2",
     "image-capture": "^0.4.0",
     "lodash-es": "^4.17.21",
