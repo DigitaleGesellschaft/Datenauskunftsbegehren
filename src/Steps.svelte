@@ -12,7 +12,7 @@
   <button class="step" class:active={activeStep === 'entry' || !activeStep} on:click="{() => dispatch('step', 'entry')}">Eingabe</button>
   <!-- ➤ -->
   ❯
-  {#if activeStep && activeStep !== 'entry' && $userData.desire === 'data_info_request' }
+  {#if activeStep && activeStep !== 'entry' && ( activeStep === 'data_info_request' || $userData.desire === 'data_info_request' ) }
     <button class="step" class:active={activeStep === 'data_info_request' } on:click="{() => dispatch('step', 'data_info_request')}">Brief Auskunft</button>
     ❯
   {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'unanswered' }
@@ -28,7 +28,7 @@
     <button class="step" class:active={activeStep === 'data_deletion'} on:click="{() => dispatch('step', 'data_deletion')}">Brief Löschung</button>
     ❯
   {/if}
-  {#if  activeStep && activeStep !== 'entry' }
+  {#if activeStep && activeStep !== 'entry' }
     <button class="step" class:active={activeStep === 'print'} on:click="{() => dispatch('step', 'print')}">Drucken</button>
   {/if}
 </div>

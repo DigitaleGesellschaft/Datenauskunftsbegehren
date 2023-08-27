@@ -119,18 +119,13 @@
   {/if}
 
   {#if $userData.step && $userData.step !== 'entry' }
+    <Share></Share>
     {#if $userData.entry !== 'followup' }
       {#if $userData.step === 'data_info_request' || $userData.step === 'print' }
-        <Share></Share>
         <LetterDataInfoReq></LetterDataInfoReq>
-        <div class="actions">
-          <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe1</button>
-          <button class="one no-print" on:click="{() => setStep({detail: 'print'})}">Jetzt drucken1 ❯</button>
-        </div>
       {/if}
     {/if}
     {#if $userData.entry === 'followup' }
-      <Share></Share>
       {#if $userData.step === 'unanswered' || $userData.step === 'print' }
         <LetterDataInfoReqRemind></LetterDataInfoReqRemind>
       {:else if $userData.desire === 'incomplete_answer' || $userData.step === 'print' }
@@ -140,11 +135,11 @@
       {:else if $userData.desire === 'data_deletion' || $userData.step === 'print' }
         <LetterDataInfoReqDelete></LetterDataInfoReqDelete>
       {/if}
-      <div class="actions">
-        <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
-        <button class="one no-print" on:click="{() => setStep({detail: 'print'})}">Jetzt drucken ❯</button>
-      </div>
     {/if}
+    <div class="actions">
+      <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
+      <button class="one no-print" on:click="{() => setStep({detail: 'print'})}">Jetzt drucken ❯</button>
+    </div>
   {/if}
 
   <footer>
