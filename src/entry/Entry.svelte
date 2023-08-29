@@ -21,7 +21,7 @@
 </script>
 
 <div class="container">
-    {#if !$userData.org && !$userData.entry}
+    {#if ( !$userData.org && !$userData.entry ) }
       <StepOne></StepOne>
     {/if}
 

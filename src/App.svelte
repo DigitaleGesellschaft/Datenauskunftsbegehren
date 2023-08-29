@@ -25,7 +25,8 @@
 
   import { default as texts, getCausa } from './texts.js'
 
-  import {userData, userAddressHtml, orgAddressHtml, userDesire} from './stores.js'
+  import {data, userData, userAddressHtml, orgAddressHtml, userDesire} from './stores.js'
+  $: desires = $data && $data.desires ? $data.desires : []
 
   // hack: override state mix with multiple letter types after printing one and recalling the letter view
   let canPrint = true;
@@ -63,7 +64,22 @@
   onMount(async () => {
     document.querySelector('#loader').remove();
     document.querySelector('.nomodule-message').remove();
+
+    // switch step name "letter" into "data_info_request" to update URL data from older info requests
+    if ($userData.step === 'letter') {
+      userData.update( userData => {
+        userData.step = 'data_info_request';
+        return userData;
+      })
+      setStep({detail: 'data_info_request'})
+    }
   })
+
+  let followUpHidden = true;
+  function hideUnhideFollowUp() {
+    followUpHidden = ! followUpHidden;
+    console.log("app followup hidden:" + followUpHidden);
+  }
 
 </script>
 
@@ -79,7 +95,7 @@
     </div>
   {/if}
 
-  {#if !$userData.step || $userData.step === 'entry'}
+  {#if !$userData.step || $userData.step === 'entry' }
     <div class="step-ui step-entry">
       <Entry on:step={setStep} on:reset={reset}></Entry>
     </div>
@@ -120,11 +136,8 @@
 
   {#if $userData.step && $userData.step !== 'entry' }
     <Share></Share>
-    {#if $userData.entry !== 'followup' }
-      // HACK: catch up with URLs from fromer app versions containing "step:letter" (but doesn't know 'desire')
-      {#if $userData.step === 'data_info_request' || $userData.step === 'letter' || $userData.step === 'print' }
-        <LetterDataInfoReq></LetterDataInfoReq>
-      {/if}
+    {#if $userData.step === 'data_info_request' || $userData.step === 'print' }
+      <LetterDataInfoReq></LetterDataInfoReq>
     {/if}
     {#if $userData.entry === 'followup' }
       {#if $userData.step === 'unanswered' || $userData.step === 'print' }
@@ -139,8 +152,22 @@
     {/if}
     <div class="actions">
       <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
+      {#if $userData.step === 'data_info_request'}
+        <button class="one no-print" on:click="{hideUnhideFollowUp}">Nachfassen</button>
+      {/if}
       <button class="one no-print" on:click="{() => setStep({detail: 'print'})}">Jetzt drucken ❯</button>
     </div>
+    {#if !followUpHidden }
+      <div class="step-ui step-entry">
+        <div class="separator"><span></span></div>
+        <section>
+          <h2>{texts.steps.one.followup}</h2>
+          {#each desires as desire}
+              <button class="one" on:click="{() => {$userData.entry = 'followup'; $userData.desire = desire.handle; setStep({detail: desire.handle}); }}">{desire.label}</button>
+          {/each}
+        </section>
+      </div>
+    {/if}
   {/if}
 
   <footer>
@@ -202,5 +229,25 @@
     .actions {
       display: none;
     }
+  }
+
+  section {
+    padding: 0 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  section h2 {
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  button {
+    width: auto;
+  }
+  .separator span {
+    background: var(--color-ui-three);
+    position: relative;
+    padding: 10px;
   }
 </style>

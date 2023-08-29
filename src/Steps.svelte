@@ -12,8 +12,7 @@
   <button class="step" class:active={activeStep === 'entry' || !activeStep} on:click="{() => dispatch('step', 'entry')}">Eingabe</button>
   <!-- ➤ -->
   ❯
-  <!-- HACK: catch up with URLs from fromer app versions containing "step:letter" (but doesn't know 'desire') -->
-  {#if activeStep && activeStep !== 'entry' && ( activeStep === 'data_info_request' || activeStep === 'letter' || $userData.desire === 'data_info_request' ) }
+  {#if activeStep && activeStep !== 'entry' && ( activeStep === 'data_info_request' || $userData.desire === 'data_info_request' ) }
     <button class="step" class:active={activeStep === 'data_info_request' } on:click="{() => dispatch('step', 'data_info_request')}">Brief Auskunft</button>
     ❯
   {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'unanswered' }
