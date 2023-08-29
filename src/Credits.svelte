@@ -10,6 +10,7 @@
     import DigigesLogo from './DigigesLogo.svelte'
 
 </script>
+
 <section class="credits">
   <h1>
     Online-Generator für Datenauskunftsbegehren
@@ -51,10 +52,10 @@
   <h2>Vielen Dank für die finanzielle Unterstützung</h2>
   <div class="logo-block">
     <p>
-      Das Projekt wird vom <a target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch/de/themen/schwerpunkt-digitalisierung/">Programm «Digitalisierung + Gesellschaft»</a> 
-      der <a target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch/de/">Stiftung Mercator Schweiz</a> gefördert.
+      Das Projekt wird vom <a target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch/digitalisierung-gesellschaft">Programm «Digitalisierung + Gesellschaft»</a>
+      der <a target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch">Stiftung Mercator Schweiz</a> gefördert.
     </p>
-    <a class="logo-link" target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch/de/"><img alt="Logo Stiftung Mercator" width="100px" src="../mercator_logo.png"></a>
+    <a class="logo-link" target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch"><img alt="Logo Stiftung Mercator" width="100px" src="./mercator_logo.png"></a>
   </div>
   <h2>Credits</h2>
   <ul>
