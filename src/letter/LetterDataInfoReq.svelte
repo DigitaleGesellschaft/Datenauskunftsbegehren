@@ -57,7 +57,7 @@
         userData.date = Intl.DateTimeFormat('de-CH').format(Date.now())
         return userData;
       })
-    }
+  }
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
@@ -163,7 +163,7 @@
     {/if}
 
     <p contenteditable spellcheck="false">
-      Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz vom 25. September 2020 (DSG), mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.
+      Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) <span class="after">vom</span> 25. September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.
     </p>
     <p>
       Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist.
@@ -242,29 +242,7 @@
         Beilage: Amtlicher Ausweis (Kopie)
       </p>
     </div>
-    {#if ($idImages && $idImages.both) || ($idImages && $idImages.front) || ($idImages && $idImages.back)}
-      <p class="attachments">
-        {#if $idImages.both || imageRemoved.both}
-          <div class="image">
-            <img alt="ID image, both" src="{$idImages.both}">
-            <RemoveNodeAction on:removed={() => removeIdImage('both')}></RemoveNodeAction>
-          </div>
-        {:else}
-          {#if $idImages.front || imageRemoved.front}
-            <div class="image">
-              <img alt="ID image, front" src="{$idImages.front}">
-              <RemoveNodeAction on:removed={() => removeIdImage('front')}></RemoveNodeAction>
-            </div>
-          {/if}
-          {#if $idImages.back || imageRemoved.back}
-            <div class="image">
-              <img alt="ID image, back" src="{$idImages.back}">
-              <RemoveNodeAction on:removed={() => removeIdImage('back')}></RemoveNodeAction>
-            </div>
-          {/if}
-        {/if}
-      </p>
-    {/if}
+
   </section>
 </div>
 
@@ -369,5 +347,10 @@ h1 {
 h2 {
   font-size: 16px;
 }
+
+ .before::before, .after::after {
+   content: "\A";
+   white-space: pre;
+ }
 
 </style>
