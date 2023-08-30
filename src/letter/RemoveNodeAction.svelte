@@ -1,7 +1,8 @@
 <script>
-  import { onMount, createEventDispatcher } from 'svelte'
-	const dispatch = createEventDispatcher();
+  import {createEventDispatcher, onMount} from 'svelte'
   import BinIcon from '../icons/BinIcon.svelte'
+
+  const dispatch = createEventDispatcher();
 
   let node
 

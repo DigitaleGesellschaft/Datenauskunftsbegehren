@@ -1,7 +1,8 @@
 /node_modules/
 /public/build/
-/public/index.html
 /public/data.json
+/public/index.html
+.idea
 
 .DS_Store
 

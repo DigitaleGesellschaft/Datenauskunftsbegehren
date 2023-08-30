@@ -4,7 +4,7 @@
  * @author Chris Ferdinandi
  * @license MIT
  */
- if (!String.prototype.replaceAll) {
+if (!String.prototype.replaceAll) {
   String.prototype.replaceAll = function(str, newStr){
 
     // If a regex pattern

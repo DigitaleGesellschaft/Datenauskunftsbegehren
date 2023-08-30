@@ -36,7 +36,7 @@ function getUserDataFromHash() {
 
 let lastStep
 function setUserDataToHash(data) {
-  // we version everything so we can break the data model in the future
+  // we version everything, so we can break the data model in the future
   // but still support v1
   data.v = 1
   const hash = encodeURI(JSON.stringify(data))
@@ -111,6 +111,19 @@ orgAddressHtml.subscribe(orgAddressEntry => {
     return userData;
   })
 })
+
+export const userDesire = writable(currentUserData.desire)
+userDesire.subscribe(desire => {
+  userData.update(userData => {
+    if (!desire || desire === '') {
+      delete userData.desire
+    } else {
+      userData.desire = desire
+    }
+    return userData;
+  })
+})
+
 userData.subscribe(val => {
   if (val.address) {
     // only update if different
@@ -128,9 +141,20 @@ userData.subscribe(val => {
       orgAddressHtml.set(nl2br(val.orgAddressEntry))
     }
   }
+  /**
+   * ggf. erweitern auf "step / desire", datum versand / datum antwort des jeweiligen begehrens
+   */
+  if (val.desire) {
+    const isSame = get(userDesire) === val.desire
+    const isEmpty = val.desire.length === 0
+    if (!isSame || isEmpty) {
+      userDesire.set(val.desire)
+    }
+  }
 })
 
 const currentImages = get(userData).idImages ? get(userData).idImages : {
+  both: undefined,
   front: undefined,
   back: undefined
 }
