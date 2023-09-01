@@ -271,7 +271,7 @@
       {#if !$idImages.both && !$idImages.front && !$idImages.back }
         <p style="font-family: Montserrat; font-size: 1.2em">Wähle das Abbild Deines Ausweises vom Dateisystem (beidseitig oder Vorder- und Rückseite):</p>
         <IdFileImport side="both"></IdFileImport>
-        <p/>
+        <p></p>
         <IdFileImport side="front"></IdFileImport>
       {:else}
         {#if !$idImages.both }
@@ -289,7 +289,7 @@
 
 <style>
 
-  import-container {
+  .import-container {
     /** grid layout for id image file import */
     display: grid;
     grid-template-columns: auto auto;
