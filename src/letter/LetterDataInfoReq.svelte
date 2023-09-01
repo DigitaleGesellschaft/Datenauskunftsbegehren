@@ -397,9 +397,4 @@ h2 {
   font-size: 16px;
 }
 
- .before::before, .after::after {
-   content: "\A";
-   white-space: pre;
- }
-
 </style>
