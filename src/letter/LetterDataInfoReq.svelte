@@ -267,7 +267,8 @@
         {/if}
       </p>
     {/if}
-    <div class="import-container">
+    <!-- div to add grid elements by another change -->
+    <div>
       {#if !$idImages.both && !$idImages.front && !$idImages.back }
         <p style="font-family: Montserrat; font-size: 1.2em">Wähle das Abbild Deines Ausweises vom Dateisystem (beidseitig oder Vorder- und Rückseite):</p>
         <IdFileImport side="both"></IdFileImport>
