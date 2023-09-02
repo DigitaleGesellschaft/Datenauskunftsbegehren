@@ -9,11 +9,14 @@
 
   let answerShouldArriveAtDate
   let answerShouldArriveAtTime
+  let description;
+
   let formNode
 
   onMount(() => {
     answerShouldArriveAtDate = getTodayPlusDeadline()
     answerShouldArriveAtTime = '09:00'
+    description = 'Vor ' + getDeadlineDays() + ' Tagen hast du ' + getCausa($userData.desire, 'cal') + ' generiert. Hast du eine Antwort erhalten?';
   })
 
   function getStringChunks(string, length) {
@@ -50,8 +53,6 @@
     let uid = '@digiges.ch/auskunftsbegehren';
     const id = await getHash({text: JSON.stringify(get(userData))}) + Date.now() + Math.floor(Math.random() * Math.pow(10, 3));
     uid = `${id.slice(0,icsMaxLineLength - (uid.length + 'UID:'.length))}${uid}`;
-
-    const description = 'Vor ' + getDeadlineDays() + ' Tagen hast du ' + getCausa($userData.desire, 'cal') + ' generiert. Hast du eine Antwort erhalten?';
     /**
      * In der URL ist der aktuelle Schritt des minimalistischen Workflows notiert.
      * Enthält die URL die ursprünglichen Einstellungen (Name, Adresse, Konversationspartner),
