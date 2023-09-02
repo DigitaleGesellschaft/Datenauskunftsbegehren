@@ -1,6 +1,6 @@
 <script>
 
-  import { tick, onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import { debounce } from 'lodash-es';
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
@@ -172,7 +172,7 @@
   height: 100%;
 }
 
-:global(.image-container .cropper-container) {
+:global(.image-container) {
   display: block;
   position: absolute;
   width: 100%;
