@@ -54,6 +54,19 @@
     }
   }
 
+  function handleDesire(desire) {
+
+    const d = desire;
+
+    if (d === 'data_info_request' && $userData.entry === 'followup') {
+      $userData.entry = 'entry';
+    } else {
+      $userData.entry = 'followup';
+    }
+    $userData.desire = d.handle;
+    setStep({detail: d.handle});
+
+  }
   function reset() {
     userData.set({})
     userAddressHtml.set('')
@@ -162,7 +175,7 @@
         <section>
           <h2>{texts.steps.one.followup}</h2>
           {#each desires as desire}
-              <button class="one" on:click="{() => {$userData.entry = 'followup'; $userData.desire = desire.handle; setStep({detail: desire.handle}); }}">{desire.label}</button>
+              <button class="one" on:click="{handleDesire(desire)}">{desire.label}</button>
           {/each}
         </section>
       </div>
