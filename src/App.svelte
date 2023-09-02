@@ -166,9 +166,7 @@
     {/if}
     <div class="actions">
       <button class="one no-print" on:click="{() => setStep({detail: 'entry'})}">❮ zur Dateneingabe</button>
-      {#if $userData.step === 'data_info_request'}
-        <button class="one no-print" on:click="{hideUnhideFollowUp}">Nachfassen</button>
-      {/if}
+      <button class="one no-print" on:click="{hideUnhideFollowUp}">Nachfassen</button>
       <button class="one no-print" on:click="{() => setStep({detail: 'print'})}">Jetzt drucken ❯</button>
     </div>
     {#if !followUpHidden }
