@@ -164,7 +164,7 @@
     {/if}
 
     <p contenteditable spellcheck="false">
-      Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) <span class="after">vom</span> 25. September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.
+      Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25.&nbsp;September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.
     </p>
     <p>
       Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist.
@@ -267,7 +267,7 @@
         {/if}
       </p>
     {/if}
-    <div class="import-container">
+    <div >
       {#if !$idImages.both && !$idImages.front && !$idImages.back }
         <p style="font-family: Montserrat; font-size: 1.2em">Wähle das Abbild Deines Ausweises vom Dateisystem (beidseitig oder Vorder- und Rückseite):</p>
         <IdFileImport side="both"></IdFileImport>
@@ -293,8 +293,6 @@
     /** grid layout for id image file import */
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: minmax(10em, 20em);
-    grid-auto-flow: row;
     gap: 1rem;
   }
 
