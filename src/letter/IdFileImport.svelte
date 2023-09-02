@@ -109,17 +109,19 @@
 
           <!-- rather large area to click upon -->
           <!--
-          <span style="cursor: pointer" on:click="{()=>{fileInput.click();}}">
+          <span style="cursor: pointer" on:click|once="{()=>{fileInput.click();}}">
           </span>
           -->
+          <span style="cursor: pointer" on:click|once="{()=>{fileInput.click();}}">
             <!-- button (to have the fancy circle around the FolderIcon -->
-            <button class="one big-circle" on:click="{() => {fileInput.click();}}" disabled={false}>
+            <button class="one big-circle" on:click|once="{() => {fileInput.click();}}" disabled={false}>
               <!-- parametric svg icon -->
               <FolderIcon width="60" height="60"></FolderIcon>
               <!-- hidden input element to fetch the selected image (bound to "fileInput" to keep it separate from pre-existing "imageElement" -->
               <input style="display:none" type="file" accept=".jpg, .jpeg, .png" on:change="{(e)=>onFileSelected(e)}" bind:this="{fileInput}" />
             </button>
             Ausweis {#if side === 'both'}beidseitig{:else if side === 'front'}Vorderseite{:else}Rückseite{/if}
+          </span>
 
         {:else}
           <button class="one big-circle" on:click="{() => remove()}"><BinIcon width="60" height="60"></BinIcon></button>
