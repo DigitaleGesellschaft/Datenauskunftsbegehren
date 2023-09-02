@@ -14,7 +14,7 @@
 <div class="step-one">
   <section>
     <h2>{texts.steps.one.org}</h2>
-    <OrgSelection bind:org={$userData.org} on:input="{() => {$userData.entry = 'org'}}"></OrgSelection>
+    <OrgSelection bind:org={$userData.org} on:input="{() => {$userData.entry = 'org'; $userData.desire = 'data_info_request'}}"></OrgSelection>
   </section>
 
   <div class="separator"><span>oder</span></div>
@@ -22,7 +22,7 @@
   <section>
     <h2>{texts.steps.one.type}</h2>
     {#each types as type}
-      <button class="one" on:click="{() => {$userData.entry = 'type'; $userData.types = [type.handle]}}">{type.label}</button>
+      <button class="one" on:click="{() => {$userData.entry = 'type'; $userData.types = [type.handle]; $userData.desire = 'data_info_request'}}">{type.label}</button>
     {/each}
   </section>
 
@@ -31,7 +31,7 @@
   <section>
     <h2>{texts.steps.one.event}</h2>
     {#each events as event}
-      <button class="one" on:click="{() => {$userData.entry = 'event'; $userData.event = event.handle}}">{event.label}</button>
+      <button class="one" on:click="{() => {$userData.entry = 'event'; $userData.event = event.handle; $userData.desire = 'data_info_request'} }">{event.label}</button>
     {/each}
   </section>
 

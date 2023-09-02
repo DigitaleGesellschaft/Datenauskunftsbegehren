@@ -21,25 +21,34 @@
   })
   
 </script>
-<div bind:this={node} on:click={removeNode}>
-  <BinIcon></BinIcon>
+<button class="circle" bind:this={node} on:click={removeNode}>
+  <BinIcon width="32" height="32"></BinIcon>
+</button>
+
+<!--
+<div class="circle" bind:this={node} on:click={removeNode}>
+  <BinIcon width="32" height="32"></BinIcon>
 </div>
+-->
 <style>
-  div {
-    cursor: pointer;
+
+  button, div {
     position: absolute;
     right: -20px;
     top: -3px;
     color: red;
-
     opacity: 0.3;
   }
-  div:hover {
+  button:hover, div:hover {
     opacity: 1;
   }
 
+  div {
+    cursor: pointer;
+  }
+
   @media print {
-    div {
+    div, button {
       display: none;
     }
   }

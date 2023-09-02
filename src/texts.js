@@ -26,6 +26,8 @@ export function getCausa(desire, mode) {
   let prefix = undefined;
   switch (desire) {
     case 'data_info_request':
+      // HACK: catch up with URLs from fromer app versions containing "step:letter" (but doesn't know 'desire')
+    case 'letter':
       causa = "Datenauskunftsbegehren";
       break;
     case 'unanswered':

@@ -4,6 +4,7 @@
   import Bullets from './Bullets.svelte';
   import RemoveNodeAction from './RemoveNodeAction.svelte';
   import HideNodeAction from './HideNodeAction.svelte';
+  import IdFileImport from './IdFileImport.svelte';
 
   import { data, userData, userAddressHtml, orgAddressHtml, idImages } from '../stores.js';
   import {nl2br} from '../lib.js';
@@ -57,7 +58,7 @@
         userData.date = Intl.DateTimeFormat('de-CH').format(Date.now())
         return userData;
       })
-    }
+  }
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
@@ -163,7 +164,7 @@
     {/if}
 
     <p contenteditable spellcheck="false">
-      Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz vom 25. September 2020 (DSG), mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.
+      Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25.&nbsp;September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.
     </p>
     <p>
       Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist.
@@ -242,35 +243,61 @@
         Beilage: Amtlicher Ausweis (Kopie)
       </p>
     </div>
-    {#if ($idImages && $idImages.both) || ($idImages && $idImages.front) || ($idImages && $idImages.back)}
+    <!-- id image handling new -->
+    {#if $idImages && ( $idImages.both || $idImages.front || $idImages.back) }
       <p class="attachments">
         {#if $idImages.both || imageRemoved.both}
           <div class="image">
-            <img alt="ID image, both" src="{$idImages.both}">
+            <img alt="ID image, both" src="{$idImages.both}" style="max-width: 10cm" >
             <RemoveNodeAction on:removed={() => removeIdImage('both')}></RemoveNodeAction>
           </div>
         {:else}
           {#if $idImages.front || imageRemoved.front}
             <div class="image">
-              <img alt="ID image, front" src="{$idImages.front}">
+              <img alt="ID image, front" src="{$idImages.front}" style="max-width: 10cm" >
               <RemoveNodeAction on:removed={() => removeIdImage('front')}></RemoveNodeAction>
             </div>
           {/if}
           {#if $idImages.back || imageRemoved.back}
             <div class="image">
-              <img alt="ID image, back" src="{$idImages.back}">
+              <img alt="ID image, back" src="{$idImages.back}" style="max-width: 10cm" >
               <RemoveNodeAction on:removed={() => removeIdImage('back')}></RemoveNodeAction>
             </div>
           {/if}
         {/if}
       </p>
     {/if}
+    <!-- div to add grid elements by another change -->
+    <div>
+      {#if ( !$idImages.both || imageRemoved.both ) && ( !$idImages.front || imageRemoved.front) && ( !$idImages.back || imageRemoved.back) }
+        <p class="no-print" style="font-family: Montserrat; font-size: 1.2em">Wähle das Abbild Deines Ausweises vom Dateisystem (beidseitig oder Vorder- und Rückseite):</p>
+        <IdFileImport side="both"></IdFileImport>
+        <p></p>
+        <IdFileImport side="front"></IdFileImport>
+      {:else}
+        {#if !$idImages.both }
+          {#if !$idImages.front }
+            <IdFileImport side="front"></IdFileImport>
+          {/if}
+          {#if !$idImages.back }
+            <IdFileImport side="back"></IdFileImport>
+          {/if}
+        {/if}
+      {/if}
+    </div>
   </section>
 </div>
 
 <style>
 
-#letter-container {
+  .import-container {
+    /** grid layout for id image file import */
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+  }
+
+  #letter-container {
   width: 100%;
 }
 #letter {
@@ -290,7 +317,6 @@
 }
 
 .attachments img {
-  display: block;
   max-width: 100%;
   margin-top: 12px;
 }

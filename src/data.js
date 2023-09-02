@@ -8,14 +8,16 @@ function isValidOrg(org) {
 
 export function validateUserData(userData) {
   // if the user was already past step entry, that is any letter or print, we treat everything as valid
+  // HACK: catch up with URLs from fromer app versions containing "step:letter" (but doesn't know 'desire')
    if (userData.step === 'data_info_request' ||
-      userData.step === 'unanswered' ||
-      userData.step === 'incomplete_answer' ||
-      userData.step === 'data_correction' ||
-      userData.step === 'data_deletion' ||
-      userData.step === 'print')
-      return {
-    isValid: true
+       userData.step === 'letter' ||
+       userData.step === 'unanswered' ||
+       userData.step === 'incomplete_answer' ||
+       userData.step === 'data_correction' ||
+       userData.step === 'data_deletion' ||
+       userData.step === 'print')
+     return {
+     isValid: true
   }
   const messages = [];
   let validOrg = isValidOrg(userData.org);
