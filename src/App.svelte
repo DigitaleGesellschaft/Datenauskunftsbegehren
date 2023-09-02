@@ -148,9 +148,7 @@
 
   {#if $userData.step && $userData.step !== 'entry' }
     <Share></Share>
-    {#if $userData.step === 'data_info_request' || $userData.step === 'print' }
-      <LetterDataInfoReq></LetterDataInfoReq>
-    {/if}
+
     {#if $userData.entry === 'followup' }
       {#if $userData.step === 'unanswered' || $userData.step === 'print' }
         <LetterDataInfoReqRemind></LetterDataInfoReqRemind>
@@ -160,6 +158,10 @@
         <LetterDataInfoReqChange></LetterDataInfoReqChange>
       {:else if $userData.desire === 'data_deletion' || $userData.step === 'print' }
         <LetterDataInfoReqDelete></LetterDataInfoReqDelete>
+      {/if}
+    {:else}
+      {#if $userData.step === 'data_info_request' || $userData.step === 'print' }
+        <LetterDataInfoReq></LetterDataInfoReq>
       {/if}
     {/if}
     <div class="actions">
