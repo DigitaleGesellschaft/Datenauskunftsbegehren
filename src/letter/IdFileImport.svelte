@@ -40,7 +40,6 @@
   }
   function acceptImage() {
     imageObjectUrl = undefined;
-    console.log('acceptImage done')
   }
 
   function remove() {
@@ -57,11 +56,9 @@
     const debouncedSetSizes = debounce(setSizes, 300, {leading: true, trailing: true});
     debouncedSetSizes();
     resizeObserver = new ResizeObserver(() => {
-      console.log('resizeObserver debounces ...')
       debouncedSetSizes()
     });
     resizeObserver.observe(container);
-    console.log('resizeObserver observes')
   })
 
   onDestroy(() => {
@@ -69,7 +66,6 @@
   })
 
   function setSizes() {
-    console.log('setSizes width=' + width + ' small=' + small + ' landscape=' + landscape)
     width = container.getBoundingClientRect().width
     if (width < 600 && small === false) {
       small = true;
@@ -82,7 +78,6 @@
     } else if (!res.matches && landscape === true) {
       landscape = false;
     }
-    console.log('setSizes width=' + width + ' small=' + small + ' landscape=' + landscape)
   }
 
 </script>
