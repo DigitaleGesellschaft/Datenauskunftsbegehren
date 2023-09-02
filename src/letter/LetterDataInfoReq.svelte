@@ -244,7 +244,7 @@
       </p>
     </div>
     <!-- id image handling new -->
-    {#if ($idImages && $idImages.both) || ($idImages && $idImages.front) || ($idImages && $idImages.back)}
+    {#if $idImages && ( $idImages.both || $idImages.front || $idImages.back) }
       <p class="attachments">
         {#if $idImages.both || imageRemoved.both}
           <div class="image">
@@ -268,8 +268,8 @@
       </p>
     {/if}
     <div >
-      {#if !$idImages.both && !$idImages.front && !$idImages.back }
-        <p style="font-family: Montserrat; font-size: 1.2em">Wähle das Abbild Deines Ausweises vom Dateisystem (beidseitig oder Vorder- und Rückseite):</p>
+      {#if ( !$idImages.both || imageRemoved.both ) && ( !$idImages.front || imageRemoved.front) && ( !$idImages.back || imageRemoved.back) }
+        <p class="no-print" style="font-family: Montserrat; font-size: 1.2em">Wähle das Abbild Deines Ausweises vom Dateisystem (beidseitig oder Vorder- und Rückseite):</p>
         <IdFileImport side="both"></IdFileImport>
         <p></p>
         <IdFileImport side="front"></IdFileImport>
