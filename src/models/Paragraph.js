@@ -65,7 +65,7 @@ export default class Paragraph {
   }
 }
 
-const variableRegExp = /\{(?<type>string|number|tel|email|date)?(?::)?(?<name>[a-zA-Z]{1,})(?::)?(?<label>[a-zA-Z-. ]{0,})\}/g;
+const variableRegExp = /\{(?<type>string|number|tel|email|date)?(?::)?(?<name>[a-zA-Z]{1,})(?::)?(?<label>[^:}]{0,})\}/g;
 function getVariablesFromString(string) {
   const matches = [...string.matchAll(variableRegExp)]
   return matches
