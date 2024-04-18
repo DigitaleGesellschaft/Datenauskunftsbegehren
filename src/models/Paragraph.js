@@ -65,7 +65,12 @@ export default class Paragraph {
   }
 }
 
-const variableRegExp = /\{(?<type>string|number|tel|email|date)?(?::)?(?<name>[a-zA-Z]{1,})(?::)?(?<label>[^:}]{0,})\}/g;
+// this line would allow Umlauts and , and other characters in variable labels but is not really tested well enough
+//const variableRegExp = /\{(?<type>string|number|tel|email|date)?(?::)?(?<name>[a-zA-Z]{1,})(?::)?(?<label>[^:}]{0,})\}/g;
+
+// this line has been in place since the beginning of the generator and is well tested
+const variableRegExp = /\{(?<type>string|number|tel|email|date)?(?::)?(?<name>[a-zA-Z]{1,})(?::)?(?<label>[a-zA-Z-. ]{0,})\}/g;
+
 function getVariablesFromString(string) {
   const matches = [...string.matchAll(variableRegExp)]
   return matches
