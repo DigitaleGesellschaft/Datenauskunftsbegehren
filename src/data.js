@@ -15,6 +15,7 @@ export function validateUserData(userData) {
        userData.step === 'incomplete_answer' ||
        userData.step === 'data_correction' ||
        userData.step === 'data_deletion' ||
+       userData.step === 'data_handover' ||
        userData.step === 'print')
      return {
      isValid: true
