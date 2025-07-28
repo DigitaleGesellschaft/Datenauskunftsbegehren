@@ -36,11 +36,15 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        baseURL: process.env.BASE_URL || 'http://localhost:5000',
+        ...devices['Desktop Chrome'] },
     },
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: {
+        baseURL: process.env.BASE_URL || 'http://localhost:5000',
+        ...devices['Desktop Firefox'] },
     },
   ],
 
