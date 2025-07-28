@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('Der generierte Brief enthält die Daten aus der Url', async ({ page }) => {
-  const url = '/#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
 
   const letterSection = await page.locator('section#letter');
@@ -16,7 +16,7 @@ test('Der generierte Brief enthält die Daten aus der Url', async ({ page }) => 
 });
 
 test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('');
 
   // Organisationsauswahl öffnen, prüfen, dass diese gut belegt ist und Swisscom auswählen
   const searchInput = page.locator('input[placeholder="Suche ..."]');

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('Nachfassen bei ausbleibender Antwort', async ({ page }) => {
-  const url = '/#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
 
   // Nachfassen und erhielt keine Antwort auswählen
@@ -21,7 +21,7 @@ test('Nachfassen bei ausbleibender Antwort', async ({ page }) => {
 });
 
 test('Nachfassen unvollständige Antwort', async ({ page }) => {
-  const url = '/#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
 
   // Nachfassen und unvollständige Antwort auswählen
@@ -41,7 +41,7 @@ test('Nachfassen unvollständige Antwort', async ({ page }) => {
 });
 
 test('Nachfassen Daten korrigieren lassen', async ({ page }) => {
-  const url = '/#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
 
   // Nachfassen und Daten korrigieren auswählen
@@ -61,7 +61,7 @@ test('Nachfassen Daten korrigieren lassen', async ({ page }) => {
 });
 
 test('Nachfassen Daten löschen lassen', async ({ page }) => {
-  const url = '/#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
 
   // Nchfassen und Daten löschen

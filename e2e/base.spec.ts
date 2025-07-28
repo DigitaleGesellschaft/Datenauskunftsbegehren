@@ -1,15 +1,14 @@
 import { test, expect } from '@playwright/test';
 
 test('Seite wird mit Titel angezeigt', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('');
 
   const h1Text = await page.locator('h1').textContent();
   expect(h1Text).toBe('Generiere dein Datenauskunftsbegehren');
 });
 
 test('Info kann angezeigt werden', async ({ page }) => {
-  const url = '/';
-  await page.goto(url);
+  await page.goto('');
 
   // Info anzeigen
   const creditsButton = page.locator('button.credits');
