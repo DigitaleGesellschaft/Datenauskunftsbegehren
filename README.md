@@ -11,9 +11,14 @@ Please open issues here for anything you find not working correctly with the App
 
 ## Develop
 ### Setup local development environment
+
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
-Install the dependencies...
+*Note that you will need to have a data.json File that needs to be generated with this project: https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data*
+
+Copy the data.json file to the folder public/
+
+...then install the dependencies...
 
 ```bash
 npm install
@@ -60,7 +65,8 @@ Execute various E2E Tests using playwright (against localhost):
 npx playwright test
 ```
 
-against the deployed version
+Execute various E2E Tests using playwright against the deployed version
 ```
 BASE_URL=https://www.digitale-gesellschaft.ch/auskunftsbegehren npx playwright test
 ```
+---
