@@ -9,9 +9,11 @@
     "deploy": "npm run build && rsync -ar -e 'ssh -p 55022' --delete --stats --progress ./public/* developer@www.digitale-gesellschaft.ch:~/wwwtest/auskunftsbegehren"
   },
   "devDependencies": {
+    "@playwright/test": "^1.54.1",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-html": "^0.2.3",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "@types/node": "^24.0.15",
     "rollup": "^2.3.4",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-styles": "^4.0.0",

@@ -57,3 +57,16 @@ npm run build
 ```
 
 Copy everything in `/public` into a folder served by a Webserver.
+
+### E2E Tests
+
+Execute various E2E Tests using playwright (against localhost):
+```
+npx playwright test
+```
+
+Execute various E2E Tests using playwright against the deployed version
+```
+BASE_URL=https://www.digitale-gesellschaft.ch/auskunftsbegehren npx playwright test
+```
+---
