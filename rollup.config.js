@@ -33,7 +33,6 @@ export default {
   input: 'src/main.js',
   output: {
     sourcemap: true,
-    format: 'esm',
     name: 'app',
     dir: 'public/',
     entryFileNames: production ? 'build/[name]-[hash].js' : 'build/[name].js',
@@ -41,14 +40,18 @@ export default {
     assetFileNames: production ? 'build/[name]-[hash].[ext]' : 'build/[name].[ext]'
   },
   plugins: [
-    commonjs(),
     svelte({
       compilerOptions: {
         // enable run-time checks when not in production
         dev: !production,
-        format: 'esm'
       }
     }),
+    resolve({
+      browser: true,
+      dedupe: ['svelte'],
+      exportConditions: ['svelte', 'browser']
+    }),
+    commonjs(),
     styles({
       mode: ["extract", "styles.css"],
       minimize: true,
@@ -174,18 +177,6 @@ export default {
 </html>`
       }
     }),
-
-    // If you have external dependencies installed from
-    // npm, you'll most likely need these plugins. In
-    // some cases you'll need additional configuration -
-    // consult the documentation for details:
-    // https://github.com/rollup/plugins/tree/master/packages/commonjs
-    resolve({
-      browser: true,
-      dedupe: ['svelte']
-    }),
-    // commonjs(),
-
     // In dev mode, call `npm run start` once
     // the bundle has been generated
     !production && serve(),
