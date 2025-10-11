@@ -26,6 +26,6 @@
     "image-capture": "^0.4.0",
     "lodash-es": "^4.17.21",
     "sirv-cli": "^1.0.0",
-    "svelte-select": "^3.17.0"
+    "svelte-select": "^4.0.0"
   }
 }
