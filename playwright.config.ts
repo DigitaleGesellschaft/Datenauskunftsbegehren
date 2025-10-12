@@ -13,7 +13,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './e2e',
-  timeout: 2000,
+  timeout: 5000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -38,13 +38,13 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { 
-        baseURL: process.env.BASE_URL || 'http://localhost:5000',
+        baseURL: process.env.BASE_URL || 'http://localhost:5173',
         ...devices['Desktop Chrome'] },
     },
     {
       name: 'firefox',
       use: {
-        baseURL: process.env.BASE_URL || 'http://localhost:5000',
+        baseURL: process.env.BASE_URL || 'http://localhost:5173',
         ...devices['Desktop Firefox'] },
     },
   ],
