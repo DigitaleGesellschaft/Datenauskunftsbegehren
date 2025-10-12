@@ -8,7 +8,7 @@
     "dev": "vite",
     "preview": "vite preview",
     "test": "playwright test -c ./playwright.config.ts",
-    "deploy": "vite optimize && vite build && rsync -ar -e 'ssh -p 55022' --delete --stats --progress ./public/* who@where:~/wwwtest/oga",
+    "deploy": "vite optimize && vite build && rsync -ar -e 'ssh -p 55022' --delete --stats --progress ./public/* who@where:~/wwwtest/oga"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",
@@ -22,6 +22,7 @@
     "date-fns": "^2.20.2",
     "image-capture": "^0.4.0",
     "lodash-es": "^4.17.21",
+    "playwright": "^1.56.0",
     "svelte-select": "^4.0.0"
   }
 }
