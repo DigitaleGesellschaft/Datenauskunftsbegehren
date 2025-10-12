@@ -18,19 +18,20 @@ Please open issues here for anything you find not working correctly with the App
 
 Copy the data.json file to the folder public/
 
-...then install the dependencies...
+...then install the dependencies and playwright browsers...
 
 ```bash
 npm install
+npx playwright install
 ```
 
-...then start [Rollup](https://rollupjs.org):
+...then start the webpage
 
 ```bash
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see the App runnning.
+Navigate to [localhost:5173](http://localhost:5173). You should see the App runnning.
 
 If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
 
@@ -39,16 +40,16 @@ If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommen
 To create an optimised version of the app:
 
 ```bash
-npm run build
+npm run preview
 ```
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv).
-
+Navigate to [localhost:8080](http://localhost:8080). You should see the App runnning.
 
 ### Deployment
 
 #### Use Artifact from Github Action
 Go to https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren/actions and download the Artifact named `Public` from the latest build. Put all the content into a folder server by a webserver.
+
 #### Build your own
 Generate production build:
 
@@ -62,11 +63,11 @@ Copy everything in `/public` into a folder served by a Webserver.
 
 Execute various E2E Tests using playwright (against localhost):
 ```
-npx playwright test
+npm run test
 ```
 
 Execute various E2E Tests using playwright against the deployed version
 ```
-BASE_URL=https://www.digitale-gesellschaft.ch/auskunftsbegehren npx playwright test
+BASE_URL=https://www.digitale-gesellschaft.ch/auskunftsbegehren npm run test
 ```
 ---
