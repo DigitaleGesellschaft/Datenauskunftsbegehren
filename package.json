@@ -7,25 +7,13 @@
     "build": "vite build",
     "dev": "vite",
     "preview": "vite preview",
-    "test": "@playwright/test",
+    "test": "playwright test -c ./playwright.config.ts",
     "deploy": "vite optimize && vite build && rsync -ar -e 'ssh -p 55022' --delete --stats --progress ./public/* who@where:~/wwwtest/oga",
-    "oldbuild": "rm -f ./public/build/* && rollup -c",
-    "olddev": "rollup -c -w",
-    "oldstart": "sirv public --no-clear",
-    "olddeploy": "npm run build && rsync -ar -e 'ssh -p 55022' --delete --stats --progress ./public/* developer@www.digitale-gesellschaft.ch:~/wwwtest/auskunftsbegehren"
   },
   "devDependencies": {
-    "@playwright/test": "^1.54.1",
-    "@rollup/plugin-commonjs": "^17.0.0",
-    "@rollup/plugin-html": "^0.2.3",
-    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@playwright/test": "^1.56.0",
     "@sveltejs/vite-plugin-svelte": "^2.5.3",
     "@types/node": "^24.0.15",
-    "rollup": "^2.3.4",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-styles": "^4.0.0",
-    "rollup-plugin-svelte": "^7.1.5",
-    "rollup-plugin-terser": "^7.0.0",
     "svelte": "^4.2.20",
     "vite": "^4.5.14",
     "vite-plugin-html": "^3.2.2"
@@ -34,7 +22,6 @@
     "date-fns": "^2.20.2",
     "image-capture": "^0.4.0",
     "lodash-es": "^4.17.21",
-    "sirv-cli": "^1.0.0",
     "svelte-select": "^4.0.0"
   }
 }
