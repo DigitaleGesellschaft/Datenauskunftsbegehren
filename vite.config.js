@@ -27,7 +27,7 @@ export default defineConfig({
   server: {
     open: true
   },
-  prewiew: {
+  preview: {
     open: true,
     port: 8080,
   },
