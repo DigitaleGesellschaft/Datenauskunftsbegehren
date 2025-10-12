@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Seite wird mit Titel angezeigt', async ({ page }) => {
+test('Seite wird mit dynamisch generiertem Titel angezeigt', async ({ page }) => {
   await page.goto('');
 
   const h1Text = await page.locator('h1').textContent();
