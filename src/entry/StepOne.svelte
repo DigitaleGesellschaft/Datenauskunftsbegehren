@@ -4,9 +4,9 @@
 
   import OrgSelection from './OrgSelection.svelte';
 
-  $: types = $data && $data.types ? $data.types : []
-  $: events = $data && $data.events ? $data.events : []
-  $: desires = $data && $data.desires ? $data.desires : []
+  let types = $derived($data && $data.types ? $data.types : [])
+  let events = $derived($data && $data.events ? $data.events : [])
+  let desires = $derived($data && $data.desires ? $data.desires : [])
 
 
 </script>
@@ -22,7 +22,7 @@
   <section>
     <h2>{texts.steps.one.type}</h2>
     {#each types as type}
-      <button class="one" on:click="{() => {$userData.entry = 'type'; $userData.types = [type.handle]}}">{type.label}</button>
+      <button class="one" onclick={() => {$userData.entry = 'type'; $userData.types = [type.handle]}}>{type.label}</button>
     {/each}
   </section>
 
@@ -31,7 +31,7 @@
   <section>
     <h2>{texts.steps.one.event}</h2>
     {#each events as event}
-      <button class="one" on:click="{() => {$userData.entry = 'event'; $userData.event = event.handle}}">{event.label}</button>
+      <button class="one" onclick={() => {$userData.entry = 'event'; $userData.event = event.handle}}>{event.label}</button>
     {/each}
   </section>
 
@@ -40,7 +40,7 @@
   <section>
     <h2>{texts.steps.one.followup}</h2>
     {#each desires as desire}
-      <button class="one" on:click="{() => {$userData.entry = 'followup'; $userData.desire = desire.handle}}">{desire.label}</button>
+      <button class="one" onclick={() => {$userData.entry = 'followup'; $userData.desire = desire.handle}}>{desire.label}</button>
     {/each}
   </section>
 </div>

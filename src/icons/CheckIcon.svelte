@@ -1,6 +1,12 @@
 <script>
-  export let width = 20;
-  export let height = 20;
+  /**
+   * @typedef {Object} Props
+   * @property {number} [width]
+   * @property {number} [height]
+   */
+
+  /** @type {Props} */
+  let { width = 20, height = 20 } = $props();
 </script>
 <!-- <text x="0" y="115" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Gabriele Malaspina</text><text x="0" y="120" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text> -->
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{width}" height="{height}" viewBox="0 0 100 100">

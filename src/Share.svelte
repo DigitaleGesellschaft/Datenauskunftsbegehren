@@ -1,7 +1,7 @@
 <script>
   import ShareIcon from './icons/ShareIcon.svelte'
 
-  $: hasShareApi = navigator.share
+  let hasShareApi = $derived(navigator.share)
 
   function share() {
     if (navigator.share) {
@@ -22,7 +22,7 @@
 <div class="share">
   💡 Die Webadresse (URL) enthält all Deine Eingaben. Du kannst sie speichern
   {#if hasShareApi}
-    oder Dir senden: <button class="circle" on:click={share}><ShareIcon></ShareIcon></button>
+    oder Dir senden: <button class="circle" onclick={share}><ShareIcon></ShareIcon></button>
   {/if}.
 </div>
 
