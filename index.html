@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="%browser_lang%">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
     <meta name="description" content="%description%">
+    <title><%= page_title %></title>
+    <link rel='icon' type='image/png' href='./favicon-32x32.png'>
     <title>%page_title%</title>
 
     <style>
@@ -31,10 +33,10 @@
   <body>
     <div id="loader"><img src="./dg-logo.svg" >Digitale Gesellschaft Logo Format SVG</img></div>
     <div class="nomodule-message" style="display: none;">%browser_outdated%</div>
+    <div id="app"></div>
     <script nomodule>
       document.querySelector('.nomodule-message').setAttribute('style', 'display: block;')
     </script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
-

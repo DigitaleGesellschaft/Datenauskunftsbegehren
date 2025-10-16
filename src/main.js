@@ -1,5 +1,8 @@
 
+import { mount } from 'svelte'
 import './global.css';
+import App from './App.svelte'
+
 
 const featureTests = [
   () => {
@@ -37,11 +40,12 @@ async function init() {
     const json = await res.json();
     await data.load(json)
   }
-
-  const {default: App} = await import('./App.svelte');
-  const app = new App({
-    target: document.body,
-  });
 }
 
 init();
+
+const app = mount(App, {
+  target: document.getElementById('app'),
+})
+
+export default app
