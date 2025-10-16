@@ -4,10 +4,16 @@
 
   const dispatch = createEventDispatcher();
 
-  let node;
+  let node = $state();
 
-  export let title = "";
-  export let setClass = true;
+  /**
+   * @typedef {Object} Props
+   * @property {string} [title]
+   * @property {boolean} [setClass]
+   */
+
+  /** @type {Props} */
+  let { title = "", setClass = true } = $props();
 
   function toggleNode() {
     if (setClass) {
@@ -23,7 +29,7 @@
   })
   
 </script>
-<div class="hide-node-action" bind:this={node} on:click={toggleNode} title="{title}">
+<div class="hide-node-action" bind:this={node} onclick={toggleNode} title="{title}">
   <EyeIcon></EyeIcon>
 </div>
 <style>
