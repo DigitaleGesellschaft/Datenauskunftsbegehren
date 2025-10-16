@@ -8,17 +8,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v6
-    - name: Install nodejs
-      run: sudo apt install nodejs
-    - name: Install npm 7
-      run: |
-        npm install npm@7
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
+
+    - name: Install dependencies
+      run: npm install
+
     - name: npm install
       run: |
         npm install
+
     - name: build
       run: |
         npm run build
+
     - uses: actions/upload-artifact@v6
       with:
         name: Public
