@@ -17,7 +17,7 @@
       <section>
         <h3>Deine Angaben</h3>
         {#each variables as variable}
-          <VariableInput variable="{variable}" bind:val="{$userData[variable.name]}"></VariableInput>
+          <VariableInput {variable} bind:val="{$userData[variable.name]}"></VariableInput>
         {/each}
       </section>
     {/if}
