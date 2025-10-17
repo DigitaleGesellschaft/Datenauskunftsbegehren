@@ -42,7 +42,7 @@ async function init() {
   }
 }
 
-init();
+await init();
 
 const app = mount(App, {
   target: document.getElementById('app'),
