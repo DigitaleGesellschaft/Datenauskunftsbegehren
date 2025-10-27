@@ -1,6 +1,8 @@
 
 import { mount } from 'svelte'
 import './global.css';
+import './i18n.js';
+import { waitLocale } from 'svelte-i18n'
 import App from './App.svelte'
 
 
@@ -43,6 +45,7 @@ async function init() {
 }
 
 await init();
+await waitLocale();
 
 const app = mount(App, {
   target: document.getElementById('app'),
