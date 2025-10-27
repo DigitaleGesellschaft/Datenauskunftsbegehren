@@ -13,6 +13,5 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['lodash-es'],
-  },
-  assetsInclude: ['**/*.json'],
+  }
 })
