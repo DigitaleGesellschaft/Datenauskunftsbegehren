@@ -83,6 +83,19 @@
   }
 
 </script>
+<svelte:head>
+  <title>{$_('meta.title')}</title>
+  <meta name="description" content={$_('meta.description')} />
+  <meta property="og:title" content={$_('meta.og_title')} />
+  <meta property="og:description" content={$_('meta.og_description')} />
+  <meta property="og:image" content="https://www.digitale-gesellschaft.ch/auskunftsbegehren/datenauskunftsbegehren-og.png" />
+  <link rel="preload" href="./fonts/Montserrat/latin-300.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="./fonts/Montserrat/latin-700.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+</svelte:head>
+
+{#if $isLoading}
+  <p>Loading...</p>
+{:else}
 
 <Header on:step={setStep} activeStep={$userData.step}></Header>
 <main>
@@ -177,7 +190,7 @@
     </a>
   </footer>
 </main>
-
+{/if}
 <style>
 
   .init {
