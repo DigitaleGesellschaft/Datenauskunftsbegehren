@@ -104,8 +104,8 @@
 
   {#if !$userData.step}
     <div class="init">
-      <h1>{texts.title}</h1>
-      <p>{texts.intro}</p>
+      <h1>{$_('app.title', { default: 'Generiere dein Datenauskunftsbegehren' })}</h1>
+      <p>{$_('app.intro', { default: 'Gemäss Datenschutzgesetz hat jede Person das Recht zu erfahren, welche Daten über sie gespeichert sind, und diese – wenn nötig – löschen oder korrigieren zu lassen. Dieses Auskunftsrecht ermöglicht es, die Kontrolle über die eigenen Personendaten zu behalten. Jede Person muss aber selber aktiv werden und dieses Recht wahrnehmen.' })}</p>
     </div>
   {/if}
 
