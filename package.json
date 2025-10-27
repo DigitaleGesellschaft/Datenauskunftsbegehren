@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
     "test": "playwright test -c ./playwright.config.ts",
-    "deploy": "vite optimize && vite build && rsync -ar -e 'ssh -p 55022' --delete --stats --progress ./public/* who@where:~/wwwtest/oga"
+    "deploy": "vite optimize && vite build && rsync -ar -e 'ssh -p 55022' --delete --stats --progress ./public/* who@where:~/wwwtest/oga",
+    "i18n": "svelte-i18n extract \"src/**/*.svelte\" src/locales/de.json && svelte-i18n extract \"src/**/*.svelte\" src/locales/fr.json"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.0",
