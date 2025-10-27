@@ -1,5 +1,6 @@
 <script>
   import { onMount, tick } from 'svelte';
+  import { _, isLoading } from 'svelte-i18n';
 
   import Header from './Header.svelte'
   // Auskunftsbegehren
