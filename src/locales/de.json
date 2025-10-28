@@ -80,10 +80,10 @@
   "your_name": "Dein Name",
   "your_address": "Deine Adresse",
   "registered_mail": "EINSCHREIBEN",
-  "show_hide": "Ein-/ausblenden",
+  "toggle_visibility": "Ein-/ausblenden",
   "recipient_address": "Empfängeradresse",
   "data_info_request": "Datenauskunftsbegehren",
-  "salutation_formal": "Sehr geehrte Angesprochene",
+  "salutation": "Sehr geehrte Angesprochene",
   "letter": {
     "initial_request": "Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25.&nbsp;September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.",
     "info_requirement": "Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist.",
@@ -100,12 +100,18 @@
     "refusal_explanation": "Sollten Sie die Auskunft wider Erwarten nicht, oder nicht vollständig oder noch nicht erteilen können, ersuche ich Sie um Angaben, wieso die Auskunft verweigert, eingeschränkt oder aufgeschoben wird.",
     "id_copy_purpose": "Die beiliegende Kopie eines amtlichen Ausweises dient ausschliesslich dem Zweck, mich mit angemessenen Massnahmen zu identifizieren. Die Ausweis-Kopie darf für keinen anderen Zweck verwendet werden."
   },
-  "closing_kind_regards": "Besten Dank und freundliche Grüsse",
+  "closing": "Besten Dank und freundliche Grüsse",
   "attachment_official_id": "Beilage: Amtlicher Ausweis (Kopie)",
   "data_access_request": "Datenauskunftsbegehren",
   "letter_change_body_1": "Ich danke Ihnen für die Auskunft vom TT. MMMM JJJJ. Aufgrund Ihrer Auskunft stellte ich fest, dass von Ihnen bearbeitete Personendaten unrichtig sind.",
   "letter_change_body_2": "Ich ersuche Sie deshalb, dass folgende Personendaten berichtigt werden:",
   "letter_change_list_item": "[Auflistung der zu berichtigenden Daten und gewünschte Berichtigung]",
   "letter_change_body_3": "Ich verlange ferner, dass Sie die Berichtigung Dritten, von welchen Sie die unrichtigen Daten erhalten oder denen Sie die unrichtigen Daten weitergegeben haben, entsprechend informieren.",
-  "letter_change_body_4": "Ich bitte Sie schliesslich, die Berichtigung zu bestätigen."
+  "letter_change_body_4": "Ich bitte Sie schliesslich, die Berichtigung zu bestätigen.",
+  "data_disclosure_request": "Datenauskunftsbegehren",
+  "thank_you_message": "Ich danke Ihnen für die Auskunft vom TT. MMMM JJJJ.",
+  "deletion_request_message": "Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Personendaten zu löschen:",
+  "deletion_list_placeholder": "[Auflistung der zu löschenden Daten oder sämtliche Daten]",
+  "inform_third_parties_message": "Ich verlange ferner, dass Sie die Löschung Dritten, von welchen Sie die zu löschenden Daten erhalten oder denen Sie die zu löschenden Daten weitergegeben haben, entsprechend informieren.",
+  "confirm_deletion_message": "Ich bitte Sie schliesslich, die Löschung zu bestätigen. Sollten Sie die Löschung ganz oder teilweise verweigern, ersuche ich Sie um eine entsprechende Begründung."
 }
