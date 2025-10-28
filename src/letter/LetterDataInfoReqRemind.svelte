@@ -2,6 +2,7 @@
   import { run } from 'svelte/legacy';
 
   import {onMount} from 'svelte';
+  import { _ } from 'svelte-i18n';
   import HideNodeAction from './HideNodeAction.svelte';
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
@@ -67,88 +68,88 @@
   <section id="letter" bind:this={LetterDataInfoReqRemindNode}>
     <div class="letter-head">
       <div class="address-from">
-        <span
-          contenteditable
-          spellcheck="false"
-          class="editable-variable"
-          data-label="Dein Name"
-          class:empty={!$userData.name || $userData.name.length === 0}
-          bind:innerHTML={$userData.name}>
-        </span>
+         <span
+           contenteditable
+           spellcheck="false"
+           class="editable-variable"
+           data-label={$_("your_name", { default: "Dein Name" })}
+           class:empty={!$userData.name || $userData.name.length === 0}
+           bind:innerHTML={$userData.name}>
+         </span>
         <br>
-        <span
-          contenteditable
-          spellcheck="false"
-          class="editable-variable"
-          data-label="Deine Adresse"
-          class:empty={!$userAddressHtml || $userAddressHtml.length === 0}
-          bind:innerHTML={$userAddressHtml}></span>
+         <span
+           contenteditable
+           spellcheck="false"
+           class="editable-variable"
+           data-label={$_("your_address", { default: "Deine Adresse" })}
+           class:empty={!$userAddressHtml || $userAddressHtml.length === 0}
+           bind:innerHTML={$userAddressHtml}></span>
           
           <!-- chromium has a bug, and needs this empty span -->
           <span>&nbsp;</span>
       </div>
 
-      <div class="address-to">
-        <div contenteditable spellcheck="false">
-          EINSCHREIBEN
-        <HideNodeAction title="Ein-/ausblenden"></HideNodeAction>
-        </div>
+       <div class="address-to">
+         <div contenteditable spellcheck="false">
+           {$_("registered_mail", { default: "EINSCHREIBEN" })}
+         <HideNodeAction title={$_("toggle_visibility", { default: "Ein-/ausblenden" })}></HideNodeAction>
+         </div>
         <br>
         {#if orgAddressTo.length > 0}
           {@html orgAddressTo}
         {:else}
-          <span
-            contenteditable
-            spellcheck="false"
-            class="editable-variable"
-            data-label="Empfängeradresse"
-            class:empty={!$orgAddressHtml || $orgAddressHtml.length === 0}
-            bind:innerHTML={$orgAddressHtml}>
-          </span>
+           <span
+             contenteditable
+             spellcheck="false"
+             class="editable-variable"
+             data-label={$_("recipient_address", { default: "Empfängeradresse" })}
+             class:empty={!$orgAddressHtml || $orgAddressHtml.length === 0}
+             bind:innerHTML={$orgAddressHtml}>
+           </span>
         {/if}
         <br><br><br>
       </div>
-      <p
-        class="date editable-variable"
-        contenteditable
-        spellcheck="false"
-        data-label="Datum"
-        class:empty={!$userData.date || $userData.date.length === 0}
-        bind:innerHTML={$userData.date}>
-      </p>
+       <p
+         class="date editable-variable"
+         contenteditable
+         spellcheck="false"
+         data-label={$_("date", { default: "Datum" })}
+         class:empty={!$userData.date || $userData.date.length === 0}
+         bind:innerHTML={$userData.date}>
+       </p>
     </div>
 
     <h1 class="subject" contenteditable spellcheck="false">
-      Datenauskunftsbegehren / Ausbleibende Auskunft
+      {$_("letter_info_req_remind.subject", { default: "Datenauskunftsbegehren / Ausbleibende Auskunft" })}
     </h1>
 
     <p class="salutation" contenteditable spellcheck="false">
-      Sehr geehrte Angesprochene
+      {$_("salutation", { default: "Sehr geehrte Angesprochene" })}
     </p>
 
     <p contenteditable spellcheck="false">
-      Am TT. MMMM JJJJ stellte ich ein Datenauskunftsbegehren, das bis heute unbeantwortet geblieben ist.
+      {$_("letter_info_req_remind.unanswered_request", { default: "Am TT. MMMM JJJJ stellte ich ein Datenauskunftsbegehren, das bis heute unbeantwortet geblieben ist." })}
     <p>
     <p contenteditable spellcheck="false">
-      Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen die Auskunft oder die Information über eine verzögerte Auskunft innerhalb von 30 Tagen erfolgen. Ebenfalls innerhalb von 30 Tagen muss mitgeteilt werden, wenn die Auskunft verweigert oder aufgeschoben wird.
+      {$_("letter_info_req_remind.legal_reference", { default: "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen die Auskunft oder die Information über eine verzögerte Auskunft innerhalb von 30 Tagen erfolgen. Ebenfalls innerhalb von 30 Tagen muss mitgeteilt werden, wenn die Auskunft verweigert oder aufgeschoben wird." })}
     </p>
     <p contenteditable spellcheck="false">
-      Ich bitte Sie entsprechend, die Auskunft zu erteilen. Sollten Sie weiterhin keine Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten.  Ich weise ausserdem vorsorglich darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art. 60 DSG).
+      {$_("letter_info_req_remind.enforcement", { default: "Ich bitte Sie entsprechend, die Auskunft zu erteilen. Sollten Sie weiterhin keine Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten.  Ich weise ausserdem vorsorglich darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art. 60 DSG)." })}
     </p>
 
     <div class="no-break-inside">
       <p contenteditable spellcheck="false" class="no-break-after">
-        Besten Dank und freundliche Grüsse
-      </p>
+         {$_("closing", { default: "Besten Dank und freundliche Grüsse" })}
+       </p>
       <br><br>
-      <p
-        contenteditable
-        spellcheck="false"
-        class="editable-variable"
-        data-label="Dein Name"
-        class:empty={!$userData.name || $userData.name.length === 0}
-        bind:innerHTML={$userData.name}>
-      </p>
+       <p
+         contenteditable
+         spellcheck="false"
+         class="editable-variable"
+         data-label={$_("your_name", { default: "Dein Name" })}
+         class:empty={!$userData.name || $userData.name.length === 0}
+         bind:innerHTML={$userData.name}>
+       </p>
 
     </div>
   </section>
