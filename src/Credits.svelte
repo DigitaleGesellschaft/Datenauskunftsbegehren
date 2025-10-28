@@ -11,6 +11,9 @@
     import { _ } from 'svelte-i18n';
     const digiges_name = $_("digiges_name", {default: "Digitale Gesellschaft"});
     const fragment_label = $_("fragment", {default: "Fragment"});
+    const mercator_program = $_("mercator_program", {default: "Programm «Digitalisierung + Gesellschaft»"});
+    const mercator_org = $_("mercator_org", {default: "Stiftung Mercator Schweiz"});
+    const generator_source_code = $_("generator_source_code", {default: "Quellcode des Generators"});
 
 </script>
 
@@ -37,15 +40,15 @@
   </p>
   <h2>{$_("notes_for_orgs_title", { default: "Hinweise für angeschriebene Organisationen" })}</h2>
   <p>
-    {@html $_("notes_for_orgs_p1", { default: "Ab dem Zeitpunkt des Eingangs müssen Datenauskunftsbegehren innert 30 Tagen beantwortet werden. Falls die Frist nicht ausreicht, muss entsprechend informiert und die Frist, in der die Auskunft erfolgt, mitgeteilt werden. Falls die Auskunft nicht oder nicht vollständig erteilt werden kann, muss dieser Entscheid begründet werden"})}
+    {$_("notes_for_orgs_p1", { default: "Ab dem Zeitpunkt des Eingangs müssen Datenauskunftsbegehren innert 30 Tagen beantwortet werden. Falls die Frist nicht ausreicht, muss entsprechend informiert und die Frist, in der die Auskunft erfolgt, mitgeteilt werden. Falls die Auskunft nicht oder nicht vollständig erteilt werden kann, muss dieser Entscheid begründet werden" })}
     <span class="no-wrap">
       (<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_18">{$_("art_18_abs_vdsg", {default: "Art. 18 Abs. 1 VDSG"})}</a>).
     </span>
   </p>
   <p>
     {$_("notes_for_orgs_p2", { default: "Das Zusammenstellen der Daten kann einen grösseren Arbeitsaufwand bedeuten. Dennoch ist die Auskunft in der Regel kostenlos zu erteilen. Falls der Zweck oder der Inhalt des Begehrens unklar ist, lohnt es sich allenfalls – gemeinsam mit der gesuchstellenden Person – die Auskunft einzugrenzen." })}
-    <span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_25">Art. 25 DSG</a>)</span>
-     <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_19">Art. 19 VDSG</a>)</span>
+    <span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_25">{$_("art_25_dsg", {default: "Art. 25 DSG"})}</a>)</span>
+     <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_19">{$_("art_18_vdsg", {default: "Art. 19 VDSG"})}</a>)</span>
   </p>
   <h2>{$_("further_steps_title", { default: "Weitere Schritte" })}</h2>
   <p>
@@ -62,8 +65,17 @@
   <div class="logo-block">
     <p>
       {@html $_(
-        "mercator_grant", { 
-          default: "Das Projekt wird vom <a target=_blank rel=noopener noreferrer href=https://www.stiftung-mercator.ch/digitalisierung-gesellschaft>Programm «Digitalisierung + Gesellschaft»</a> der <a target=_blank rel=noopener noreferrer href=https://www.stiftung-mercator.ch>Stiftung Mercator Schweiz</a> gefördert." })}
+        "mercator_grant",
+        {
+          default: "Das Projekt wird vom <program>{mercator_program}</program> der <mercator>{mercator_org}</mercator> gefördert.",
+          values: {
+            program: (text) => `<a target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch/digitalisierung-gesellschaft">${text}</a>`,
+            mercator: (text) => `<a target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch">${text}</a>`,
+            mercator_program,
+            mercator_org
+          }
+        }
+      )}
     </p>
     <a class="logo-link" target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch"><img alt={$_("mercator_logo_alt", { default: "Logo Stiftung Mercator" })} width="100px" src="./mercator_logo.png"></a>
   </div>
@@ -96,7 +108,17 @@
   </ul>
   <h2>Code</h2>
   <p>
-    {@html $_("code_license_info", { default: "Der <a target=_blank rel=noopener noreferrer href=https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren>Quellcode des Generators</a> ist unter der <a target=_blank rel=noopener noreferrer href=https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren/blob/main/LICENSE>3-Clause BSD Lizenz</a> lizenziert und auf Github einsehbar." })}
+    {@html $_(
+      "code_license_info",
+      {
+        default: "Der <repo>{generator_source_code}</repo> ist unter der <license>3-Clause BSD Licence</license> lizenziert und auf Github einsehbar.",
+        values: {
+          repo: (text) => `<a target="_blank" rel="noopener noreferrer" href="https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren">${text}</a>`,
+          license: (text) => `<a target="_blank" rel="noopener noreferrer" href="https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren/blob/main/LICENSE">${text}</a>`,
+          generator_source_code
+        }
+      }
+    )}
   </p>
   <h2>{$_("legal_title", { default: "Rechtliches" })}</h2>
   <ul>
