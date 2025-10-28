@@ -7,7 +7,9 @@
     import ShutterIcon from './icons/ShutterIcon.svelte';
     import ShareIcon from './icons/ShareIcon.svelte';
 
-    import DigigesLogo from './DigigesLogo.svelte'
+    import DigigesLogo from './DigigesLogo.svelte';
+    import { _ } from 'svelte-i18n';
+    const digiges_name = $_("digiges_name", {default: "Digitale Gesellschaft"});
 
 </script>
 
@@ -16,7 +18,12 @@
     Online-Generator für Datenauskunftsbegehren
   </h1>
   <p>
-    Der Online-Generator für Datenauskunftsbegehren wird durch die <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch">Digitale Gesellschaft</a> zur Verfügung gestellt.
+    {@html $_(
+      "credits.website_service",
+      {
+        default: "Der Online-Generator für Datenauskunftsbegehren wird durch die <digiges_homepage>{digiges_name}</digiges_homepage> zur Verfügung gestellt.",
+        values: {digiges_homepage: (text) => `<a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch">${text}</a>`, digiges_name: digiges_name}
+      })}
   </p>
   <p>
     Es werden keine Personendaten bei der Verwendung des Generators erhoben: Sämtliche Dateneingaben und Auswahlen verbleiben im Browser der Benutzer:innen.
