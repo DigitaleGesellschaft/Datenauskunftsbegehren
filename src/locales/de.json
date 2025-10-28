@@ -87,6 +87,9 @@
   "which_services_do_you_use": "Welche Dienste nutzt Du?",
   "form_services_type_info": "Für diese werden spezifisch Daten verlangt; kann auch weggelassen werden.",
   "your_details": "Deine Angaben",
+  "your_address": "Deine Adresse",
+  "name": "Name",
+  "address": "Adresse",
   "bullets": {
     "toggle_visibility": "Ein-/ausblenden, damit nur die Daten angefordert werden, die auch bearbeitet werden und von Interesse sind."
   },
@@ -97,7 +100,6 @@
     "crop_instructions": "Du kannst das Bild danach zuschneiden."
   },
   "your_name": "Dein Name",
-  "your_address": "Deine Adresse",
   "registered_mail": "EINSCHREIBEN",
   "toggle_visibility": "Ein-/ausblenden",
   "recipient_address": "Empfängeradresse",
