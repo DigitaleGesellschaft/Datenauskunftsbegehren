@@ -113,5 +113,10 @@
   "deletion_request_message": "Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Personendaten zu löschen:",
   "deletion_list_placeholder": "[Auflistung der zu löschenden Daten oder sämtliche Daten]",
   "inform_third_parties_message": "Ich verlange ferner, dass Sie die Löschung Dritten, von welchen Sie die zu löschenden Daten erhalten oder denen Sie die zu löschenden Daten weitergegeben haben, entsprechend informieren.",
-  "confirm_deletion_message": "Ich bitte Sie schliesslich, die Löschung zu bestätigen. Sollten Sie die Löschung ganz oder teilweise verweigern, ersuche ich Sie um eine entsprechende Begründung."
+  "confirm_deletion_message": "Ich bitte Sie schliesslich, die Löschung zu bestätigen. Sollten Sie die Löschung ganz oder teilweise verweigern, ersuche ich Sie um eine entsprechende Begründung.",
+  "letter_info_req_demand_incomplete": "Mein Datenauskunftsbegehren vom TT. MMMM JJJJ wurde mit Ihrer Auskunft vom TT. MMMM JJJJ nicht vollständig beantwortet.",
+  "letter_info_req_demand_missing_info": "Ich gehe davon aus, dass insbesondere folgende Informationen fehlen:",
+  "letter_info_req_demand_list_missing": "[Auflistung der fehlenden Daten]",
+  "letter_info_req_demand_refusal": "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen Angaben geliefert werden, wieso eine Auskunft eingeschränkt wurde. Ich bitte Sie entsprechend, vollständig Auskunft zu erteilen oder Angaben zu liefern, wieso die Auskunft eingeschränkt wurde..",
+  "letter_info_req_demand_enforcement": "Sollten Sie weiterhin keine vollständige Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten. Ich weise ausserdem darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art. 60 DSG)."
 }
