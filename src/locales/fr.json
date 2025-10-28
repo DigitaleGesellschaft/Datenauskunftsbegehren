@@ -76,5 +76,30 @@
     "activate_camera_back": "hier Kamera aktivieren um die Rückseite zu fotografieren",
     "hold_id_instructions": "Halt deinen Ausweis vor die Kamera und drücke den Auslöser.",
     "crop_instructions": "Du kannst das Bild danach zuschneiden."
-  }
+  },
+  "your_name": "Dein Name",
+  "your_address": "Deine Adresse",
+  "registered_mail": "EINSCHREIBEN",
+  "show_hide": "Ein-/ausblenden",
+  "recipient_address": "Empfängeradresse",
+  "data_info_request": "Datenauskunftsbegehren",
+  "salutation": "Sehr geehrte Angesprochene",
+  "letter": {
+    "initial_request": "Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25.&nbsp;September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.",
+    "info_requirement": "Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist.",
+    "request_info_list": "Ich ersuche Sie in diesem Rahmen, mir in jedem Fall folgende Informationen mitzuteilen:",
+    "list_item_1": "Identität und Kontaktdaten aller Verantwortlichen",
+    "list_item_2": "Alle bearbeiteten Personendaten als solche",
+    "list_item_3": "Bearbeitungszweck der Personendaten",
+    "list_item_4": "Aufbewahrungsdauer der Personendaten",
+    "list_item_5": "Herkunft der Personendaten",
+    "list_item_6": "Empfängerinnen und Empfänger der Personendaten",
+    "list_item_7": "Vorliegen einer automatisierten Einzelentscheidung und deren Logik",
+    "electronic_form": "Ich bitte Sie, die Auskunft in elektronischer Form zu erteilen, zum Beispiel als PDF- oder CSV-Dateien zum sicheren Download.",
+    "confirm_accuracy": "Ich bitte Sie weiter, die Richtigkeit und Vollständigkeit der erteilten Auskunft zu bestätigen.",
+    "refusal_explanation": "Sollten Sie die Auskunft wider Erwarten nicht, oder nicht vollständig oder noch nicht erteilen können, ersuche ich Sie um Angaben, wieso die Auskunft verweigert, eingeschränkt oder aufgeschoben wird.",
+    "id_copy_purpose": "Die beiliegende Kopie eines amtlichen Ausweises dient ausschliesslich dem Zweck, mich mit angemessenen Massnahmen zu identifizieren. Die Ausweis-Kopie darf für keinen anderen Zweck verwendet werden."
+  },
+  "closing_kind_regards": "Besten Dank und freundliche Grüsse",
+  "attachment_official_id": "Beilage: Amtlicher Ausweis (Kopie)"
 }
