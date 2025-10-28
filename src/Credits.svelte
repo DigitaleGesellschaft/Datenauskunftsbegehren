@@ -10,13 +10,12 @@
     import DigigesLogo from './DigigesLogo.svelte';
     import { _ } from 'svelte-i18n';
     const digiges_name = $_("digiges_name", {default: "Digitale Gesellschaft"});
+    const fragment_label = $_("fragment", {default: "Fragment"});
 
 </script>
 
 <section class="credits">
-  <h1>
-    Online-Generator für Datenauskunftsbegehren
-  </h1>
+  <h1>{$_("credits.title", { default: "Online-Generator für Datenauskunftsbegehren" })}</h1>
   <p>
     {@html $_(
       "credits.website_service",
@@ -26,50 +25,54 @@
       })}
   </p>
   <p>
-    Es werden keine Personendaten bei der Verwendung des Generators erhoben: Sämtliche Dateneingaben und Auswahlen verbleiben im Browser der Benutzer:innen.
+    {$_("no_personal_data_collected", { default: "Es werden keine Personendaten bei der Verwendung des Generators erhoben: Sämtliche Dateneingaben und Auswahlen verbleiben im Browser der Benutzer:innen." })}
   </p>
   <p>
-    Die Dateneingaben können durch das Kopieren der Adresse der Webseite (URL) gespeichert werden. Sämtliche Information 
-    werden dabei im sogenannten <a target="_blank" rel="noopener noreferrer" href="https://de.wikipedia.org/wiki/Fragmentbezeichner">Fragment</a> der URL festgehalten. 
-    Dieses wird niemals an einen Webserver gesendet. Die kopierte URL beinhaltet aber sämtliche eingegeben Daten, welche so weiterverwendbar sind. Die URL ist entsprechend mit Vorsicht zu behandeln.
+    {@html $_(
+      "url_storage_info",
+      {
+        default: "Die Dateneingaben können durch das Kopieren der Adresse der Webseite (URL) gespeichert werden. Sämtliche Information werden dabei im sogenannten <fragment>{fragment_label}</fragment> der URL festgehalten. Dieses wird niemals an einen Webserver gesendet. Die kopierte URL beinhaltet aber sämtliche eingegeben Daten, welche so weiterverwendbar sind. Die URL ist entsprechend mit Vorsicht zu behandeln.",
+        values: { fragment: (text) => `<a target="_blank" rel="noopener noreferrer" href="https://de.wikipedia.org/wiki/Fragmentbezeichner">${text}</a>`, fragment_label }
+      })}
   </p>
-  <h2>Hinweise für angeschriebene Organisationen</h2>
+  <h2>{$_("notes_for_orgs_title", { default: "Hinweise für angeschriebene Organisationen" })}</h2>
   <p>
-    Ab dem Zeitpunkt des Eingangs müssen Datenauskunftsbegehren innert 30 Tagen beantwortet werden. Falls die Frist nicht ausreicht, muss entsprechend informiert und die Frist, 
-    in der die Auskunft erfolgt, mitgeteilt werden. Falls die Auskunft nicht oder nicht vollständig erteilt werden kann,
-    muss dieser Entscheid begründet werden. <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_18">Art. 18 Abs. 1 VDSG</a>)</span>
-  </p>
-  <p>
-    Das Zusammenstellen der Daten kann einen grösseren Arbeitsaufwand bedeuten. Dennoch ist die Auskunft in der Regel kostenlos zu erteilen.
-    Falls der Zweck oder der Inhalt des Begehrens unklar ist, lohnt es sich allenfalls – gemeinsam mit der gesuchstellenden Person –
-    die Auskunft einzugrenzen.<span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_25">Art. 25 DSG</a>)</span>
-    <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_19">Art. 19 VDSG</a>)</span>
-  </p>
-  <h2>Weitere Schritte</h2>
-  <p>
-    Bleibt eine Antwort aus oder ist sie unvollständig, kann mit einem zweiten Brief nachgefasst und darauf hingewiesen werden. Im Anschluss kann gegen private Inhaber von Datensammlungen 
-    am Wohnsitz der betroffenen Person oder am Wohnsitz des Inhabers der Datensammlung eine gerichtliche Klage zur Durchsetzung
-    des Auskunftsrechts eingereicht werden. <span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_25">Art. 25 DSG</a>)</span>
+    {@html $_("notes_for_orgs_p1", { default: "Ab dem Zeitpunkt des Eingangs müssen Datenauskunftsbegehren innert 30 Tagen beantwortet werden. Falls die Frist nicht ausreicht, muss entsprechend informiert und die Frist, in der die Auskunft erfolgt, mitgeteilt werden. Falls die Auskunft nicht oder nicht vollständig erteilt werden kann, muss dieser Entscheid begründet werden"})}
+    <span class="no-wrap">
+      (<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_18">{$_("art_18_abs_vdsg", {default: "Art. 18 Abs. 1 VDSG"})}</a>).
+    </span>
   </p>
   <p>
-    Ebenfalls kann die Berichtigung von falschen oder die Löschung von Daten (sowie die weitere Beschaffung) verlangt werden, 
-    sofern diese Datenbearbeitung nicht durch ein überwiegendes privates oder öffentliches Interesse oder
-    durch ein Gesetz gerechtfertigt ist. <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_32">Art. 32 DSG</a>)</span>
+    {$_("notes_for_orgs_p2", { default: "Das Zusammenstellen der Daten kann einen grösseren Arbeitsaufwand bedeuten. Dennoch ist die Auskunft in der Regel kostenlos zu erteilen. Falls der Zweck oder der Inhalt des Begehrens unklar ist, lohnt es sich allenfalls – gemeinsam mit der gesuchstellenden Person – die Auskunft einzugrenzen." })}
+    <span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_25">Art. 25 DSG</a>)</span>
+     <span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_19">Art. 19 VDSG</a>)</span>
   </p>
-  <h2>Vielen Dank für die finanzielle Unterstützung</h2>
+  <h2>{$_("further_steps_title", { default: "Weitere Schritte" })}</h2>
+  <p>
+    {$_("further_steps_p1", { default: "Bleibt eine Antwort aus oder ist sie unvollständig, kann mit einem zweiten Brief nachgefasst und darauf hingewiesen werden. Im Anschluss kann gegen private Inhaber von Datensammlungen am Wohnsitz der betroffenen Person oder am Wohnsitz des Inhabers der Datensammlung eine gerichtliche Klage zur Durchsetzung des Auskunftsrechts eingereicht werden" })}
+    <span class="no-warp">
+      (<a target="_blank" rel="noopener noreferrer" href="https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_25">Art. 25 DSG</a>)
+    </span>.
+  </p>
+  <p>
+    {$_("further_steps_p2", { default: "Ebenfalls kann die Berichtigung von falschen oder die Löschung von Daten (sowie die weitere Beschaffung) verlangt werden, sofern diese Datenbearbeitung nicht durch ein überwiegendes privates oder öffentliches Interesse oder durch ein Gesetz gerechtfertigt ist" })}
+    <span class=no-wrap>(<a target=_blank rel="noopener noreferrer" href=https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_32>Art. 32 DSG</a>)</span>
+  </p>
+  <h2>{$_("thanks_support_title", { default: "Vielen Dank für die finanzielle Unterstützung" })}</h2>
   <div class="logo-block">
     <p>
-      Das Projekt wird vom <a target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch/digitalisierung-gesellschaft">Programm «Digitalisierung + Gesellschaft»</a>
-      der <a target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch">Stiftung Mercator Schweiz</a> gefördert.
+      {@html $_(
+        "mercator_grant", { 
+          default: "Das Projekt wird vom <a target=_blank rel=noopener noreferrer href=https://www.stiftung-mercator.ch/digitalisierung-gesellschaft>Programm «Digitalisierung + Gesellschaft»</a> der <a target=_blank rel=noopener noreferrer href=https://www.stiftung-mercator.ch>Stiftung Mercator Schweiz</a> gefördert." })}
     </p>
-    <a class="logo-link" target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch"><img alt="Logo Stiftung Mercator" width="100px" src="./mercator_logo.png"></a>
+    <a class="logo-link" target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch"><img alt={$_("mercator_logo_alt", { default: "Logo Stiftung Mercator" })} width="100px" src="./mercator_logo.png"></a>
   </div>
   <h2>Credits</h2>
   <ul>
-    <li><strong>Konzept und Umsetzung</strong>: Beni Buess, Erik Schönenberger, Simon Gantenbein, Nikolaus Langner</li>
-    <li><strong>Ergänzungen und Überarbeitungen</strong>: Anna Walter, Erik Schönenberger, Martin Steiger</li>
-    <li><strong>Kampagne</strong>: Vanessa Peter und das Team der Hochschule der Künste in Bern</li>
-    <li>Danke an viele Freund*innen für die Ideen ♥️</li>
+    <li><strong>{$_("concept_realisation", { default: "Konzept und Umsetzung" })}</strong>: Beni Buess, Erik Schönenberger, Simon Gantenbein, Nikolaus Langner</li>
+    <li><strong>{$_("additional_notes_and_revision", { default: "Ergänzungen und Überarbeitungen" })}</strong>: Anna Walter, Erik Schönenberger, Martin Steiger</li>
+    <li><strong>{$_("campaign", { default: "Kampagne" })}</strong>: Vanessa Peter und das Team der Hochschule der Künste in Bern</li>
+    <li>{$_("danke_freunde_ideen", { default: "Danke an viele Freund*innen für die Ideen ♥️" })}</li>
     <li>Built for the Web using HTML, CSS, JavaScript and <a target="_blank" rel="noopener noreferrer" href="https://svelte.dev/">Svelte</a></li>
     <li>Icons from <a target="_blank" rel="noopener noreferrer" href="https://thenounproject.com">the Noun Project</a>: 
       <ul>
@@ -93,11 +96,15 @@
   </ul>
   <h2>Code</h2>
   <p>
-    Der <a target="_blank" rel="noopener noreferrer" href="https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren">Quellcode des Generators</a> ist unter der <a target="_blank" rel="noopener noreferrer" href="https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren/blob/main/LICENSE">3-Clause BSD Lizenz</a> lizenziert und auf Github einsehbar.
+    {@html $_("code_license_info", { default: "Der <a target=_blank rel=noopener noreferrer href=https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren>Quellcode des Generators</a> ist unter der <a target=_blank rel=noopener noreferrer href=https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren/blob/main/LICENSE>3-Clause BSD Lizenz</a> lizenziert und auf Github einsehbar." })}
   </p>
-  <h2>Rechtliches</h2>
+  <h2>{$_("legal_title", { default: "Rechtliches" })}</h2>
   <ul>
-    <li><a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/rechtliches/">Datenschutzerklärung und Impressum</a></li>
+    <li>
+      <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/rechtliches/">
+        {$_("privacy_imprint", { default: "Datenschutzerklärung und Impressum" })}
+      </a>
+    </li>
   </ul>
   <div class="credits-footer">
     <DigigesLogo></DigigesLogo>
