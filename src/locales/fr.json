@@ -83,6 +83,10 @@
   "error": {
     "something_went_wrong": "Etwas hat nicht funktioniert: userData.step ist undef oder nicht in der Auswahl. userData.desire: "
   },
+  "provide_more_details": "Mach noch einige Angaben für das Auskunftsbegehren «{orgName}»",
+  "which_services_do_you_use": "Welche Dienste nutzt Du?",
+  "form_services_type_info": "Für diese werden spezifisch Daten verlangt; kann auch weggelassen werden.",
+  "your_details": "Deine Angaben",
   "bullets": {
     "toggle_visibility": "Ein-/ausblenden, damit nur die Daten angefordert werden, die auch bearbeitet werden und von Interesse sind."
   },
