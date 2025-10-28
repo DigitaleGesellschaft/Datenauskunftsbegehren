@@ -68,6 +68,8 @@
       "print": "Drucken"
     }
   },
+  "reset_inputs": "Eingaben zurücksetzen",
+  "generate_letter": "Brief generieren",
   "bullets": {
     "toggle_visibility": "Ein-/ausblenden, damit nur die Daten angefordert werden, die auch bearbeitet werden und von Interesse sind."
   },

@@ -9,6 +9,7 @@
   import StepFollowUp from './StepFollowUp.svelte';
 
   import { userData } from '../stores.js';
+  import { _ } from 'svelte-i18n';
 
   function selectLetterType() {
       let step = 'data_info_request';
@@ -43,9 +44,9 @@
 
     <div class="actions">
         {#if $userData.entry}
-            <button class="two" onclick={() => dispatch('reset')}>Eingaben zurücksetzen</button>
+            <button class="two" onclick={() => dispatch('reset')}>{$_('reset_inputs', { default: 'Eingaben zurücksetzen' })}</button>
         {/if}
-        <button class="two solid" onclick={selectLetterType}>❯ Brief generieren</button>
+        <button class="two solid" onclick={selectLetterType}>❯ {$_('generate_letter', { default: 'Brief generieren' })}</button>
     </div>
 </div>
 
