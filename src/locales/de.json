@@ -35,5 +35,9 @@
       "data_deletion": "Brief Löschung",
       "print": "Drucken"
     }
+  },
+  "digiges_name": "Digitale Gesellschaft",
+  "credits": {
+    "website_service": "Der Online-Generator für Datenauskunftsbegehren wird durch die <digiges_homepage>{digiges_name}</digiges_homepage> zur Verfügung gestellt."
   }
 }
