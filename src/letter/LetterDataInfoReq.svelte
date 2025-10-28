@@ -148,7 +148,7 @@
     </h1>
 
     <p class="salutation" contenteditable spellcheck="false">
-      {$_("salutation", {default: "Sehr geehrte Angesprochene"})}
+      {$_("salutation_formal", {default: "Sehr geehrte Angesprochene"})}
     </p>
 
     {#if selectedEvent}
