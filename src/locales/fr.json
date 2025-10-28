@@ -70,6 +70,10 @@
   },
   "reset_inputs": "Eingaben zurücksetzen",
   "generate_letter": "Brief generieren",
+  "step_event": {
+    "details_header": "Mach noch einige Angaben für das Auskunftsbegehren aus speziellem Grund «{eventName}»"
+  },
+  "details": "Details",
   "bullets": {
     "toggle_visibility": "Ein-/ausblenden, damit nur die Daten angefordert werden, die auch bearbeitet werden und von Interesse sind."
   },
