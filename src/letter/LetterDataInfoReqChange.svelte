@@ -90,7 +90,7 @@
       <div class="address-to">
          <div contenteditable spellcheck="false">
            {$_("registered_mail", {default: "EINSCHREIBEN"})}
-         <HideNodeAction title={$_("show_hide", {default: "Ein-/ausblenden"})}></HideNodeAction>
+         <HideNodeAction title={$_("toggle_visibility", {default: "Ein-/ausblenden"})}></HideNodeAction>
          </div>
         <br>
         {#if orgAddressTo.length > 0}
@@ -122,7 +122,7 @@
      </h1>
 
      <p class="salutation" contenteditable spellcheck="false">
-       {$_("salutation_formal", {default: "Sehr geehrte Angesprochene"})}
+       {$_("salutation", {default: "Sehr geehrte Angesprochene"})}
      </p>
 
      <p contenteditable spellcheck="false">
@@ -144,7 +144,7 @@
 
     <div class="no-break-inside">
        <p contenteditable spellcheck="false" class="no-break-after">
-       {$_("closing_kind_regards")}
+       {$_("closing")}
        </p>
       <br><br>
        <p
