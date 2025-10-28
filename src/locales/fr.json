@@ -74,6 +74,15 @@
     "details_header": "Mach noch einige Angaben für das Auskunftsbegehren aus speziellem Grund «{eventName}»"
   },
   "details": "Details",
+  "step_followup": {
+    "instructions": "Mach noch einige Angaben für das Auskunftsbegehren"
+  },
+  "organisation": "Organisation",
+  "select_organisation": "Wähle eine Organisation",
+  "or_enter_address": "oder gib die Adresse ein",
+  "error": {
+    "something_went_wrong": "Etwas hat nicht funktioniert: userData.step ist undef oder nicht in der Auswahl. userData.desire: "
+  },
   "bullets": {
     "toggle_visibility": "Ein-/ausblenden, damit nur die Daten angefordert werden, die auch bearbeitet werden und von Interesse sind."
   },
