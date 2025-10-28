@@ -6,5 +6,34 @@
   "app": {
     "title": "Generiere dein Datenauskunftsbegehren",
     "intro": "Gemäss Datenschutzgesetz hat jede Person das Recht zu erfahren, welche Daten über sie gespeichert sind, und diese – wenn nötig – löschen oder korrigieren zu lassen. Dieses Auskunftsrecht ermöglicht es, die Kontrolle über die eigenen Personendaten zu behalten. Jede Person muss aber selber aktiv werden und dieses Recht wahrnehmen."
+  },
+  "ics": {
+    "description": "Vor {days} Tagen hast du {causa} generiert. Hast du eine Antwort erhalten?",
+    "followup": "Hier kannst Du Briefe zum Nachfassen oder weitere Auskunftsbegehren erstellen",
+    "comeback": "Bei Fragen kannst Du uns gern über auskunftsbegehren@digitale-gesellschaft.ch kontaktieren.",
+    "summary": "Datenauskunftsbegehren, Antwort erhalten?",
+    "filename": "auskunftsbegehren.ics",
+    "button": {
+      "download": "Kalendereintrag herunterladen"
+    }
+  },
+  "date": "Datum",
+  "time": "Zeit",
+  "share": {
+    "title": "Datenauskunftsbegehren",
+    "text": "Dein Datenauskunftsbegehren:",
+    "hint": "💡 Die Webadresse (URL) enthält all Deine Eingaben. Du kannst sie speichern",
+    "or_send": "oder Dir senden:"
+  },
+  "steps": {
+    "labels": {
+      "entry": "Eingabe",
+      "data_info_request": "Brief Auskunft",
+      "unanswered": "Brief Mahnung",
+      "incomplete_answer": "Brief Einforderung",
+      "data_correction": "Brief Korrektur",
+      "data_deletion": "Brief Löschung",
+      "print": "Drucken"
+    }
   }
 }
