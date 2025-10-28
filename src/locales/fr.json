@@ -70,5 +70,11 @@
   },
   "bullets": {
     "toggle_visibility": "Ein-/ausblenden, damit nur die Daten angefordert werden, die auch bearbeitet werden und von Interesse sind."
+  },
+  "id_capture": {
+    "activate_camera_front": "hier Kamera aktivieren um den Ausweis zu fotografieren",
+    "activate_camera_back": "hier Kamera aktivieren um die Rückseite zu fotografieren",
+    "hold_id_instructions": "Halt deinen Ausweis vor die Kamera und drücke den Auslöser.",
+    "crop_instructions": "Du kannst das Bild danach zuschneiden."
   }
 }
