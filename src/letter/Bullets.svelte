@@ -3,6 +3,7 @@
   import { createEventDispatcher, onMount } from 'svelte';
   import HideNodeAction from './HideNodeAction.svelte';
   import { userData } from '../stores.js'
+  import { _ } from 'svelte-i18n';
 
   const dispatch = createEventDispatcher();
 
@@ -90,7 +91,8 @@
       <li class:hide-for-print={$userData.hiddenBullets && $userData.hiddenBullets.includes(bullet.hash)}>
         {bullet.text}
         <Bullets bullets={bullet.bullets} on:toggle={handleToggle} isChild={true}></Bullets>
-        <HideNodeAction on:toggle={handleToggle({detail: bullet.hash})} setClass={false} title="Ein-/ausblenden, damit nur die Daten angefordert werden, die auch bearbeitet werden und von Interesse sind."></HideNodeAction>
+         <HideNodeAction on:toggle={handleToggle({detail: bullet.hash})} setClass={false} 
+         title={$_("bullets.toggle_visibility", {default: "Ein-/ausblenden, damit nur die Daten angefordert werden, die auch bearbeitet werden und von Interesse sind."})}></HideNodeAction>
       </li>
     {/each}
   {/if}
