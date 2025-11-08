@@ -57,7 +57,12 @@ Generate production build:
 npm run build
 ```
 
-Copy everything in `/public` into a folder served by a Webserver.
+Check the produced output before deployment:
+```bash
+docker run --rm -v ./dist:/usr/share/nginx/html:ro -p 8080:80 nginx
+```
+
+Copy everything in `/dist` into a folder served by a Webserver.
 
 ### E2E Tests
 
