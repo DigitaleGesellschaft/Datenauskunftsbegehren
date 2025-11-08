@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="<%= browser_lang %>">
+<html lang="%browser_lang%">
   <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <meta name="description" content="<%= description %>">
-    <title><%= page_title %></title>
-    <link rel='icon' type='image/png' href='./favicon-32x32.png'>
-
-    <script type="module" src="./src/main.js" defer></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="%description%">
+    <title>%page_title%</title>
 
     <style>
       #loader path {
@@ -22,19 +19,22 @@
         transform: translateX(-50%);
       }
     </style>
-  
-    <meta property="og:image" content="https://www.digitale-gesellschaft.ch/auskunftsbegehren/datenauskunftsbegehren-og.png">
-    <meta property="og:title" content="<%= page_title %>">
-    <meta property="og:description" content="<%= description_short %>">
 
+    <meta property="og:image" content="https://www.digitale-gesellschaft.ch/auskunftsbegehren/datenauskunftsbegehren-og.png">
+    <meta property="og:title" content="%page_title%">
+    <meta property="og:description" content="%description_short%">
+
+    <link rel="icon" type="image/png" href="./favicon-32x32.png">
     <link rel="preload" href="./fonts/Montserrat/latin-300.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./fonts/Montserrat/latin-700.woff2" as="font" type="font/woff2" crossorigin>
   </head>
   <body>
     <div id="loader"><img src="./dg-logo.svg" >Digitale Gesellschaft Logo Format SVG</img></div>
-    <div class="nomodule-message" style="display: none;"><%= browser_outdated%></div>
+    <div class="nomodule-message" style="display: none;">%browser_outdated%</div>
     <script nomodule>
       document.querySelector('.nomodule-message').setAttribute('style', 'display: block;')
     </script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
+
