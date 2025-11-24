@@ -6,8 +6,8 @@
     "og_description": ""
   },
   "app": {
-    "title": "Génère une demande de renseignement sur tes données",
-    "intro": "La Loi sur la protection des données octroie à toute personne le droit d'être informée des données qui sont récoltées sur elle, et de les faire corriger ou supprimer lorsque cela devient nécessaire. Bien que ce droit permette de garder le contrôle sur ses données personnelles, il incombe à toute personne de l'exercer activement."
+    "title": "Générer une demande d'accès à ses données personnelles",
+    "intro": "Conformément à la Loi sur la protection des données, toute personne jouit du droit de connaître les données personnelles enregistrées la concernant. Elle peut également réclamer la correction ou la suppression le cas échéant. Ces droits permettent de garder le contrôle sur ses données. Il incombe cependant aux personnes concernées de les faire valoir."
   },
   "digiges_name": "Digitale Gesellschaft",
   "fragment": "Fragment",
@@ -15,46 +15,46 @@
   "mercator_org": "Stiftung Mercator Schweiz",
   "generator_source_code": "Source code du générateur",
   "credits": {
-    "title": "Générateur en ligne pour les demandes de renseignement sur les données",
-    "website_service": "Le générateur en ligne pour les demandes de renseignement sur les données personnelles a été mis en place par <digiges_homepage>{digiges_name}</digiges_homepage>."
+    "title": "Générateur de demandes d'accès aux données personnelles",
+    "website_service": "Le générateur en ligne pour les demandes d'accès aux données est mis à disposition par  <digiges_homepage>{digiges_name}</digiges_homepage>."
   },
-  "no_personal_data_collected": "Aucune donnée n'est récoltée lors de l'utilisation du générateur: toute manipulation reste dans le navigateur de l'utilisateur-ice",
-  "url_storage_info": "Le lien de ce site internet (URL) peut contenir des informations.  Toutes les informations seront contenus dans le <fragment>{fragment_label}</fragment> de l'URL. Celui-ci ne sera hamais transmis à un serveur web, mais contient des informations réutilisables. C'est pourquoi il est avisé de le manipuler avec précuation.",
-  "notes_for_orgs_title": "Indications pour les organisations contactées",
-  "notes_for_orgs_p1": "Les requêtes sur les données récoltées doivent être répondues dans un délai de 30 jours à partir de leur réception. Si le délai ne suffit pas, cela doit être indiqué dans le délai tout en indiquant le moment de la réponse. Les renseignements refusés ou incomplets doivent être motivés.",
+  "no_personal_data_collected": "Aucune donnée n'est récoltée lors de l'utilisation du générateur en ligne. Les informations saisies par l'utilisateur et les options sélectionnées restent dans la navigateur uniquement",
+  "url_storage_info": "Le lien de la page internet (URL) du générateur contient les données soumises dans le <fragment>{fragment_label}</fragment>. Il permet alors la réutilisation et la transmission des informations entrées. Ces dernières pouvant s'avérer sensibles, il convient d'user de précaution.",
+  "notes_for_orgs_title": "Informations à l'attention des organisations contactées",
+  "notes_for_orgs_p1": "L'accès au données doit être fourni dans un délai de 30 jours suivant la réception de la requête. Si ce délai n'est pas suffisant, la partie requérante doit en être notifiée et informée dans quel délai les informations seront transmises. La décision de ne pas fournir les informations ou de ne pas les fournir dans leur intégralité doit être motivée.",
   "art_18_abs_vdsg": "Art. 18 Al. 1 OLPD",
-  "notes_for_orgs_p2": "La constitution des données peut représenter une charge de travail importante. Cependant, le renseignement n'entraîne en principe pas de frais. Il peut s'avérer utile de définir avec le-la demandeur-euse l'étendue de ce qui est attendu lorsque le but ou le contenu exigé n'est pas clair.",
+  "notes_for_orgs_p2": "L'accès aux données n'entraîne en principe pas de frais, bien que sa préparation puisse représenter une charge de travail importante. Il peut donc être utile de définir précisément l'étendue de la demande lorsque celle-ci manque de clarté.",
   "art_25_dsg": "Art. 25 LPD",
   "art_18_vdsg": "Art. 19 OLPD",
   "further_steps_title": "Étapes suivantes",
-  "further_steps_p1": "Une réponse incomplète ou manquante peut être suivie d'une deuxième lettre, qui indique le manquement. Une action judiciaire peut ensuite être ouverte au domicile du plaignant ou du responsable des données afin d'obtenir l'exécution du renseignement.",
-  "further_steps_p2": "La correction ou la suppression (de même que l'obtention ultérieure) peuvent également être réclamés, sous réserve d'un intérêt public ou privé prépondant ou d'une justification par la loi.",
-  "thanks_support_title": "Merci beaucoup pour votre soutien financierg",
+  "further_steps_p1": "Face à une réponse incomplète, il convient d'enoyer 'une seconde lettre précisant le manquement. Si la situation persiste, une action judiciaire peut être engagée. Cette procédure est ouverte au domicile du plaignant ou de la personne responsable du traitement des données.",
+  "further_steps_p2": "Il est possible de réclamer la correction ou la suppression (de même que l'accès ultérieur) des données, sauf en cas d'un intérêt public ou privé prépondérant ou d'obligation légale contraire.",
+  "thanks_support_title": "Nous sommes très reconnaissants de votre soutien financier",
   "mercator_grant": "Le projet a été initié par le <program>{mercator_program}</program> de <mercator>{mercator_org}</mercator>.",
   "mercator_logo_alt": "Logo Fondation Mercator",
   "concept_realisation": "Concept et réalisation",
   "additional_notes_and_revision": "Compléments et révisions",
   "campaign": "Campagne",
-  "danke_freunde_ideen": "Merci à beaucoup d'ami-e-s pour les idées ♥️",
+  "danke_freunde_ideen": "Merci à nos ami-e-s pour leurs idées ♥️",
   "code_license_info": "Le <repo>{generator_source_code}</repo> est sous la licence <license>3-Clause BSD Licence</license> et visible sur GitHub.",
   "legal_title": "Légal",
   "privacy_imprint": "Déclaration sur la protection des données et Impressum",
   "ics": {
     "description": "Tu as généré {causa} il y a {days}. As-tu reçu une réponse?",
-    "followup": "Tu peux relancer ou générer d'autres demandes de renseignements ici",
-    "comeback": "Tu peux volontiers nous contacter à l'adresse auskunftsbegehren@digitale-gesellschaft.ch pour toutes questions.",
-    "summary": "Réponse à la requête de données personnelles?",
+    "followup": "La fonction suivante te permet de générer une nouvelle demande ou un suivi.",
+    "comeback": "Contacte nous  à l'adresse auskunftsbegehren@digitale-gesellschaft.ch pour tout renseignement.",
+    "summary": "Réponse à ta requête?",
     "filename": "renseignements_données.ics",
     "button": {
-      "download": "Télécharger l'élément dans le calendrier"
+      "download": "Télécharger l'élément pour le calendrier"
     }
   },
   "date": "Date",
   "time": "Heure",
   "share": {
-    "title": "Requête en renseignement de données",
-    "text": "Ta requête en renseignement de données:",
-    "hint": "💡 L'adresse web (URL) contient toutes les données. Tu peux les enregistrer.",
+    "title": "Requête en accès aux données personnelles",
+    "text": "Tes données personnelles sur requête",
+    "hint": "Les informations sont contenues dans l'adresse web. Tu peux les enregistrer:",
     "or_send": "Ou te les envoyer:"
   },
   "steps": {
@@ -71,7 +71,7 @@
   "reset_inputs": "Réinitialiser les entrées",
   "generate_letter": "Générer les lettres",
   "step_event": {
-    "details_header": "Entéres spéciales pour le générateur de données en raison de «{eventName}»"
+    "details_header": "Entrées spéciales pour le générateur de données en raison de «{eventName}»"
   },
   "details": "Details",
   "step_followup": {
@@ -138,11 +138,12 @@
   "letter_info_req_demand_incomplete": "Ma requête concernant mes données personnelles du JJ. MMMM AAAA n'a pas été traitée de manière complète.",
   "letter_info_req_demand_missing_info": "Je considère manquantes notamment les informations suivantes:",
   "letter_info_req_demand_list_missing": "[Liste des données manquantes]",
-  "letter_info_req_demand_refusal": "Une restriction du droit à l'information doit être motivée en vertu de l'art. 26 al. 4 de la Loi fédérale sur la protection des données du 25 septembre 2020 (LPD). Je vous prie ainsi de m'indiquer pourquoi les informations n'ont pas été livrées intégralement.",
+  "letter_info_req_demand_refusal": "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen Angaben geliefert werden, wieso eine Auskunft eingeschränkt wurde. Ich bitte Sie entsprechend, vollständig Auskunft zu erteilen oder Angaben zu liefern, wieso die Auskunft eingeschränkt wurde..",
   "letter_info_req_demand_enforcement": "Je me réserve le droit, sans renseignements complets de votre part, d'entâmer des démarches afin de faire reconnaitre mon droit à l'information par la voie judiciaire ou de signaler le cas au Préposé fédéral à la protection des données et à la transparence (PFPDT). Je vous rends également attitif au fait que la communication intentionelle d'informations fausses ou incplètes est puni sur plaine d'une amende allant jusqu'à 250'000 Francs (Art. 60 LPD).",
   "letter_info_req_remind": {
-    "subject": "Demande d'accès au données / Renseignement absent",
-    "unanswered_request": "Ma requête en accès à mes données personnelles du JJ.MMMM.AAAA est restée sans réponse.",
-    "legal_reference": "En vertu de l'art. 26 al. 4 de la Loi fédérale sur la protection des données du 25 septembre 2020 (LPD), le droit d'accès aux données personelles est octroyé, en principe, dans un délai de 30 jours. En tout état de cause, le délai de 30 jours s'impose pour informer la personne concernée d'un refus ou d'un octroi différé du droit d'accès.", 
-    "enforcement": "En conséquence, je vous prie de m'octroyer le droit d'accès. Je me réserve le droit de faire poursuivre mon droit à l'information par la voie judiciaire ou par un signalement au Préposé fédéral à la protection des données et à la transparence (PFPDT) à tout moment, dans la mesure où ma requête reste sans réponse. Je vous rappelle en outre que la transmission intentionelle de renseignements faux ou incomplets est punie, sur plainte, d'une amende pouvant s'élever à 250'000 Francs au plus."
+    "subject": "Datenauskunftsbegehren / Ausbleibende Auskunft",
+    "unanswered_request": "Am TT. MMMM JJJJ stellte ich ein Datenauskunftsbegehren, das bis heute unbeantwortet geblieben ist.",
+    "legal_reference": "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen die Auskunft oder die Information über eine verzögerte Auskunft innerhalb von 30 Tagen erfolgen. Ebenfalls innerhalb von 30 Tagen muss mitgeteilt werden, wenn die Auskunft verweigert oder aufgeschoben wird.",
+    "enforcement": "Ich bitte Sie entsprechend, die Auskunft zu erteilen. Sollten Sie weiterhin keine Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten.  Ich weise ausserdem vorsorglich darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art. 60 DSG)."
+  }
 }
