@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="<%= browser_lang %>">
+<html lang="de">
   <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <meta name="description" content="<%= description %>">
-    <title><%= page_title %></title>
+    <meta name="description" content="Gemäss Datenschutzgesetz hat jede Person das Recht zu erfahren, welche Daten über sie gespeichert sind, und diese – wenn nötig – löschen oder korrigieren zu lassen.">
+    <title>Generiere dein Datenauskunftsbegehren | Digitale Gesellschaft</title>
     <link rel='icon' type='image/png' href='./favicon-32x32.png'>
-
-    <script type="module" src="./src/main.js" defer></script>
-
     <style>
       #loader path {
         fill: white;
@@ -24,17 +21,21 @@
     </style>
   
     <meta property="og:image" content="https://www.digitale-gesellschaft.ch/auskunftsbegehren/datenauskunftsbegehren-og.png">
-    <meta property="og:title" content="<%= page_title %>">
-    <meta property="og:description" content="<%= description_short %>">
+    <meta property="og:title" content="Generiere dein Datenauskunftsbegehren | Digitale Gesellschaft">
+    <meta property="og:description" content="Gemäss Datenschutzgesetz hat jede Person das Recht zu erfahren, welche Daten über sie gespeichert sind">
 
     <link rel="preload" href="./fonts/Montserrat/latin-300.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./fonts/Montserrat/latin-700.woff2" as="font" type="font/woff2" crossorigin>
   </head>
   <body>
     <div id="loader"><img src="./dg-logo.svg" >Digitale Gesellschaft Logo Format SVG</img></div>
-    <div class="nomodule-message" style="display: none;"><%= browser_outdated%></div>
+    <div class="nomodule-message" style="display: none;">
+      <p>Du verwendest einen alten Browser. <br>Der Generator funktioniert damit leider nicht.</p><p>Bitte verwende eine aktuelle Version des Browsers deiner Wahl.</p>
+    </div>
+    <div id="app"></div>
     <script nomodule>
       document.querySelector('.nomodule-message').setAttribute('style', 'display: block;')
     </script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

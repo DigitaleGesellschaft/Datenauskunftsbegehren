@@ -4,14 +4,14 @@
   import Steps from './Steps.svelte'
   
   import InfoIcon from './icons/InfoIcon.svelte'
-  export let activeStep;
+  let { activeStep } = $props();
 
-  let showCredits = false
+  let showCredits = $state(false)
 </script>
 
 <header>
   <Steps on:step activeStep={activeStep}></Steps>
-  <button class="credits circle one" on:click={() => showCredits = true}><InfoIcon width="30" height="30"></InfoIcon></button>
+  <button class="credits circle one" onclick={() => showCredits = true}><InfoIcon width="30" height="30"></InfoIcon></button>
 </header>
 {#if showCredits}
   <Overlay on:close="{() => showCredits = false}">

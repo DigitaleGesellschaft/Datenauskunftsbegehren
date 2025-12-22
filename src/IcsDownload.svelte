@@ -7,9 +7,9 @@
   import { userData } from './stores.js'
   import { getCausa } from './texts.js'
 
-  let answerShouldArriveAtDate
-  let answerShouldArriveAtTime
-  let formNode
+  let answerShouldArriveAtDate = $state()
+  let answerShouldArriveAtTime = $state()
+  let formNode = $state()
 
   onMount(() => {
     answerShouldArriveAtDate = getTodayPlusDeadline()
@@ -121,7 +121,7 @@ END:VCALENDAR
     <label for="time">Zeit</label>
     <input id="time" type="time" bind:value={answerShouldArriveAtTime} required>
   </div>
-  <button type="button" class="one" on:click={downloadIcs}>Kalendereintrag herunterladen</button>
+  <button type="button" class="one" onclick={downloadIcs}>Kalendereintrag herunterladen</button>
 </form>
 
 <style>

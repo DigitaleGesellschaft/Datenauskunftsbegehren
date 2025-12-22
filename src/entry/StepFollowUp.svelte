@@ -1,18 +1,20 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { data, userData } from '../stores.js';
   import UserAddress from './UserAddress.svelte';
   import OrgSelection from './OrgSelection.svelte';
 
-  let selectedDesire
-  let selectedOrg
+  let selectedDesire = $state()
+  let selectedOrg = $state()
 
-  $: {
+  run(() => {
     selectedDesire = $data.getDesire($userData.desire)
     selectedOrg = $data.getOrg($userData.org)
-  }
+  });
 </script>
 
-{#if selectedDesire }
+{#if selectedDesire}
   <h2>Mach noch einige Angaben für das Auskunftsbegehren<br> «{selectedDesire.label}»</h2>
   <div class="data-entry-form">
     <section>

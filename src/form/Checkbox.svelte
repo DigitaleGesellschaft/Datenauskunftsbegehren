@@ -1,13 +1,15 @@
 <script>
-  export let label;
-  export let checked;
-  export let group;
-  export let value;
+  import { run } from 'svelte/legacy';
+
+  let {
+    label,
+    checked = $bindable(),
+    group = $bindable(),
+    value
+  } = $props();
 
   let id = `id-${Math.floor(Math.random() * 100000)}`
 
-  $: updateCheckbox(group)
-	$: updateGroup(checked)
 	
 	function updateCheckbox(group) {
 		checked = group.indexOf(value) >= 0
@@ -27,6 +29,12 @@
 			}
 		}
 	}
+  run(() => {
+    updateCheckbox(group)
+  });
+	run(() => {
+    updateGroup(checked)
+  });
 </script>
 <label for="{id}" class="c-custom-checkbox">
   {#if value}  

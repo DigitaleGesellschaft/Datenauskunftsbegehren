@@ -1,16 +1,18 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { data, userData } from '../stores.js';
   import VariableInput from '../VariableInput.svelte';
   import UserAddress from './UserAddress.svelte';
   import OrgSelection from './OrgSelection.svelte';
 
-  let selectedEvent
-  let variables
+  let selectedEvent = $state()
+  let variables = $state()
 
-  $: {
+  run(() => {
     selectedEvent = $data.getEvent($userData.event)
     variables = selectedEvent ? selectedEvent.variables : []
-  }
+  });
 </script>
 {#if selectedEvent}
   <h2>Mach noch einige Angaben für das Auskunftsbegehren aus speziellem Grund «{selectedEvent.name}»</h2>
@@ -19,7 +21,7 @@
     <section>
         <h3>Details</h3>
         {#each variables as variable}
-          <VariableInput variable="{variable}" bind:val="{$userData[variable.name]}"></VariableInput>
+          <VariableInput {variable} bind:val="{$userData[variable.name]}"></VariableInput>
         {/each}
     </section>
     {/if}
