@@ -1,29 +1,32 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { onMount } from 'svelte';
   import Paragraph from './Paragraph.svelte';
   import Bullets from './Bullets.svelte';
   import RemoveNodeAction from './RemoveNodeAction.svelte';
   import HideNodeAction from './HideNodeAction.svelte';
+  import { _ } from 'svelte-i18n';
 
   import { data, userData, userAddressHtml, orgAddressHtml, idImages } from '../stores.js';
   import {nl2br} from '../lib.js';
 
   // Erstes Anschreiben
   // Auskunftsbegehren
-  let letterDataInfoReqNode
-  let selectedOrg
-  let selectedTypes
-  let selectedEvent
-  let customOpening
-  let orgAddressTo
-  let hidePrivacyStatementParagraphs = false
+  let letterDataInfoReqNode = $state()
+  let selectedOrg = $state()
+  let selectedTypes = $state()
+  let selectedEvent = $state()
+  let customOpening = $state()
+  let orgAddressTo = $state()
+  let hidePrivacyStatementParagraphs = $state(false)
 
-  $: {
+  run(() => {
     selectedOrg = $data.getOrg($userData.org)
     selectedTypes = $data.getTypes($userData.types || [])
     selectedEvent = $data.getEvent($userData.event)
     orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
-  }
+  });
 
   let imageRemoved = { both: false, front: false, back: false}
   function removeIdImage(side) {
@@ -89,63 +92,63 @@
   <section id="letter" bind:this={letterDataInfoReqNode}>
     <div class="letter-head">
       <div class="address-from">
-        <span
-          contenteditable
-          spellcheck="false"
-          class="editable-variable"
-          data-label="Dein Name"
-          class:empty={!$userData.name || $userData.name.length === 0}
-          bind:innerHTML={$userData.name}>
-        </span>
+         <span
+           contenteditable
+           spellcheck="false"
+           class="editable-variable"
+           data-label={$_("your_name", {default: "Dein Name"})}
+           class:empty={!$userData.name || $userData.name.length === 0}
+           bind:innerHTML={$userData.name}>
+         </span>
         <br>
-        <span
-          contenteditable
-          spellcheck="false"
-          class="editable-variable"
-          data-label="Deine Adresse"
-          class:empty={!$userAddressHtml || $userAddressHtml.length === 0}
-          bind:innerHTML={$userAddressHtml}></span>
+         <span
+           contenteditable
+           spellcheck="false"
+           class="editable-variable"
+           data-label={$_("your_address", {default: "Deine Adresse"})}
+           class:empty={!$userAddressHtml || $userAddressHtml.length === 0}
+           bind:innerHTML={$userAddressHtml}></span>
           
           <!-- chromium has a bug, and needs this empty span -->
           <span>&nbsp;</span>
       </div>
 
       <div class="address-to">
-        <div contenteditable spellcheck="false">
-          EINSCHREIBEN
-        <HideNodeAction title="Ein-/ausblenden"></HideNodeAction>
-        </div>
+       <div contenteditable spellcheck="false">
+           {$_("registered_mail", {default: "EINSCHREIBEN"})}
+         <HideNodeAction title={$_("toggle_visibility", {default: "Ein-/ausblenden"})}></HideNodeAction>
+         </div>
         <br>
         {#if orgAddressTo.length > 0}
           {@html orgAddressTo}
         {:else}
-          <span
-            contenteditable
-            spellcheck="false"
-            class="editable-variable"
-            data-label="Empfängeradresse"
-            class:empty={!$orgAddressHtml || $orgAddressHtml.length === 0}
-            bind:innerHTML={$orgAddressHtml}>
-          </span>
+           <span
+             contenteditable
+             spellcheck="false"
+             class="editable-variable"
+             data-label={$_("recipient_address", {default: "Empfängeradresse"})}
+             class:empty={!$orgAddressHtml || $orgAddressHtml.length === 0}
+             bind:innerHTML={$orgAddressHtml}>
+           </span>
         {/if}
         <br><br><br>
       </div>
-      <p
-        class="date editable-variable"
-        contenteditable
-        spellcheck="false"
-        data-label="Datum"
-        class:empty={!$userData.date || $userData.date.length === 0}
-        bind:innerHTML={$userData.date}>
-      </p>
+       <p
+         class="date editable-variable"
+         contenteditable
+         spellcheck="false"
+         data-label={$_("date", {default: "Datum"})}
+         class:empty={!$userData.date || $userData.date.length === 0}
+         bind:innerHTML={$userData.date}>
+       </p>
     </div>
 
     <h1 class="subject" contenteditable spellcheck="false">
-      Datenauskunftsbegehren
+      {$_("data_info_request", {default: "Datenauskunftsbegehren"})}
     </h1>
 
     <p class="salutation" contenteditable spellcheck="false">
-      Sehr geehrte Angesprochene
+      {$_("salutation", {default: "Sehr geehrte Angesprochene"})}
     </p>
 
     {#if selectedEvent}
@@ -163,22 +166,22 @@
     {/if}
 
     <p contenteditable spellcheck="false">
-      Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25.&nbsp;September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.
+      {$_("letter.initial_request", {default: "Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25.&nbsp;September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden."})}
     </p>
     <p>
-      Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist.
+      {$_("letter.info_requirement", {default: "Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist."})}
     </p>
     <p>
-      Ich ersuche Sie in diesem Rahmen, mir in jedem Fall folgende Informationen mitzuteilen:
+      {$_("letter.request_info_list", {default: "Ich ersuche Sie in diesem Rahmen, mir in jedem Fall folgende Informationen mitzuteilen:"})}
     </p>
     <ol>
-      <li contenteditable spellcheck="false">Identität und Kontaktdaten aller Verantwortlichen</li>
-      <li contenteditable spellcheck="false">Alle bearbeiteten Personendaten als solche</li>
-      <li contenteditable spellcheck="false">Bearbeitungszweck der Personendaten</li>
-      <li contenteditable spellcheck="false">Aufbewahrungsdauer der Personendaten</li>
-      <li contenteditable spellcheck="false">Herkunft der Personendaten</li>
-      <li contenteditable spellcheck="false">Empfängerinnen und Empfänger der Personendaten</li>
-      <li contenteditable spellcheck="false">Vorliegen einer automatisierten Einzelentscheidung und deren Logik</li>
+      <li contenteditable spellcheck="false">{$_("letter.list_item_1", {default: "Identität und Kontaktdaten aller Verantwortlichen"})}</li>
+      <li contenteditable spellcheck="false">{$_("letter.list_item_2", {default: "Alle bearbeiteten Personendaten als solche"})}</li>
+      <li contenteditable spellcheck="false">{$_("letter.list_item_3", {default: "Bearbeitungszweck der Personendaten"})}</li>
+      <li contenteditable spellcheck="false">{$_("letter.list_item_4", {default: "Aufbewahrungsdauer der Personendaten"})}</li>
+      <li contenteditable spellcheck="false">{$_("letter.list_item_5", {default: "Herkunft der Personendaten"})}</li>
+      <li contenteditable spellcheck="false">{$_("letter.list_item_6", {default: "Empfängerinnen und Empfänger der Personendaten"})}</li>
+      <li contenteditable spellcheck="false">{$_("letter.list_item_7", {default: "Vorliegen einer automatisierten Einzelentscheidung und deren Logik"})}</li>
     </ol>
 
     {#if selectedOrg && !selectedEvent}
@@ -213,34 +216,34 @@
     {/each}
 
     <p contenteditable spellcheck="false" class="no-break-after">
-      Ich bitte Sie, die Auskunft in elektronischer Form zu erteilen, zum Beispiel als PDF- oder CSV-Dateien zum sicheren Download.
+      {$_("letter.electronic_form", {default: "Ich bitte Sie, die Auskunft in elektronischer Form zu erteilen, zum Beispiel als PDF- oder CSV-Dateien zum sicheren Download."})}
     </p>
     <p contenteditable spellcheck="false" class="no-break-after">
-      Ich bitte Sie weiter, die Richtigkeit und Vollständigkeit der erteilten Auskunft zu bestätigen.
+      {$_("letter.confirm_accuracy", {default: "Ich bitte Sie weiter, die Richtigkeit und Vollständigkeit der erteilten Auskunft zu bestätigen."})}
     </p>
     <p contenteditable spellcheck="false" class="no-break-after">
-      Sollten Sie die Auskunft wider Erwarten nicht, oder nicht vollständig oder noch nicht erteilen können, ersuche ich Sie um Angaben, wieso die Auskunft verweigert, eingeschränkt oder aufgeschoben wird.
+      {$_("letter.refusal_explanation", {default: "Sollten Sie die Auskunft wider Erwarten nicht, oder nicht vollständig oder noch nicht erteilen können, ersuche ich Sie um Angaben, wieso die Auskunft verweigert, eingeschränkt oder aufgeschoben wird."})}
     </p>
     <p contenteditable spellcheck="false" class="no-break-after">
-      Die beiliegende Kopie eines amtlichen Ausweises dient ausschliesslich dem Zweck, mich mit angemessenen Massnahmen zu identifizieren. Die Ausweis-Kopie darf für keinen anderen Zweck verwendet werden.
+      {$_("letter.id_copy_purpose", {default: "Die beiliegende Kopie eines amtlichen Ausweises dient ausschliesslich dem Zweck, mich mit angemessenen Massnahmen zu identifizieren. Die Ausweis-Kopie darf für keinen anderen Zweck verwendet werden."})}
     </p>
     <div class="no-break-inside">
-      <p contenteditable spellcheck="false" class="no-break-after">
-        Besten Dank und freundliche Grüsse
-      </p>
+       <p contenteditable spellcheck="false" class="no-break-after">
+         {$_("closing", {default: "Besten Dank und freundliche Grüsse"})}
+       </p>
       <br><br>
-      <p
-        contenteditable
-        spellcheck="false"
-        class="editable-variable"
-        data-label="Dein Name"
-        class:empty={!$userData.name || $userData.name.length === 0}
-        bind:innerHTML={$userData.name}>
-      </p>
+       <p
+         contenteditable
+         spellcheck="false"
+         class="editable-variable"
+         data-label={$_("your_name", {default: "Dein Name"})}
+         class:empty={!$userData.name || $userData.name.length === 0}
+         bind:innerHTML={$userData.name}>
+       </p>
 
-      <p contenteditable spellcheck="false">
-        Beilage: Amtlicher Ausweis (Kopie)
-      </p>
+        <p contenteditable spellcheck="false">
+          {$_("attachment_official_id", {default: "Beilage: Amtlicher Ausweis (Kopie)"})}
+        </p>
     </div>
 
   </section>

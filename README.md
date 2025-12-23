@@ -35,6 +35,26 @@ Navigate to [localhost:5173](http://localhost:5173). You should see the App runn
 
 If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
 
+### Translations
+
+Translation file are located in [locals](./src/locales/) folder. If translations strings are added inside the source code, re-run the generation of the locales files:
+
+```bash
+npm run i18n
+
+# To overwrite the translations to represent only what is found in code
+npm run i18n-clean
+```
+
+Then just edit continue to translate [locales/fr-CH.json](./src/locales/fr-CH.json) and **commit the files** to the repo.
+
+#### Progrgams to fill in translations
+
+Poedit is an open-source program but lacks the possibility to display the languages side-by-side. BabelEdit needs a licence and is not free, even though it supports the file format. For now, the easiest is:
+
+- Provide german defaults in source code
+- Replace default german text in french version
+
 ### Building and running in production mode
 
 To create an optimised version of the app:

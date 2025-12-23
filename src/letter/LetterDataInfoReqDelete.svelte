@@ -1,19 +1,22 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import {onMount} from 'svelte';
   import HideNodeAction from './HideNodeAction.svelte';
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
+  import { _ } from 'svelte-i18n';
 
-  let LetterDataInfoReqDeleteNode
-  let selectedOrg
+  let LetterDataInfoReqDeleteNode = $state()
+  let selectedOrg = $state()
   let customOpening
-  let orgAddressTo
+  let orgAddressTo = $state()
   let hidePrivacyStatementParagraphs = false
 
-  $: {
+  run(() => {
     selectedOrg = $data.getOrg($userData.org)
     orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
-  }
+  });
 
   function setCaretToEndOf(node) {
     const range = document.createRange();
@@ -63,95 +66,95 @@
   <section id="letter" bind:this={LetterDataInfoReqDeleteNode}>
     <div class="letter-head">
       <div class="address-from">
-        <span
-          contenteditable
-          spellcheck="false"
-          class="editable-variable"
-          data-label="Dein Name"
-          class:empty={!$userData.name || $userData.name.length === 0}
-          bind:innerHTML={$userData.name}>
-        </span>
+         <span
+           contenteditable
+           spellcheck="false"
+           class="editable-variable"
+           data-label={$_("your_name", { default: "Dein Name" })}
+           class:empty={!$userData.name || $userData.name.length === 0}
+           bind:innerHTML={$userData.name}>
+         </span>
         <br>
-        <span
-          contenteditable
-          spellcheck="false"
-          class="editable-variable"
-          data-label="Deine Adresse"
-          class:empty={!$userAddressHtml || $userAddressHtml.length === 0}
-          bind:innerHTML={$userAddressHtml}></span>
+         <span
+           contenteditable
+           spellcheck="false"
+           class="editable-variable"
+           data-label={$_("your_address", { default: "Deine Adresse" })}
+           class:empty={!$userAddressHtml || $userAddressHtml.length === 0}
+           bind:innerHTML={$userAddressHtml}></span>
           
           <!-- chromium has a bug, and needs this empty span -->
           <span>&nbsp;</span>
       </div>
 
       <div class="address-to">
-        <div contenteditable spellcheck="false">
-          EINSCHREIBEN
-        <HideNodeAction title="Ein-/ausblenden"></HideNodeAction>
-        </div>
+       <div contenteditable spellcheck="false">
+           {$_("registered_mail", { default: "EINSCHREIBEN" })}
+         <HideNodeAction title={$_("toggle_visibility", { default: "Ein-/ausblenden" })}></HideNodeAction>
+         </div>
         <br>
         {#if orgAddressTo.length > 0}
           {@html orgAddressTo}
         {:else}
-          <span
-            contenteditable
-            spellcheck="false"
-            class="editable-variable"
-            data-label="Empfängeradresse"
-            class:empty={!$orgAddressHtml || $orgAddressHtml.length === 0}
-            bind:innerHTML={$orgAddressHtml}>
-          </span>
+           <span
+             contenteditable
+             spellcheck="false"
+             class="editable-variable"
+             data-label={$_("recipient_address", { default: "Empfängeradresse" })}
+             class:empty={!$orgAddressHtml || $orgAddressHtml.length === 0}
+             bind:innerHTML={$orgAddressHtml}>
+           </span>
         {/if}
         <br><br><br>
       </div>
-      <p
-        class="date editable-variable"
-        contenteditable
-        spellcheck="false"
-        data-label="Datum"
-        class:empty={!$userData.date || $userData.date.length === 0}
-        bind:innerHTML={$userData.date}>
-      </p>
+       <p
+         class="date editable-variable"
+         contenteditable
+         spellcheck="false"
+         data-label={$_("date", { default: "Datum" })}
+         class:empty={!$userData.date || $userData.date.length === 0}
+         bind:innerHTML={$userData.date}>
+       </p>
     </div>
 
     <h1 class="subject" contenteditable spellcheck="false">
-      Datenauskunftsbegehren
+      {$_("data_disclosure_request", { default: "Datenauskunftsbegehren" })}
     </h1>
 
     <p class="salutation" contenteditable spellcheck="false">
-      Sehr geehrte Angesprochene
+      {$_("salutation", { default: "Sehr geehrte Angesprochene" })}
     </p>
 
     <p contenteditable spellcheck="false">
-      Ich danke Ihnen für die Auskunft vom TT. MMMM JJJJ.
+      {$_("thank_you_message", { default: "Ich danke Ihnen für die Auskunft vom TT. MMMM JJJJ." })}
     </p>
     <p contenteditable spellcheck="false">
-      Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Personendaten zu löschen:
+      {$_("deletion_request_message", { default: "Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Personendaten zu löschen:" })}
     </p>
     <ul>
-      <li contenteditable spellcheck="false">[Auflistung der zu löschenden Daten oder sämtliche Daten]</li>
+      <li contenteditable spellcheck="false">{$_("deletion_list_placeholder", { default: "[Auflistung der zu löschenden Daten oder sämtliche Daten]" })}</li>
       <li contenteditable spellcheck="false">...</li>
     </ul>
     <p contenteditable spellcheck="false">
-      Ich verlange ferner, dass Sie die Löschung Dritten, von welchen Sie die zu löschenden Daten erhalten oder denen Sie die zu löschenden Daten weitergegeben haben, entsprechend informieren.
+      {$_("inform_third_parties_message", { default: "Ich verlange ferner, dass Sie die Löschung Dritten, von welchen Sie die zu löschenden Daten erhalten oder denen Sie die zu löschenden Daten weitergegeben haben, entsprechend informieren." })}
     </p>
     <p contenteditable spellcheck="false">
-      Ich bitte Sie schliesslich, die Löschung zu bestätigen. Sollten Sie die Löschung ganz oder teilweise verweigern, ersuche ich Sie um eine entsprechende Begründung.
+      {$_("confirm_deletion_message", { default: "Ich bitte Sie schliesslich, die Löschung zu bestätigen. Sollten Sie die Löschung ganz oder teilweise verweigern, ersuche ich Sie um eine entsprechende Begründung." })}
     </p>
 
     <div class="no-break-inside">
       <p contenteditable spellcheck="false" class="no-break-after">
-      Besten Dank und freundliche Grüsse
-      </p>
+       {$_("closing", { default: "Besten Dank und freundliche Grüsse" })}
+       </p>
       <br><br>
-      <p
-        contenteditable
-        spellcheck="false"
-        class="editable-variable"
-        data-label="Dein Name"
-        class:empty={!$userData.name || $userData.name.length === 0}
-        bind:innerHTML={$userData.name}>
-      </p>
+       <p
+         contenteditable
+         spellcheck="false"
+         class="editable-variable"
+         data-label={$_("your_name", { default: "Dein Name" })}
+         class:empty={!$userData.name || $userData.name.length === 0}
+         bind:innerHTML={$userData.name}>
+       </p>
 
     </div>
   </section>

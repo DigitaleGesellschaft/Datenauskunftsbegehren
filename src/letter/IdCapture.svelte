@@ -13,24 +13,26 @@
   import BinIcon from '../icons/BinIcon.svelte';
   import CloseIcon from '../icons/CloseIcon.svelte';
 
-  export let side;
+  import { _ } from 'svelte-i18n';
 
-  let mode = 'init';
+  let { side } = $props();
+
+  let mode = $state('init');
   let width;
-  let small = false
-  let landscape = false
+  let small = $state(false)
+  let landscape = $state(false)
 
-  let container;
-  let videoElement;
-  let imageElement;
-  let imageObjectUrl;
+  let container = $state();
+  let videoElement = $state();
+  let imageElement = $state();
+  let imageObjectUrl = $state();
   let cropper;
-  let videoReady;
+  let videoReady = $state();
 
   let cropperModule;
   let resizeObserver;
 
-  $: grabButtonText = !side || side === 'front' ? 'hier Kamera aktivieren um den Ausweis zu fotografieren' : 'hier Kamera aktivieren um die Rückseite zu fotografieren'
+  let grabButtonText = $derived(!side || side === 'front' ? $_('id_capture.activate_camera_front', {default: 'hier Kamera aktivieren um den Ausweis zu fotografieren'}) : $_('id_capture.activate_camera_back', {default: 'hier Kamera aktivieren um die Rückseite zu fotografieren'}))
 
   async function getCropperModule() {
     if (!cropperModule) {
@@ -152,7 +154,7 @@
 </script>
 <div class="id-capture" bind:this={container} class:small={small} class:landscape={landscape} class:grab={mode === 'grab'}>
   {#if mode === 'init'}
-    <button class="init-id-capture-button one" on:click={grabMedia}>
+    <button class="init-id-capture-button one" onclick={grabMedia}>
       <ShutterIcon></ShutterIcon>
       <span>{grabButtonText}</span>
     </button>
@@ -160,7 +162,7 @@
   {#if mode === 'grab'}
     <div class="capture-step">
       {#if small}
-        <button class="one circle" on:click={() => mode = 'init'}><CloseIcon></CloseIcon></button>
+        <button class="one circle" onclick={() => mode = 'init'}><CloseIcon></CloseIcon></button>
       {/if}
       <div class="image">
         {#if !imageObjectUrl}
@@ -173,17 +175,17 @@
         </div>
       </div>
       <div class="controls">
-        {#if !imageObjectUrl}
-          <div>
-            <p>Halt deinen Ausweis vor die Kamera und drücke den Auslöser.</p>
-            <p class="small">Du kannst das Bild danach zuschneiden.</p>
-            <button class="one big-circle" on:click="{() => grabStill()}" disabled={!videoReady}>
-              <ShutterIcon width="60" height="60"></ShutterIcon>
-            </button>
-          </div>
+         {#if !imageObjectUrl}
+           <div>
+             <p>{$_('id_capture.hold_id_instructions', {default: 'Halt deinen Ausweis vor die Kamera und drücke den Auslöser.'})}</p>
+             <p class="small">{$_('id_capture.crop_instructions', {default: 'Du kannst das Bild danach zuschneiden.'})}</p>
+             <button class="one big-circle" onclick={() => grabStill()} disabled={!videoReady}>
+               <ShutterIcon width="60" height="60"></ShutterIcon>
+             </button>
+           </div>
         {:else}
-          <button class="one big-circle" on:click="{() => remove()}"><BinIcon width="60" height="60"></BinIcon></button>
-          <button class="one big-circle" on:click="{() => applyCrop()}"><CheckIcon width="60" height="60"></CheckIcon></button>
+          <button class="one big-circle" onclick={() => remove()}><BinIcon width="60" height="60"></BinIcon></button>
+          <button class="one big-circle" onclick={() => applyCrop()}><CheckIcon width="60" height="60"></CheckIcon></button>
         {/if}
       </div>
     </div>

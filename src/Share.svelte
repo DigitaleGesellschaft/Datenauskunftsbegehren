@@ -1,14 +1,15 @@
 <script>
   import ShareIcon from './icons/ShareIcon.svelte'
+  import { _ } from 'svelte-i18n'
 
-  $: hasShareApi = navigator.share
+  let hasShareApi = $derived(navigator.share)
 
   function share() {
     if (navigator.share) {
       try {
         navigator.share({
-          title: "Datenauskunftsbegehren",
-          text: "Dein Datenauskunftsbegehren:",
+          title: $_('share.title', { default: 'Datenauskunftsbegehren' }),
+          text: $_('share.text', { default: 'Dein Datenauskunftsbegehren:' }),
           url: window.location,
         })
       } catch (e) {
@@ -20,9 +21,9 @@
 </script>
 
 <div class="share">
-  💡 Die Webadresse (URL) enthält all Deine Eingaben. Du kannst sie speichern
+  {$_('share.hint', { default: '💡 Die Webadresse (URL) enthält all Deine Eingaben. Du kannst sie speichern' })}
   {#if hasShareApi}
-    oder Dir senden: <button class="circle" on:click={share}><ShareIcon></ShareIcon></button>
+    {$_('share.or_send', { default: 'oder Dir senden:' })} <button class="circle" onclick={share}><ShareIcon></ShareIcon></button>
   {/if}.
 </div>
 
