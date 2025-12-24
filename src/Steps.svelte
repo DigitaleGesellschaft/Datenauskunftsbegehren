@@ -15,6 +15,9 @@
   {#if activeStep && activeStep !== 'entry' && ( activeStep === 'data_info_request' || $userData.desire === 'data_info_request' ) }
     <button class="step" class:active={activeStep === 'data_info_request' } on:click="{() => dispatch('step', 'data_info_request')}">Brief Auskunft</button>
     ❯
+  {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'data_handover' }
+    <button class="step" class:active={activeStep === 'data_handover'} on:click="{() => dispatch('step', 'data_handover')}">Brief Herausgabe</button>
+    ❯
   {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'unanswered' }
     <button class="step" class:active={activeStep === 'unanswered'} on:click="{() => dispatch('step', 'unanswered')}">Brief Mahnung</button>
     ❯
