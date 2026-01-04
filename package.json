@@ -11,7 +11,7 @@
     "deploy": "vite optimize && vite build && rsync -ar -e 'ssh -p 55022' --delete --stats --progress ./public/* who@where:~/wwwtest/oga"
   },
   "devDependencies": {
-    "@playwright/test": "^1.56.0",
+    "@playwright/test": "^1.57.0",
     "@sveltejs/vite-plugin-svelte": "^2.5.3",
     "@types/node": "^24.0.15",
     "svelte": "^4.2.20",
@@ -22,7 +22,7 @@
     "date-fns": "^2.20.2",
     "image-capture": "^0.4.0",
     "lodash-es": "^4.17.22",
-    "playwright": "^1.56.0",
+    "playwright": "^1.57.0",
     "svelte-select": "^4.0.0"
   }
 }
