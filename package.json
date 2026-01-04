@@ -19,7 +19,7 @@
     "vite-plugin-html": "^3.2.2"
   },
   "dependencies": {
-    "date-fns": "^2.20.2",
+    "date-fns": "^4.1.0",
     "image-capture": "^0.4.0",
     "lodash-es": "^4.17.22",
     "playwright": "^1.57.0",
