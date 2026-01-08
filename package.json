@@ -23,6 +23,6 @@
     "image-capture": "^0.4.0",
     "lodash-es": "^4.17.22",
     "playwright": "^1.57.0",
-    "svelte-select": "^4.0.0"
+    "svelte-select": "^5.8.3"
   }
 }
