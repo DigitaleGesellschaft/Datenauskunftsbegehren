@@ -16,6 +16,9 @@
   // Auskunftsbegehren - Löschung von Daten
   // Löschbegehren nach erteilter Auskunft
   import LetterDataInfoReqDelete from './letter/LetterDataInfoReqDelete.svelte'
+  // Auskunftsbegehren - Herausgabe von Daten
+  // Begehren zur Herausgabe nach erteilter Auskunft
+  import LetterDataInfoReqHandover from './letter/LetterDataInfoReqHandover.svelte'
 
   import Entry from './entry/Entry.svelte'
   import Share from './Share.svelte'
@@ -148,6 +151,8 @@
         <LetterDataInfoReqChange></LetterDataInfoReqChange>
       {:else if $userData.desire === 'data_deletion' || $userData.step === 'print' }
         <LetterDataInfoReqDelete></LetterDataInfoReqDelete>
+      {:else if $userData.desire === 'data_handover' || $userData.step === 'print' }
+        <LetterDataInfoReqHandover></LetterDataInfoReqHandover>        
       {/if}
     {/if}
     <div class="actions">
