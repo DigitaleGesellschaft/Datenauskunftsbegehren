@@ -1,11 +1,6 @@
 name: Build and Deploy Site
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
+on: [push, pull_request]
 
 permissions:
   contents: read
