@@ -14,9 +14,15 @@ Please open issues here for anything you find not working correctly with the App
 
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
-*Note that you will need to have a data.json File that needs to be generated with this project: https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data*
+Works with:
 
-Copy the data.json file to the folder public/
+- Node v24
+
+Download the latest `data.json`:
+
+```bash
+./scripts/download-data.sh
+```
 
 ...then install the dependencies and playwright browsers...
 
