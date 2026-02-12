@@ -1,25 +1,74 @@
-name: Build Site
+name: Build and Deploy Site
 
-on: [push]
+on: [push, pull_request]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v6
-    - name: Install nodejs
-      run: sudo apt install nodejs
-    - name: Install npm 7
-      run: |
-        npm install npm@7
-    - name: npm install
-      run: |
-        npm install
-    - name: build
-      run: |
-        npm run build
-    - uses: actions/upload-artifact@v6
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
       with:
-        name: Public
+        node-version: 24
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Download latest data.json
+      run: |
+        ./scripts/download-data.sh
+
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+
+    - name: Run tests
+      run: |
+        npm run test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v4
+      with:
         path: public/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/svelte5'
+
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
