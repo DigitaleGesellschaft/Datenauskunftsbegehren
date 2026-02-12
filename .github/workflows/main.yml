@@ -35,8 +35,7 @@ jobs:
 
     - name: Run tests
       run: |
-        echo "currently tests are failing on main also"
-        echo npm test
+        npm run test
 
   build:
     needs: test
