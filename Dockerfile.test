@@ -1,0 +1,37 @@
+# Build and test stage
+FROM node:20-bookworm
+
+WORKDIR /app
+
+# Install Playwright browsers and dependencies
+RUN npx -y playwright@1.57.0 install --with-deps
+
+# Install Python for simple HTTP server
+RUN apt-get update && apt-get install -y python3 && rm -rf /var/lib/apt/lists/*
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# Set environment variables
+ENV CI=true
+ENV BASE_URL=http://localhost:5173
+
+# Create startup script
+RUN echo '#!/bin/bash\n\
+cd dist && python3 -m http.server 5173 > /dev/null 2>&1 &\n\
+sleep 2\n\
+cd /app && npm test\n\
+kill %1 2>/dev/null || true\n\
+' > /entrypoint.sh && chmod +x /entrypoint.sh
+
+# Run tests with built-in server
+CMD ["/entrypoint.sh"]

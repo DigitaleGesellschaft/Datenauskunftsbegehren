@@ -76,3 +76,14 @@ Execute various E2E Tests using playwright against the deployed version
 BASE_URL=https://www.digitale-gesellschaft.ch/auskunftsbegehren npm run test
 ```
 ---
+
+### Execute Playwright Tests in Docker Container
+
+```
+docker build -t dab-tests -f Dockerfile.test .
+
+docker run --rm \
+-v ./playwright-report:/app/playwright-report \
+-v ./test-results:/app/test-results \
+dab-tests
+```
