@@ -7,28 +7,28 @@
   },
   "app": {
     "title": "Générer une demande d'accès à ses données personnelles",
-    "intro": "Conformément à la Loi sur la protection des données, toute personne jouit du droit de connaître les données personnelles enregistrées la concernant. Elle peut également réclamer la correction ou la suppression le cas échéant. Ces droits permettent de garder le contrôle sur ses données. Il incombe cependant aux personnes concernées de les faire valoir."
+    "intro": "Chaque personne jouit du droit de connaître les données personnelles la concernant, conformément à la Loi sur la protection des données. Elle peut également réclamer la correction ou la suppression le cas échéant. Ces droits permettent de garder le contrôle sur ses données. Il incombe cependant aux personnes concernées de les faire valoir."
   },
-  "digiges_name": "Digitale Gesellschaft",
+  "digiges_name": "Société numérique",
   "fragment": "Fragment",
   "mercator_program": "Programme «Digitalisation + Société»",
-  "mercator_org": "Stiftung Mercator Schweiz",
+  "mercator_org": "Fondation Mercator Schweiz",
   "generator_source_code": "Source code du générateur",
   "credits": {
     "title": "Générateur de demandes d'accès aux données personnelles",
     "website_service": "Le générateur en ligne pour les demandes d'accès aux données est mis à disposition par  <digiges_homepage>{digiges_name}</digiges_homepage>."
   },
-  "no_personal_data_collected": "Aucune donnée n'est récoltée lors de l'utilisation du générateur en ligne. Les informations saisies par l'utilisateur et les options sélectionnées restent dans la navigateur uniquement",
-  "url_storage_info": "Le lien de la page internet (URL) du générateur contient les données soumises dans le <fragment>{fragment_label}</fragment>. Il permet alors la réutilisation et la transmission des informations entrées. Ces dernières pouvant s'avérer sensibles, il convient d'user de précaution.",
+  "no_personal_data_collected": "Aucune donnée n'est récoltée lors de l'utilisation du générateur en ligne. Les informations saisies par l'utilisateur et les options sélectionnées restent uniquement dans le navigateur.",
+  "url_storage_info": "Le lien de la page internet (URL) du générateur contient les données soumises dans le <fragment>{fragment_label}</fragment>. Il permet la réutilisation et la transmission des informations entrées. Ces dernières pouvant s'avérer sensibles, il convient d'user de précaution.",
   "notes_for_orgs_title": "Informations à l'attention des organisations contactées",
-  "notes_for_orgs_p1": "L'accès au données doit être fourni dans un délai de 30 jours suivant la réception de la requête. Si ce délai n'est pas suffisant, la partie requérante doit en être notifiée et informée dans quel délai les informations seront transmises. La décision de ne pas fournir les informations ou de ne pas les fournir dans leur intégralité doit être motivée.",
+  "notes_for_orgs_p1": "L'accès au données doit être fourni dans un délai de 30 jours suivant la réception de la requête. Si ce délai n'est pas suffisant, la partie requérante doit en être notifiée. Elle doit également se voir notifier du délai nécessaire pour la transmission des informations. La décision de ne pas fournir les informations ou de ne pas les fournir dans leur intégralité doit être motivée.",
   "art_18_abs_vdsg": "Art. 18 Al. 1 OLPD",
-  "notes_for_orgs_p2": "L'accès aux données n'entraîne en principe pas de frais, bien que sa préparation puisse représenter une charge de travail importante. Il peut donc être utile de définir précisément l'étendue de la demande lorsque celle-ci manque de clarté.",
+  "notes_for_orgs_p2": "L'accès aux données n'entraîne en principe pas de frais, bien que sa préparation puisse représenter une charge de travail importante. Il est conseillé de préciser l'étendue de la demande, si nécessaire.",
   "art_25_dsg": "Art. 25 LPD",
   "art_18_vdsg": "Art. 19 OLPD",
   "further_steps_title": "Étapes suivantes",
-  "further_steps_p1": "Face à une réponse incomplète, il convient d'enoyer 'une seconde lettre précisant le manquement. Si la situation persiste, une action judiciaire peut être engagée. Cette procédure est ouverte au domicile du plaignant ou de la personne responsable du traitement des données.",
-  "further_steps_p2": "Il est possible de réclamer la correction ou la suppression (de même que l'accès ultérieur) des données, sauf en cas d'un intérêt public ou privé prépondérant ou d'obligation légale contraire.",
+  "further_steps_p1": "Face à une réponse incomplète, il convient d'envoyer une seconde lettre précisant ce qui manque. Si la situation persiste, une action judiciaire peut être engagée. Cette procédure est ouverte au domicile du plaignant ou de la personne responsable du traitement des données.",
+  "further_steps_p2": "Il est possible de réclamer la correction ou la suppression (ainsi que l'accès ultérieur) des données, sauf en cas d'un intérêt public ou privé prépondérant ou d'obligation légale contraire.",
   "thanks_support_title": "Nous sommes très reconnaissants de votre soutien financier",
   "mercator_grant": "Le projet a été initié par le <program>{mercator_program}</program> de <mercator>{mercator_org}</mercator>.",
   "mercator_logo_alt": "Logo Fondation Mercator",
@@ -46,57 +46,57 @@
     "summary": "Réponse à ta requête?",
     "filename": "renseignements_données.ics",
     "button": {
-      "download": "Télécharger l'élément pour le calendrier"
+      "download": "Télécharger l'élément pour l'ajouter au calendrier"
     }
   },
   "date": "Date",
   "time": "Heure",
   "share": {
-    "title": "Requête en accès aux données personnelles",
-    "text": "Tes données personnelles sur requête",
+    "title": "Requête données personnelles",
+    "text": "Ta requête:",
     "hint": "Les informations sont contenues dans l'adresse web. Tu peux les enregistrer:",
     "or_send": "Ou te les envoyer:"
   },
   "steps": {
     "labels": {
       "entry": "Saisie",
-      "data_info_request": "Lettre Renseignement",
-      "unanswered": "Lettre Rappel",
-      "incomplete_answer": "Lettre Insistance",
-      "data_correction": "Lettre Correction",
-      "data_deletion": "Lettre Suppression",
+      "data_info_request": "Lettre pour requête",
+      "unanswered": "Lettre pour rappel",
+      "incomplete_answer": "Lettre pour relancer",
+      "data_correction": "Lettre pour rectifier",
+      "data_deletion": "Lettre pour supprimer",
       "print": "Imprimer"
     }
   },
   "reset_inputs": "Réinitialiser les entrées",
-  "generate_letter": "Générer les lettres",
+  "generate_letter": "Génrer la lettre",
   "step_event": {
-    "details_header": "Entrées spéciales pour le générateur de données en raison de «{eventName}»"
+    "details_header": "Entrées particulières «{eventName}»"
   },
   "details": "Details",
   "step_followup": {
-    "instructions": "Ajoute encore quelques entrées pour la demande de renseignement"
+    "instructions": "Ajouter des informations supplémentaires pour la demande d'accès"
   },
   "organisation": "Organisation",
-  "select_organisation": "Choisis une organisation",
+  "select_organisation": "Choisis un prestataire",
   "or_enter_address": "ou entre l'adresse",
   "error": {
     "something_went_wrong": "Quelque chose n'a pas fonctionné: userData.step n'est pas défini ou pas dans la sélection userData.desire: "
   },
   "provide_more_details": "Ajoute encore quelques entrées pour le générateur de requêtes en renseignements de données «{orgName}»",
   "which_services_do_you_use": "Quels services utilises-tu?",
-  "form_services_type_info": "Des données ont spécifiquement été sollicites pour les suivants; peut également être laissé vide.",
+  "form_services_type_info": "Des données ont spécifiquement été sollicitées pour les suivants; peut également être laissé vide.",
   "your_details": "Ta personne",
   "your_address": "Ton adressse",
   "name": "Nom",
   "address": "Adresse",
   "bullets": {
-    "toggle_visibility": "Ouvrir/fermer, afin que de n'exiger seulement les données qui ont été traitées et qui relèvent d'un intérêt sind."
+    "toggle_visibility": "Ouvrir/fermer pour exiger uniquement les données qui ont été traitées et qui relèvent d'un intérêt."
   },
   "id_capture": {
     "activate_camera_front": "activer la caméra afin de photographier le document d'identité",
-    "activate_camera_back": "actier la caméra afin de photographier l'arrière",
-    "hold_id_instructions": "Tiens le document d'identité devant la caméra enclenche la.",
+    "activate_camera_back": "activer la caméra afin de photographier l'arrière",
+    "hold_id_instructions": "Tiens le document d'identité devant la caméra - enclenche la.",
     "crop_instructions": "Tu peux ensuite couper l'image."
   },
   "your_name": "Ton nom",
@@ -107,21 +107,21 @@
   "salutation": "Chère Madame, cher Monsieur,",
   "letter": {
     "initial_request": "Je vous prie de m'indiquer dans un délai de 30 jours si des données me concernant on fait l'objet d'un traitement. Cette demande est fondée sur l'art. 25 de la Loi fédérale sur la protection des données (LPD) du 25 septembre 2020.",
-    "info_requirement": "Dans la mesure où des données me concernant on fait l'objet d'un traitement, je vous prie de me communiquer les informations pertinentes pour me permettre d'exercer mes droits selon la LPD et pour garantir la transparence dans le traitement de mes données.",
+    "info_requirement": "Dans la mesure où des données me concernant ont fait l'objet d'un traitement, je vous prie de me communiquer les informations pertinentes pour me permettre d'exercer mes droits selon la LPD et pour garantir la transparence dans le traitement de mes données.",
     "request_info_list": "Je vous sollicite dans ce cadre de me transmettre les informations suivantes:",
     "list_item_1": "L'identité et les données de contact de tous les responsables",
     "list_item_2": "Les données à l'état brut qui ont été traitées",
     "list_item_3": "Le but du traitement des données personnelles",
     "list_item_4": "La durée de conservation des données personnelles",
-    "list_item_5": "Origine des données personnelles",
+    "list_item_5": "L'Origine des données personnelles",
     "list_item_6": "Le-la destinataire des données personnelles",
     "list_item_7": "L'existence d'un système de décisions automatiques pour des cas individuels et son mode de fonctionnement",
     "electronic_form": "Je vous prie de me transmettre les données sous une forme électronique permettant le téléchargement sécurisé, par exemple en tant que fichier PDF ou CSV.",
     "confirm_accuracy": "Je vous prie de me confirmer que les renseignements transmis sont complets et correspondent à la réalité.",
-    "refusal_explanation": "Si la transmission ou la transmission complète des informations n'a pas été possible pour une raison imprévue, je vous prie de m'indiquer pour quelle raison elle a été refusée, restreinte ou repoussée.",
+    "refusal_explanation": "Si la transmission ou la transmission complète des informations n'a pas été possible pour une raison imprévue, je vous prie de m'indiquer pour quelle raison celle-ci a été refusée, restreinte ou repoussée.",
     "id_copy_purpose": "La copie du document d'identité officiel est une mesure raisonnable qui permettra de m'identifier et ne sert que ce but. Elle ne doit pas être utilisée à d'autres fins."
   },
-  "closing": "Merci beaucoup et meilleures salutations",
+  "closing": "Je vous remercie et vous adresse mes meilleures salutations",
   "attachment_official_id": "En annexe: Pièce d'identité (copie)",
   "data_access_request": "Requête en renseignement sur les données personnelles",
   "letter_change_body_1": "Je vous remercie pour les précisions du JJ.MMMM AAAA. J'en constate que les données personelles qui ont fait l'objet d'un traitement auprès de vous ne sont pas correctes.",
@@ -138,12 +138,13 @@
   "letter_info_req_demand_incomplete": "Ma requête concernant mes données personnelles du JJ. MMMM AAAA n'a pas été traitée de manière complète.",
   "letter_info_req_demand_missing_info": "Je considère manquantes notamment les informations suivantes:",
   "letter_info_req_demand_list_missing": "[Liste des données manquantes]",
-  "letter_info_req_demand_refusal": "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen Angaben geliefert werden, wieso eine Auskunft eingeschränkt wurde. Ich bitte Sie entsprechend, vollständig Auskunft zu erteilen oder Angaben zu liefern, wieso die Auskunft eingeschränkt wurde..",
+  "letter_info_req_demand_refusal": "Je vous prie de m'indiquer les raisons justifiant la restriction de ces informations. Cette obligation vous incombe en vertu de l'art. 18 oLPD (Ordonnance sur la protection des donnnées)",
   "letter_info_req_demand_enforcement": "Je me réserve le droit, sans renseignements complets de votre part, d'entâmer des démarches afin de faire reconnaitre mon droit à l'information par la voie judiciaire ou de signaler le cas au Préposé fédéral à la protection des données et à la transparence (PFPDT). Je vous rends également attitif au fait que la communication intentionelle d'informations fausses ou incplètes est puni sur plaine d'une amende allant jusqu'à 250'000 Francs (Art. 60 LPD).",
   "letter_info_req_remind": {
-    "subject": "Datenauskunftsbegehren / Ausbleibende Auskunft",
-    "unanswered_request": "Am TT. MMMM JJJJ stellte ich ein Datenauskunftsbegehren, das bis heute unbeantwortet geblieben ist.",
-    "legal_reference": "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen die Auskunft oder die Information über eine verzögerte Auskunft innerhalb von 30 Tagen erfolgen. Ebenfalls innerhalb von 30 Tagen muss mitgeteilt werden, wenn die Auskunft verweigert oder aufgeschoben wird.",
-    "enforcement": "Ich bitte Sie entsprechend, die Auskunft zu erteilen. Sollten Sie weiterhin keine Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten.  Ich weise ausserdem vorsorglich darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art. 60 DSG)."
+    "subject": "Requête en droit d'accès / Renseignement manquant",
+    "unanswered_request": "J'ai formulé une requête le JJ.MMMM.AAAA une demande d'accès à mes données personnelles, qui est restée sans réponse.",
+    "legal_reference": "Les renseignements demandés ou un éventuel retard dans leur réédition doivent être communiqués dans les 30 jours à compter du dépôt de la requête (art. 18 oLPD [Ordonnance sur la protection des donnnées]). Ce délai vaut également pour annoncer un refus ou une restriction.",
+    "enforcement": "Je vous prie donc de me fournir les renseignements demandés. Je me réserve le droit, sans réponse de votre part, d'entâmer des démarches afin de faire reconnaitre mon droit à l'information par la voie judiciaire ou de signaler le cas au Préposé fédéral à la protection des données et à la transparence (PFPDT). Je vous rends également attitif au fait que la communication intentionelle d'informations fausses ou incomplètes est puni sur plaine d'une amende allant jusqu'à 250'000 Francs (Art. 60 LPD)."
   }
 }
+ 
