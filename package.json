@@ -21,7 +21,7 @@
   "dependencies": {
     "date-fns": "^2.20.2",
     "image-capture": "^0.4.0",
-    "lodash-es": "^4.17.22",
+    "lodash-es": "^4.17.23",
     "playwright": "^1.57.0",
     "svelte-select": "^4.0.0"
   }
