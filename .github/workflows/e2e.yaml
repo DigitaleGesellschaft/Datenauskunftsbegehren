@@ -1,0 +1,63 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  e2e_test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Download data.json
+        run: wget -O public/data.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data.json
+
+      - name: Build application
+        run: npm run build
+
+      - name: Run E2E tests
+        run: |
+          npm run preview &
+          SERVER_PID=$!
+          
+          # Wait for server to be ready
+          echo "Waiting for server to start..."
+          npx wait-on http://localhost:8080 --timeout 30000 || (kill $SERVER_PID 2>/dev/null; exit 1)
+          
+          # Run tests
+          npm test || TEST_EXIT_CODE=$?
+          
+          # Cleanup
+          kill $SERVER_PID 2>/dev/null || true
+          
+          # Exit with test result
+          exit ${TEST_EXIT_CODE:-0}
+        env:
+          CI: true
+          BASE_URL: http://localhost:8080
+
+      - name: Upload Playwright Report
+        uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
