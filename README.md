@@ -21,7 +21,7 @@ Works with:
 Download the latest `data.json`:
 
 ```bash
-./scripts/download-data.sh
+wget -O public/data.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data.json
 ```
 
 ...then install the dependencies and playwright browsers...
