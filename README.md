@@ -77,6 +77,12 @@ Execute various E2E Tests using playwright (against localhost):
 npm run test
 ```
 
+Run a single test:
+
+```
+npm run test -- --grep "Datenauskunftsbegehren für Swisscom generieren"
+```
+
 Execute various E2E Tests using playwright against the deployed version
 ```
 BASE_URL=https://www.digitale-gesellschaft.ch/auskunftsbegehren npm run test
