@@ -7,16 +7,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-  
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22
-
-    - name: Install dependencies
-      run: npm install
-
+    - uses: actions/checkout@v6
+    - name: Install nodejs
+      run: sudo apt install nodejs
+    - name: Install npm 7
+      run: |
+        npm install npm@7
     - name: npm install
       run: |
         npm install
@@ -24,7 +20,7 @@ jobs:
     - name: build
       run: |
         npm run build
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v7
       with:
         name: Public
         path: public/
