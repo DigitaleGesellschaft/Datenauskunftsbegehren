@@ -14,9 +14,15 @@ Please open issues here for anything you find not working correctly with the App
 
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
-*Note that you will need to have a data.json File that needs to be generated with this project: https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data*
+Works with:
 
-Copy the data.json file to the folder public/
+- Node v24
+
+Download the latest `data.json`:
+
+```bash
+wget -O public/data.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data.json
+```
 
 ...then install the dependencies and playwright browsers...
 
@@ -69,6 +75,12 @@ Copy everything in `/dist` into a folder served by a Webserver.
 Execute various E2E Tests using playwright (against localhost):
 ```
 npm run test
+```
+
+Run a single test:
+
+```
+npm run test -- --grep "Datenauskunftsbegehren für Swisscom generieren"
 ```
 
 Execute various E2E Tests using playwright against the deployed version

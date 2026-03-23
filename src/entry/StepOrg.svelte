@@ -1,14 +1,16 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { data, userData } from '../stores.js';
   import VariableInput from '../VariableInput.svelte';
   import Checkbox from '../form/Checkbox.svelte';
   import UserAddress from './UserAddress.svelte';
 
-  let selectedOrg
-  let variables
-  let variablesForTypeSelection
+  let selectedOrg = $state()
+  let variables = $state()
+  let variablesForTypeSelection = $state()
 
-  $: {
+  run(() => {
     selectedOrg = $data.getOrg($userData.org)
     
     variables = selectedOrg ? selectedOrg.variables : []
@@ -37,7 +39,7 @@
         }
         return variables
       }, [])
-  }
+  });
 </script>
 {#if selectedOrg}
   <h2>Mach noch einige Angaben für das Auskunftsbegehren «{selectedOrg.name}»</h2>
@@ -58,7 +60,7 @@
       <section>
         <h3>Deine Angaben</h3>
         {#each variablesForTypeSelection as variable}
-          <VariableInput variable="{variable}" bind:val="{$userData[variable.name]}"></VariableInput>
+          <VariableInput {variable} bind:val="{$userData[variable.name]}"></VariableInput>
         {/each}
       </section> 
     {/if}

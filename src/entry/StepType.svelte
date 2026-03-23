@@ -4,9 +4,9 @@
   import UserAddress from './UserAddress.svelte';
   import OrgSelection from './OrgSelection.svelte';
 
-  $: selectedType = $data.getType($userData.types[0])
-  $: variables = selectedType ? selectedType.variables : []
-  $: orgsWithType = $data.getCurrentlySelectableOrgs().filter(org => org.hasType(selectedType))
+  let selectedType = $derived($data.getType($userData.types[0]))
+  let variables = $derived(selectedType ? selectedType.variables : [])
+  let orgsWithType = $derived($data.getCurrentlySelectableOrgs().filter(org => org.hasType(selectedType)))
 
 </script>
 
@@ -17,7 +17,7 @@
       <section>
         <h3>Deine Angaben</h3>
         {#each variables as variable}
-          <VariableInput variable="{variable}" bind:val="{$userData[variable.name]}"></VariableInput>
+          <VariableInput {variable} bind:val="{$userData[variable.name]}"></VariableInput>
         {/each}
       </section>
     {/if}

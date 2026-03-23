@@ -4,7 +4,7 @@
 
   const dispatch = createEventDispatcher();
 
-  let node
+  let node = $state()
 
   function removeNode() {
     dispatch('removed');
@@ -21,7 +21,7 @@
   })
   
 </script>
-<div bind:this={node} on:click={removeNode}>
+<div bind:this={node} onclick={removeNode}>
   <BinIcon></BinIcon>
 </div>
 <style>

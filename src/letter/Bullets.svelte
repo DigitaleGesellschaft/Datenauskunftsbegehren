@@ -1,15 +1,20 @@
 <script>
+  import Bullets from './Bullets.svelte';
   import { createEventDispatcher, onMount } from 'svelte';
   import HideNodeAction from './HideNodeAction.svelte';
   import { userData } from '../stores.js'
 
   const dispatch = createEventDispatcher();
 
-  export let bullets = [];
-  export let isChild = false
+  /**
+   * @typedef {Object} Props
+   * @property {any} [bullets]
+   * @property {boolean} [isChild]
+   */
 
-  $: allHashes = getAllHashes(bullets)
-  $: topLevelHashes = (bullets || []).map(bullet => bullet.hash)
+  /** @type {Props} */
+  let { bullets = [], isChild = false } = $props();
+
 
   function getAllHashes(bullets = []) {
     return bullets
@@ -76,13 +81,15 @@
   onMount(() => {
     actOnHiddenBullets()
   })
+  let allHashes = $derived(getAllHashes(bullets))
+  let topLevelHashes = $derived((bullets || []).map(bullet => bullet.hash))
 </script>
 <ul>
   {#if bullets}
     {#each bullets as bullet}
       <li class:hide-for-print={$userData.hiddenBullets && $userData.hiddenBullets.includes(bullet.hash)}>
         {bullet.text}
-        <svelte:self bullets={bullet.bullets} on:toggle={handleToggle} isChild={true}></svelte:self>
+        <Bullets bullets={bullet.bullets} on:toggle={handleToggle} isChild={true}></Bullets>
         <HideNodeAction on:toggle={handleToggle({detail: bullet.hash})} setClass={false} title="Ein-/ausblenden, damit nur die Daten angefordert werden, die auch bearbeitet werden und von Interesse sind."></HideNodeAction>
       </li>
     {/each}

@@ -1,4 +1,6 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { onMount } from 'svelte';
   import Paragraph from './Paragraph.svelte';
   import Bullets from './Bullets.svelte';
@@ -10,20 +12,20 @@
 
   // Erstes Anschreiben
   // Auskunftsbegehren
-  let letterDataInfoReqNode
-  let selectedOrg
-  let selectedTypes
-  let selectedEvent
-  let customOpening
-  let orgAddressTo
-  let hidePrivacyStatementParagraphs = false
+  let letterDataInfoReqNode = $state()
+  let selectedOrg = $state()
+  let selectedTypes = $state()
+  let selectedEvent = $state()
+  let customOpening = $state()
+  let orgAddressTo = $state()
+  let hidePrivacyStatementParagraphs = $state(false)
 
-  $: {
+  run(() => {
     selectedOrg = $data.getOrg($userData.org)
     selectedTypes = $data.getTypes($userData.types || [])
     selectedEvent = $data.getEvent($userData.event)
     orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
-  }
+  });
 
   let imageRemoved = { both: false, front: false, back: false}
   function removeIdImage(side) {
