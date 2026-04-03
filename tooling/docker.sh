@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CMD="${1:-}"
+
+case "$CMD" in
+  dev)
+    docker run --rm -it \
+      --network host \
+      -v "$(pwd)/../:/app" \
+      -w /app \
+      node:24-alpine \
+      sh -c "npm install && npm run dev"
+    ;;
+  test)
+    docker run --rm -it \
+      -v "$(pwd)/../:/app" \
+      -w /app \
+      --network host \
+      mcr.microsoft.com/playwright:v1.58.2-noble \
+      bash -c "npm install && npm run dev &
+               while ! (echo > /dev/tcp/localhost/5173) 2>/dev/null; do sleep 0.5; done
+               npx playwright test -c ./playwright.config.ts"
+    ;;
+  download-data)
+    docker run --rm \
+      -v "$(pwd)/../:/app" \
+      -w /app \
+      node:24-alpine \
+      sh -c "wget -O public/data.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data.json"
+    ;;
+  *)
+    echo "Usage: $0 {dev|test|download-data}"
+    exit 1
+    ;;
+esac
