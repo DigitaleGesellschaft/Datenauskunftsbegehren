@@ -14,9 +14,15 @@ Please open issues here for anything you find not working correctly with the App
 
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
-*Note that you will need to have a data.json File that needs to be generated with this project: https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data*
+Works with:
 
-Copy the data.json file to the folder public/
+- Node v24
+
+Download the latest `data.json`:
+
+```bash
+wget -O public/data.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data.json
+```
 
 ...then install the dependencies and playwright browsers...
 
@@ -34,6 +40,26 @@ npm run dev
 Navigate to [localhost:5173](http://localhost:5173). You should see the App runnning.
 
 If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+
+### Translations
+
+Translation file are located in [locals](./src/locales/) folder. If translations strings are added inside the source code, re-run the generation of the locales files:
+
+```bash
+npm run i18n
+
+# To overwrite the translations to represent only what is found in code
+npm run i18n-clean
+```
+
+Then just edit continue to translate [locales/fr-CH.json](./src/locales/fr-CH.json) and **commit the files** to the repo.
+
+#### Progrgams to fill in translations
+
+Poedit is an open-source program but lacks the possibility to display the languages side-by-side. BabelEdit needs a licence and is not free, even though it supports the file format. For now, the easiest is:
+
+- Provide german defaults in source code
+- Replace default german text in french version
 
 ### Building and running in production mode
 
@@ -69,6 +95,12 @@ Copy everything in `/dist` into a folder served by a Webserver.
 Execute various E2E Tests using playwright (against localhost):
 ```
 npm run test
+```
+
+Run a single test:
+
+```
+npm run test -- --grep "Datenauskunftsbegehren für Swisscom generieren"
 ```
 
 Execute various E2E Tests using playwright against the deployed version

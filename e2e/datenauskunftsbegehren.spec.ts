@@ -23,7 +23,7 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }) => {
   
   await searchInput.click();
 
-  const listContainer = page.locator('div.listContainer');
+  const listContainer = page.locator('div.svelte-select-list');;
   await expect(listContainer).toContainText('Agrisano');
   await expect(listContainer).toContainText('Coop Rechtsschutz');
   await expect(listContainer).toContainText('Mercedes');

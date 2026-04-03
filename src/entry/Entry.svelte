@@ -9,6 +9,7 @@
   import StepFollowUp from './StepFollowUp.svelte';
 
   import { userData } from '../stores.js';
+  import { _ } from 'svelte-i18n';
 
   function selectLetterType() {
       let step = 'data_info_request';
@@ -21,31 +22,31 @@
 </script>
 
 <div class="container">
-    {#if ( !$userData.org && !$userData.entry ) }
+    {#if ( !$userData.org && !$userData.entry )}
       <StepOne></StepOne>
     {/if}
 
-    {#if $userData.org && $userData.entry === 'org' }
+    {#if $userData.org && $userData.entry === 'org'}
       <StepOrg></StepOrg>
     {/if}
 
-    {#if $userData.entry === 'type' && ($userData.types && $userData.types.length === 1) }
+    {#if $userData.entry === 'type' && ($userData.types && $userData.types.length === 1)}
       <StepType></StepType>
     {/if}
 
-    {#if $userData.entry === 'event' && ($userData.events && $userData.events.length > 0) }
+    {#if $userData.entry === 'event' && ($userData.events && $userData.events.length > 0)}
       <StepEvent></StepEvent>
     {/if}
 
-    {#if $userData.entry === 'followup' }
+    {#if $userData.entry === 'followup'}
         <StepFollowUp></StepFollowUp>
     {/if}
 
     <div class="actions">
         {#if $userData.entry}
-            <button class="two" on:click="{() => dispatch('reset')}">Eingaben zurücksetzen</button>
+            <button class="two" onclick={() => dispatch('reset')}>{$_('reset_inputs', { default: 'Eingaben zurücksetzen' })}</button>
         {/if}
-        <button class="two solid" on:click="{selectLetterType}">❯ Brief generieren</button>
+        <button class="two solid" onclick={selectLetterType}>❯ {$_('generate_letter', { default: 'Brief generieren' })}</button>
     </div>
 </div>
 

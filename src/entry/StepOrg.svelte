@@ -1,14 +1,17 @@
 <script>
+  import { run } from 'svelte/legacy';
+  import { _ } from 'svelte-i18n';
+
   import { data, userData } from '../stores.js';
   import VariableInput from '../VariableInput.svelte';
   import Checkbox from '../form/Checkbox.svelte';
   import UserAddress from './UserAddress.svelte';
 
-  let selectedOrg
-  let variables
-  let variablesForTypeSelection
+  let selectedOrg = $state()
+  let variables = $state()
+  let variablesForTypeSelection = $state()
 
-  $: {
+  run(() => {
     selectedOrg = $data.getOrg($userData.org)
     
     variables = selectedOrg ? selectedOrg.variables : []
@@ -37,28 +40,28 @@
         }
         return variables
       }, [])
-  }
+  });
 </script>
 {#if selectedOrg}
-  <h2>Mach noch einige Angaben für das Auskunftsbegehren «{selectedOrg.name}»</h2>
+  <h2>{$_("provide_more_details", { default: "Mach noch einige Angaben für das Auskunftsbegehren «{orgName}»", values: { orgName: selectedOrg.name } })}</h2>
   <div class="data-entry-form">
     {#if selectedOrg.types.length > 0}
       <section>
-          <h3>Welche Dienste nutzt Du?</h3>
+           <h3>{$_("which_services_do_you_use", { default: "Welche Dienste nutzt Du?" })}</h3>
           {#each selectedOrg.types as type}
             <Checkbox label={type.serviceLabel} bind:group={$userData.types} value={type.handle}></Checkbox>
           {/each}
-          <p class="small">
-            (Für diese werden spezifisch Daten verlangt; kann auch weggelassen werden.)
-          </p>
+           <p class="small">
+             ({$_("form_services_type_info", { default: "Für diese werden spezifisch Daten verlangt; kann auch weggelassen werden." })})
+           </p>
       </section>
     {/if}
 
     {#if variablesForTypeSelection.length > 0}
       <section>
-        <h3>Deine Angaben</h3>
+         <h3>{$_("your_details", { default: "Deine Angaben" })}</h3>
         {#each variablesForTypeSelection as variable}
-          <VariableInput variable="{variable}" bind:val="{$userData[variable.name]}"></VariableInput>
+          <VariableInput {variable} bind:val="{$userData[variable.name]}"></VariableInput>
         {/each}
       </section> 
     {/if}
