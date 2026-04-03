@@ -13,5 +13,5 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['lodash-es'],
-  },
+  }
 })

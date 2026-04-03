@@ -13,6 +13,8 @@
   import BinIcon from '../icons/BinIcon.svelte';
   import CloseIcon from '../icons/CloseIcon.svelte';
 
+  import { _ } from 'svelte-i18n';
+
   let { side } = $props();
 
   let mode = $state('init');
@@ -30,7 +32,7 @@
   let cropperModule;
   let resizeObserver;
 
-  let grabButtonText = $derived(!side || side === 'front' ? 'hier Kamera aktivieren um den Ausweis zu fotografieren' : 'hier Kamera aktivieren um die Rückseite zu fotografieren')
+  let grabButtonText = $derived(!side || side === 'front' ? $_('id_capture.activate_camera_front', {default: 'hier Kamera aktivieren um den Ausweis zu fotografieren'}) : $_('id_capture.activate_camera_back', {default: 'hier Kamera aktivieren um die Rückseite zu fotografieren'}))
 
   async function getCropperModule() {
     if (!cropperModule) {
@@ -173,14 +175,14 @@
         </div>
       </div>
       <div class="controls">
-        {#if !imageObjectUrl}
-          <div>
-            <p>Halt deinen Ausweis vor die Kamera und drücke den Auslöser.</p>
-            <p class="small">Du kannst das Bild danach zuschneiden.</p>
-            <button class="one big-circle" onclick={() => grabStill()} disabled={!videoReady}>
-              <ShutterIcon width="60" height="60"></ShutterIcon>
-            </button>
-          </div>
+         {#if !imageObjectUrl}
+           <div>
+             <p>{$_('id_capture.hold_id_instructions', {default: 'Halt deinen Ausweis vor die Kamera und drücke den Auslöser.'})}</p>
+             <p class="small">{$_('id_capture.crop_instructions', {default: 'Du kannst das Bild danach zuschneiden.'})}</p>
+             <button class="one big-circle" onclick={() => grabStill()} disabled={!videoReady}>
+               <ShutterIcon width="60" height="60"></ShutterIcon>
+             </button>
+           </div>
         {:else}
           <button class="one big-circle" onclick={() => remove()}><BinIcon width="60" height="60"></BinIcon></button>
           <button class="one big-circle" onclick={() => applyCrop()}><CheckIcon width="60" height="60"></CheckIcon></button>

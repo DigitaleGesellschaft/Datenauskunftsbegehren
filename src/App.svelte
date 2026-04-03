@@ -1,5 +1,6 @@
 <script>
   import { onMount, tick } from 'svelte';
+  import { _, isLoading } from 'svelte-i18n';
 
   import Header from './Header.svelte'
   // Auskunftsbegehren
@@ -82,6 +83,19 @@
   }
 
 </script>
+<svelte:head>
+  <title>{$_('meta.title')}</title>
+  <meta name="description" content={$_('meta.description')} />
+  <meta property="og:title" content={$_('meta.og_title')} />
+  <meta property="og:description" content={$_('meta.og_description')} />
+  <meta property="og:image" content="https://www.digitale-gesellschaft.ch/auskunftsbegehren/datenauskunftsbegehren-og.png" />
+  <link rel="preload" href="./fonts/Montserrat/latin-300.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="./fonts/Montserrat/latin-700.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+</svelte:head>
+
+{#if $isLoading}
+  <p>Loading...</p>
+{:else}
 
 <Header on:step={setStep} activeStep={$userData.step}></Header>
 <main>
@@ -90,8 +104,8 @@
 
   {#if !$userData.step}
     <div class="init">
-      <h1>{texts.title}</h1>
-      <p>{texts.intro}</p>
+      <h1>{$_('app.title', { default: 'Generiere dein Datenauskunftsbegehren' })}</h1>
+      <p>{$_('app.intro', { default: 'Gemäss Datenschutzgesetz hat jede Person das Recht zu erfahren, welche Daten über sie gespeichert sind, und diese – wenn nötig – löschen oder korrigieren zu lassen. Dieses Auskunftsrecht ermöglicht es, die Kontrolle über die eigenen Personendaten zu behalten. Jede Person muss aber selber aktiv werden und dieses Recht wahrnehmen.' })}</p>
     </div>
   {/if}
 
@@ -176,7 +190,7 @@
     </a>
   </footer>
 </main>
-
+{/if}
 <style>
 
   .init {
