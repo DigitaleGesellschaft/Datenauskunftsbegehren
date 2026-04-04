@@ -193,7 +193,7 @@ userData.subscribe(val => {
   }
 })
 
-// Translation function using langCor — use in letter components
+// Translation function using the letter locale — use in letter components
 export const c = derived([_, langCor], ([t, corrLocale]) => {
-  return (key, opts = {}) => t(key, { ...opts, locale: corrLocale })
+  return (key, opts = {}) => t(key, { ...opts, locale: corrLocale + '-letter' })
 })
