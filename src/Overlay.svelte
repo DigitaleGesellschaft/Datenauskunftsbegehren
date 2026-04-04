@@ -39,13 +39,13 @@
   z-index: 2;
   width: 100%;
   background: white;
-  padding-top: var(--header-height);
+  padding-top: calc(var(--header-height) + var(--banner-height));
 }
 
 header {
   position: fixed;
-  z-index: 2;
-  top: 0;
+  z-index: 11;
+  top: var(--banner-height);
   display: flex;
   height: var(--header-height);
   width: 100%;
