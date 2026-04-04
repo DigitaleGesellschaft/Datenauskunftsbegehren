@@ -98,7 +98,7 @@
   "share": {
     "title": "Requête données personnelles",
     "text": "Ta requête:",
-    "hint": "Les informations sont contenues dans l'adresse web. Tu peux les enregistrer:",
+    "hint": "💡 Les informations sont contenues dans l'adresse web. Tu peux les enregistrer",
     "or_send": "Ou te les envoyer:"
   },
   "steps": {
