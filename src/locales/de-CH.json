@@ -5,6 +5,11 @@
     "og_title": "",
     "og_description": ""
   },
+  "language_picker": {
+    "title": "Spracheinstellungen",
+    "ui_language": "Benutzeroberflächensprache",
+    "correspondence_language": "Korrespondenzsprache"
+  },
   "app": {
     "title": "Generiere dein Datenauskunftsbegehren",
     "intro": "Gemäss Datenschutzgesetz hat jede Person das Recht zu erfahren, welche Daten über sie gespeichert sind, und diese – wenn nötig – löschen oder korrigieren zu lassen. Dieses Auskunftsrecht ermöglicht es, die Kontrolle über die eigenen Personendaten zu behalten. Jede Person muss aber selber aktiv werden und dieses Recht wahrnehmen."

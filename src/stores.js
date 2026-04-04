@@ -1,7 +1,8 @@
-import { readable, writable, get } from 'svelte/store';
+import { readable, writable, derived, get } from 'svelte/store';
 import {nl2br, br2nl} from './lib.js'
 import { throttle } from 'lodash-es';
 import {data as d, validateUserData, getValidUserData, getOrgHistoryMessage} from './data.js';
+import { _, locale } from 'svelte-i18n';
 
 export const data = readable(d)
 export const messages = writable([])
@@ -160,3 +161,26 @@ const currentImages = get(userData).idImages ? get(userData).idImages : {
 }
 
 export const idImages = writable(currentImages)
+
+export const correspondenceLocale = writable(currentUserData.correspondenceLocale || get(locale) || 'de')
+
+correspondenceLocale.subscribe(lang => {
+  userData.update(ud => {
+    ud.correspondenceLocale = lang
+    return ud
+  })
+})
+
+userData.subscribe(val => {
+  if (val.correspondenceLocale) {
+    const isSame = get(correspondenceLocale) === val.correspondenceLocale
+    if (!isSame) {
+      correspondenceLocale.set(val.correspondenceLocale)
+    }
+  }
+})
+
+// Translation function using correspondenceLocale — use in letter components
+export const c = derived([_, correspondenceLocale], ([t, corrLocale]) => {
+  return (key, opts = {}) => t(key, { ...opts, locale: corrLocale })
+})

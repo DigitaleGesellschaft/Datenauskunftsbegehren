@@ -5,6 +5,11 @@
     "og_title": "",
     "og_description": ""
   },
+  "language_picker": {
+    "title": "Paramètres de langue",
+    "ui_language": "Langue de l'interface",
+    "correspondence_language": "Langue de correspondance"
+  },
   "app": {
     "title": "Générer une demande d'accès à ses données personnelles",
     "intro": "Chaque personne jouit du droit de connaître les données personnelles la concernant, conformément à la Loi sur la protection des données. Elle peut également réclamer la correction ou la suppression le cas échéant. Ces droits permettent de garder le contrôle sur ses données. Il incombe cependant aux personnes concernées de les faire valoir."

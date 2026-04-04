@@ -1,0 +1,83 @@
+<script>
+  import { locale, _ } from 'svelte-i18n';
+  import { correspondenceLocale } from './stores.js';
+
+  const languages = [
+    { code: 'de', label: 'Deutsch' },
+    { code: 'fr', label: 'Français' },
+  ];
+</script>
+
+<div class="language-picker">
+  <h2>{$_('language_picker.title', { default: 'Spracheinstellungen' })}</h2>
+
+  <fieldset>
+    <legend>{$_('language_picker.ui_language', { default: 'Benutzeroberflächensprache' })}</legend>
+    {#each languages as lang}
+      <label>
+        <input
+          type="radio"
+          name="ui-language"
+          value={lang.code}
+          checked={$locale?.startsWith(lang.code)}
+          onchange={() => locale.set(lang.code)}
+        />
+        {lang.label}
+      </label>
+    {/each}
+  </fieldset>
+
+  <fieldset>
+    <legend>{$_('language_picker.correspondence_language', { default: 'Korrespondenzsprache' })}</legend>
+    {#each languages as lang}
+      <label>
+        <input
+          type="radio"
+          name="correspondence-language"
+          value={lang.code}
+          checked={$correspondenceLocale === lang.code}
+          onchange={() => correspondenceLocale.set(lang.code)}
+        />
+        {lang.label}
+      </label>
+    {/each}
+  </fieldset>
+</div>
+
+<style>
+  .language-picker {
+    padding: 12px;
+    max-width: 400px;
+  }
+
+  h2 {
+    margin-bottom: 24px;
+  }
+
+  fieldset {
+    border: 1px solid var(--color-ui-one);
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+
+  legend {
+    padding: 0 6px;
+    font-weight: bold;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    cursor: pointer;
+  }
+
+  input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--color-brand);
+  }
+</style>

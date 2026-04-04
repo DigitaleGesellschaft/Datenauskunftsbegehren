@@ -6,7 +6,7 @@
   import Bullets from './Bullets.svelte';
   import RemoveNodeAction from './RemoveNodeAction.svelte';
   import HideNodeAction from './HideNodeAction.svelte';
-  import { _ } from 'svelte-i18n';
+  import { c as _ } from '../stores.js';
 
   import { data, userData, userAddressHtml, orgAddressHtml, idImages } from '../stores.js';
   import {nl2br} from '../lib.js';

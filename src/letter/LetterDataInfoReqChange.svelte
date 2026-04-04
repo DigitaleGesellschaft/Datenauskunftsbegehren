@@ -1,6 +1,6 @@
 <script>
   import { run } from 'svelte/legacy';
-  import { _ } from 'svelte-i18n';
+  import { c as _ } from '../stores.js';
 
   import {onMount} from 'svelte';
   import HideNodeAction from './HideNodeAction.svelte';

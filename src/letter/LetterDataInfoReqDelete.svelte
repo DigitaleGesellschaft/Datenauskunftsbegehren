@@ -5,7 +5,7 @@
   import HideNodeAction from './HideNodeAction.svelte';
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
-  import { _ } from 'svelte-i18n';
+  import { c as _ } from '../stores.js';
 
   let LetterDataInfoReqDeleteNode = $state()
   let selectedOrg = $state()
