@@ -24,7 +24,7 @@
     display: flex;
     position: fixed;
     z-index: 1;
-    top: 0;
+    top: var(--banner-height);
     left: 0;
 
     width: 100%;
