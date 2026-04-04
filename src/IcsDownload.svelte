@@ -6,7 +6,6 @@
   import { getHash } from './lib.js'
   import { addDays, isSaturday, isSunday, lightFormat, addMinutes } from 'date-fns'
   import { userData } from './stores.js'
-  import { getCausa } from './texts.js'
 
   let answerShouldArriveAtDate = $state()
   let answerShouldArriveAtTime = $state()
@@ -52,8 +51,10 @@
     const id = await getHash({text: JSON.stringify(get(userData))}) + Date.now() + Math.floor(Math.random() * Math.pow(10, 3));
     uid = `${id.slice(0,icsMaxLineLength - (uid.length + 'UID:'.length))}${uid}`;
 
+    const normalizedDesire = ($userData.desire === 'letter' ? 'data_info_request' : $userData.desire) || 'data_info_request'
+    const causa = $_('causa.cal.' + normalizedDesire)
     const description = $_('ics.description', {
-      values: { days: getDeadlineDays(), causa: getCausa($userData.desire, 'cal') },
+      values: { days: getDeadlineDays(), causa },
       default: 'Vor {days} Tagen hast du {causa} generiert. Hast du eine Antwort erhalten?'
     });
     /**

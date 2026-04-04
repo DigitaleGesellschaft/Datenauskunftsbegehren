@@ -10,6 +10,45 @@
     "ui_language": "Benutzeroberflächensprache",
     "correspondence_language": "Korrespondenzsprache"
   },
+  "or": "oder",
+  "steps_one": {
+    "org": "Direkt ein Unternehmen oder eine Behörde auswählen",
+    "type": "Ein Unternehmen oder eine Behörde über den Geschäftsbereich auswählen",
+    "event": "Ein Datenauskunftsbegehren aus einem speziellen Grund stellen",
+    "followup": "Zu einem bereits gestellten Datenauskunftsbegehren nachfassen"
+  },
+  "causa": {
+    "print": {
+      "data_info_request": "das Datenauskunftsbegehren",
+      "unanswered": "die Mahnung zum Datenauskunftsbegehren",
+      "incomplete_answer": "die Einforderung zum Datenauskunftsbegehren",
+      "data_correction": "die Aufforderung zur Datenänderung",
+      "data_deletion": "die Aufforderung zur Datenlöschung"
+    },
+    "cal": {
+      "data_info_request": "ein Datenauskunftsbegehren",
+      "unanswered": "eine Mahnung zum Datenauskunftsbegehren",
+      "incomplete_answer": "eine Einforderung zum Datenauskunftsbegehren",
+      "data_correction": "eine Aufforderung zur Datenänderung",
+      "data_deletion": "eine Aufforderung zur Datenlöschung"
+    }
+  },
+  "print": {
+    "done_title": "Geschafft",
+    "send_by_post": "Nun musst du {causa} noch <strong>eingeschrieben per Post versenden</strong>.",
+    "deadline_info": "Ab dem Eingang bleiben 30 Tage für die Beantwortung. Speichere einen Termin im Kalender, um dich für ein allfälliges Nachfragen erinnern zu lassen, falls du bis dahin keine Antwort erhalten hast.",
+    "feedback": "Rückmeldungen nehmen wir unter <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link> gerne entgegen.",
+    "support_us_intro": "Unser Generator wurde von IT- und Rechtskundigen der Digitalen Gesellschaft in unzähligen Stunden entwickelt und steht allen frei zur Verfügung.",
+    "support_us_membership": "Als <membership_link>Mitglied, Spender oder Gönnerin</membership_link> unterstützt du unsere Arbeit.",
+    "support_us_newsletter": "Falls du über unsere Aktivitäten auf dem Laufenden gehalten werden möchtest, abonniere jetzt den <newsletter_link>monatlichen Newsletter</newsletter_link>.",
+    "no_print_title": "Sende dir die Webadresse",
+    "no_print_text": "Auf deinem Gerät ist Drucken leider nicht möglich. Verwende die Möglichkeit, die Webadresse (URL) zu senden, um sie dir beispielsweise per E-Mail zu schicken. Du kannst sie dann auf einem passenden Gerät mit Drucker öffnen. Die eingegebenen Daten sind in der URL gespeichert."
+  },
+  "nav": {
+    "back_to_entry": "❮ zur Dateneingabe",
+    "followup": "Nachfassen",
+    "print_now": "Jetzt drucken ❯"
+  },
   "app": {
     "title": "Generiere dein Datenauskunftsbegehren",
     "intro": "Gemäss Datenschutzgesetz hat jede Person das Recht zu erfahren, welche Daten über sie gespeichert sind, und diese – wenn nötig – löschen oder korrigieren zu lassen. Dieses Auskunftsrecht ermöglicht es, die Kontrolle über die eigenen Personendaten zu behalten. Jede Person muss aber selber aktiv werden und dieses Recht wahrnehmen."

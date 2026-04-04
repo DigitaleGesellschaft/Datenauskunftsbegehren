@@ -24,10 +24,15 @@
   import IcsDownload from './IcsDownload.svelte'
   import DigigesLogo from './DigigesLogo.svelte'
 
-  import { default as texts, getCausa } from './texts.js'
-
   import {data, userData, userAddressHtml, orgAddressHtml, userDesire} from './stores.js'
   let desires = $derived($data && $data.desires ? $data.desires : [])
+
+  const MEMBERSHIP_LINK = 'https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/'
+  const NEWSLETTER_LINK = 'https://www.digitale-gesellschaft.ch/uber-uns/newsletter/'
+
+  let normalizedDesire = $derived(
+    ($userData.desire === 'letter' ? 'data_info_request' : $userData.desire) || 'data_info_request'
+  )
 
   // hack: override state mix with multiple letter types after printing one and recalling the letter view
   let canPrint = $state(true);
@@ -119,30 +124,35 @@
     {#if canPrint === true}
       <div class="step-ui step-print">
         <div>
-          <h2>Geschafft</h2>
-          <p>
-            Nun musst du {getCausa($userData.desire, 'print')} noch <strong>eingeschrieben per Post versenden</strong>.
-          </p>
-          <p>
-            Ab dem Eingang bleiben 30 Tage für die Beantwortung.
-            Speichere einen Termin im Kalender, um dich für ein allfälliges Nachfragen erinnern zu lassen, falls du bis dahin keine Antwort erhalten hast.
-          </p>
+          <h2>{$_('print.done_title', { default: 'Geschafft' })}</h2>
+          <p>{@html $_('print.send_by_post', {
+            default: 'Nun musst du {causa} noch <strong>eingeschrieben per Post versenden</strong>.',
+            values: { causa: $_('causa.print.' + normalizedDesire) }
+          })}</p>
+          <p>{$_('print.deadline_info', { default: 'Ab dem Eingang bleiben 30 Tage für die Beantwortung. Speichere einen Termin im Kalender, um dich für ein allfälliges Nachfragen erinnern zu lassen, falls du bis dahin keine Antwort erhalten hast.' })}</p>
           <IcsDownload></IcsDownload>
+          <p>{@html $_('print.feedback', {
+            default: 'Rückmeldungen nehmen wir unter <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link> gerne entgegen.',
+            values: { email_link: (text) => `<a href="mailto:auskunftsbegehren@digitale-gesellschaft.ch">${text}</a>` }
+          })}</p>
           <p>
-            Rückmeldungen nehmen wir unter <a href="mailto:auskunftsbegehren@digitale-gesellschaft.ch">auskunftsbegehren@digitale-gesellschaft.ch</a> gerne entgegen.
-          </p>
-          <p>
-          Unser Generator wurde von IT- und Rechtskundigen der Digitalen Gesellschaft in unzähligen Stunden entwickelt und steht allen frei zur Verfügung.
-          Als <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/">Mitglied, Spender oder Gönnerin</a> unterstützt du unsere Arbeit.
-          Falls du über unsere Aktivitäten auf dem Laufenden gehalten werden möchtest, abonniere jetzt den <a target="_blank" rel="noopener noreferrer" href="https://www.digitale-gesellschaft.ch/uber-uns/newsletter/">monatlichen Newsletter</a>.
+            {$_('print.support_us_intro', { default: 'Unser Generator wurde von IT- und Rechtskundigen der Digitalen Gesellschaft in unzähligen Stunden entwickelt und steht allen frei zur Verfügung.' })}
+            {@html $_('print.support_us_membership', {
+              default: 'Als <membership_link>Mitglied, Spender oder Gönnerin</membership_link> unterstützt du unsere Arbeit.',
+              values: { membership_link: (text) => `<a target="_blank" rel="noopener noreferrer" href="${MEMBERSHIP_LINK}">${text}</a>` }
+            })}
+            {@html $_('print.support_us_newsletter', {
+              default: 'Falls du über unsere Aktivitäten auf dem Laufenden gehalten werden möchtest, abonniere jetzt den <newsletter_link>monatlichen Newsletter</newsletter_link>.',
+              values: { newsletter_link: (text) => `<a target="_blank" rel="noopener noreferrer" href="${NEWSLETTER_LINK}">${text}</a>` }
+            })}
           </p>
         </div>
       </div>
     {:else}
       <div class="step-ui">
         <div>
-          <h2>Sende dir die Webadresse</h2>
-          <p>Auf deinem Gerät ist Drucken leider nicht möglich. Verwende die Möglichkeit, die Webadresse (URL) zu senden, um sie dir beispielsweise per E-Mail zu schicken. Du kannst sie dann auf einem passenden Gerät mit Drucker öffnen. Die eingegebenen Daten sind in der URL gespeichert.</p>
+          <h2>{$_('print.no_print_title', { default: 'Sende dir die Webadresse' })}</h2>
+          <p>{$_('print.no_print_text', { default: 'Auf deinem Gerät ist Drucken leider nicht möglich. Verwende die Möglichkeit, die Webadresse (URL) zu senden, um sie dir beispielsweise per E-Mail zu schicken. Du kannst sie dann auf einem passenden Gerät mit Drucker öffnen. Die eingegebenen Daten sind in der URL gespeichert.' })}</p>
         </div>
       </div>
     {/if}
@@ -165,17 +175,17 @@
       {/if}
     {/if}
     <div class="actions">
-      <button class="one no-print" onclick={() => setStep({detail: 'entry'})}>❮ zur Dateneingabe</button>
+      <button class="one no-print" onclick={() => setStep({detail: 'entry'})}>{$_('nav.back_to_entry', { default: '❮ zur Dateneingabe' })}</button>
       {#if $userData.step === 'data_info_request'}
-        <button class="one no-print" onclick={hideUnhideFollowUp}>Nachfassen</button>
+        <button class="one no-print" onclick={hideUnhideFollowUp}>{$_('nav.followup', { default: 'Nachfassen' })}</button>
       {/if}
-      <button class="one no-print" onclick={() => setStep({detail: 'print'})}>Jetzt drucken ❯</button>
+      <button class="one no-print" onclick={() => setStep({detail: 'print'})}>{$_('nav.print_now', { default: 'Jetzt drucken ❯' })}</button>
     </div>
     {#if !followUpHidden}
       <div class="step-ui step-entry">
         <div class="separator"><span></span></div>
         <section>
-          <h2>{texts.steps.one.followup}</h2>
+          <h2>{$_('steps_one.followup', { default: 'Zu einem bereits gestellten Datenauskunftsbegehren nachfassen' })}</h2>
           {#each desires as desire}
               <button class="one" onclick={() => {$userData.entry = 'followup'; $userData.desire = desire.handle; setStep({detail: desire.handle}); }}>{desire.label}</button>
           {/each}

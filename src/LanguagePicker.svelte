@@ -1,6 +1,6 @@
 <script>
-  import { locale, _ } from 'svelte-i18n';
-  import { correspondenceLocale } from './stores.js';
+  import { _ } from 'svelte-i18n';
+  import { langUi, langCor } from './stores.js';
 
   const languages = [
     { code: 'de', label: 'Deutsch' },
@@ -19,8 +19,8 @@
           type="radio"
           name="ui-language"
           value={lang.code}
-          checked={$locale?.startsWith(lang.code)}
-          onchange={() => locale.set(lang.code)}
+          checked={$langUi === lang.code}
+          onchange={() => langUi.set(lang.code)}
         />
         {lang.label}
       </label>
@@ -35,8 +35,8 @@
           type="radio"
           name="correspondence-language"
           value={lang.code}
-          checked={$correspondenceLocale === lang.code}
-          onchange={() => correspondenceLocale.set(lang.code)}
+          checked={$langCor === lang.code}
+          onchange={() => langCor.set(lang.code)}
         />
         {lang.label}
       </label>

@@ -10,6 +10,45 @@
     "ui_language": "Langue de l'interface",
     "correspondence_language": "Langue de correspondance"
   },
+  "or": "ou",
+  "steps_one": {
+    "org": "Choisir directement une entreprise ou une autorité",
+    "type": "Choisir une entreprise ou une autorité par secteur d'activité",
+    "event": "Formuler une demande pour un motif particulier",
+    "followup": "Effectuer un suivi d'une demande déjà soumise"
+  },
+  "causa": {
+    "print": {
+      "data_info_request": "la demande d'accès aux données",
+      "unanswered": "le rappel relatif à la demande d'accès aux données",
+      "incomplete_answer": "la relance relative à la demande d'accès aux données",
+      "data_correction": "la demande de rectification des données",
+      "data_deletion": "la demande de suppression des données"
+    },
+    "cal": {
+      "data_info_request": "une demande d'accès aux données",
+      "unanswered": "un rappel relatif à une demande d'accès aux données",
+      "incomplete_answer": "une relance relative à une demande d'accès aux données",
+      "data_correction": "une demande de rectification des données",
+      "data_deletion": "une demande de suppression des données"
+    }
+  },
+  "print": {
+    "done_title": "C'est fait !",
+    "send_by_post": "Tu dois maintenant <strong>envoyer en recommandé par la poste</strong> {causa}.",
+    "deadline_info": "Dès réception, 30 jours sont accordés pour répondre. Enregistre un rappel dans le calendrier pour te souvenir de relancer si tu n'as pas reçu de réponse d'ici là.",
+    "feedback": "Tu peux nous faire part de tes remarques à <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link>.",
+    "support_us_intro": "Notre générateur a été développé par des expert·e·s en informatique et en droit de la Société numérique en d'innombrables heures et est mis à disposition gratuitement.",
+    "support_us_membership": "En tant que <membership_link>membre, donateur ou donatrice</membership_link>, tu soutiens notre travail.",
+    "support_us_newsletter": "Pour rester informé·e de nos activités, abonne-toi dès maintenant à la <newsletter_link>newsletter mensuelle</newsletter_link>.",
+    "no_print_title": "Envoie-toi l'adresse web",
+    "no_print_text": "L'impression n'est malheureusement pas possible sur cet appareil. Utilise l'option d'envoi de l'adresse web (URL), par exemple par e-mail. Tu pourras ensuite l'ouvrir sur un appareil connecté à une imprimante. Les données saisies sont enregistrées dans l'URL."
+  },
+  "nav": {
+    "back_to_entry": "❮ à la saisie",
+    "followup": "Suivi",
+    "print_now": "Imprimer ❯"
+  },
   "app": {
     "title": "Générer une demande d'accès à ses données personnelles",
     "intro": "Chaque personne jouit du droit de connaître les données personnelles la concernant, conformément à la Loi sur la protection des données. Elle peut également réclamer la correction ou la suppression le cas échéant. Ces droits permettent de garder le contrôle sur ses données. Il incombe cependant aux personnes concernées de les faire valoir."

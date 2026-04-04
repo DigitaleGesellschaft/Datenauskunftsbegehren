@@ -162,25 +162,38 @@ const currentImages = get(userData).idImages ? get(userData).idImages : {
 
 export const idImages = writable(currentImages)
 
-export const correspondenceLocale = writable(currentUserData.correspondenceLocale || get(locale) || 'de')
+export const langUi = writable(currentUserData.langUi || get(locale) || 'de')
 
-correspondenceLocale.subscribe(lang => {
+langUi.subscribe(lang => {
+  locale.set(lang)
   userData.update(ud => {
-    ud.correspondenceLocale = lang
+    ud.langUi = lang
     return ud
   })
 })
 
 userData.subscribe(val => {
-  if (val.correspondenceLocale) {
-    const isSame = get(correspondenceLocale) === val.correspondenceLocale
-    if (!isSame) {
-      correspondenceLocale.set(val.correspondenceLocale)
-    }
+  if (val.langUi && get(langUi) !== val.langUi) {
+    langUi.set(val.langUi)
   }
 })
 
-// Translation function using correspondenceLocale — use in letter components
-export const c = derived([_, correspondenceLocale], ([t, corrLocale]) => {
+export const langCor = writable(currentUserData.langCor || get(locale) || 'de')
+
+langCor.subscribe(lang => {
+  userData.update(ud => {
+    ud.langCor = lang
+    return ud
+  })
+})
+
+userData.subscribe(val => {
+  if (val.langCor && get(langCor) !== val.langCor) {
+    langCor.set(val.langCor)
+  }
+})
+
+// Translation function using langCor — use in letter components
+export const c = derived([_, langCor], ([t, corrLocale]) => {
   return (key, opts = {}) => t(key, { ...opts, locale: corrLocale })
 })
