@@ -10,8 +10,8 @@ test('Seite wird mit dynamisch generiertem Titel angezeigt', async ({ page }) =>
 test('Info kann angezeigt werden', async ({ page }) => {
   await page.goto('');
 
-  // Info anzeigen
-  const creditsButton = page.locator('button.credits');
+  // Info anzeigen (letzter button.circle.one in der Header-Leiste)
+  const creditsButton = page.locator('button.circle.one').last();
   await creditsButton.click();
 
   // Prüfen, dass der entsprechende Text angezeigt wird
