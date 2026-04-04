@@ -35,6 +35,8 @@ jobs:
 
       - name: Build
         run: npm run build -- --base=/Datenauskunftsbegehren/
+        env:
+          VITE_TEST_BANNER: true
 
       - uses: actions/configure-pages@v5
 
