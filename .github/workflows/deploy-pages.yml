@@ -34,8 +34,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Download data.json
-        run: wget -O public/data.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data.json
+      - name: Download data files
+        run: |
+          wget -O public/data_de.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data_de.json
+          wget -O public/data_fr.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data_fr.json
 
       - name: Build
         run: npm run build -- --base=${{ steps.pages.outputs.base_path }}/
