@@ -1,0 +1,147 @@
+
+{
+  "meta": {
+    "title": "",
+    "description": "",
+    "og_title": "",
+    "og_description": ""
+  },
+  "language_picker": {
+    "title": "Language settings",
+    "ui_language": "Interface language",
+    "correspondence_language": "Correspondence language"
+  },
+  "or": "or",
+  "steps_one": {
+    "org": "Select a company or authority directly",
+    "type": "Select a company or authority by business area",
+    "event": "Submit a data access request for a specific reason",
+    "followup": "Follow up on an already submitted data access request"
+  },
+  "causa": {
+    "print": {
+      "data_info_request": "the data access request",
+      "unanswered": "the reminder regarding the data access request",
+      "incomplete_answer": "the follow-up demand regarding the data access request",
+      "data_correction": "the request for data correction",
+      "data_deletion": "the request for data deletion"
+    },
+    "cal": {
+      "data_info_request": "a data access request",
+      "unanswered": "a reminder regarding a data access request",
+      "incomplete_answer": "a follow-up demand regarding a data access request",
+      "data_correction": "a request for data correction",
+      "data_deletion": "a request for data deletion"
+    }
+  },
+  "print": {
+    "done_title": "Done!",
+    "send_by_post": "You now need to <strong>send {causa} by registered mail</strong>.",
+    "deadline_info": "From the date of receipt, 30 days are allowed to respond. Save a calendar entry to remind yourself to follow up in case you haven't received a response by then.",
+    "feedback": "We welcome your feedback at <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link>.",
+    "support_us_intro": "Our generator was developed by IT and legal experts of the Digital Society in countless hours and is available to everyone for free.",
+    "support_us_membership": "As a <membership_link>member, donor or supporter</membership_link>, you support our work.",
+    "support_us_newsletter": "To stay up to date on our activities, subscribe to our <newsletter_link>monthly newsletter</newsletter_link> now.",
+    "no_print_title": "Send yourself the web address",
+    "no_print_text": "Unfortunately, printing is not possible on your device. Use the option to send the web address (URL), for example by e-mail, and then open it on a device with a printer. The data you entered is stored in the URL."
+  },
+  "nav": {
+    "back_to_entry": "❮ back to input",
+    "followup": "Follow up",
+    "print_now": "Print now ❯"
+  },
+  "app": {
+    "title": "Generate your data access request",
+    "intro": "Under data protection law, every person has the right to find out what data is stored about them, and to have it deleted or corrected if necessary. This right of access allows you to maintain control over your personal data. However, each person must take action themselves and exercise this right."
+  },
+  "digiges_name": "Digital Society",
+  "fragment": "Fragment",
+  "mercator_program": "Programme «Digitalisation + Society»",
+  "mercator_org": "Mercator Foundation Switzerland",
+  "generator_source_code": "Generator source code",
+  "credits": {
+    "title": "Online Generator for Data Access Requests",
+    "website_service": "The online generator for data access requests is provided by <digiges_homepage>{digiges_name}</digiges_homepage>."
+  },
+  "no_personal_data_collected": "No personal data is collected when using the generator: all data entries and selections remain in the user's browser.",
+  "url_storage_info": "Data entries can be saved by copying the web address (URL). All information is stored in the so-called <fragment>{fragment_label}</fragment> of the URL. This is never sent to a web server. However, the copied URL contains all entered data, which can therefore be reused. The URL should therefore be treated with caution.",
+  "notes_for_orgs_title": "Notes for organisations contacted",
+  "notes_for_orgs_p1": "Data access requests must be answered within 30 days of receipt. If the deadline is insufficient, the requester must be informed and the deadline by which the information will be provided must be communicated. If the information cannot be provided or cannot be provided in full, this decision must be justified",
+  "art_18_abs_vdsg": "Art. 18 Para. 1 ADPO",
+  "notes_for_orgs_p2": "Compiling the data may require considerable effort. Nevertheless, the information is generally to be provided free of charge. If the purpose or content of the request is unclear, it may be worthwhile – together with the requesting person – to narrow the scope of the request.",
+  "art_25_dsg": "Art. 25 FADP",
+  "art_18_vdsg": "Art. 19 ADPO",
+  "further_steps_title": "Further steps",
+  "further_steps_p1": "If no response is received or it is incomplete, a second letter can be sent as a follow-up. Subsequently, legal action to enforce the right of access can be filed against private holders of data collections at the domicile of the data subject or the holder of the data collection",
+  "further_steps_p2": "It is also possible to request the correction of incorrect data or the deletion of data (and any further collection), provided that this data processing is not justified by an overriding private or public interest or by law",
+  "thanks_support_title": "Thank you for your financial support",
+  "mercator_grant": "The project is supported by the <program>{mercator_program}</program> of <mercator>{mercator_org}</mercator>.",
+  "mercator_logo_alt": "Logo Mercator Foundation",
+  "concept_realisation": "Concept and implementation",
+  "additional_notes_and_revision": "Additions and revisions",
+  "campaign": "Campaign",
+  "danke_freunde_ideen": "Thanks to many friends for the ideas ♥️",
+  "code_license_info": "The <repo>{generator_source_code}</repo> is licensed under the <license>3-Clause BSD Licence</license> and available on GitHub.",
+  "legal_title": "Legal",
+  "privacy_imprint": "Privacy policy and imprint",
+  "ics": {
+    "description": "{days} days ago you generated {causa}. Have you received a response?",
+    "followup": "Here you can create follow-up letters or additional data access requests",
+    "comeback": "For questions, please contact us at auskunftsbegehren@digitale-gesellschaft.ch.",
+    "summary": "Data access request – response received?",
+    "filename": "data-access-request.ics",
+    "button": {
+      "download": "Download calendar entry"
+    }
+  },
+  "date": "Date",
+  "time": "Time",
+  "share": {
+    "title": "Data Access Request",
+    "text": "Your data access request:",
+    "hint": "💡 The web address (URL) contains all your entries. You can save it",
+    "or_send": "or send it to yourself:"
+  },
+  "steps": {
+    "labels": {
+      "entry": "Input",
+      "data_info_request": "Access letter",
+      "unanswered": "Reminder letter",
+      "incomplete_answer": "Follow-up letter",
+      "data_correction": "Correction letter",
+      "data_deletion": "Deletion letter",
+      "print": "Print"
+    }
+  },
+  "reset_inputs": "Reset inputs",
+  "generate_letter": "Generate letter",
+  "step_event": {
+    "details_header": "Please provide some details for the data access request for the specific reason «{eventName}»"
+  },
+  "details": "Details",
+  "step_followup": {
+    "instructions": "Please provide some details for the data access request"
+  },
+  "organisation": "Organisation",
+  "select_organisation": "Select an organisation",
+  "or_enter_address": "or enter the address",
+  "error": {
+    "something_went_wrong": "Something went wrong: userData.step is undefined or not in the selection. userData.desire: "
+  },
+  "provide_more_details": "Please provide some details for the data access request «{orgName}»",
+  "which_services_do_you_use": "Which services do you use?",
+  "form_services_type_info": "Specific data will be requested for these; can also be left out.",
+  "your_details": "Your details",
+  "your_address": "Your address",
+  "name": "Name",
+  "address": "Address",
+  "bullets": {
+    "toggle_visibility": "Show/hide to only request data that is actually being processed and is of interest."
+  },
+  "id_capture": {
+    "activate_camera_front": "activate camera here to photograph the ID",
+    "activate_camera_back": "activate camera here to photograph the back",
+    "hold_id_instructions": "Hold your ID in front of the camera and press the shutter.",
+    "crop_instructions": "You can crop the image afterwards."
+  }
+}

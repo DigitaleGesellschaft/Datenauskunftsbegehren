@@ -2,7 +2,14 @@
   import { _ } from 'svelte-i18n';
   import { langUi, langCor } from './stores.js';
 
-  const languages = [
+  const uiLanguages = [
+    { code: 'de', label: 'Deutsch' },
+    { code: 'fr', label: 'Français' },
+    { code: 'en', label: 'English' },
+    { code: 'it', label: 'Italiano' },
+  ];
+
+  const correspondenceLanguages = [
     { code: 'de', label: 'Deutsch' },
     { code: 'fr', label: 'Français' },
   ];
@@ -13,7 +20,7 @@
 
   <fieldset>
     <legend>{$_('language_picker.ui_language', { default: 'Benutzeroberflächensprache' })}</legend>
-    {#each languages as lang}
+    {#each uiLanguages as lang}
       <label>
         <input
           type="radio"
@@ -29,7 +36,7 @@
 
   <fieldset>
     <legend>{$_('language_picker.correspondence_language', { default: 'Korrespondenzsprache' })}</legend>
-    {#each languages as lang}
+    {#each correspondenceLanguages as lang}
       <label>
         <input
           type="radio"
