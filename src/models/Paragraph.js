@@ -16,15 +16,14 @@ export default class Paragraph {
   }
 
   calculateTokens() {
-    this.tokens =  this.text
+    this.tokens = this.text
       .split(matchVariableRegExp)
       .map(part => {
-        if (matchVariableRegExp.test(part)) {
-          const variables = getVariablesFromString(part)
-          const variable = variables[0]
+        const variables = getVariablesFromString(part)
+        if (variables.length > 0) {
           return {
             type: 'variable',
-            variable
+            variable: variables[0]
           }
         } else {
           return {
@@ -65,11 +64,7 @@ export default class Paragraph {
   }
 }
 
-// this line would allow Umlauts and , and other characters in variable labels but is not really tested well enough
-//const variableRegExp = /\{(?<type>string|number|tel|email|date)?(?::)?(?<name>[a-zA-Z]{1,})(?::)?(?<label>[^:}]{0,})\}/g;
-
-// this line has been in place since the beginning of the generator and is well tested
-const variableRegExp = /\{(?<type>string|number|tel|email|date)?(?::)?(?<name>[a-zA-Z]{1,})(?::)?(?<label>[a-zA-Z-äöüß,. ]{0,})\}/g;
+const variableRegExp = /\{(?<type>string|number|tel|email|date)?(?::)?(?<name>[a-zA-Z]{1,})(?::)?(?<label>[^:}]{0,})\}/g;
 
 function getVariablesFromString(string) {
   const matches = [...string.matchAll(variableRegExp)]
