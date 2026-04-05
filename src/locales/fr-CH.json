@@ -58,6 +58,7 @@
   "mercator_program": "Programme «Digitalisation + Société»",
   "mercator_org": "Fondation Mercator Schweiz",
   "generator_source_code": "Source code du générateur",
+  "version": "Version",
   "credits": {
     "title": "Générateur de demandes d'accès aux données personnelles",
     "website_service": "Le générateur en ligne pour les demandes d'accès aux données est mis à disposition par  <digiges_homepage>{digiges_name}</digiges_homepage>."

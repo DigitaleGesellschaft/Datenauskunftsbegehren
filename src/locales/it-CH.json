@@ -58,6 +58,7 @@
   "mercator_program": "Programma «Digitalizzazione + Società»",
   "mercator_org": "Fondazione Mercator Svizzera",
   "generator_source_code": "Codice sorgente del generatore",
+  "version": "Versione",
   "credits": {
     "title": "Generatore online per richieste di accesso ai dati",
     "website_service": "Il generatore online per le richieste di accesso ai dati è messo a disposizione da <digiges_homepage>{digiges_name}</digiges_homepage>."

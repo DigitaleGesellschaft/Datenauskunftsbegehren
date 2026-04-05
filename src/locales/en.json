@@ -59,6 +59,7 @@
   "mercator_program": "Programme «Digitalisation + Society»",
   "mercator_org": "Mercator Foundation Switzerland",
   "generator_source_code": "Generator source code",
+  "version": "Version",
   "credits": {
     "title": "Online Generator for Data Access Requests",
     "website_service": "The online generator for data access requests is provided by <digiges_homepage>{digiges_name}</digiges_homepage>."

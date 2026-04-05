@@ -58,6 +58,7 @@
   "mercator_program": "Programm «Digitalisierung + Gesellschaft»",
   "mercator_org": "Stiftung Mercator Schweiz",
   "generator_source_code": "Quellcode des Generators",
+  "version": "Version",
   "credits": {
     "title": "Online-Generator für Datenauskunftsbegehren",
     "website_service": "Der Online-Generator für Datenauskunftsbegehren wird durch die <digiges_homepage>{digiges_name}</digiges_homepage> zur Verfügung gestellt."
