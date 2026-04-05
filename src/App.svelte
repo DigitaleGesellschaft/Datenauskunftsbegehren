@@ -23,6 +23,9 @@
   import Messages from './Messages.svelte'
   import IcsDownload from './IcsDownload.svelte'
   import DigigesLogo from './DigigesLogo.svelte'
+  import TestBanner from './TestBanner.svelte'
+
+  const showTestBanner = import.meta.env.VITE_TEST_BANNER === 'true'
 
   import {data, userData, userAddressHtml, orgAddressHtml, userDesire, langUi, langCor} from './stores.js'
   import { get } from 'svelte/store'
@@ -102,6 +105,7 @@
   <p>Loading...</p>
 {:else}
 
+{#if showTestBanner}<TestBanner />{/if}
 <Header on:step={setStep} activeStep={$userData.step}></Header>
 <main>
 

@@ -44,6 +44,7 @@
   --color-ui-three: #ececec;
   --header-height: 50px;
   --input-height: 36px;
+  --banner-height: 0px;
 }
 
 html {
@@ -109,7 +110,7 @@ body main {
   align-items: center;
   justify-content: flex-start;
 
-  padding: calc(var(--header-height) + 24px) 12px 12px 12px;
+  padding: calc(var(--header-height) + var(--banner-height) + 24px) 12px 12px 12px;
 }
 
 body.with-overlay main {
