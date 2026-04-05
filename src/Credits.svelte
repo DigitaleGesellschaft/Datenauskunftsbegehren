@@ -107,6 +107,7 @@
     </li>
   </ul>
   <h2>Code</h2>
+  <p>{$_("version", { default: "Version" })}: {__APP_VERSION__}</p>
   <p>
     {@html $_(
       "code_license_info",
@@ -166,9 +167,6 @@
     margin-right: 6px;
     position: relative;
     top: 4px;
-  }
-
-  svg {
     width: 1em;
     height: 1em;
   }

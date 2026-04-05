@@ -1,9 +1,14 @@
-import { readable, writable, get } from 'svelte/store';
+import { readable, writable, derived, get } from 'svelte/store';
+
+const DEFAULT_LANG = import.meta.env.VITE_DEFAULT_LANG || 'de'
+const DEFAULT_COR_LANG = ['de', 'fr'].includes(DEFAULT_LANG) ? DEFAULT_LANG : 'de'
 import {nl2br, br2nl} from './lib.js'
 import { throttle } from 'lodash-es';
 import {data as d, validateUserData, getValidUserData, getOrgHistoryMessage} from './data.js';
+import { _, locale } from 'svelte-i18n';
 
-export const data = readable(d)
+const _dataStore = writable(d)
+export const data = { subscribe: _dataStore.subscribe }
 export const messages = writable([])
 
 window.addEventListener('hashchange', (event) => {
@@ -160,3 +165,51 @@ const currentImages = get(userData).idImages ? get(userData).idImages : {
 }
 
 export const idImages = writable(currentImages)
+
+export const langUi = writable(currentUserData.langUi || get(locale) || DEFAULT_LANG)
+
+langUi.subscribe(lang => {
+  locale.set(lang)
+  userData.update(ud => {
+    ud.langUi = lang
+    return ud
+  })
+})
+
+userData.subscribe(val => {
+  if (val.langUi && get(langUi) !== val.langUi) {
+    langUi.set(val.langUi)
+  }
+})
+
+export const langCor = writable(currentUserData.langCor || DEFAULT_COR_LANG)
+
+let initialLangCorLoad = true
+langCor.subscribe(async lang => {
+  userData.update(ud => {
+    ud.langCor = lang
+    return ud
+  })
+  if (initialLangCorLoad) {
+    initialLangCorLoad = false
+    return
+  }
+  const dataFile = lang === 'fr' ? 'data_fr.json' : 'data_de.json'
+  const res = await fetch(`./${dataFile}`)
+  if (res.ok) {
+    const json = await res.json()
+    await d.load(json)
+    _dataStore.set(d)
+  }
+})
+
+userData.subscribe(val => {
+  if (val.langCor && get(langCor) !== val.langCor) {
+    langCor.set(val.langCor)
+  }
+})
+
+// Translation function using the letter locale — use in letter components
+export const c = derived([_, langCor], ([t, corrLocale]) => {
+  return (key, opts = {}) => t(key, { ...opts, locale: corrLocale + '-letter' })
+})

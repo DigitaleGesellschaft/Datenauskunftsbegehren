@@ -1,12 +1,10 @@
 <script>
-  import { run } from 'svelte/legacy';
-
   import { onMount } from 'svelte';
   import Paragraph from './Paragraph.svelte';
   import Bullets from './Bullets.svelte';
   import RemoveNodeAction from './RemoveNodeAction.svelte';
   import HideNodeAction from './HideNodeAction.svelte';
-  import { _ } from 'svelte-i18n';
+  import { c as _ } from '../stores.js';
 
   import { data, userData, userAddressHtml, orgAddressHtml, idImages } from '../stores.js';
   import {nl2br} from '../lib.js';
@@ -14,19 +12,12 @@
   // Erstes Anschreiben
   // Auskunftsbegehren
   let letterDataInfoReqNode = $state()
-  let selectedOrg = $state()
-  let selectedTypes = $state()
-  let selectedEvent = $state()
+  let selectedOrg = $derived($data.getOrg($userData.org))
+  let selectedTypes = $derived($data.getTypes($userData.types || []))
+  let selectedEvent = $derived($data.getEvent($userData.event))
   let customOpening = $state()
-  let orgAddressTo = $state()
+  let orgAddressTo = $derived(selectedOrg ? nl2br(selectedOrg.address) : '')
   let hidePrivacyStatementParagraphs = $state(false)
-
-  run(() => {
-    selectedOrg = $data.getOrg($userData.org)
-    selectedTypes = $data.getTypes($userData.types || [])
-    selectedEvent = $data.getEvent($userData.event)
-    orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
-  });
 
   let imageRemoved = { both: false, front: false, back: false}
   function removeIdImage(side) {
@@ -166,7 +157,7 @@
     {/if}
 
     <p contenteditable spellcheck="false">
-      {$_("letter.initial_request", {default: "Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25.&nbsp;September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden."})}
+      {$_("letter.initial_request", {default: "Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25.\u00A0September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden."})}
     </p>
     <p>
       {$_("letter.info_requirement", {default: "Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist."})}
@@ -270,12 +261,6 @@
   flex-direction: column;
 }
 
-.attachments img {
-  display: block;
-  max-width: 100%;
-  margin-top: 12px;
-}
-
 @media screen {
   #letter-container {
     margin-top: 20px;
@@ -290,10 +275,8 @@
     padding: 20mm;
   }
 
-  .attachments {
-    margin-top: 30px;
-  }
 }
+
 
 @media screen and (max-width: 220mm) {
   #letter-container {
@@ -309,13 +292,6 @@
     /* A4 */
     min-height: 297mm;
   }
-  .attachments {
-    margin-top: 10px;
-    break-before: auto;
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
   p, li {
     break-before: auto;
     page-break-inside: avoid;
@@ -351,9 +327,5 @@ h2 {
   font-size: 16px;
 }
 
- .before::before, .after::after {
-   content: "\A";
-   white-space: pre;
- }
 
 </style>

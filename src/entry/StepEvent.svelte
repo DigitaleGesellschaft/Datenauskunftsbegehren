@@ -1,5 +1,4 @@
 <script>
-  import { run } from 'svelte/legacy';
   import { _ } from 'svelte-i18n';
 
   import { data, userData } from '../stores.js';
@@ -7,13 +6,8 @@
   import UserAddress from './UserAddress.svelte';
   import OrgSelection from './OrgSelection.svelte';
 
-  let selectedEvent = $state()
-  let variables = $state()
-
-  run(() => {
-    selectedEvent = $data.getEvent($userData.event)
-    variables = selectedEvent ? selectedEvent.variables : []
-  });
+  let selectedEvent = $derived($data.getEvent($userData.event))
+  let variables = $derived(selectedEvent ? selectedEvent.variables : [])
 </script>
 {#if selectedEvent}
   <h2>{$_("step_event.details_header", { default: "Mach noch einige Angaben für das Auskunftsbegehren aus speziellem Grund «{eventName}»", values: { eventName: selectedEvent.name } })}</h2>

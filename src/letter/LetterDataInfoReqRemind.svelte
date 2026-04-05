@@ -1,8 +1,6 @@
 <script>
-  import { run } from 'svelte/legacy';
-
   import {onMount} from 'svelte';
-  import { _ } from 'svelte-i18n';
+  import { c as _ } from '../stores.js';
   import HideNodeAction from './HideNodeAction.svelte';
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
@@ -10,15 +8,10 @@
   // Ausbleibende Auskunft
   // Keine Reaktion auf Auskunftsbegehren
   let LetterDataInfoReqRemindNode = $state()
-  let selectedOrg = $state()
+  let selectedOrg = $derived($data.getOrg($userData.org))
   let customOpening
-  let orgAddressTo = $state()
+  let orgAddressTo = $derived(selectedOrg ? nl2br(selectedOrg.address) : '')
   let hidePrivacyStatementParagraphs = false
-
-  run(() => {
-    selectedOrg = $data.getOrg($userData.org)
-    orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
-  });
 
   function setCaretToEndOf(node) {
     const range = document.createRange();
@@ -129,7 +122,7 @@
 
     <p contenteditable spellcheck="false">
       {$_("letter_info_req_remind.unanswered_request", { default: "Am TT. MMMM JJJJ stellte ich ein Datenauskunftsbegehren, das bis heute unbeantwortet geblieben ist." })}
-    <p>
+    </p>
     <p contenteditable spellcheck="false">
       {$_("letter_info_req_remind.legal_reference", { default: "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen die Auskunft oder die Information über eine verzögerte Auskunft innerhalb von 30 Tagen erfolgen. Ebenfalls innerhalb von 30 Tagen muss mitgeteilt werden, wenn die Auskunft verweigert oder aufgeschoben wird." })}
     </p>

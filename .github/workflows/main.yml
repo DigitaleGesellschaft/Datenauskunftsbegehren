@@ -19,6 +19,10 @@ jobs:
       run: |
         npm ci
   
+    - name: Check translations
+      run: |
+        npm run i18n-check
+
     - name: build
       run: |
         npm run build

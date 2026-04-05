@@ -18,10 +18,11 @@ Works with:
 
 - Node v24
 
-Download the latest `data.json`:
+Download the latest data files:
 
 ```bash
-wget -O public/data.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data.json
+wget -O public/data_de.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data_de.json
+wget -O public/data_fr.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data_fr.json
 ```
 
 ...then install the dependencies and playwright browsers...
@@ -43,23 +44,57 @@ If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommen
 
 ### Translations
 
-Translation file are located in [locals](./src/locales/) folder. If translations strings are added inside the source code, re-run the generation of the locales files:
+Translation files are located in the [locales](./src/locales/) folder:
+
+| File | Purpose | How to update |
+|------|---------|---------------|
+| `de-CH.json` | UI strings (German) | `npm run i18n` |
+| `fr-CH.json` | UI strings (French) | `npm run i18n` |
+| `en.json` | UI strings (English) | `npm run i18n` |
+| `it-CH.json` | UI strings (Italian) | `npm run i18n` |
+| `de-CH.letter.json` | Letter text (German) | Edit manually |
+| `fr-CH.letter.json` | Letter text (French) | Edit manually |
+
+The letter files (`*.letter.json`) are maintained manually — they contain the full legal text of the letters and use a separate locale namespace (`de-letter`, `fr-letter`).
+
+If translation strings are added inside the source code, re-run the generation of the locale files:
 
 ```bash
 npm run i18n
-
-# To overwrite the translations to represent only what is found in code
-npm run i18n-clean
 ```
 
-Then just edit continue to translate [locales/fr-CH.json](./src/locales/fr-CH.json) and **commit the files** to the repo.
+This only **adds** missing keys (with empty values) — existing translations are preserved.
 
-#### Progrgams to fill in translations
+Note: the scripts only scan UI components (not `src/letter/`). New translation keys in letter components must be added manually to the letter JSON files. If new source subdirectories are added, update the `UI_GLOBS` list in `tooling/i18n.sh`.
+
+Then continue to translate the locale files and **commit all changed files** to the repo.
+
+#### Programs to fill in translations
 
 Poedit is an open-source program but lacks the possibility to display the languages side-by-side. BabelEdit needs a licence and is not free, even though it supports the file format. For now, the easiest is:
 
 - Provide german defaults in source code
-- Replace default german text in french version
+- Replace default german text in other language versions
+
+### Configuring the default language
+
+The default language is German (`de`). It can be changed via the `VITE_DEFAULT_LANG` environment variable — useful when hosting the app on a website in a different language.
+
+Valid values: `de`, `fr`, `en`, `it`
+
+> Note: The correspondence language (used for the generated letter) only supports `de` and `fr`. Any other value falls back to `de`.
+
+Either pass it directly at build time:
+
+```bash
+VITE_DEFAULT_LANG=fr npm run build
+```
+
+Or add it to a `.env` file in the project root:
+
+```
+VITE_DEFAULT_LANG=fr
+```
 
 ### Building and running in production mode
 

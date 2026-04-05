@@ -21,25 +21,27 @@
   })
   
 </script>
-<div bind:this={node} onclick={removeNode}>
+<button type="button" bind:this={node} onclick={removeNode}>
   <BinIcon></BinIcon>
-</div>
+</button>
 <style>
-  div {
+  button {
     cursor: pointer;
     position: absolute;
     right: -20px;
     top: -3px;
     color: red;
-
     opacity: 0.3;
+    background: none;
+    border: none;
+    padding: 0;
   }
-  div:hover {
+  button:hover {
     opacity: 1;
   }
 
   @media print {
-    div {
+    button {
       display: none;
     }
   }

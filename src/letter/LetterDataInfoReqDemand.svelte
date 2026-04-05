@@ -1,8 +1,6 @@
 <script>
-  import { run } from 'svelte/legacy';
-
   import {onMount} from 'svelte';
-  import { _ } from 'svelte-i18n';
+  import { c as _ } from '../stores.js';
   import HideNodeAction from './HideNodeAction.svelte';
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
@@ -10,15 +8,10 @@
   // Unvollständige Auskunft
   // Unvollständige Auskunft nach Auskunftsbegehren
   let LetterDataInfoReqDemandNode = $state()
-  let selectedOrg = $state()
+  let selectedOrg = $derived($data.getOrg($userData.org))
   let customOpening
-  let orgAddressTo = $state()
+  let orgAddressTo = $derived(selectedOrg ? nl2br(selectedOrg.address) : '')
   let hidePrivacyStatementParagraphs = false
-
-  run(() => {
-    selectedOrg = $data.getOrg($userData.org)
-    orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
-  });
 
   function setCaretToEndOf(node) {
     const range = document.createRange();

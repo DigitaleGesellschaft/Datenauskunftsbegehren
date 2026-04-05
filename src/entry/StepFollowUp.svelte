@@ -1,18 +1,12 @@
 <script>
-  import { run } from 'svelte/legacy';
   import { _ } from 'svelte-i18n';
 
   import { data, userData } from '../stores.js';
   import UserAddress from './UserAddress.svelte';
   import OrgSelection from './OrgSelection.svelte';
 
-  let selectedDesire = $state()
-  let selectedOrg = $state()
-
-  run(() => {
-    selectedDesire = $data.getDesire($userData.desire)
-    selectedOrg = $data.getOrg($userData.org)
-  });
+  let selectedDesire = $derived($data.getDesire($userData.desire))
+  let selectedOrg = $derived($data.getOrg($userData.org))
 </script>
 
 {#if selectedDesire}

@@ -34,7 +34,7 @@
       <StepType></StepType>
     {/if}
 
-    {#if $userData.entry === 'event' && ($userData.events && $userData.events.length > 0)}
+    {#if $userData.entry === 'event' && $userData.event}
       <StepEvent></StepEvent>
     {/if}
 

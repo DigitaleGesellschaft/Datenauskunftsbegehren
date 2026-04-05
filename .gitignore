@@ -1,6 +1,7 @@
 /node_modules/
 /public/build/
-/public/data.json
+/public/data_de.json
+/public/data_fr.json
 /public/index.html
 .idea
 

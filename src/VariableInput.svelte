@@ -1,22 +1,19 @@
 <script>
-  import { run } from 'svelte/legacy';
-
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
 
   import { lightFormat } from 'date-fns'
 
   let { variable, val = $bindable(undefined) } = $props();
-  const id = `id-${Math.floor(Math.random() * 10000)}-${variable.name}`
+  const uniqueId = Math.floor(Math.random() * 10000);
+  const id = $derived(`id-${uniqueId}-${variable.name}`)
 
   function saveDate(event) {
     const date = event.target.value
     val = lightFormat(new Date(date), 'dd.MM.yyyy')
   }
 
-  let inputFormattedDate = $state()
-
-  run(() => {
+  let inputFormattedDate = $derived.by(() => {
     let date
     if (val) {
       const dateTokens = val.split('.');
@@ -30,8 +27,8 @@
     } else {
       date = new Date()
     }
-    inputFormattedDate = lightFormat(date, 'yyyy-MM-dd')
-  });
+    return lightFormat(date, 'yyyy-MM-dd')
+  })
 
 </script>
 {#if variable}

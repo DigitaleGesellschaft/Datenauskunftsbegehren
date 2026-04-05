@@ -39,13 +39,17 @@ export default defineConfig({
       name: 'chromium',
       use: {
         baseURL: process.env.BASE_URL || 'http://localhost:5173',
-        ...devices['Desktop Chrome'] },
+        ...devices['Desktop Chrome'],
+        locale: 'de-CH',
+      },
     },
     {
       name: 'firefox',
       use: {
         baseURL: process.env.BASE_URL || 'http://localhost:5173',
-        ...devices['Desktop Firefox'] },
+        ...devices['Desktop Firefox'],
+        locale: 'de-CH',
+      },
     },
   ],
 
