@@ -8,6 +8,7 @@ case "$CMD" in
     docker run --rm -it \
       --network host \
       -v "$(pwd)/../:/app" \
+      -e VITE_TEST_BANNER=true \
       -w /app \
       node:24-alpine \
       sh -c "npm install && npm run dev"
@@ -27,7 +28,8 @@ case "$CMD" in
       -v "$(pwd)/../:/app" \
       -w /app \
       node:24-alpine \
-      sh -c "wget -O public/data.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data.json"
+      sh -c "wget -O public/data_de.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data_de.json && \
+             wget -O public/data_fr.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data_fr.json"
     ;;
   *)
     echo "Usage: $0 {dev|test|download-data}"
