@@ -4,7 +4,8 @@ import { throttle } from 'lodash-es';
 import {data as d, validateUserData, getValidUserData, getOrgHistoryMessage} from './data.js';
 import { _, locale } from 'svelte-i18n';
 
-export const data = readable(d)
+const _dataStore = writable(d)
+export const data = { subscribe: _dataStore.subscribe }
 export const messages = writable([])
 
 window.addEventListener('hashchange', (event) => {
@@ -195,6 +196,7 @@ langCor.subscribe(async lang => {
   if (res.ok) {
     const json = await res.json()
     await d.load(json)
+    _dataStore.set(d)
   }
 })
 
