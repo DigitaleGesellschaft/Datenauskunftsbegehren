@@ -111,3 +111,33 @@ test('UI-Sprache von Deutsch auf Englisch wechseln', async ({ page }) => {
   // Seite ist jetzt auf Englisch
   await expect(page.locator('h1')).toHaveText('Generate your data access request');
 });
+
+test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page }) => {
+  await page.goto('');
+
+  // UI-Sprache auf Englisch, Korrespondenzsprache auf Französisch setzen
+  await page.locator('button.circle.one').first().click();
+  await page.locator('input[name="ui-language"][value="en"]').click();
+  await page.locator('input[name="correspondence-language"][value="fr"]').click();
+
+  // Spracheinstellungen schliessen (Close-Button im Overlay)
+  await page.locator('.overlay header button').click();
+
+  // Etwas eingeben, damit der Reset-Button erscheint
+  await page.locator('input[placeholder="Suche ..."]').click();
+  const listContainer = page.locator('div.svelte-select-list');
+  await expect(listContainer).toBeVisible();
+  await listContainer.locator('div.item').first().click();
+
+  // Eingaben zurücksetzen
+  await page.locator('button', { hasText: 'Reset inputs' }).click();
+
+  // UI-Sprache ist noch Englisch
+  await expect(page.locator('h1')).toHaveText('Generate your data access request');
+
+  // Korrespondenzsprache ist noch Französisch
+  await expect(page.locator('button.circle.one').first()).toBeVisible();
+  await page.locator('button.circle.one').first().click();
+  await expect(page.locator('input[name="correspondence-language"][value="fr"]')).toBeChecked();
+  await expect(page.locator('input[name="ui-language"][value="en"]')).toBeChecked();
+});

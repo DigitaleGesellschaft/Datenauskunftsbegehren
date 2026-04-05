@@ -24,7 +24,8 @@
   import IcsDownload from './IcsDownload.svelte'
   import DigigesLogo from './DigigesLogo.svelte'
 
-  import {data, userData, userAddressHtml, orgAddressHtml, userDesire} from './stores.js'
+  import {data, userData, userAddressHtml, orgAddressHtml, userDesire, langUi, langCor} from './stores.js'
+  import { get } from 'svelte/store'
   let desires = $derived($data && $data.desires ? $data.desires : [])
 
   const MEMBERSHIP_LINK = 'https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/'
@@ -61,7 +62,7 @@
   }
 
   function reset() {
-    userData.set({})
+    userData.set({ langUi: get(langUi), langCor: get(langCor) })
     userAddressHtml.set('')
     orgAddressHtml.set('')
     userDesire.set('')
