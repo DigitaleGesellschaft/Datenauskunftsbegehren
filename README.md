@@ -62,6 +62,26 @@ Poedit is an open-source program but lacks the possibility to display the langua
 - Provide german defaults in source code
 - Replace default german text in french version
 
+### Configuring the default language
+
+The default language is German (`de`). It can be changed via the `VITE_DEFAULT_LANG` environment variable — useful when hosting the app on a website in a different language.
+
+Valid values: `de`, `fr`, `en`, `it`
+
+> Note: The correspondence language (used for the generated letter) only supports `de` and `fr`. Any other value falls back to `de`.
+
+Either pass it directly at build time:
+
+```bash
+VITE_DEFAULT_LANG=fr npm run build
+```
+
+Or add it to a `.env` file in the project root:
+
+```
+VITE_DEFAULT_LANG=fr
+```
+
 ### Building and running in production mode
 
 To create an optimised version of the app:

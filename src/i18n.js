@@ -10,7 +10,7 @@ addMessages('de-letter', deCHLetter);
 addMessages('fr-letter', frCHLetter);
 
 init({
-  fallbackLocale: 'de',
+  fallbackLocale: import.meta.env.VITE_DEFAULT_LANG || 'de',
   initialLocale: getLocaleFromNavigator(),
   ignoreTag: false
 });

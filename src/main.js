@@ -21,13 +21,15 @@ const featureTests = [
 ]
 
 function getCorrespondenceLanguage() {
+  const defaultLang = import.meta.env.VITE_DEFAULT_LANG
+  const defaultCorLang = ['de', 'fr'].includes(defaultLang) ? defaultLang : 'de'
   const hash = window.location.hash;
-  if (hash.length === 0) return 'de';
+  if (hash.length === 0) return defaultCorLang;
   try {
     const data = JSON.parse(decodeURI(hash.slice(1)));
-    return data.langCor || 'de';
+    return data.langCor || defaultCorLang;
   } catch {
-    return 'de';
+    return defaultCorLang;
   }
 }
 
