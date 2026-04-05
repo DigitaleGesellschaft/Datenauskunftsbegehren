@@ -1,46 +1,33 @@
 <script>
-  import { run } from 'svelte/legacy';
-
   let {
     label,
-    checked = $bindable(),
     group = $bindable(),
     value
   } = $props();
 
   let id = `id-${Math.floor(Math.random() * 100000)}`
 
-	
-	function updateCheckbox(group) {
-		checked = (group ?? []).indexOf(value) >= 0
-	}
+  let checked = $derived((group ?? []).indexOf(value) >= 0)
 
-	function updateGroup(checked) {
-		const index = (group ?? []).indexOf(value)
-		if (checked) {
-			if (index < 0) {
-				group.push(value)
-				group = group
-			}
-		} else {
-			if (index >= 0) {
-				group.splice(index, 1)
-				group = group
-			}
-		}
-	}
-  run(() => {
-    updateCheckbox(group)
-  });
-	run(() => {
-    updateGroup(checked)
-  });
+  function handleChange(event) {
+    const isChecked = event.target.checked
+    const index = (group ?? []).indexOf(value)
+    if (isChecked) {
+      if (index < 0) {
+        group = [...(group ?? []), value]
+      }
+    } else {
+      if (index >= 0) {
+        group = (group ?? []).filter(v => v !== value)
+      }
+    }
+  }
 </script>
 <label for="{id}" class="c-custom-checkbox">
-  {#if value}  
-    <input type="checkbox" id="{id}" bind:checked={checked} value={value}>
+  {#if value}
+    <input type="checkbox" id="{id}" checked={checked} onchange={handleChange} value={value}>
   {:else}
-    <input type="checkbox" id="{id}" bind:checked={checked}>
+    <input type="checkbox" id="{id}" checked={checked} onchange={handleChange}>
   {/if}
   
   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">

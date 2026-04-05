@@ -1,6 +1,4 @@
 <script>
-  import { run } from 'svelte/legacy';
-
   import {onMount} from 'svelte';
   import HideNodeAction from './HideNodeAction.svelte';
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
@@ -8,15 +6,10 @@
   import { c as _ } from '../stores.js';
 
   let LetterDataInfoReqDeleteNode = $state()
-  let selectedOrg = $state()
+  let selectedOrg = $derived($data.getOrg($userData.org))
   let customOpening
-  let orgAddressTo = $state()
+  let orgAddressTo = $derived(selectedOrg ? nl2br(selectedOrg.address) : '')
   let hidePrivacyStatementParagraphs = false
-
-  run(() => {
-    selectedOrg = $data.getOrg($userData.org)
-    orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
-  });
 
   function setCaretToEndOf(node) {
     const range = document.createRange();

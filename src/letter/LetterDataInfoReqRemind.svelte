@@ -1,6 +1,4 @@
 <script>
-  import { run } from 'svelte/legacy';
-
   import {onMount} from 'svelte';
   import { c as _ } from '../stores.js';
   import HideNodeAction from './HideNodeAction.svelte';
@@ -10,15 +8,10 @@
   // Ausbleibende Auskunft
   // Keine Reaktion auf Auskunftsbegehren
   let LetterDataInfoReqRemindNode = $state()
-  let selectedOrg = $state()
+  let selectedOrg = $derived($data.getOrg($userData.org))
   let customOpening
-  let orgAddressTo = $state()
+  let orgAddressTo = $derived(selectedOrg ? nl2br(selectedOrg.address) : '')
   let hidePrivacyStatementParagraphs = false
-
-  run(() => {
-    selectedOrg = $data.getOrg($userData.org)
-    orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
-  });
 
   function setCaretToEndOf(node) {
     const range = document.createRange();

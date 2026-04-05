@@ -1,6 +1,4 @@
 <script>
-  import { run } from 'svelte/legacy';
-
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
 
@@ -15,9 +13,7 @@
     val = lightFormat(new Date(date), 'dd.MM.yyyy')
   }
 
-  let inputFormattedDate = $state()
-
-  run(() => {
+  let inputFormattedDate = $derived.by(() => {
     let date
     if (val) {
       const dateTokens = val.split('.');
@@ -31,8 +27,8 @@
     } else {
       date = new Date()
     }
-    inputFormattedDate = lightFormat(date, 'yyyy-MM-dd')
-  });
+    return lightFormat(date, 'yyyy-MM-dd')
+  })
 
 </script>
 {#if variable}
