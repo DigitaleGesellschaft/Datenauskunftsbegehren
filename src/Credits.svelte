@@ -167,9 +167,6 @@
     margin-right: 6px;
     position: relative;
     top: 4px;
-  }
-
-  svg {
     width: 1em;
     height: 1em;
   }

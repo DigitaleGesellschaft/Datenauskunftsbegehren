@@ -29,20 +29,22 @@
   })
   
 </script>
-<div class="hide-node-action" bind:this={node} onclick={toggleNode} title="{title}">
+<button type="button" class="hide-node-action" bind:this={node} onclick={toggleNode} title="{title}">
   <EyeIcon></EyeIcon>
-</div>
+</button>
 <style>
-  div {
+  button {
     cursor: pointer;
     position: absolute;
     left: -30px;
     top: 0;
     color: var(--color-one);
-
     opacity: 0.3;
+    background: none;
+    border: none;
+    padding: 0;
   }
-  div:hover {
+  button:hover {
     opacity: 1;
   }
 
@@ -51,7 +53,7 @@
   }
 
   @media print {
-    div {
+    button {
       display: none;
     }
   }

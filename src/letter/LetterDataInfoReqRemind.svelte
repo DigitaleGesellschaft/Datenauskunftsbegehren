@@ -129,7 +129,7 @@
 
     <p contenteditable spellcheck="false">
       {$_("letter_info_req_remind.unanswered_request", { default: "Am TT. MMMM JJJJ stellte ich ein Datenauskunftsbegehren, das bis heute unbeantwortet geblieben ist." })}
-    <p>
+    </p>
     <p contenteditable spellcheck="false">
       {$_("letter_info_req_remind.legal_reference", { default: "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen die Auskunft oder die Information über eine verzögerte Auskunft innerhalb von 30 Tagen erfolgen. Ebenfalls innerhalb von 30 Tagen muss mitgeteilt werden, wenn die Auskunft verweigert oder aufgeschoben wird." })}
     </p>

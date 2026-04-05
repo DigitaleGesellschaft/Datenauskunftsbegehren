@@ -270,12 +270,6 @@
   flex-direction: column;
 }
 
-.attachments img {
-  display: block;
-  max-width: 100%;
-  margin-top: 12px;
-}
-
 @media screen {
   #letter-container {
     margin-top: 20px;
@@ -290,10 +284,8 @@
     padding: 20mm;
   }
 
-  .attachments {
-    margin-top: 30px;
-  }
 }
+
 
 @media screen and (max-width: 220mm) {
   #letter-container {
@@ -309,13 +301,6 @@
     /* A4 */
     min-height: 297mm;
   }
-  .attachments {
-    margin-top: 10px;
-    break-before: auto;
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
   p, li {
     break-before: auto;
     page-break-inside: avoid;
@@ -351,9 +336,5 @@ h2 {
   font-size: 16px;
 }
 
- .before::before, .after::after {
-   content: "\A";
-   white-space: pre;
- }
 
 </style>

@@ -7,7 +7,8 @@
   import { lightFormat } from 'date-fns'
 
   let { variable, val = $bindable(undefined) } = $props();
-  const id = `id-${Math.floor(Math.random() * 10000)}-${variable.name}`
+  const uniqueId = Math.floor(Math.random() * 10000);
+  const id = $derived(`id-${uniqueId}-${variable.name}`)
 
   function saveDate(event) {
     const date = event.target.value
