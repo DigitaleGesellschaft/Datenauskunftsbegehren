@@ -18,10 +18,11 @@ Works with:
 
 - Node v24
 
-Download the latest `data.json`:
+Download the latest data files:
 
 ```bash
-wget -O public/data.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data.json
+wget -O public/data_de.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data_de.json
+wget -O public/data_fr.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data_fr.json
 ```
 
 ...then install the dependencies and playwright browsers...

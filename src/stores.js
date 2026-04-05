@@ -180,11 +180,22 @@ userData.subscribe(val => {
 
 export const langCor = writable(currentUserData.langCor || get(locale) || 'de')
 
-langCor.subscribe(lang => {
+let initialLangCorLoad = true
+langCor.subscribe(async lang => {
   userData.update(ud => {
     ud.langCor = lang
     return ud
   })
+  if (initialLangCorLoad) {
+    initialLangCorLoad = false
+    return
+  }
+  const dataFile = lang === 'fr' ? 'data_fr.json' : 'data_de.json'
+  const res = await fetch(`./${dataFile}`)
+  if (res.ok) {
+    const json = await res.json()
+    await d.load(json)
+  }
 })
 
 userData.subscribe(val => {
