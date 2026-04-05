@@ -84,7 +84,6 @@
   let followUpHidden = $state(true);
   function hideUnhideFollowUp() {
     followUpHidden = ! followUpHidden;
-    console.log("app followup hidden:" + followUpHidden);
   }
 
 </script>

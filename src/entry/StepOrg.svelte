@@ -1,5 +1,5 @@
 <script>
-  import { run } from 'svelte/legacy';
+  import { untrack } from 'svelte';
   import { _ } from 'svelte-i18n';
 
   import { data, userData } from '../stores.js';
@@ -7,40 +7,36 @@
   import Checkbox from '../form/Checkbox.svelte';
   import UserAddress from './UserAddress.svelte';
 
-  let selectedOrg = $state()
-  let variables = $state()
-  let variablesForTypeSelection = $state()
+  let selectedOrg = $derived($data.getOrg($userData.org))
+  let variables = $derived(selectedOrg ? selectedOrg.variables : [])
 
-  run(() => {
-    selectedOrg = $data.getOrg($userData.org)
-    
-    variables = selectedOrg ? selectedOrg.variables : []
-
-    const types = $userData.types ? $userData.types : selectedOrg ? selectedOrg.types.map(type => type.handle).slice(0) : []
+  $effect(() => {
+    const org = selectedOrg
+    const currentTypes = untrack(() => $userData.types)
+    const types = currentTypes
+      ? currentTypes
+      : org ? org.types.map(type => type.handle).slice(0) : []
 
     // keep only types defined for the selected org if a org is selected
-    $userData.types = types
-      .filter(type => {
-        if (!selectedOrg) return true
-        return !!selectedOrg.types.find(orgType => type === orgType.handle)
-      })
+    $userData.types = types.filter(type => {
+      if (!org) return true
+      return !!org.types.find(orgType => type === orgType.handle)
+    })
+  })
 
-    // ignore variables source from a type not selected
-    variablesForTypeSelection = variables
+  // ignore variables sourced from a type that is not selected, and deduplicate by name
+  let variablesForTypeSelection = $derived(
+    variables
       .filter(variable => {
         if (!variable.source) return true
         if (variable.source !== 'type') return true
-        if (variable.source === 'type' && $userData.types && $userData.types.includes(variable.sourceType)) return true
-        return false
+        return $userData.types && $userData.types.includes(variable.sourceType)
       })
-      // make variables unique by name
-      .reduce((variables, current) => {
-        if (!variables.find(variable => variable.name === current.name)) {
-          variables.push(current)
-        }
-        return variables
+      .reduce((acc, current) => {
+        if (!acc.find(variable => variable.name === current.name)) acc.push(current)
+        return acc
       }, [])
-  });
+  )
 </script>
 {#if selectedOrg}
   <h2>{$_("provide_more_details", { default: "Mach noch einige Angaben für das Auskunftsbegehren «{orgName}»", values: { orgName: selectedOrg.name } })}</h2>

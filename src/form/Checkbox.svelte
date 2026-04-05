@@ -12,11 +12,11 @@
 
 	
 	function updateCheckbox(group) {
-		checked = group.indexOf(value) >= 0
+		checked = (group ?? []).indexOf(value) >= 0
 	}
-	
+
 	function updateGroup(checked) {
-		const index = group.indexOf(value)
+		const index = (group ?? []).indexOf(value)
 		if (checked) {
 			if (index < 0) {
 				group.push(value)
