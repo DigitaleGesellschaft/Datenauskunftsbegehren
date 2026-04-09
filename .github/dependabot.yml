@@ -9,6 +9,10 @@ updates:
         patterns:
           - "playwright"
           - "@playwright/test"
+      vite:
+        patterns:
+          - "vite"
+          - "@sveltejs/vite-plugin-svelte"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
