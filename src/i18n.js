@@ -9,8 +9,21 @@ register('it', () => import('./locales/it-CH.json'));
 addMessages('de-letter', deCHLetter);
 addMessages('fr-letter', frCHLetter);
 
+const SUPPORTED_LANGS = ['de', 'fr', 'en', 'it'];
+
+function getInitialLocale() {
+  const hash = window.location.hash;
+  if (hash.length > 0) {
+    try {
+      const data = JSON.parse(decodeURI(hash.slice(1)));
+      if (SUPPORTED_LANGS.includes(data.langUi)) return data.langUi;
+    } catch {}
+  }
+  return getLocaleFromNavigator();
+}
+
 init({
   fallbackLocale: import.meta.env.VITE_DEFAULT_LANG || 'de',
-  initialLocale: getLocaleFromNavigator(),
+  initialLocale: getInitialLocale(),
   ignoreTag: false
 });
