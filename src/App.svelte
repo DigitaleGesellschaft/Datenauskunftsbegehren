@@ -164,17 +164,17 @@
 
   {#if $userData.step && $userData.step !== 'entry'}
     <Share></Share>
-    {#if $userData.step === 'data_info_request' || $userData.step === 'print'}
+    {#if $userData.step === 'data_info_request' || ($userData.step === 'print' && ($userData.entry !== 'followup' || $userData.desire === 'data_info_request'))}
       <LetterDataInfoReq></LetterDataInfoReq>
     {/if}
-    {#if $userData.entry === 'followup'}
-      {#if $userData.step === 'unanswered' || $userData.step === 'print'}
+    {#if $userData.entry === 'followup' && $userData.desire !== 'data_info_request'}
+      {#if $userData.desire === 'unanswered'}
         <LetterDataInfoReqRemind></LetterDataInfoReqRemind>
-      {:else if $userData.desire === 'incomplete_answer' || $userData.step === 'print'}
+      {:else if $userData.desire === 'incomplete_answer'}
         <LetterDataInfoReqDemand></LetterDataInfoReqDemand>
-      {:else if $userData.desire === 'data_correction' || $userData.step === 'print'}
+      {:else if $userData.desire === 'data_correction'}
         <LetterDataInfoReqChange></LetterDataInfoReqChange>
-      {:else if $userData.desire === 'data_deletion' || $userData.step === 'print'}
+      {:else if $userData.desire === 'data_deletion'}
         <LetterDataInfoReqDelete></LetterDataInfoReqDelete>
       {/if}
     {/if}
