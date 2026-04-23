@@ -61,6 +61,18 @@ test('Nachfassen Daten löschen zeigt beim Drucken exakt einen Brief', async ({ 
   await expect(letterSections.first()).toContainText('Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Personendaten zu löschen:');
 });
 
+test('Kurzer Brief erzeugt beim Drucken eine PDF-Seite', async ({ page, browserName }) => {
+  test.skip(browserName !== 'chromium', 'PDF-Generierung nur in Chromium verfügbar');
+
+  const url = `#{"v":1,"entry":"followup","desire":"unanswered","step":"print",${baseState}}`;
+  await page.goto(url);
+
+  const pdf = await page.pdf({ format: 'A4' });
+  // Count PDF pages: each page dictionary has /Type /Page (singular, not /Pages)
+  const pageCount = (pdf.toString('latin1').match(/\/Type\s*\/Page(?!s)/g) || []).length;
+  expect(pageCount).toBe(1);
+});
+
 test('Brief Auskunftsbegehren via Einstiegsmaske zeigt nur einen Brief', async ({ page }) => {
   await page.goto('');
 
