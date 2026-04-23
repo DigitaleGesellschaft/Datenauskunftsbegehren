@@ -199,8 +199,6 @@
 @media print {
   #letter {
     width: 100% !important;
-    /* A4 */
-    min-height: 297mm;
   }
 
   p, li {
