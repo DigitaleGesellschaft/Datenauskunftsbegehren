@@ -19,5 +19,6 @@ node_modules/
 
 dist
 
-# Don't commit personal AGENTS.md files
+# Don't commit personal AI Assistant files
 AGENTS.md
+CLAUDE.md
