@@ -25,6 +25,7 @@
   },
   "closing": "Je vous remercie et vous adresse mes meilleures salutations",
   "attachment_official_id": "En annexe: Pièce d'identité (copie)",
+  "attachment_id_selection": "Sélectionne l'image de ta pièce d'identité depuis le système de fichiers (les deux côtés ou recto et verso)",
   "data_access_request": "Requête en renseignement sur les données personnelles",
   "letter_change_body_1": "Je vous remercie pour les précisions du JJ.MMMM AAAA. J'en constate que les données personelles qui ont fait l'objet d'un traitement auprès de vous ne sont pas correctes.",
   "letter_change_body_2": "Je vous prie ainsi de corriger les données personelles suivantes:",
