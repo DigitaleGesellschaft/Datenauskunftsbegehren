@@ -1,19 +1,16 @@
 <script>
   import {onMount} from 'svelte';
+  import { c as _ } from '../stores.js';
   import HideNodeAction from './HideNodeAction.svelte';
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
 
-  let LetterDataInfoReqHandoverNode
-  let selectedOrg
+  // Herausgabe von Daten nach erteilter Auskunft
+  let LetterDataInfoReqHandoverNode = $state()
+  let selectedOrg = $derived($data.getOrg($userData.org))
   let customOpening
-  let orgAddressTo
+  let orgAddressTo = $derived(selectedOrg ? nl2br(selectedOrg.address) : '')
   let hidePrivacyStatementParagraphs = false
-
-  $: {
-    selectedOrg = $data.getOrg($userData.org)
-    orgAddressTo = selectedOrg ? nl2br(selectedOrg.address) : ''
-  }
 
   function setCaretToEndOf(node) {
     const range = document.createRange();
@@ -32,6 +29,9 @@
         userData.date = Intl.DateTimeFormat('de-CH').format(Date.now())
         return userData;
       })
+    }
+    if (!$userData.dataInfoResponseDate || $userData.dataInfoResponseDate === '' || $userData.dataInfoResponseDate === '<br>') {
+      userData.update(ud => { ud.dataInfoResponseDate = 'TT.MM.JJJJ'; return ud })
     }
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
@@ -67,7 +67,7 @@
           contenteditable
           spellcheck="false"
           class="editable-variable"
-          data-label="Dein Name"
+          data-label={$_("your_name", { default: "Dein Name" })}
           class:empty={!$userData.name || $userData.name.length === 0}
           bind:innerHTML={$userData.name}>
         </span>
@@ -76,18 +76,18 @@
           contenteditable
           spellcheck="false"
           class="editable-variable"
-          data-label="Deine Adresse"
+          data-label={$_("your_address", { default: "Deine Adresse" })}
           class:empty={!$userAddressHtml || $userAddressHtml.length === 0}
           bind:innerHTML={$userAddressHtml}></span>
-          
+
           <!-- chromium has a bug, and needs this empty span -->
           <span>&nbsp;</span>
       </div>
 
       <div class="address-to">
         <div contenteditable spellcheck="false">
-          EINSCHREIBEN
-        <HideNodeAction title="Ein-/ausblenden"></HideNodeAction>
+          {$_("registered_mail", { default: "EINSCHREIBEN" })}
+        <HideNodeAction title={$_("toggle_visibility", { default: "Ein-/ausblenden" })}></HideNodeAction>
         </div>
         <br>
         {#if orgAddressTo.length > 0}
@@ -97,7 +97,7 @@
             contenteditable
             spellcheck="false"
             class="editable-variable"
-            data-label="Empfängeradresse"
+            data-label={$_("recipient_address", { default: "Empfängeradresse" })}
             class:empty={!$orgAddressHtml || $orgAddressHtml.length === 0}
             bind:innerHTML={$orgAddressHtml}>
           </span>
@@ -108,47 +108,51 @@
         class="date editable-variable"
         contenteditable
         spellcheck="false"
-        data-label="Datum"
+        data-label={$_("date", { default: "Datum" })}
         class:empty={!$userData.date || $userData.date.length === 0}
         bind:innerHTML={$userData.date}>
       </p>
     </div>
 
     <h1 class="subject" contenteditable spellcheck="false">
-      Datenauskunftsbegehren
+      {$_("letter_handover_subject", { default: "Datenauskunftsbegehren / Herausgabe von Daten" })}
     </h1>
 
     <p class="salutation" contenteditable spellcheck="false">
-      Sehr geehrte Angesprochene
+      {$_("salutation", { default: "Sehr geehrte Angesprochene" })}
     </p>
 
+    <p contenteditable spellcheck="false">{$_("thank_you_message_pre", { default: "Ich danke Ihnen für die Auskunft vom " })}<span
+        contenteditable
+        spellcheck="false"
+        class="editable-variable"
+        data-label={$_("date_of_response_label", { default: "Datum Antwort" })}
+        class:empty={!$userData.dataInfoResponseDate || $userData.dataInfoResponseDate.length === 0}
+        bind:innerHTML={$userData.dataInfoResponseDate}></span>{$_("thank_you_message_post", { default: "." })}</p>
     <p contenteditable spellcheck="false">
-      Ich danke Ihnen für die Auskunft vom TT. MMMM JJJJ.
-    </p>
-    <p contenteditable spellcheck="false">
-      Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Daten herauszugeben:
+      {$_("letter_handover_body_1", { default: "Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Daten herauszugeben:" })}
     </p>
     <ul>
-      <li contenteditable spellcheck="false">[Auflistung der zu herauszugebenden Daten oder Angabe von "sämtliche Daten"]</li>
+      <li contenteditable spellcheck="false">{$_("letter_handover_list_placeholder", { default: "[Auflistung der zu herauszugebenden Daten oder Angabe von \"sämtliche Daten\"]" })}</li>
       <li contenteditable spellcheck="false">...</li>
     </ul>
     <p contenteditable spellcheck="false">
-      Ich verlange ferner, dass Sie Dritte, von welchen Sie die zu herauszugebenden Daten erhalten oder denen Sie die zu herauszugebenden Daten weitergegeben haben, in der Auflistung entsprechend ausweisen.
+      {$_("letter_handover_body_2", { default: "Ich verlange ferner, dass Sie Dritte, von welchen Sie die zu herauszugebenden Daten erhalten oder denen Sie die zu herauszugebenden Daten weitergegeben haben, in der Auflistung entsprechend ausweisen." })}
     </p>
     <p contenteditable spellcheck="false">
-      Sollten Sie die Herausgabe ganz oder teilweise verweigern, ersuche ich Sie um eine entsprechende Begründung.
+      {$_("letter_handover_body_3", { default: "Sollten Sie die Herausgabe ganz oder teilweise verweigern, ersuche ich Sie um eine entsprechende Begründung." })}
     </p>
 
     <div class="no-break-inside">
       <p contenteditable spellcheck="false" class="no-break-after">
-      Besten Dank und freundliche Grüsse
+        {$_("closing", { default: "Besten Dank und freundliche Grüsse" })}
       </p>
       <br><br>
       <p
         contenteditable
         spellcheck="false"
         class="editable-variable"
-        data-label="Dein Name"
+        data-label={$_("your_name", { default: "Dein Name" })}
         class:empty={!$userData.name || $userData.name.length === 0}
         bind:innerHTML={$userData.name}>
       </p>
@@ -188,6 +192,7 @@
     /* A4 */
     width: 210mm;
     min-height: 297mm;
+
     padding: 20mm;
   }
 }
@@ -203,8 +208,6 @@
 @media print {
   #letter {
     width: 100% !important;
-    /* A4 */
-    min-height: 297mm;
   }
 
   p, li {

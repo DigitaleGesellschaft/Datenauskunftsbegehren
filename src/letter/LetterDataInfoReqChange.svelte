@@ -30,6 +30,9 @@
         return userData;
       })
     }
+    if (!$userData.dataInfoResponseDate || $userData.dataInfoResponseDate === '' || $userData.dataInfoResponseDate === '<br>') {
+      userData.update(ud => { ud.dataInfoResponseDate = 'TT.MM.JJJJ'; return ud })
+    }
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
@@ -119,8 +122,15 @@
        {$_("salutation", {default: "Sehr geehrte Angesprochene"})}
      </p>
 
+     <p contenteditable spellcheck="false">{$_("thank_you_message_pre", { default: "Ich danke Ihnen für die Auskunft vom " })}<span
+        contenteditable
+        spellcheck="false"
+        class="editable-variable"
+        data-label={$_("date_of_response_label", { default: "Datum Antwort" })}
+        class:empty={!$userData.dataInfoResponseDate || $userData.dataInfoResponseDate.length === 0}
+        bind:innerHTML={$userData.dataInfoResponseDate}></span>{$_("thank_you_message_post", { default: "." })}</p>
      <p contenteditable spellcheck="false">
-       {$_("letter_change_body_1", {default: "Ich danke Ihnen für die Auskunft vom TT. MMMM JJJJ. Aufgrund Ihrer Auskunft stellte ich fest, dass von Ihnen bearbeitete Personendaten unrichtig sind."})}
+       {$_("letter_change_body_1_continuation", {default: "Aufgrund Ihrer Auskunft stellte ich fest, dass von Ihnen bearbeitete Personendaten unrichtig sind."})}
      </p>
      <p contenteditable spellcheck="false">
        {$_("letter_change_body_2", {default: "Ich ersuche Sie deshalb, dass folgende Personendaten berichtigt werden:"})}

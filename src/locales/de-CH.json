@@ -110,7 +110,8 @@
       "incomplete_answer": "Brief Einforderung",
       "data_correction": "Brief Korrektur",
       "data_deletion": "Brief Löschung",
-      "print": "Drucken"
+      "print": "Drucken",
+      "data_handover": "Brief Herausgabe"
     }
   },
   "reset_inputs": "Eingaben zurücksetzen",
