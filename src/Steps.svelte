@@ -18,11 +18,9 @@
     ❯
   {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'unanswered'}
     <button class="step" class:active={activeStep === 'unanswered'} onclick={() => dispatch('step', 'unanswered')}>{$_('steps.labels.unanswered', { default: 'Brief Mahnung' })}</button>
-  {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'data_handover' }
-    <button class="step" class:active={activeStep === 'data_handover'} on:click="{() => dispatch('step', 'data_handover')}">Brief Herausgabe</button>
     ❯
-  {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'unanswered' }
-    <button class="step" class:active={activeStep === 'unanswered'} on:click="{() => dispatch('step', 'unanswered')}">Brief Mahnung</button>
+  {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'data_handover'}
+    <button class="step" class:active={activeStep === 'data_handover'} onclick={() => dispatch('step', 'data_handover')}>{$_('steps.labels.data_handover', { default: 'Brief Herausgabe' })}</button>
     ❯
   {:else if activeStep && activeStep !== 'entry' && $userData.desire === 'incomplete_answer'}
     <button class="step" class:active={activeStep === 'incomplete_answer'} onclick={() => dispatch('step', 'incomplete_answer')}>{$_('steps.labels.incomplete_answer', { default: 'Brief Einforderung' })}</button>
