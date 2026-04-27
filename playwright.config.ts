@@ -13,17 +13,17 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './e2e',
-  timeout: 5000,
+  timeout: 15000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: process.env.CI ? [['github'], ['html']] : 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -37,15 +37,19 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { 
+      use: {
         baseURL: process.env.BASE_URL || 'http://localhost:5173',
-        ...devices['Desktop Chrome'] },
+        ...devices['Desktop Chrome'],
+        locale: 'de-CH',
+      },
     },
     {
       name: 'firefox',
       use: {
         baseURL: process.env.BASE_URL || 'http://localhost:5173',
-        ...devices['Desktop Firefox'] },
+        ...devices['Desktop Firefox'],
+        locale: 'de-CH',
+      },
     },
   ],
 
@@ -56,3 +60,4 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+

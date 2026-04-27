@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      playwright:
+        patterns:
+          - "playwright"
+          - "@playwright/test"
+      vite:
+        patterns:
+          - "vite"
+          - "@sveltejs/vite-plugin-svelte"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+

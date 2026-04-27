@@ -1,0 +1,147 @@
+{
+  "meta": {
+    "title": "Générez votre demande d'accès aux données | Digitale Gesellschaft",
+    "description": "Selon la loi sur la protection des données, toute personne a le droit de savoir quelles données la concernant sont enregistrées et, si nécessaire, de les faire supprimer ou corriger.",
+    "og_title": "Générez votre demande d'accès aux données",
+    "og_description": "Selon la loi sur la protection des données, toute personne a le droit de savoir quelles données la concernant sont enregistrées."
+  },
+  "language_picker": {
+    "title": "Paramètres de langue",
+    "ui_language": "Langue de l'interface",
+    "correspondence_language": "Langue de correspondance"
+  },
+  "or": "ou",
+  "steps_one": {
+    "org": "Choisir directement une entreprise ou une autorité",
+    "type": "Choisir une entreprise ou une autorité par secteur d'activité",
+    "event": "Formuler une demande pour un motif particulier",
+    "followup": "Effectuer un suivi d'une demande déjà soumise"
+  },
+  "causa": {
+    "print": {
+      "data_info_request": "la demande d'accès aux données",
+      "unanswered": "le rappel relatif à la demande d'accès aux données",
+      "incomplete_answer": "la relance relative à la demande d'accès aux données",
+      "data_correction": "la demande de rectification des données",
+      "data_deletion": "la demande de suppression des données"
+    },
+    "cal": {
+      "data_info_request": "une demande d'accès aux données",
+      "unanswered": "un rappel relatif à une demande d'accès aux données",
+      "incomplete_answer": "une relance relative à une demande d'accès aux données",
+      "data_correction": "une demande de rectification des données",
+      "data_deletion": "une demande de suppression des données"
+    }
+  },
+  "print": {
+    "done_title": "C'est fait !",
+    "send_by_post": "Tu dois maintenant <strong>envoyer en recommandé par la poste</strong> {causa}.",
+    "deadline_info": "Dès réception, 30 jours sont accordés pour répondre. Enregistre un rappel dans le calendrier pour te souvenir de relancer si tu n'as pas reçu de réponse d'ici là.",
+    "feedback": "Tu peux nous faire part de tes remarques à <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link>.",
+    "support_us_intro": "Notre générateur a été développé par des expert·e·s en informatique et en droit de la Société numérique en d'innombrables heures et est mis à disposition gratuitement.",
+    "support_us_membership": "En tant que <membership_link>membre, donateur ou donatrice</membership_link>, tu soutiens notre travail.",
+    "support_us_newsletter": "Pour rester informé·e de nos activités, abonne-toi dès maintenant à la <newsletter_link>newsletter mensuelle</newsletter_link>.",
+    "no_print_title": "Envoie-toi l'adresse web",
+    "no_print_text": "L'impression n'est malheureusement pas possible sur cet appareil. Utilise l'option d'envoi de l'adresse web (URL), par exemple par e-mail. Tu pourras ensuite l'ouvrir sur un appareil connecté à une imprimante. Les données saisies sont enregistrées dans l'URL."
+  },
+  "nav": {
+    "back_to_entry": "❮ à la saisie",
+    "followup": "Suivi",
+    "print_now": "Imprimer ❯"
+  },
+  "app": {
+    "title": "Générer une demande d'accès à ses données personnelles",
+    "intro": "Chaque personne jouit du droit de connaître les données personnelles la concernant, conformément à la Loi sur la protection des données. Elle peut également réclamer la correction ou la suppression le cas échéant. Ces droits permettent de garder le contrôle sur ses données. Il incombe cependant aux personnes concernées de les faire valoir."
+  },
+  "digiges_name": "Société numérique",
+  "fragment": "Fragment",
+  "mercator_program": "Programme «Digitalisation + Société»",
+  "mercator_org": "Fondation Mercator Schweiz",
+  "generator_source_code": "Source code du générateur",
+  "version": "Version",
+  "credits": {
+    "title": "Générateur de demandes d'accès aux données personnelles",
+    "website_service": "Le générateur en ligne pour les demandes d'accès aux données est mis à disposition par  <digiges_homepage>{digiges_name}</digiges_homepage>."
+  },
+  "no_personal_data_collected": "Aucune donnée n'est récoltée lors de l'utilisation du générateur en ligne. Les informations saisies par l'utilisateur et les options sélectionnées restent uniquement dans le navigateur.",
+  "url_storage_info": "Le lien de la page internet (URL) du générateur contient les données soumises dans le <fragment>{fragment_label}</fragment>. Il permet la réutilisation et la transmission des informations entrées. Ces dernières pouvant s'avérer sensibles, il convient d'user de précaution.",
+  "notes_for_orgs_title": "Informations à l'attention des organisations contactées",
+  "notes_for_orgs_p1": "L'accès au données doit être fourni dans un délai de 30 jours suivant la réception de la requête. Si ce délai n'est pas suffisant, la partie requérante doit en être notifiée. Elle doit également se voir notifier du délai nécessaire pour la transmission des informations. La décision de ne pas fournir les informations ou de ne pas les fournir dans leur intégralité doit être motivée.",
+  "art_18_abs_vdsg": "Art. 18 Al. 1 OLPD",
+  "notes_for_orgs_p2": "L'accès aux données n'entraîne en principe pas de frais, bien que sa préparation puisse représenter une charge de travail importante. Il est conseillé de préciser l'étendue de la demande, si nécessaire.",
+  "art_25_dsg": "Art. 25 LPD",
+  "art_18_vdsg": "Art. 19 OLPD",
+  "further_steps_title": "Étapes suivantes",
+  "further_steps_p1": "Face à une réponse incomplète, il convient d'envoyer une seconde lettre précisant ce qui manque. Si la situation persiste, une action judiciaire peut être engagée. Cette procédure est ouverte au domicile du plaignant ou de la personne responsable du traitement des données.",
+  "further_steps_p2": "Il est possible de réclamer la correction ou la suppression (ainsi que l'accès ultérieur) des données, sauf en cas d'un intérêt public ou privé prépondérant ou d'obligation légale contraire.",
+  "thanks_support_title": "Nous sommes très reconnaissants de votre soutien financier",
+  "mercator_grant": "Le projet a été initié par le <program>{mercator_program}</program> de <mercator>{mercator_org}</mercator>.",
+  "mercator_logo_alt": "Logo Fondation Mercator",
+  "concept_realisation": "Concept et réalisation",
+  "additional_notes_and_revision": "Compléments et révisions",
+  "campaign": "Campagne",
+  "danke_freunde_ideen": "Merci à nos ami-e-s pour leurs idées ♥️",
+  "code_license_info": "Le <repo>{generator_source_code}</repo> est sous la licence <license>3-Clause BSD Licence</license> et visible sur GitHub.",
+  "legal_title": "Légal",
+  "privacy_imprint": "Déclaration sur la protection des données et Impressum",
+  "ics": {
+    "description": "Tu as généré {causa} il y a {days}. As-tu reçu une réponse?",
+    "followup": "La fonction suivante te permet de générer une nouvelle demande ou un suivi.",
+    "comeback": "Contacte nous  à l'adresse auskunftsbegehren@digitale-gesellschaft.ch pour tout renseignement.",
+    "summary": "Réponse à ta requête?",
+    "filename": "renseignements_données.ics",
+    "button": {
+      "download": "Télécharger l'élément pour l'ajouter au calendrier"
+    }
+  },
+  "date": "Date",
+  "time": "Heure",
+  "share": {
+    "title": "Requête données personnelles",
+    "text": "Ta requête:",
+    "hint": "💡 Les informations sont contenues dans l'adresse web. Tu peux les enregistrer",
+    "or_send": "Ou te les envoyer:"
+  },
+  "steps": {
+    "labels": {
+      "entry": "Saisie",
+      "data_info_request": "Lettre pour requête",
+      "unanswered": "Lettre pour rappel",
+      "incomplete_answer": "Lettre pour relancer",
+      "data_correction": "Lettre pour rectifier",
+      "data_deletion": "Lettre pour supprimer",
+      "print": "Imprimer"
+    }
+  },
+  "reset_inputs": "Réinitialiser les entrées",
+  "generate_letter": "Génrer la lettre",
+  "step_event": {
+    "details_header": "Entrées particulières «{eventName}»"
+  },
+  "details": "Details",
+  "step_followup": {
+    "instructions": "Ajouter des informations supplémentaires pour la demande d'accès"
+  },
+  "organisation": "Organisation",
+  "select_organisation": "Choisis un prestataire",
+  "or_enter_address": "ou entre l'adresse",
+  "error": {
+    "something_went_wrong": "Quelque chose n'a pas fonctionné: userData.step n'est pas défini ou pas dans la sélection userData.desire: "
+  },
+  "provide_more_details": "Ajoute encore quelques entrées pour le générateur de requêtes en renseignements de données «{orgName}»",
+  "which_services_do_you_use": "Quels services utilises-tu?",
+  "form_services_type_info": "Des données ont spécifiquement été sollicitées pour les suivants; peut également être laissé vide.",
+  "your_details": "Ta personne",
+  "your_address": "Ton adressse",
+  "name": "Nom",
+  "address": "Adresse",
+  "bullets": {
+    "toggle_visibility": "Ouvrir/fermer pour exiger uniquement les données qui ont été traitées et qui relèvent d'un intérêt."
+  },
+  "id_capture": {
+    "activate_camera_front": "activer la caméra afin de photographier le document d'identité",
+    "activate_camera_back": "activer la caméra afin de photographier l'arrière",
+    "hold_id_instructions": "Tiens le document d'identité devant la caméra - enclenche la.",
+    "crop_instructions": "Tu peux ensuite couper l'image."
+  }
+}

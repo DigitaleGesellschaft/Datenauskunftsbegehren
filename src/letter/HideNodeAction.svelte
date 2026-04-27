@@ -4,10 +4,16 @@
 
   const dispatch = createEventDispatcher();
 
-  let node;
+  let node = $state();
 
-  export let title = "";
-  export let setClass = true;
+  /**
+   * @typedef {Object} Props
+   * @property {string} [title]
+   * @property {boolean} [setClass]
+   */
+
+  /** @type {Props} */
+  let { title = "", setClass = true } = $props();
 
   function toggleNode() {
     if (setClass) {
@@ -23,20 +29,22 @@
   })
   
 </script>
-<div class="hide-node-action" bind:this={node} on:click={toggleNode} title="{title}">
+<button type="button" class="hide-node-action" bind:this={node} onclick={toggleNode} title="{title}">
   <EyeIcon></EyeIcon>
-</div>
+</button>
 <style>
-  div {
+  button {
     cursor: pointer;
     position: absolute;
     left: -30px;
     top: 0;
     color: var(--color-one);
-
     opacity: 0.3;
+    background: none;
+    border: none;
+    padding: 0;
   }
-  div:hover {
+  button:hover {
     opacity: 1;
   }
 
@@ -45,7 +53,7 @@
   }
 
   @media print {
-    div {
+    button {
       display: none;
     }
   }

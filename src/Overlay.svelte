@@ -4,6 +4,13 @@
   const dispatch = createEventDispatcher();
 
   import CloseIcon from './icons/CloseIcon.svelte';
+  /**
+   * @typedef {Object} Props
+   * @property {import('svelte').Snippet} [children]
+   */
+
+  /** @type {Props} */
+  let { children } = $props();
 
   onMount(() => {
     document.body.classList.add('with-overlay')
@@ -20,10 +27,10 @@
 </script>
 <div class="overlay">
   <header>
-    <button class="one circle" on:click={() => dispatch('close')}><CloseIcon></CloseIcon></button>
+    <button class="one circle" onclick={() => dispatch('close')}><CloseIcon></CloseIcon></button>
   </header>
   <section>
-    <slot></slot>
+    {@render children?.()}
   </section>
 </div>
 <style>
@@ -32,13 +39,13 @@
   z-index: 2;
   width: 100%;
   background: white;
-  padding-top: var(--header-height);
+  padding-top: calc(var(--header-height) + var(--banner-height));
 }
 
 header {
   position: fixed;
-  z-index: 2;
-  top: 0;
+  z-index: 11;
+  top: var(--banner-height);
   display: flex;
   height: var(--header-height);
   width: 100%;

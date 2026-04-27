@@ -7,19 +7,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Install nodejs
-      run: sudo apt install nodejs
-    - name: Install npm 7
+    - uses: actions/checkout@v6
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: '24'
+        cache: 'npm'
+
+    - name: npm ci
       run: |
-        npm install npm@7
-    - name: npm install
+        npm ci
+  
+    - name: Check translations
       run: |
-        npm install
+        npm run i18n-check
+
     - name: build
       run: |
         npm run build
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v7
       with:
         name: Public
         path: public/

@@ -5,14 +5,13 @@
   import Select from 'svelte-select';
   import { data } from '../stores.js';
 
-  export let org = undefined;
-  export let options = undefined;
+  let { org = $bindable(undefined), options = undefined } = $props();
 
-  let wrapper;
-  let isTouch = false;
+  let wrapper = $state();
+  let isTouch = $state(false);
   
-  $: orgOptions = (options ? options : $data.getCurrentlySelectableOrgs())
-    .map(o => o.name);
+  let orgOptions = $derived((options ? options : $data.getCurrentlySelectableOrgs())
+    .map(o => o.name));
 
   function handleSelect(event) {
     org = event.detail.value;
@@ -46,7 +45,7 @@
       on:clear={handleClear}
     ></Select>
   {:else}
-    <select value={org} on:input={(event) => handleSelect({detail: {value: event.target.value}})}>
+    <select value={org} oninput={(event) => handleSelect({detail: {value: event.target.value}})}>
       {#each orgOptions as org}
         <option value="{org}">{org}</option>
       {/each}

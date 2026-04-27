@@ -7,22 +7,28 @@
     "build": "vite build",
     "dev": "vite",
     "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
     "test": "playwright test -c ./playwright.config.ts",
-    "deploy": "vite optimize && vite build && rsync -ar -e 'ssh -p 55022' --delete --stats --progress ./public/* who@where:~/wwwtest/oga"
+    "deploy": "vite optimize && vite build && rsync -ar -e 'ssh -p 55022' --delete --stats --progress ./public/* who@where:~/wwwtest/oga",
+    "i18n": "tooling/i18n.sh",
+    "i18n-check": "tooling/i18n-check.sh"
   },
   "devDependencies": {
-    "@playwright/test": "^1.56.0",
-    "@sveltejs/vite-plugin-svelte": "^2.5.3",
-    "@types/node": "^24.0.15",
-    "svelte": "^4.2.20",
-    "vite": "^4.5.14",
-    "vite-plugin-html": "^3.2.2"
+    "@playwright/test": "^1.59.1",
+    "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "@tsconfig/svelte": "^5.0.8",
+    "@types/node": "^24.12.2",
+    "playwright": "^1.57.0",
+    "svelte": "^5.55.4",
+    "svelte-check": "^4.4.6",
+    "typescript": "~6.0.3",
+    "vite": "^8.0.9"
   },
   "dependencies": {
-    "date-fns": "^2.20.2",
+    "date-fns": "^4.1.0",
     "image-capture": "^0.4.0",
-    "lodash-es": "^4.17.21",
-    "playwright": "^1.56.0",
-    "svelte-select": "^4.0.0"
+    "lodash-es": "^4.18.1",
+    "svelte-i18n": "^4.0.1",
+    "svelte-select": "^5.8.3"
   }
 }

@@ -1,7 +1,7 @@
 <script>
   import { userData } from '../stores.js'
 
-  export let paragraph
+  let { paragraph } = $props();
 
   function handleEditableChange(event) {
     const srcElement = event.srcElement;
@@ -17,7 +17,7 @@
 <p>
   {#each paragraph.tokens as token}
     {#if token.type === 'text'}
-      <span contenteditable spellcheck="false" on:input={handleEditableChange}>{token.string}</span>
+      <span contenteditable spellcheck="false" oninput={handleEditableChange}>{token.string}</span>
     {/if}
     {#if token.type === 'variable'}
       <span 

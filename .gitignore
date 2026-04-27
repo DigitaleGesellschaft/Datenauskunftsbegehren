@@ -1,6 +1,7 @@
 /node_modules/
 /public/build/
-/public/data.json
+/public/data_de.json
+/public/data_fr.json
 /public/index.html
 .idea
 
@@ -17,3 +18,7 @@ node_modules/
 /playwright/.cache/
 
 dist
+
+# Don't commit personal AI Assistant files
+AGENTS.md
+CLAUDE.md

@@ -1,18 +1,29 @@
 <script>
   import Overlay from './Overlay.svelte';
   import Credits from './Credits.svelte';
+  import LanguagePicker from './LanguagePicker.svelte';
   import Steps from './Steps.svelte'
-  
-  import InfoIcon from './icons/InfoIcon.svelte'
-  export let activeStep;
 
-  let showCredits = false
+  import InfoIcon from './icons/InfoIcon.svelte'
+  import GlobeIcon from './icons/GlobeIcon.svelte'
+  let { activeStep } = $props();
+
+  let showCredits = $state(false)
+  let showLanguagePicker = $state(false)
 </script>
 
 <header>
   <Steps on:step activeStep={activeStep}></Steps>
-  <button class="credits circle one" on:click={() => showCredits = true}><InfoIcon width="30" height="30"></InfoIcon></button>
+  <div class="actions">
+    <button class="circle one" onclick={() => showLanguagePicker = true}><GlobeIcon width="30" height="30"></GlobeIcon></button>
+    <button class="circle one" onclick={() => showCredits = true}><InfoIcon width="30" height="30"></InfoIcon></button>
+  </div>
 </header>
+{#if showLanguagePicker}
+  <Overlay on:close="{() => showLanguagePicker = false}">
+    <LanguagePicker></LanguagePicker>
+  </Overlay>
+{/if}
 {#if showCredits}
   <Overlay on:close="{() => showCredits = false}">
     <Credits></Credits>
@@ -24,7 +35,7 @@
     display: flex;
     position: fixed;
     z-index: 1;
-    top: 0;
+    top: var(--banner-height);
     left: 0;
 
     width: 100%;
@@ -39,7 +50,9 @@
     justify-content: space-between;
   }
 
-  .credits {
-    margin-left: auto
+  .actions {
+    display: flex;
+    gap: 4px;
+    margin-left: auto;
   }
 </style>
