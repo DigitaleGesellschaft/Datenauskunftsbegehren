@@ -79,3 +79,23 @@ test('Nachfassen Daten löschen lassen', async ({ page }) => {
   expect(sectionText).toContain('E2E Empfänger');
   expect(sectionText).toContain('28.7.2025');
 });
+
+test('Nachfassen Daten ausgehändigt bekommen', async ({ page }) => {
+  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  await page.goto(url);
+
+  // Nachfassen und Daten ausgehändigt bekommen auswählen
+  const nachfassenButton = page.locator('button', { hasText: 'Nachfassen' });
+  await nachfassenButton.click();
+  const herausgabeButton = page.locator('button', { hasText: 'Ich möchte Daten ausgehändigt bekommen' });
+  await herausgabeButton.click();
+
+  // Prüfen, dass es sich um die Vorlage Herausgabe handelt
+  const letterSection = await page.locator('section#letter');
+  const sectionText = await letterSection.textContent();
+  expect(sectionText).toContain('ersuche ich Sie, folgende Daten herauszugeben');
+  expect(sectionText).toContain('Sollten Sie die Herausgabe ganz oder teilweise verweigern');
+  expect(sectionText).toContain('E2E Person');
+  expect(sectionText).toContain('E2E Absender');
+  expect(sectionText).toContain('E2E Empfänger');
+});
