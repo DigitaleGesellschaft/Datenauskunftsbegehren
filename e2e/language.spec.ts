@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { screenshotPath } from './screenshot';
 
 const languages = [
   {
@@ -35,18 +36,22 @@ const languages = [
   },
 ];
 
-test('Standardsprache ist Deutsch', async ({ page }) => {
+test('Standardsprache ist Deutsch', async ({ page }, testInfo) => {
   await page.goto('');
   await expect(page.locator('h1')).toHaveText('Generiere dein Datenauskunftsbegehren');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-startseite-deutsch.png'), fullPage: true });
 });
 
 for (const lang of languages) {
-  test(`UI-Sprache auf ${lang.label} umstellen`, async ({ page }) => {
+  test(`UI-Sprache auf ${lang.label} umstellen`, async ({ page }, testInfo) => {
     await page.goto('');
 
     // Spracheinstellungen öffnen (erster button.circle.one)
     const settingsButton = page.locator('button.circle.one').first();
     await settingsButton.click();
+
+    await page.screenshot({ path: screenshotPath(testInfo, '01-spracheinstellungen.png'), fullPage: true });
 
     // Sprache auswählen
     await page.locator(`input[name="ui-language"][value="${lang.code}"]`).click();
@@ -58,6 +63,8 @@ for (const lang of languages) {
     // Spracheinstellungen-Dialog prüfen
     await expect(page.locator('.language-picker h2')).toHaveText(lang.languagePickerTitle);
     await expect(page.locator('.language-picker fieldset').first().locator('legend')).toHaveText(lang.uiLanguageLabel);
+
+    await page.screenshot({ path: screenshotPath(testInfo, `02-sprache-${lang.code}.png`), fullPage: true });
   });
 }
 
@@ -76,7 +83,7 @@ function letterHash(langUi: string, langCor: string): string {
   return encodeURI(JSON.stringify({ step: 'data_info_request', langUi, langCor, v: 1 }));
 }
 
-test('UI Deutsch, Korrespondenzsprache Französisch: Seite auf Deutsch, Brief auf Französisch', async ({ page }) => {
+test('UI Deutsch, Korrespondenzsprache Französisch: Seite auf Deutsch, Brief auf Französisch', async ({ page }, testInfo) => {
   await page.goto(`#${letterHash('de', 'fr')}`);
 
   // UI ist Deutsch — geprüft an der "zurück"-Schaltfläche, da der App-Titel auf der Briefseite nicht gerendert wird
@@ -85,9 +92,11 @@ test('UI Deutsch, Korrespondenzsprache Französisch: Seite auf Deutsch, Brief au
   // Briefinhalt ist Französisch
   await expect(page.locator('#letter .salutation')).toContainText(letterSnippets.fr.salutation);
   await expect(page.locator('#letter .address-to')).toContainText(letterSnippets.fr.registeredMail);
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-ui-de-brief-fr.png'), fullPage: true });
 });
 
-test('UI Französisch, Korrespondenzsprache Deutsch: Seite auf Französisch, Brief auf Deutsch', async ({ page }) => {
+test('UI Französisch, Korrespondenzsprache Deutsch: Seite auf Französisch, Brief auf Deutsch', async ({ page }, testInfo) => {
   await page.goto(`#${letterHash('fr', 'de')}`);
 
   // UI ist Französisch — geprüft an der "zurück"-Schaltfläche
@@ -96,9 +105,11 @@ test('UI Französisch, Korrespondenzsprache Deutsch: Seite auf Französisch, Bri
   // Briefinhalt ist Deutsch
   await expect(page.locator('#letter .salutation')).toContainText(letterSnippets.de.salutation);
   await expect(page.locator('#letter .address-to')).toContainText(letterSnippets.de.registeredMail);
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-ui-fr-brief-de.png'), fullPage: true });
 });
 
-test('UI-Sprache von Deutsch auf Englisch wechseln', async ({ page }) => {
+test('UI-Sprache von Deutsch auf Englisch wechseln', async ({ page }, testInfo) => {
   await page.goto('');
 
   // Seite ist zuerst auf Deutsch
@@ -110,15 +121,19 @@ test('UI-Sprache von Deutsch auf Englisch wechseln', async ({ page }) => {
 
   // Seite ist jetzt auf Englisch
   await expect(page.locator('h1')).toHaveText('Generate your data access request');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-sprache-gewechselt-englisch.png'), fullPage: true });
 });
 
-test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page }) => {
+test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page }, testInfo) => {
   await page.goto('');
 
   // UI-Sprache auf Englisch, Korrespondenzsprache auf Französisch setzen
   await page.locator('button.circle.one').first().click();
   await page.locator('input[name="ui-language"][value="en"]').click();
   await page.locator('input[name="correspondence-language"][value="fr"]').click();
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-spracheinstellungen.png'), fullPage: true });
 
   // Spracheinstellungen schliessen (Close-Button im Overlay)
   await page.locator('.overlay header button').click();
@@ -140,4 +155,6 @@ test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page })
   await page.locator('button.circle.one').first().click();
   await expect(page.locator('input[name="correspondence-language"][value="fr"]')).toBeChecked();
   await expect(page.locator('input[name="ui-language"][value="en"]')).toBeChecked();
+
+  await page.screenshot({ path: screenshotPath(testInfo, '02-sprachen-nach-reset.png'), fullPage: true });
 });

@@ -1,12 +1,19 @@
 import { test, expect } from '@playwright/test';
+import { screenshotPath } from './screenshot';
 
-test('Nachfassen bei ausbleibender Antwort', async ({ page }) => {
-  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
-  await page.goto(url);
+const baseUrl = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+
+test('Nachfassen bei ausbleibender Antwort', async ({ page }, testInfo) => {
+  await page.goto(baseUrl);
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-brief-ansicht.png'), fullPage: true });
 
   // Nachfassen und erhielt keine Antwort auswählen
   const nachfassenButton = page.locator('button', { hasText: 'Nachfassen' });
   await nachfassenButton.click();
+
+  await page.screenshot({ path: screenshotPath(testInfo, '02-nachfassen-auswahl.png'), fullPage: true });
+
   const keineAntwortButton = page.locator('button', { hasText: 'Ich erhielt keine Antwort' });
   await keineAntwortButton.click();
 
@@ -18,11 +25,12 @@ test('Nachfassen bei ausbleibender Antwort', async ({ page }) => {
   expect(sectionText).toContain('E2E Absender');
   expect(sectionText).toContain('E2E Empfänger');
   expect(sectionText).toContain('28.7.2025');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '03-brief-ausbleibende-auskunft.png'), fullPage: true });
 });
 
-test('Nachfassen unvollständige Antwort', async ({ page }) => {
-  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
-  await page.goto(url);
+test('Nachfassen unvollständige Antwort', async ({ page }, testInfo) => {
+  await page.goto(baseUrl);
 
   // Nachfassen und unvollständige Antwort auswählen
   const nachfassenButton = page.locator('button', { hasText: 'Nachfassen' });
@@ -38,11 +46,12 @@ test('Nachfassen unvollständige Antwort', async ({ page }) => {
   expect(sectionText).toContain('E2E Absender');
   expect(sectionText).toContain('E2E Empfänger');
   expect(sectionText).toContain('28.7.2025');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-brief-unvollstaendige-antwort.png'), fullPage: true });
 });
 
-test('Nachfassen Daten korrigieren lassen', async ({ page }) => {
-  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
-  await page.goto(url);
+test('Nachfassen Daten korrigieren lassen', async ({ page }, testInfo) => {
+  await page.goto(baseUrl);
 
   // Nachfassen und Daten korrigieren auswählen
   const nachfassenButton = page.locator('button', { hasText: 'Nachfassen' });
@@ -58,13 +67,14 @@ test('Nachfassen Daten korrigieren lassen', async ({ page }) => {
   expect(sectionText).toContain('E2E Absender');
   expect(sectionText).toContain('E2E Empfänger');
   expect(sectionText).toContain('28.7.2025');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-brief-daten-korrigieren.png'), fullPage: true });
 });
 
-test('Nachfassen Daten löschen lassen', async ({ page }) => {
-  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
-  await page.goto(url);
+test('Nachfassen Daten löschen lassen', async ({ page }, testInfo) => {
+  await page.goto(baseUrl);
 
-  // Nchfassen und Daten löschen
+  // Nachfassen und Daten löschen
   const nachfassenButton = page.locator('button', { hasText: 'Nachfassen' });
   await nachfassenButton.click();
   const keineAntwortButton = page.locator('button', { hasText: 'Ich möchte Daten löschen lassen' });
@@ -78,4 +88,6 @@ test('Nachfassen Daten löschen lassen', async ({ page }) => {
   expect(sectionText).toContain('E2E Absender');
   expect(sectionText).toContain('E2E Empfänger');
   expect(sectionText).toContain('28.7.2025');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-brief-daten-loeschen.png'), fullPage: true });
 });
