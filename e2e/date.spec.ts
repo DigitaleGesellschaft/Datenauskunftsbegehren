@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { screenshotPath } from './screenshot';
 
 /**
  * Mirrors the deadline calculation in IcsDownload.svelte:
@@ -28,7 +29,7 @@ const PRINT_URL = '#{"v":1,"step":"print","name":"E2E Person","date":"28.7.2025"
 const EVENT_CALL_URL = '#{"v":1,"entry":"event","events":["call"],"event":"call"}';
 
 test.describe('IcsDownload', () => {
-  test('ICS Formular wird auf dem Druckblatt angezeigt', async ({ page }) => {
+  test('ICS Formular wird auf dem Druckblatt angezeigt', async ({ page }, testInfo) => {
     await page.goto(PRINT_URL);
 
     const form = page.locator('form.ics-download');
@@ -36,6 +37,8 @@ test.describe('IcsDownload', () => {
     await expect(form.locator('input[type="date"]')).toBeVisible();
     await expect(form.locator('input[type="time"]')).toBeVisible();
     await expect(form.locator('button')).toBeVisible();
+
+    await page.screenshot({ path: screenshotPath(testInfo, '01-ics-formular.png'), fullPage: true });
   });
 
   test('ICS Datum ist 40 Tage (plus Wochenend-Puffer) in der Zukunft', async ({ page }) => {
@@ -68,15 +71,17 @@ test.describe('IcsDownload', () => {
 });
 
 test.describe('VariableInput Datum', () => {
-  test('Datumseingabe erscheint für Ereignis «Werbeanruf»', async ({ page }) => {
+  test('Datumseingabe erscheint für Ereignis «Werbeanruf»', async ({ page }, testInfo) => {
     await page.goto(EVENT_CALL_URL);
 
     const dateLabel = page.locator('label', { hasText: 'Wann' });
     await expect(dateLabel).toBeVisible();
     await expect(page.locator('input[type="date"]')).toBeVisible();
+
+    await page.screenshot({ path: screenshotPath(testInfo, '01-datumseingabe-werbeanruf.png'), fullPage: true });
   });
 
-  test('Datumseingabe konvertiert yyyy-MM-dd in dd.MM.yyyy für den Brief', async ({ page }) => {
+  test('Datumseingabe konvertiert yyyy-MM-dd in dd.MM.yyyy für den Brief', async ({ page }, testInfo) => {
     await page.goto(EVENT_CALL_URL);
 
     const dateInput = page.locator('input[type="date"]');
@@ -87,11 +92,15 @@ test.describe('VariableInput Datum', () => {
     await generateButton.click();
 
     await expect(page.locator('section#letter')).toContainText('15.06.2099');
+
+    await page.screenshot({ path: screenshotPath(testInfo, '01-datum-konvertiert-brief.png'), fullPage: true });
   });
 
-  test('Vorausgefülltes Datum (dd.MM.yyyy) wird als yyyy-MM-dd im Eingabefeld angezeigt', async ({ page }) => {
+  test('Vorausgefülltes Datum (dd.MM.yyyy) wird als yyyy-MM-dd im Eingabefeld angezeigt', async ({ page }, testInfo) => {
     await page.goto('#{"v":1,"entry":"event","events":["call"],"event":"call","eventDate":"15.06.2099"}');
 
     await expect(page.locator('input[type="date"]')).toHaveValue('2099-06-15');
+
+    await page.screenshot({ path: screenshotPath(testInfo, '01-vorausgefuelltes-datum.png'), fullPage: true });
   });
 });
