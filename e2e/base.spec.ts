@@ -28,7 +28,8 @@ test('Info kann angezeigt werden', async ({ page }, testInfo) => {
   await expect(textLocator).toBeVisible();
 
   await page.screenshot({ path: screenshotPath(testInfo, '02-info-overlay.png'), fullPage: true });
-  
+  });
+
 test('Info kann angezeigt werden und zeigt Version und Git-Revision', async ({ page }) => {
   await page.goto('');
 
