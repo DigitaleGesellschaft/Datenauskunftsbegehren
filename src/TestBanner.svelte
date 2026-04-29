@@ -1,10 +1,14 @@
+<script>
+  import { _ } from 'svelte-i18n';
+</script>
+
 <svelte:head>
   <style>:root { --banner-height: 40px; }</style>
 </svelte:head>
 
 <div class="test-banner">
-  Dies ist ein <strong>Testsystem</strong>.
-  Das produktive System findest du unter
+  <strong>{$_('test_banner.is_test_system')}</strong> (v{__APP_VERSION__}, {__GIT_REVISION__}).
+  {$_('test_banner.find_production_at')}
   <a href="https://www.digitale-gesellschaft.ch/auskunftsbegehren" target="_blank" rel="noopener noreferrer">
     digitale-gesellschaft.ch/auskunftsbegehren
   </a>

@@ -143,5 +143,9 @@
     "activate_camera_back": "activer la caméra afin de photographier l'arrière",
     "hold_id_instructions": "Tiens le document d'identité devant la caméra - enclenche la.",
     "crop_instructions": "Tu peux ensuite couper l'image."
+  },
+  "test_banner": {
+    "is_test_system": "Ceci est un système de test",
+    "find_production_at": "Le système de production est disponible sur"
   }
 }

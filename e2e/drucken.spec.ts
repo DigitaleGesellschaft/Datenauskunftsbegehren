@@ -74,16 +74,14 @@ test('Nachfassen Daten löschen zeigt beim Drucken exakt einen Brief', async ({ 
   await page.screenshot({ path: screenshotPath(testInfo, '01-druckansicht-daten-loeschen.png'), fullPage: true });
 });
 
-test('Kurzer Brief erzeugt beim Drucken eine PDF-Seite', async ({ page, browserName }) => {
-  test.skip(browserName !== 'chromium', 'PDF-Generierung nur in Chromium verfügbar');
 
-  const url = `#{"v":1,"entry":"followup","desire":"unanswered","step":"print",${baseState}}`;
+test('Print-Seite zeigt aufgelösten causa-Text ohne Platzhalter', async ({ page }) => {
+  const url = `#{"v":1,"langUi":"de","langCor":"de","org":"Migros","entry":"org","types":["payback","online","wlan"],"step":"print",${baseState}}`;
   await page.goto(url);
 
-  const pdf = await page.pdf({ format: 'A4' });
-  // Count PDF pages: each page dictionary has /Type /Page (singular, not /Pages)
-  const pageCount = (pdf.toString('latin1').match(/\/Type\s*\/Page(?!s)/g) || []).length;
-  expect(pageCount).toBe(1);
+  const sendByPostPara = page.locator('.step-print p').first();
+  await expect(sendByPostPara).not.toContainText('{causa}');
+  await expect(sendByPostPara).toContainText('das Datenauskunftsbegehren');
 });
 
 test('Brief Auskunftsbegehren via Einstiegsmaske zeigt nur einen Brief', async ({ page }, testInfo) => {

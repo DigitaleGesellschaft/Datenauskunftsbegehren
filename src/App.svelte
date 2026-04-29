@@ -131,7 +131,7 @@
           <h2>{$_('print.done_title', { default: 'Geschafft' })}</h2>
           <p>{@html $_('print.send_by_post', {
             default: 'Nun musst du {causa} noch <strong>eingeschrieben per Post versenden</strong>.',
-            values: { causa: $_('causa.print.' + normalizedDesire) }
+            values: { causa: $_('causa.print.' + normalizedDesire), strong: (text) => `<strong>${text}</strong>` }
           })}</p>
           <p>{$_('print.deadline_info', { default: 'Ab dem Eingang bleiben 30 Tage für die Beantwortung. Speichere einen Termin im Kalender, um dich für ein allfälliges Nachfragen erinnern zu lassen, falls du bis dahin keine Antwort erhalten hast.' })}</p>
           <IcsDownload></IcsDownload>
