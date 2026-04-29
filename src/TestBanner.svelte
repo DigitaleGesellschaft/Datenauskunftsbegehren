@@ -3,7 +3,7 @@
 </svelte:head>
 
 <div class="test-banner">
-  Dies ist ein <strong>Testsystem</strong>.
+  Dies ist ein <strong>Testsystem</strong> (v{__APP_VERSION__}, {__GIT_REVISION__}).
   Das produktive System findest du unter
   <a href="https://www.digitale-gesellschaft.ch/auskunftsbegehren" target="_blank" rel="noopener noreferrer">
     digitale-gesellschaft.ch/auskunftsbegehren
