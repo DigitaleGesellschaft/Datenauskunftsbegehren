@@ -110,7 +110,8 @@
       "incomplete_answer": "Lettera di ingiunzione",
       "data_correction": "Lettera di rettifica",
       "data_deletion": "Lettera di cancellazione",
-      "print": "Stampa"
+      "print": "Stampa",
+      "data_handover": "Lettera di consegna dei dati"
     }
   },
   "reset_inputs": "Reimposta i dati inseriti",

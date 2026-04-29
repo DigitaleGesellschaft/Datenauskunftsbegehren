@@ -42,6 +42,9 @@ export function getCausa(desire, mode) {
     case 'data_deletion':
       causa = "Aufforderung zur Datenlöschung";
       break;
+    case 'data_handover':
+      causa = "Aufforderung zur Aushändigung der Daten";
+      break;
   }
   if (desire === 'data_info_request') {
     switch (mode) {

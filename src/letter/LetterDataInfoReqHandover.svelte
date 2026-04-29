@@ -1,12 +1,12 @@
 <script>
-  import { c as _ } from '../stores.js';
-
   import {onMount} from 'svelte';
+  import { c as _ } from '../stores.js';
   import HideNodeAction from './HideNodeAction.svelte';
   import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
 
-  let LetterDataInfoReqChangeNode = $state()
+  // Herausgabe von Daten nach erteilter Auskunft
+  let LetterDataInfoReqHandoverNode = $state()
   let selectedOrg = $derived($data.getOrg($userData.org))
   let customOpening
   let orgAddressTo = $derived(selectedOrg ? nl2br(selectedOrg.address) : '')
@@ -36,7 +36,7 @@
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
-    LetterDataInfoReqChangeNode.addEventListener('keydown', event => {
+    LetterDataInfoReqHandoverNode.addEventListener('keydown', event => {
       if (!event.target.contentEditable) return
       if (event.code === 'Backspace') {
         const length = event.target.innerText.replace(/[\n\r\s]+/, '').length;
@@ -60,105 +60,102 @@
 </script>
 
 <div id="letter-container">
-  <section id="letter" bind:this={LetterDataInfoReqChangeNode}>
+  <section id="letter" bind:this={LetterDataInfoReqHandoverNode}>
     <div class="letter-head">
       <div class="address-from">
         <span
-           contenteditable
-           spellcheck="false"
-           class="editable-variable"
-           data-label={$_("your_name", {default: "Dein Name"})}
-           class:empty={!$userData.name || $userData.name.length === 0}
-           bind:innerHTML={$userData.name}>
-         </span>
+          contenteditable
+          spellcheck="false"
+          class="editable-variable"
+          data-label={$_("your_name", { default: "Dein Name" })}
+          class:empty={!$userData.name || $userData.name.length === 0}
+          bind:innerHTML={$userData.name}>
+        </span>
         <br>
-         <span
-           contenteditable
-           spellcheck="false"
-           class="editable-variable"
-           data-label={$_("your_address", {default: "Deine Adresse"})}
-           class:empty={!$userAddressHtml || $userAddressHtml.length === 0}
-           bind:innerHTML={$userAddressHtml}></span>
-          
+        <span
+          contenteditable
+          spellcheck="false"
+          class="editable-variable"
+          data-label={$_("your_address", { default: "Deine Adresse" })}
+          class:empty={!$userAddressHtml || $userAddressHtml.length === 0}
+          bind:innerHTML={$userAddressHtml}></span>
+
           <!-- chromium has a bug, and needs this empty span -->
           <span>&nbsp;</span>
       </div>
 
       <div class="address-to">
-         <div contenteditable spellcheck="false">
-           {$_("registered_mail", {default: "EINSCHREIBEN"})}
-         <HideNodeAction title={$_("toggle_visibility", {default: "Ein-/ausblenden"})}></HideNodeAction>
-         </div>
+        <div contenteditable spellcheck="false">
+          {$_("registered_mail", { default: "EINSCHREIBEN" })}
+        <HideNodeAction title={$_("toggle_visibility", { default: "Ein-/ausblenden" })}></HideNodeAction>
+        </div>
         <br>
         {#if orgAddressTo.length > 0}
           {@html orgAddressTo}
         {:else}
-           <span
-             contenteditable
-             spellcheck="false"
-             class="editable-variable"
-             data-label={$_("recipient_address", {default: "Empfängeradresse"})}
-             class:empty={!$orgAddressHtml || $orgAddressHtml.length === 0}
-             bind:innerHTML={$orgAddressHtml}>
-           </span>
+          <span
+            contenteditable
+            spellcheck="false"
+            class="editable-variable"
+            data-label={$_("recipient_address", { default: "Empfängeradresse" })}
+            class:empty={!$orgAddressHtml || $orgAddressHtml.length === 0}
+            bind:innerHTML={$orgAddressHtml}>
+          </span>
         {/if}
         <br><br><br>
       </div>
-       <p
-         class="date editable-variable"
-         contenteditable
-         spellcheck="false"
-         data-label={$_("date", {default: "Datum"})}
-         class:empty={!$userData.date || $userData.date.length === 0}
-         bind:innerHTML={$userData.date}>
-       </p>
+      <p
+        class="date editable-variable"
+        contenteditable
+        spellcheck="false"
+        data-label={$_("date", { default: "Datum" })}
+        class:empty={!$userData.date || $userData.date.length === 0}
+        bind:innerHTML={$userData.date}>
+      </p>
     </div>
 
     <h1 class="subject" contenteditable spellcheck="false">
-       {$_("data_access_request", {default: "Datenauskunftsbegehren"})}
-     </h1>
+      {$_("letter_handover_subject", { default: "Datenauskunftsbegehren / Herausgabe von Daten" })}
+    </h1>
 
-     <p class="salutation" contenteditable spellcheck="false">
-       {$_("salutation", {default: "Sehr geehrte Angesprochene"})}
-     </p>
+    <p class="salutation" contenteditable spellcheck="false">
+      {$_("salutation", { default: "Sehr geehrte Angesprochene" })}
+    </p>
 
-     <p contenteditable spellcheck="false">{$_("thank_you_message_pre", { default: "Ich danke Ihnen für die Auskunft vom " })}<span
+    <p contenteditable spellcheck="false">{$_("thank_you_message_pre", { default: "Ich danke Ihnen für die Auskunft vom " })}<span
         contenteditable
         spellcheck="false"
         class="editable-variable"
         data-label={$_("date_of_response_label", { default: "Datum Antwort" })}
         class:empty={!$userData.dataInfoResponseDate || $userData.dataInfoResponseDate.length === 0}
         bind:innerHTML={$userData.dataInfoResponseDate}></span>{$_("thank_you_message_post", { default: "." })}</p>
-     <p contenteditable spellcheck="false">
-       {$_("letter_change_body_1_continuation", {default: "Aufgrund Ihrer Auskunft stellte ich fest, dass von Ihnen bearbeitete Personendaten unrichtig sind."})}
-     </p>
-     <p contenteditable spellcheck="false">
-       {$_("letter_change_body_2", {default: "Ich ersuche Sie deshalb, dass folgende Personendaten berichtigt werden:"})}
-     </p>
-     <ul>
-       <li contenteditable spellcheck="false">{$_("letter_change_list_item", {default: "[Auflistung der zu berichtigenden Daten und gewünschte Berichtigung]"})}</li>
-       <li contenteditable spellcheck="false">"..</li>
-     </ul>
-     <p contenteditable spellcheck="false">
-       {$_("letter_change_body_3", {default: "Ich verlange ferner, dass Sie die Berichtigung Dritten, von welchen Sie die unrichtigen Daten erhalten oder denen Sie die unrichtigen Daten weitergegeben haben, entsprechend informieren."})}
-     </p>
-     <p contenteditable spellcheck="false">
-       {$_("letter_change_body_4", {default: "Ich bitte Sie schliesslich, die Berichtigung zu bestätigen."})}
-     </p>
+    <p contenteditable spellcheck="false">
+      {$_("letter_handover_body_1", { default: "Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Daten herauszugeben:" })}
+    </p>
+    <ul>
+      <li contenteditable spellcheck="false">{$_("letter_handover_list_placeholder", { default: "[Auflistung der zu herauszugebenden Daten oder Angabe von \"sämtliche Daten\"]" })}</li>
+      <li contenteditable spellcheck="false">...</li>
+    </ul>
+    <p contenteditable spellcheck="false">
+      {$_("letter_handover_body_2", { default: "Ich verlange ferner, dass Sie Dritte, von welchen Sie die zu herauszugebenden Daten erhalten oder denen Sie die zu herauszugebenden Daten weitergegeben haben, in der Auflistung entsprechend ausweisen." })}
+    </p>
+    <p contenteditable spellcheck="false">
+      {$_("letter_handover_body_3", { default: "Sollten Sie die Herausgabe ganz oder teilweise verweigern, ersuche ich Sie um eine entsprechende Begründung." })}
+    </p>
 
     <div class="no-break-inside">
-       <p contenteditable spellcheck="false" class="no-break-after">
-       {$_("closing")}
-       </p>
+      <p contenteditable spellcheck="false" class="no-break-after">
+        {$_("closing", { default: "Besten Dank und freundliche Grüsse" })}
+      </p>
       <br><br>
-       <p
-         contenteditable
-         spellcheck="false"
-         class="editable-variable"
-         data-label={$_("your_name", {default: "Dein Name"})}
-         class:empty={!$userData.name || $userData.name.length === 0}
-         bind:innerHTML={$userData.name}>
-       </p>
+      <p
+        contenteditable
+        spellcheck="false"
+        class="editable-variable"
+        data-label={$_("your_name", { default: "Dein Name" })}
+        class:empty={!$userData.name || $userData.name.length === 0}
+        bind:innerHTML={$userData.name}>
+      </p>
 
     </div>
   </section>
@@ -195,6 +192,7 @@
     /* A4 */
     width: 210mm;
     min-height: 297mm;
+
     padding: 20mm;
   }
 }

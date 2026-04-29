@@ -31,6 +31,12 @@
         return userData;
       })
     }
+    if (!$userData.dataInfoRequestDate || $userData.dataInfoRequestDate === '' || $userData.dataInfoRequestDate === '<br>') {
+      userData.update(ud => { ud.dataInfoRequestDate = 'TT.MM.JJJJ'; return ud })
+    }
+    if (!$userData.dataInfoResponseDate || $userData.dataInfoResponseDate === '' || $userData.dataInfoResponseDate === '<br>') {
+      userData.update(ud => { ud.dataInfoResponseDate = 'TT.MM.JJJJ'; return ud })
+    }
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined
 
@@ -120,9 +126,19 @@
       {$_("salutation")}
     </p>
 
-    <p contenteditable spellcheck="false">
-      {$_("letter_info_req_demand_incomplete", {default: "Mein Datenauskunftsbegehren vom TT. MMMM JJJJ wurde mit Ihrer Auskunft vom TT. MMMM JJJJ nicht vollständig beantwortet."})}
-    </p>
+    <p contenteditable spellcheck="false">{$_("letter_info_req_demand_incomplete_pre", { default: "Mein Datenauskunftsbegehren vom " })}<span
+        contenteditable
+        spellcheck="false"
+        class="editable-variable"
+        data-label={$_("date_of_request_label", { default: "Datum Begehren" })}
+        class:empty={!$userData.dataInfoRequestDate || $userData.dataInfoRequestDate.length === 0}
+        bind:innerHTML={$userData.dataInfoRequestDate}></span>{$_("letter_info_req_demand_incomplete_mid", { default: " wurde mit Ihrer Auskunft vom " })}<span
+        contenteditable
+        spellcheck="false"
+        class="editable-variable"
+        data-label={$_("date_of_response_label", { default: "Datum Antwort" })}
+        class:empty={!$userData.dataInfoResponseDate || $userData.dataInfoResponseDate.length === 0}
+        bind:innerHTML={$userData.dataInfoResponseDate}></span>{$_("letter_info_req_demand_incomplete_post", { default: " nicht vollständig beantwortet." })}</p>
     <p contenteditable spellcheck="false">
       {$_("letter_info_req_demand_missing_info", {default: "Ich gehe davon aus, dass insbesondere folgende Informationen fehlen:"})}
     </p>
