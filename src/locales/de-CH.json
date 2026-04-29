@@ -143,5 +143,9 @@
     "activate_camera_back": "hier Kamera aktivieren um die Rückseite zu fotografieren",
     "hold_id_instructions": "Halt deinen Ausweis vor die Kamera und drücke den Auslöser.",
     "crop_instructions": "Du kannst das Bild danach zuschneiden."
+  },
+  "test_banner": {
+    "is_test_system": "Dies ist ein Testsystem",
+    "find_production_at": "Das produktive System findest du unter"
   }
 }
