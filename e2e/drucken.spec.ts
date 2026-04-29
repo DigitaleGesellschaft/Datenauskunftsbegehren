@@ -73,6 +73,15 @@ test('Kurzer Brief erzeugt beim Drucken eine PDF-Seite', async ({ page, browserN
   expect(pageCount).toBe(1);
 });
 
+test('Print-Seite zeigt aufgelösten causa-Text ohne Platzhalter', async ({ page }) => {
+  const url = `#{"v":1,"langUi":"de","langCor":"de","org":"Migros","entry":"org","types":["payback","online","wlan"],"step":"print",${baseState}}`;
+  await page.goto(url);
+
+  const sendByPostPara = page.locator('.step-print p').first();
+  await expect(sendByPostPara).not.toContainText('{causa}');
+  await expect(sendByPostPara).toContainText('das Datenauskunftsbegehren');
+});
+
 test('Brief Auskunftsbegehren via Einstiegsmaske zeigt nur einen Brief', async ({ page }) => {
   await page.goto('');
 
