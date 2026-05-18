@@ -180,7 +180,7 @@
     {/if}
     <div class="actions">
       <button class="one no-print" onclick={() => setStep({detail: 'entry'})}>{$_('nav.back_to_entry', { default: '❮ zur Dateneingabe' })}</button>
-      {#if $userData.step === 'data_info_request'}
+      {#if $userData.step === 'data_info_request' || ($userData.step === 'print' && ($userData.entry !== 'followup' || $userData.desire === 'data_info_request'))}
         <button class="one no-print" onclick={hideUnhideFollowUp}>{$_('nav.followup', { default: 'Nachfassen' })}</button>
       {/if}
       <button class="one no-print" onclick={() => setStep({detail: 'print'})}>{$_('nav.print_now', { default: 'Jetzt drucken ❯' })}</button>
