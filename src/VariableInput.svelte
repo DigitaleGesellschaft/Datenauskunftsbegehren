@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   const dispatch = createEventDispatcher();
 
   import { lightFormat } from 'date-fns'
@@ -12,6 +12,12 @@
     const date = event.target.value
     val = lightFormat(new Date(date), 'dd.MM.yyyy')
   }
+
+  onMount(() => {
+    if (variable.type === 'date' && val === undefined) {
+      val = lightFormat(new Date(), 'dd.MM.yyyy')
+    }
+  })
 
   let inputFormattedDate = $derived.by(() => {
     let date
