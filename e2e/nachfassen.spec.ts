@@ -2,6 +2,16 @@ import { test, expect } from '@playwright/test';
 import { screenshotPath } from './screenshot';
 
 const baseUrl = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+const printUrl = '#{"v":1,"step":"print","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+
+test('Nachfassen Button erscheint bei direktem URL-Aufruf mit step=print', async ({ page }, testInfo) => {
+  await page.goto(printUrl);
+
+  const nachfassenButton = page.locator('button', { hasText: 'Nachfassen' });
+  await expect(nachfassenButton).toBeVisible();
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-nachfassen-button-print-url.png'), fullPage: true });
+});
 
 test('Nachfassen bei ausbleibender Antwort', async ({ page }, testInfo) => {
   await page.goto(baseUrl);
