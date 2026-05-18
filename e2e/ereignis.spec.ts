@@ -57,6 +57,7 @@ test('Ereignis Werbemail: Brief enthält Datum und E-Mail-Adresse', async ({ pag
 
 test('Ereignis Werbung per Post: Brief enthält Datum', async ({ page }, testInfo) => {
   await selectEvent(page, 'Mir wurde Werbung per Post zugestellt');
+  await expect(page.locator('h2')).toContainText('Mir wurde Werbung per Post zugestellt');
   await page.getByLabel('Wann').fill('2024-09-10');
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
 
