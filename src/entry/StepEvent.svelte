@@ -10,7 +10,7 @@
   let variables = $derived(selectedEvent ? selectedEvent.variables : [])
 </script>
 {#if selectedEvent}
-  <h2>{$_("step_event.details_header", { default: "Mach noch einige Angaben für das Auskunftsbegehren aus speziellem Grund «{eventName}»", values: { eventName: selectedEvent.name } })}</h2>
+  <h2>{$_("step_event.details_header", { default: "Mach noch einige Angaben für das Auskunftsbegehren aus speziellem Grund «{eventName}»", values: { eventName: selectedEvent.label } })}</h2>
   <div class="data-entry-form">
     {#if selectedEvent.handle !== 'rumor' && variables.length > 0}
     <section>
