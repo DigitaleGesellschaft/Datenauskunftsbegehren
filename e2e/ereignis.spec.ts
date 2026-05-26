@@ -55,6 +55,15 @@ test('Ereignis Werbemail: Brief enthält Datum und E-Mail-Adresse', async ({ pag
   await page.screenshot({ path: screenshotPath(testInfo, '02-werbemail-brief.png'), fullPage: true });
 });
 
+test('Ereignis Werbung per Post: Datum wird ohne explizite Eingabe im Brief angezeigt', async ({ page }) => {
+  await selectEvent(page, 'Mir wurde Werbung per Post zugestellt');
+  await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
+  await generateLetter(page);
+  const letter = page.locator('section#letter');
+  await expect(letter.locator('#eventDate')).not.toHaveText('');
+  await expect(letter.locator('#eventDate')).not.toHaveClass(/empty/);
+});
+
 test('Ereignis Werbung per Post: Brief enthält Datum', async ({ page }, testInfo) => {
   await selectEvent(page, 'Mir wurde Werbung per Post zugestellt');
   await expect(page.locator('h2')).toContainText('Mir wurde Werbung per Post zugestellt');
