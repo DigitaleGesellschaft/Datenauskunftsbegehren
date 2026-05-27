@@ -4,6 +4,7 @@
   import Bullets from './Bullets.svelte';
   import RemoveNodeAction from './RemoveNodeAction.svelte';
   import HideNodeAction from './HideNodeAction.svelte';
+  import IdFileImport from './IdFileImport.svelte';
   import { c as _ } from '../stores.js';
 
   import { data, userData, userAddressHtml, orgAddressHtml, idImages } from '../stores.js';
@@ -236,11 +237,60 @@
           {$_("attachment_official_id", {default: "Beilage: Amtlicher Ausweis (Kopie)"})}
         </p>
     </div>
+    <!-- id image handling new -->
+    {#if $idImages && ( $idImages.both || $idImages.front || $idImages.back) }
+      <div class="attachments">
+        {#if $idImages.both || imageRemoved.both}
+          <div class="image">
+            <img alt="ID image, both" src="{$idImages.both}" style="max-width: 10cm" >
+            <RemoveNodeAction on:removed={() => removeIdImage('both')}></RemoveNodeAction>
+          </div>
+        {:else}
+          {#if $idImages.front || imageRemoved.front}
+            <div class="image">
+              <img alt="ID image, front" src="{$idImages.front}" style="max-width: 10cm" >
+              <RemoveNodeAction on:removed={() => removeIdImage('front')}></RemoveNodeAction>
+            </div>
+          {/if}
+          {#if $idImages.back || imageRemoved.back}
+            <div class="image">
+              <img alt="ID image, back" src="{$idImages.back}" style="max-width: 10cm" >
+              <RemoveNodeAction on:removed={() => removeIdImage('back')}></RemoveNodeAction>
+            </div>
+          {/if}
+        {/if}
+      </div>
+    {/if}
+    <!-- div to add grid elements by another change -->
+    <div>
+      {#if ( !$idImages.both || imageRemoved.both ) && ( !$idImages.front || imageRemoved.front) && ( !$idImages.back || imageRemoved.back) }
+        <p class="no-print" style="font-family: Montserrat; font-size: 1.2em">{$_("attachment_id_selection", {default: "Wähle das Abbild Deines Ausweises vom Dateisystem (beidseitig oder Vorder- und Rückseite):"})}</p>
+        <IdFileImport side="both"></IdFileImport>
+        <p></p>
+        <IdFileImport side="front"></IdFileImport>
+      {:else}
+        {#if !$idImages.both }
+          {#if !$idImages.front }
+            <IdFileImport side="front"></IdFileImport>
+          {/if}
+          {#if !$idImages.back }
+            <IdFileImport side="back"></IdFileImport>
+          {/if}
+        {/if}
+      {/if}
+    </div>
 
   </section>
 </div>
 
 <style>
+
+  .import-container {
+    /** grid layout for id image file import */
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+  }
 
 #letter-container {
   width: 100%;
@@ -261,6 +311,11 @@
   flex-direction: column;
 }
 
+.attachments img {
+  max-width: 100%;
+  margin-top: 12px;
+}
+
 @media screen {
   #letter-container {
     margin-top: 20px;
@@ -274,7 +329,10 @@
 
     padding: 20mm;
   }
-
+  
+  .attachments {
+    margin-top: 30px;
+  }
 }
 
 
