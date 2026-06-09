@@ -104,3 +104,22 @@ test.describe('VariableInput Datum', () => {
     await page.screenshot({ path: screenshotPath(testInfo, '01-vorausgefuelltes-datum.png'), fullPage: true });
   });
 });
+
+test.describe('Editable-Variable Unterstreichung', () => {
+  // Regression: der Datums-Platzhalter "TT.MM.JJJJ" wurde nur bis "TT.MM"
+  // unterstrichen, weil das "J" (Unterlänge) per text-decoration-skip-ink
+  // die Unterstreichung darunter ausgespart hat.
+  test('Datums-Platzhalter wird durchgehend unterstrichen (skip-ink: none)', async ({ page }) => {
+    const url = '#{"v":1,"entry":"followup","desire":"unanswered","step":"unanswered","name":"","date":"9.6.2026","dataInfoRequestDate":"TT.MM.JJJJ"}';
+    await page.goto(url);
+
+    const span = page.locator('section#letter span.editable-variable[data-label="Datum Begehren"]');
+    await expect(span).toBeVisible();
+    await expect(span).toHaveText('TT.MM.JJJJ');
+
+    const skipInk = await span.evaluate(el =>
+      getComputedStyle(el).getPropertyValue('text-decoration-skip-ink')
+    );
+    expect(skipInk).toBe('none');
+  });
+});
