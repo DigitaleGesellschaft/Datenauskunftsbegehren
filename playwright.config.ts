@@ -4,9 +4,6 @@ import { defineConfig, devices } from '@playwright/test';
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -42,6 +39,7 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         locale: 'de-CH',
       },
+      testIgnore: '**/test-banner.spec.ts',
     },
     {
       name: 'firefox',
@@ -50,6 +48,16 @@ export default defineConfig({
         ...devices['Desktop Firefox'],
         locale: 'de-CH',
       },
+      testIgnore: ['**/test-banner.spec.ts', '**/drucken-pdf.spec.ts'],
+    },
+    {
+      name: 'test-banner',
+      use: {
+        baseURL: 'http://localhost:5174',
+        ...devices['Desktop Chrome'],
+        locale: 'de-CH',
+      },
+      testMatch: '**/test-banner.spec.ts',
     },
   ],
 
@@ -59,5 +67,10 @@ export default defineConfig({
   //   url: 'http://localhost:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
+  webServer: {
+    command: 'VITE_TEST_BANNER=true vite --port 5174',
+    url: 'http://localhost:5174',
+    reuseExistingServer: !process.env.CI,
+  },
 });
 

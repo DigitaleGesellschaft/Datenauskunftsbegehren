@@ -144,5 +144,9 @@
     "activate_camera_back": "activate camera here to photograph the back",
     "hold_id_instructions": "Hold your ID in front of the camera and press the shutter.",
     "crop_instructions": "You can crop the image afterwards."
+  },
+  "test_banner": {
+    "is_test_system": "This is a test system",
+    "find_production_at": "The production system is available at"
   }
 }

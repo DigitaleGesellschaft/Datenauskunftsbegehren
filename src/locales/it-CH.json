@@ -144,5 +144,9 @@
     "activate_camera_back": "attiva qui la fotocamera per fotografare il retro",
     "hold_id_instructions": "Tieni il tuo documento d'identità davanti alla fotocamera e premi il pulsante.",
     "crop_instructions": "Puoi ritagliare l'immagine in seguito."
+  },
+  "test_banner": {
+    "is_test_system": "Questo è un sistema di test",
+    "find_production_at": "Il sistema di produzione è disponibile su"
   }
 }

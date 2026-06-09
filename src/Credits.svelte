@@ -107,7 +107,7 @@
     </li>
   </ul>
   <h2>Code</h2>
-  <p>{$_("version", { default: "Version" })}: {__APP_VERSION__}</p>
+  <p>{$_("version", { default: "Version" })}: {__APP_VERSION__} ({__GIT_REVISION__})</p>
   <p>
     {@html $_(
       "code_license_info",

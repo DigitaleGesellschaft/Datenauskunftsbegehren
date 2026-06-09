@@ -1,14 +1,23 @@
 import { test, expect } from '@playwright/test';
+import { screenshotPath } from './screenshot';
+import { execSync } from 'node:child_process';
+import packageJson from '../package.json' with { type: 'json' };
 
-test('Seite wird mit dynamisch generiertem Titel angezeigt', async ({ page }) => {
+const gitRevision = process.env.GIT_REVISION || execSync('git rev-parse --short HEAD').toString().trim();
+
+test('Seite wird mit dynamisch generiertem Titel angezeigt', async ({ page }, testInfo) => {
   await page.goto('');
 
   const h1Text = await page.locator('h1').textContent();
   expect(h1Text).toBe('Generiere dein Datenauskunftsbegehren');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-startseite.png'), fullPage: true });
 });
 
-test('Info kann angezeigt werden', async ({ page }) => {
+test('Info kann angezeigt werden', async ({ page }, testInfo) => {
   await page.goto('');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-startseite.png'), fullPage: true });
 
   // Info anzeigen (letzter button.circle.one in der Header-Leiste)
   const creditsButton = page.locator('button.circle.one').last();
@@ -17,4 +26,18 @@ test('Info kann angezeigt werden', async ({ page }) => {
   // Prüfen, dass der entsprechende Text angezeigt wird
   const textLocator = page.locator('text=Es werden keine Personendaten bei der Verwendung des Generators erhoben: Sämtliche Dateneingaben und Auswahlen verbleiben im Browser der Benutzer:innen.');
   await expect(textLocator).toBeVisible();
+
+  await page.screenshot({ path: screenshotPath(testInfo, '02-info-overlay.png'), fullPage: true });
+  });
+
+test('Info kann angezeigt werden und zeigt Version und Git-Revision', async ({ page }) => {
+  await page.goto('');
+
+  const creditsButton = page.locator('button.circle.one').last();
+  await creditsButton.click();
+
+  const credits = page.locator('.credits');
+  await expect(credits.locator('text=Es werden keine Personendaten bei der Verwendung des Generators erhoben: Sämtliche Dateneingaben und Auswahlen verbleiben im Browser der Benutzer:innen.')).toBeVisible();
+  await expect(credits).toContainText(packageJson.version);
+  await expect(credits).toContainText(gitRevision);
 });

@@ -1,33 +1,38 @@
 import { test, expect } from '@playwright/test';
+import { screenshotPath } from './screenshot';
 
-test('Der generierte Brief enthält die Daten aus der Url', async ({ page }) => {
+test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, testInfo) => {
   const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
 
   const letterSection = await page.locator('section#letter');
 
   const sectionText = await letterSection.textContent();
-  
+
   // Prüfen, dass die Daten aus der URL im Brief zu finden sind
   expect(sectionText).toContain('E2E Person');
   expect(sectionText).toContain('E2E Absender');
   expect(sectionText).toContain('E2E Empfänger');
   expect(sectionText).toContain('28.7.2025');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-brief-aus-url.png'), fullPage: true });
 });
 
-test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }) => {
+test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInfo) => {
   await page.goto('');
 
   // Organisationsauswahl öffnen, prüfen, dass diese gut belegt ist und Swisscom auswählen
   const searchInput = page.locator('input[placeholder="Suche ..."]');
-  
+
   await searchInput.click();
 
-  const listContainer = page.locator('div.svelte-select-list');;
+  const listContainer = page.locator('div.svelte-select-list');
   await expect(listContainer).toContainText('Agrisano');
   await expect(listContainer).toContainText('Coop Rechtsschutz');
   await expect(listContainer).toContainText('Mercedes');
   await expect(listContainer).toContainText('Swiss Life');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-dropdown-offen.png') });
 
   await searchInput.fill('Swisscom');
   const swisscomOption = listContainer.locator('div.item >> nth=2');
@@ -44,6 +49,8 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }) => {
   const wlanCheckbox = stepUI.locator('input[type="checkbox"][value="wlan"]');
   await expect(wlanCheckbox).toBeChecked();
 
+  await page.screenshot({ path: screenshotPath(testInfo, '02-swisscom-formular.png'), fullPage: true });
+
   // E-Mail Feld ist da und verschwindet nachdem Online-Portal abgewählt wird
   const emailField = stepUI.locator('input[type="email"]');
   await expect(emailField).toBeVisible();
@@ -58,6 +65,8 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }) => {
   const userAddressField = stepUI.locator('textarea#userAddress');
   await userAddressField.fill('E2E Strasse\n1000 E2EOrt');
 
+  await page.screenshot({ path: screenshotPath(testInfo, '03-formular-ausgefuellt.png'), fullPage: true });
+
   // Brief erstellen und Inhalt prüfen
   const generateButton = page.locator('button', { hasText: 'Brief generieren' });
   await generateButton.click();
@@ -69,4 +78,6 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }) => {
   await expect(letterSection).toContainText('Mobilfunk');
   await expect(letterSection).toContainText('WLAN');
   await expect(letterSection).not.toContainText('Online-Portal');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '04-brief-generiert.png'), fullPage: true });
 });

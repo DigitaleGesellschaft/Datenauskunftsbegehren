@@ -66,7 +66,7 @@
   "no_personal_data_collected": "Aucune donnée n'est récoltée lors de l'utilisation du générateur en ligne. Les informations saisies par l'utilisateur et les options sélectionnées restent uniquement dans le navigateur.",
   "url_storage_info": "Le lien de la page internet (URL) du générateur contient les données soumises dans le <fragment>{fragment_label}</fragment>. Il permet la réutilisation et la transmission des informations entrées. Ces dernières pouvant s'avérer sensibles, il convient d'user de précaution.",
   "notes_for_orgs_title": "Informations à l'attention des organisations contactées",
-  "notes_for_orgs_p1": "L'accès au données doit être fourni dans un délai de 30 jours suivant la réception de la requête. Si ce délai n'est pas suffisant, la partie requérante doit en être notifiée. Elle doit également se voir notifier du délai nécessaire pour la transmission des informations. La décision de ne pas fournir les informations ou de ne pas les fournir dans leur intégralité doit être motivée.",
+  "notes_for_orgs_p1": "L'accès aux données doit être fourni dans un délai de 30 jours suivant la réception de la requête. Si ce délai n'est pas suffisant, la partie requérante doit en être notifiée. Elle doit également se voir notifier du délai nécessaire pour la transmission des informations. La décision de ne pas fournir les informations ou de ne pas les fournir dans leur intégralité doit être motivée.",
   "art_18_abs_vdsg": "Art. 18 Al. 1 OLPD",
   "notes_for_orgs_p2": "L'accès aux données n'entraîne en principe pas de frais, bien que sa préparation puisse représenter une charge de travail importante. Il est conseillé de préciser l'étendue de la demande, si nécessaire.",
   "art_25_dsg": "Art. 25 LPD",
@@ -115,11 +115,11 @@
     }
   },
   "reset_inputs": "Réinitialiser les entrées",
-  "generate_letter": "Génrer la lettre",
+  "generate_letter": "Générer la lettre",
   "step_event": {
     "details_header": "Entrées particulières «{eventName}»"
   },
-  "details": "Details",
+  "details": "Détails",
   "step_followup": {
     "instructions": "Ajouter des informations supplémentaires pour la demande d'accès"
   },
@@ -133,7 +133,7 @@
   "which_services_do_you_use": "Quels services utilises-tu?",
   "form_services_type_info": "Des données ont spécifiquement été sollicitées pour les suivants; peut également être laissé vide.",
   "your_details": "Ta personne",
-  "your_address": "Ton adressse",
+  "your_address": "Ton adresse",
   "name": "Nom",
   "address": "Adresse",
   "bullets": {
@@ -144,5 +144,9 @@
     "activate_camera_back": "activer la caméra afin de photographier l'arrière",
     "hold_id_instructions": "Tiens le document d'identité devant la caméra - enclenche la.",
     "crop_instructions": "Tu peux ensuite couper l'image."
+  },
+  "test_banner": {
+    "is_test_system": "Ceci est un système de test",
+    "find_production_at": "Le système de production est disponible sur"
   }
 }
