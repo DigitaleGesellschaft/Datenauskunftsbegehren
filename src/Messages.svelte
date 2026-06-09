@@ -1,4 +1,5 @@
 <script>
+  import { _ } from 'svelte-i18n'
   import { messages } from './stores.js'
 
   let iconsForType = {
@@ -15,7 +16,19 @@
           {iconsForType[message.type]}
         </div>
         <div class="text">
-          { message.text }
+          {#if message.key === 'org_not_in_dataset'}
+            {$_('messages.org_not_in_dataset', {
+              default: 'Die Organisation {org} ist nicht (mehr) im Datensatz vorhanden. Deine Eingabe wurde zurückgesetzt.',
+              values: { org: message.values.org }
+            })}
+          {:else if message.key === 'org_removed_from_list'}
+            {$_('messages.org_removed_from_list', {
+              default: 'Die Organisation {org} wurde am {date} aus der Liste entfernt. {reason}',
+              values: { org: message.values.org, date: message.values.date, reason: message.values.reason }
+            })}
+          {:else}
+            { message.text }
+          {/if}
         </div>
       </div>
     {/each}
