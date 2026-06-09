@@ -110,7 +110,8 @@
       "incomplete_answer": "Follow-up letter",
       "data_correction": "Correction letter",
       "data_deletion": "Deletion letter",
-      "print": "Print"
+      "print": "Print",
+      "data_handover": "Data handover letter"
     }
   },
   "reset_inputs": "Reset inputs",

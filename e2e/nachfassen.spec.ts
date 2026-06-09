@@ -37,6 +37,17 @@ test('Nachfassen bei ausbleibender Antwort', async ({ page }, testInfo) => {
   expect(sectionText).toContain('28.7.2025');
 
   await page.screenshot({ path: screenshotPath(testInfo, '03-brief-ausbleibende-auskunft.png'), fullPage: true });
+  // Datum-Platzhalter für das ursprüngliche Begehren
+  expect(sectionText).toContain('TT.MM.JJJJ');
+});
+
+test('Nachfassen bei ausbleibender Antwort mit Datum im URL', async ({ page }) => {
+  const url = '#{"v":1,"step":"unanswered","entry":"followup","desire":"unanswered","name":"E2E Person","date":"28.7.2025","dataInfoRequestDate":"15.1.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  await page.goto(url);
+
+  const letterSection = await page.locator('section#letter');
+  const sectionText = await letterSection.textContent();
+  expect(sectionText).toContain('15.1.2025');
 });
 
 test('Nachfassen unvollständige Antwort', async ({ page }, testInfo) => {
@@ -58,6 +69,8 @@ test('Nachfassen unvollständige Antwort', async ({ page }, testInfo) => {
   expect(sectionText).toContain('28.7.2025');
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-unvollstaendige-antwort.png'), fullPage: true });
+  // Beide Datums-Platzhalter (Begehren + Antwort) müssen erscheinen
+  expect(sectionText?.match(/TT\.MM\.JJJJ/g)?.length).toBeGreaterThanOrEqual(2);
 });
 
 test('Nachfassen Daten korrigieren lassen', async ({ page }, testInfo) => {
@@ -79,6 +92,8 @@ test('Nachfassen Daten korrigieren lassen', async ({ page }, testInfo) => {
   expect(sectionText).toContain('28.7.2025');
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-daten-korrigieren.png'), fullPage: true });
+  // Datums-Platzhalter für das Antwort-Datum
+  expect(sectionText).toContain('TT.MM.JJJJ');
 });
 
 test('Nachfassen Daten löschen lassen', async ({ page }, testInfo) => {
@@ -100,4 +115,37 @@ test('Nachfassen Daten löschen lassen', async ({ page }, testInfo) => {
   expect(sectionText).toContain('28.7.2025');
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-daten-loeschen.png'), fullPage: true });
+  // Datums-Platzhalter für das Antwort-Datum
+  expect(sectionText).toContain('TT.MM.JJJJ');
+});
+
+test('Nachfassen Daten ausgehändigt bekommen', async ({ page }) => {
+  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  await page.goto(url);
+
+  // Nachfassen und Daten ausgehändigt bekommen auswählen
+  const nachfassenButton = page.locator('button', { hasText: 'Nachfassen' });
+  await nachfassenButton.click();
+  const herausgabeButton = page.locator('button', { hasText: 'Ich möchte Daten ausgehändigt bekommen' });
+  await herausgabeButton.click();
+
+  // Prüfen, dass es sich um die Vorlage Herausgabe handelt
+  const letterSection = await page.locator('section#letter');
+  const sectionText = await letterSection.textContent();
+  expect(sectionText).toContain('ersuche ich Sie, folgende Daten herauszugeben');
+  expect(sectionText).toContain('Sollten Sie die Herausgabe ganz oder teilweise verweigern');
+  expect(sectionText).toContain('E2E Person');
+  expect(sectionText).toContain('E2E Absender');
+  expect(sectionText).toContain('E2E Empfänger');
+  // Datums-Platzhalter für das Antwort-Datum
+  expect(sectionText).toContain('TT.MM.JJJJ');
+});
+
+test('Nachfassen Daten ausgehändigt bekommen mit Datum im URL', async ({ page }) => {
+  const url = '#{"v":1,"step":"data_handover","entry":"followup","desire":"data_handover","name":"E2E Person","date":"28.7.2025","dataInfoResponseDate":"3.3.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  await page.goto(url);
+
+  const letterSection = await page.locator('section#letter');
+  const sectionText = await letterSection.textContent();
+  expect(sectionText).toContain('3.3.2025');
 });

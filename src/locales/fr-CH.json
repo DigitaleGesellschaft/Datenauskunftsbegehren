@@ -110,7 +110,8 @@
       "incomplete_answer": "Lettre pour relancer",
       "data_correction": "Lettre pour rectifier",
       "data_deletion": "Lettre pour supprimer",
-      "print": "Imprimer"
+      "print": "Imprimer",
+      "data_handover": "Lettre pour remise des données"
     }
   },
   "reset_inputs": "Réinitialiser les entrées",
