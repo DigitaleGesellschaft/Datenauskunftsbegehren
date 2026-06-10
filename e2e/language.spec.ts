@@ -68,6 +68,36 @@ for (const lang of languages) {
   });
 }
 
+test.describe('Browsersprache Englisch', () => {
+  test.use({ locale: 'en-US' });
+
+  test('Englischer Browser ohne Hash: UI und langUi sind Englisch', async ({ page }, testInfo) => {
+    await page.goto('');
+
+    // Die Oberfläche wird auf Englisch dargestellt
+    await expect(page.locator('h1')).toHaveText('Generate your data access request');
+
+    // langUi muss als Englisch erkannt und in die URL geschrieben werden (nicht "de")
+    await expect
+      .poll(async () => {
+        const hash = await page.evaluate(() => window.location.hash);
+        try {
+          return JSON.parse(decodeURIComponent(hash.slice(1))).langUi;
+        } catch {
+          return undefined;
+        }
+      })
+      .toBe('en');
+
+    // Im Sprachwähler ist konsequenterweise "English" vorausgewählt
+    await page.locator('button.circle.one').first().click();
+    await expect(page.locator('input[name="ui-language"][value="en"]')).toBeChecked();
+    await expect(page.locator('input[name="ui-language"][value="de"]')).not.toBeChecked();
+
+    await page.screenshot({ path: screenshotPath(testInfo, '01-englischer-browser.png'), fullPage: true });
+  });
+});
+
 const letterSnippets = {
   de: {
     registeredMail: 'EINSCHREIBEN',
