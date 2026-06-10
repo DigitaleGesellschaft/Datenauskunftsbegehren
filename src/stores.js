@@ -6,6 +6,7 @@ import {nl2br, br2nl} from './lib.js'
 import { throttle } from 'lodash-es';
 import {data as d, validateUserData, getValidUserData, getOrgHistoryMessage} from './data.js';
 import { _, locale } from 'svelte-i18n';
+import { getInitialLocale } from './i18n.js';
 
 const _dataStore = writable(d)
 export const data = { subscribe: _dataStore.subscribe }
@@ -166,7 +167,7 @@ const currentImages = get(userData).idImages ? get(userData).idImages : {
 
 export const idImages = writable(currentImages)
 
-export const langUi = writable(currentUserData.langUi || get(locale) || DEFAULT_LANG)
+export const langUi = writable(currentUserData.langUi || getInitialLocale())
 
 langUi.subscribe(lang => {
   locale.set(lang)
