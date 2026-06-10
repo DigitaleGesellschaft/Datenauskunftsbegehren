@@ -2,7 +2,7 @@
   import {onMount} from 'svelte';
   import { c as _ } from '../stores.js';
   import HideNodeAction from './HideNodeAction.svelte';
-  import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
+  import {data, getDatePlaceholder, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
 
   // Unvollständige Auskunft
@@ -32,10 +32,10 @@
       })
     }
     if (!$userData.dataInfoRequestDate || $userData.dataInfoRequestDate === '' || $userData.dataInfoRequestDate === '<br>') {
-      userData.update(ud => { ud.dataInfoRequestDate = 'TT.MM.JJJJ'; return ud })
+      userData.update(ud => { ud.dataInfoRequestDate = getDatePlaceholder(); return ud })
     }
     if (!$userData.dataInfoResponseDate || $userData.dataInfoResponseDate === '' || $userData.dataInfoResponseDate === '<br>') {
-      userData.update(ud => { ud.dataInfoResponseDate = 'TT.MM.JJJJ'; return ud })
+      userData.update(ud => { ud.dataInfoResponseDate = getDatePlaceholder(); return ud })
     }
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined

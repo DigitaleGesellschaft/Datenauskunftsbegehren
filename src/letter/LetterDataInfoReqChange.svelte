@@ -3,7 +3,7 @@
 
   import {onMount} from 'svelte';
   import HideNodeAction from './HideNodeAction.svelte';
-  import {data, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
+  import {data, getDatePlaceholder, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
   import {nl2br} from '../lib.js';
 
   let LetterDataInfoReqChangeNode = $state()
@@ -31,7 +31,7 @@
       })
     }
     if (!$userData.dataInfoResponseDate || $userData.dataInfoResponseDate === '' || $userData.dataInfoResponseDate === '<br>') {
-      userData.update(ud => { ud.dataInfoResponseDate = 'TT.MM.JJJJ'; return ud })
+      userData.update(ud => { ud.dataInfoResponseDate = getDatePlaceholder(); return ud })
     }
 
     customOpening = $userData.customOpening ? $data.getCustomOpening($userData.customOpening) : undefined

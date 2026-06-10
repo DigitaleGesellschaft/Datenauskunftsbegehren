@@ -186,8 +186,12 @@ export const langCor = writable(currentUserData.langCor || DEFAULT_COR_LANG)
 
 let initialLangCorLoad = true
 langCor.subscribe(async lang => {
+  const isInitial = initialLangCorLoad
   userData.update(ud => {
     ud.langCor = lang
+    // On a real language switch, re-translate leftover date placeholders.
+    // Skipped on initial load, where letter components set them themselves.
+    if (!isInitial) translateDatePlaceholders(ud, lang)
     return ud
   })
   if (initialLangCorLoad) {
@@ -213,3 +217,27 @@ userData.subscribe(val => {
 export const c = derived([_, langCor], ([t, corrLocale]) => {
   return (key, opts = {}) => t(key, { ...opts, locale: corrLocale + '-letter' })
 })
+
+// Correspondence languages that have a letter locale (see i18n.js)
+const LETTER_LANGS = ['de', 'fr']
+// User data fields that may hold a date placeholder
+const DATE_FIELDS = ['dataInfoRequestDate', 'dataInfoResponseDate']
+
+// Returns the localized date placeholder (e.g. "TT.MM.JJJJ" / "JJ.MM.AAAA")
+export function getDatePlaceholder(lang = get(langCor)) {
+  return get(_)('date_placeholder', { locale: lang + '-letter', default: 'TT.MM.JJJJ' })
+}
+
+// When the correspondence language changes, the date placeholders of the
+// previous language stay in userData (and the URL). Re-translate any field
+// that still holds a placeholder so it matches the new language. Real,
+// user-entered dates are left untouched.
+function translateDatePlaceholders(userData, lang) {
+  const placeholders = LETTER_LANGS.map(l => getDatePlaceholder(l))
+  const newPlaceholder = getDatePlaceholder(lang)
+  for (const field of DATE_FIELDS) {
+    if (placeholders.includes(userData[field])) {
+      userData[field] = newPlaceholder
+    }
+  }
+}

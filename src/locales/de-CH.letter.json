@@ -4,6 +4,7 @@
   "date": "Datum",
   "date_of_request_label": "Datum Begehren",
   "date_of_response_label": "Datum Antwort",
+  "date_placeholder": "TT.MM.JJJJ",
   "toggle_visibility": "Ein-/ausblenden",
   "recipient_address": "Empfängeradresse",
   "registered_mail": "EINSCHREIBEN",
