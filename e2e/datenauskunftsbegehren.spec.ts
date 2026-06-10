@@ -18,6 +18,38 @@ test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, tes
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-aus-url.png'), fullPage: true });
 });
 
+test('Eine entfernte und wieder hinzugefügte Organisation ist auswählbar', async ({ page }, testInfo) => {
+  // Eine Test-Organisation einschleusen, deren jüngstes History-Ereignis ein
+  // "added" nach einem früheren "removed" ist. Massgeblich für den aktuellen
+  // Zustand ist das jüngste Ereignis, daher muss sie auswählbar sein.
+  await page.route('**/data_de.json', async route => {
+    const response = await route.fetch();
+    const json = await response.json();
+    json.orgs.push({
+      name: 'E2E Wieder Aktiv AG',
+      address: 'E2E Wieder Aktiv AG\n1000 E2EOrt',
+      types: [],
+      history: [
+        { action: 'removed', date: '2021-01-01T00:00:00.000Z', reason: 'damals entfernt' },
+        { action: 'added', date: '2023-01-01T00:00:00.000Z' }
+      ]
+    });
+    await route.fulfill({ json });
+  });
+
+  await page.goto('');
+
+  // Die wieder aktivierte Organisation muss in der Auswahl erscheinen
+  const searchInput = page.locator('input[placeholder="Suche ..."]');
+  await searchInput.click();
+  await searchInput.fill('E2E Wieder Aktiv');
+
+  const listContainer = page.locator('div.svelte-select-list');
+  await expect(listContainer).toContainText('E2E Wieder Aktiv AG');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-wieder-aktive-org.png') });
+});
+
 test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInfo) => {
   await page.goto('');
 

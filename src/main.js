@@ -80,6 +80,13 @@ async function init() {
     return false
   }
   await data.load(json)
+
+  // The userData hash was only parsed at module init (the dataset was not loaded
+  // yet). Now that the org list is available, validate it so an org referenced in
+  // the URL is kept instead of being wrongly treated as unknown and stripped.
+  const { revalidateUserData } = await import('./stores.js')
+  revalidateUserData()
+
   return true
 }
 

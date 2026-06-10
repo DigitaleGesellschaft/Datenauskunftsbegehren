@@ -148,5 +148,13 @@
   "test_banner": {
     "is_test_system": "Dies ist ein Testsystem",
     "find_production_at": "Das produktive System findest du unter"
+  },
+  "messages": {
+    "org_not_in_dataset": "Die Organisation {org} ist nicht (mehr) im Datensatz vorhanden. Deine Eingabe wurde zurückgesetzt.",
+    "org_removed_from_list": "Die Organisation {org} wurde am {date} aus der Liste entfernt. {reason}"
+  },
+  "org_selection": {
+    "search_placeholder": "Suche ...",
+    "no_options": "Keine Organisation gefunden"
   }
 }

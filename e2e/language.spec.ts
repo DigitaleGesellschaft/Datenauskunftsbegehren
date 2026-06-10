@@ -139,7 +139,8 @@ test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page },
   await page.locator('.overlay header button').click();
 
   // Etwas eingeben, damit der Reset-Button erscheint
-  await page.locator('input[placeholder="Suche ..."]').click();
+  // Sprachunabhängiger Locator, da die UI hier auf Englisch steht (Placeholder ist übersetzt)
+  await page.locator('.svelte-select input[type="text"]').click();
   const listContainer = page.locator('div.svelte-select-list');
   await expect(listContainer).toBeVisible();
   await listContainer.locator('div.item').first().click();

@@ -141,6 +141,52 @@ test('Nachfassen Daten ausgehändigt bekommen', async ({ page }) => {
   expect(sectionText).toContain('TT.MM.JJJJ');
 });
 
+test('Vorausgewählte Organisation aus URL wird in der Auswahl angezeigt', async ({ page }, testInfo) => {
+  const url = '#{"v":1,"entry":"followup","desire":"data_handover","step":"entry","name":"E2E Person","address":"E2E Absender","org":"Agrisano","date":"9.6.2026"}';
+  await page.goto(url);
+
+  // Die in der URL gewählte Organisation muss in der svelte-select Auswahl sichtbar sein
+  const selectedItem = page.locator('.org-selection .selected-item');
+  await expect(selectedItem).toHaveText('Agrisano');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-org-aus-url-vorausgewaehlt.png'), fullPage: true });
+});
+
+test('Unbekannte Organisation aus URL wird zurückgesetzt und meldet einen Fehler', async ({ page }, testInfo) => {
+  const url = '#{"v":1,"entry":"followup","desire":"data_handover","step":"entry","name":"E2E Person","address":"E2E Absender","org":"NichtExistierendeOrg12345"}';
+  await page.goto(url);
+
+  // Die Fehlermeldung zur zurückgesetzten Organisation muss erscheinen
+  const messages = page.locator('.messages');
+  await expect(messages).toContainText('Die Organisation NichtExistierendeOrg12345 ist nicht (mehr) im Datensatz vorhanden. Deine Eingabe wurde zurückgesetzt.');
+
+  // Die Organisationsauswahl darf keine vorausgewählte Organisation anzeigen
+  await expect(page.locator('.org-selection .selected-item')).toHaveCount(0);
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-unbekannte-org-zurueckgesetzt.png'), fullPage: true });
+});
+
+test('Hinweis erscheint, wenn die gewählte Organisation aus der Liste entfernt wurde', async ({ page }, testInfo) => {
+  // MS Direct AG hat im Datensatz einen "removed"-Eintrag (05.06.2021). Mit
+  // step=data_info_request bleibt die Organisation erhalten (Validierung greift
+  // nicht), sodass der Entfernungs-Hinweis angezeigt wird.
+  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender","org":"MS Direct AG"}';
+  await page.goto(url);
+
+  const messages = page.locator('.messages');
+  await expect(messages).toContainText('Die Organisation MS Direct AG wurde am 05.06.2021 aus der Liste entfernt. Die MS Direct AG pflegt keine eigenen Datenbestände.');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-org-aus-liste-entfernt.png'), fullPage: true });
+});
+
+test('Fehlermeldung zur unbekannten Organisation wird übersetzt (EN)', async ({ page }) => {
+  const url = '#{"v":1,"langUi":"en","entry":"followup","desire":"data_handover","step":"entry","name":"E2E Person","address":"E2E Absender","org":"NichtExistierendeOrg12345"}';
+  await page.goto(url);
+
+  const messages = page.locator('.messages');
+  await expect(messages).toContainText('The organisation NichtExistierendeOrg12345 is no longer part of the dataset. Your input has been reset.');
+});
+
 test('Nachfassen Daten ausgehändigt bekommen mit Datum im URL', async ({ page }) => {
   const url = '#{"v":1,"step":"data_handover","entry":"followup","desire":"data_handover","name":"E2E Person","date":"28.7.2025","dataInfoResponseDate":"3.3.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
