@@ -4,6 +4,7 @@
   "date": "Date",
   "date_of_request_label": "Date de la requête",
   "date_of_response_label": "Date de la réponse",
+  "date_placeholder": "JJ.MM.AAAA",
   "toggle_visibility": "Ouvrir/fermer",
   "recipient_address": "Adresse du destinataire",
   "registered_mail": "RECOMMANDÉ",
