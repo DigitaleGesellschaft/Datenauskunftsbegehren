@@ -27,6 +27,7 @@
   },
   "closing": "Je vous remercie et vous adresse mes meilleures salutations",
   "attachment_official_id": "En annexe: Pièce d'identité (copie)",
+  "attachment_id_selection": "Sélectionne l'image de ta pièce d'identité depuis le système de fichiers (les deux côtés ou recto et verso)",
   "data_access_request": "Requête en renseignement sur les données personnelles",
   "thank_you_message_pre": "Je vous remercie pour vos précisions du ",
   "thank_you_message_post": ".",

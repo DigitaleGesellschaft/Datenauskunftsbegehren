@@ -27,6 +27,7 @@
   },
   "closing": "Besten Dank und freundliche Grüsse",
   "attachment_official_id": "Beilage: Amtlicher Ausweis (Kopie)",
+  "attachment_id_selection": "Wähle das Abbild Deines Ausweises vom Dateisystem (beidseitig oder Vorder- und Rückseite)",
   "data_access_request": "Datenauskunftsbegehren",
   "thank_you_message_pre": "Ich danke Ihnen für die Auskunft vom ",
   "thank_you_message_post": ".",
