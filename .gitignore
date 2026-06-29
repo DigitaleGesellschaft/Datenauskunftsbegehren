@@ -18,3 +18,7 @@ node_modules/
 /playwright/.cache/
 
 dist
+data.json
+.devcontainer/devcontainer.json
+.devcontainer/MyDockerfile
+.vscode/launch.json
