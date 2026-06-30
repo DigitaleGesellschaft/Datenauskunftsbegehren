@@ -186,6 +186,23 @@ test.describe('Datumsplatzhalter Übersetzung', () => {
     await expect(page.locator('#letter')).toContainText('15.06.2099');
     await expect(page).toHaveURL(/15\.06\.2099/);
   });
+
+  test('Ein eingegebenes ISO-Datum (2020-02-20) bleibt beim Sprachwechsel erhalten', async ({ page }) => {
+    // Es werden nur Werte ersetzt, die exakt einem bekannten Platzhalter
+    // (TT.MM.JJJJ / JJ.MM.AAAA) entsprechen. Ein ISO-Datum ist kein Platzhalter
+    // und bleibt deshalb unverändert.
+    await page.goto(`#${demandHash('de', 'de', { dataInfoRequestDate: '2020-02-20' })}`);
+
+    await expect(page.locator('#letter')).toContainText('2020-02-20');
+
+    // Korrespondenzsprache auf Französisch umstellen
+    await page.locator('button.circle.one').first().click();
+    await page.locator('input[name="correspondence-language"][value="fr"]').click();
+
+    // Das ISO-Datum bleibt unverändert (kein Platzhalter-Match → User gewinnt)
+    await expect(page.locator('#letter')).toContainText('2020-02-20');
+    await expect(page).toHaveURL(/2020-02-20/);
+  });
 });
 
 test.describe('Editable-Variable Unterstreichung', () => {
