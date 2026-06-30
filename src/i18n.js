@@ -9,9 +9,11 @@ register('it', () => import('./locales/it-CH.json'));
 addMessages('de-letter', deCHLetter);
 addMessages('fr-letter', frCHLetter);
 
-const SUPPORTED_LANGS = ['de', 'fr', 'en', 'it'];
+export const SUPPORTED_LANGS = ['de', 'fr', 'en', 'it'];
 
-function getInitialLocale() {
+const DEFAULT_LANG = import.meta.env.VITE_DEFAULT_LANG || 'de';
+
+export function getInitialLocale() {
   const hash = window.location.hash;
   if (hash.length > 0) {
     try {
@@ -19,11 +21,20 @@ function getInitialLocale() {
       if (SUPPORTED_LANGS.includes(data.langUi)) return data.langUi;
     } catch {}
   }
-  return getLocaleFromNavigator();
+  // Normalize the navigator locale (e.g. "en-US") to a supported language ("en").
+  // svelte-i18n loads locale messages asynchronously, so the `locale` store is
+  // not yet populated when the stores module initializes — callers therefore
+  // need this synchronous detection instead of reading `locale`.
+  const navLocale = getLocaleFromNavigator();
+  if (navLocale) {
+    const base = navLocale.toLowerCase().split('-')[0];
+    if (SUPPORTED_LANGS.includes(base)) return base;
+  }
+  return DEFAULT_LANG;
 }
 
 init({
-  fallbackLocale: import.meta.env.VITE_DEFAULT_LANG || 'de',
+  fallbackLocale: DEFAULT_LANG,
   initialLocale: getInitialLocale(),
   ignoreTag: false
 });

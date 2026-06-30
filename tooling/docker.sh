@@ -41,8 +41,26 @@ case "$CMD" in
       sh -c "wget -O public/data_de.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data_de.json && \
              wget -O public/data_fr.json https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest/download/data_fr.json"
     ;;
+  i18n)
+    # node:24 (Debian) is used instead of alpine because the i18n shell scripts
+    # require bash.
+    docker run --rm \
+      -v "${PROJECT_ROOT}:/app" \
+      -w /app \
+      node:24 \
+      bash -c "npm install && npm run i18n"
+    ;;
+  i18n-check)
+    # git is required because the check compares the extracted locale files
+    # against the committed state.
+    docker run --rm \
+      -v "${PROJECT_ROOT}:/app" \
+      -w /app \
+      node:24 \
+      bash -c "git config --global --add safe.directory /app && npm install && npm run i18n-check"
+    ;;
   *)
-    echo "Usage: $0 {dev|test|download-data}"
+    echo "Usage: $0 {dev|test|download-data|i18n|i18n-check}"
     exit 1
     ;;
 esac

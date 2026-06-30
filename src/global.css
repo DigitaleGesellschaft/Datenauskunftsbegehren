@@ -312,6 +312,10 @@ button.solid.two {
   text-decoration: underline;
   text-decoration-thickness: 3px;
   text-decoration-color: var(--color-one);
+  /* Keep the underline continuous under descending glyphs (e.g. the "J" in
+     the "TT.MM.JJJJ" date placeholder); without this the default skip-ink
+     erases the underline beneath the descenders. */
+  text-decoration-skip-ink: none;
 }
 
 .editable-variable.empty::after {
@@ -322,6 +326,7 @@ button.solid.two {
   text-decoration: underline;
   text-decoration-thickness: 3px;
   text-decoration-color: var(--color-one);
+  text-decoration-skip-ink: none;
 }
 
 @media print {

@@ -6,6 +6,7 @@ import {nl2br, br2nl} from './lib.js'
 import { throttle } from 'lodash-es';
 import {data as d, validateUserData, getValidUserData, getOrgHistoryMessage} from './data.js';
 import { _, locale } from 'svelte-i18n';
+import { getInitialLocale } from './i18n.js';
 
 const _dataStore = writable(d)
 export const data = { subscribe: _dataStore.subscribe }
@@ -17,26 +18,40 @@ window.addEventListener('hashchange', (event) => {
   })
 })
 
-function getUserDataFromHash() {
+function parseUserDataFromHash() {
   const hash = window.location.hash;
   if (hash.length === 0) return {}
   try {
-    const data = JSON.parse(decodeURI(hash.slice(1)))
-    const validState = validateUserData(data)
-    if (validState.isValid) {
-      return data
-    } else {
-      messages.update(messages => {
-        messages.push(...validState.messages)
-        return messages
-      })
-      return getValidUserData(data)
-    }
+    return JSON.parse(decodeURI(hash.slice(1)))
   } catch (err) {
     console.error("URL fragment parsing failed!")
     console.error(err)
     return {}
   }
+}
+
+function cleanUserData(data) {
+  const validState = validateUserData(data)
+  if (validState.isValid) {
+    return data
+  } else {
+    messages.update(messages => {
+      messages.push(...validState.messages)
+      return messages
+    })
+    return getValidUserData(data)
+  }
+}
+
+function getUserDataFromHash() {
+  return cleanUserData(parseUserDataFromHash())
+}
+
+// Re-validate the current userData against the loaded dataset. This must run
+// after the org data is available, otherwise an org referenced in the URL would
+// be considered invalid (the dataset is empty at module init time) and stripped.
+export function revalidateUserData() {
+  userData.update(data => cleanUserData(data))
 }
 
 let lastStep
@@ -87,7 +102,10 @@ const updateMessagesThrottled = throttle(updateMessages, 300, {
   trailing: true
 })
 
-const currentUserData = getUserDataFromHash()
+// At module init the dataset is not loaded yet, so we only parse the hash here.
+// Validation (which depends on the loaded org list) happens via revalidateUserData()
+// once the data has been loaded (see main.js).
+const currentUserData = parseUserDataFromHash()
 export const userData = writable(currentUserData)
 userData.subscribe(val => {
   setUserDataToHashThrottled(val)
@@ -166,7 +184,7 @@ const currentImages = get(userData).idImages ? get(userData).idImages : {
 
 export const idImages = writable(currentImages)
 
-export const langUi = writable(currentUserData.langUi || get(locale) || DEFAULT_LANG)
+export const langUi = writable(currentUserData.langUi || getInitialLocale())
 
 langUi.subscribe(lang => {
   locale.set(lang)

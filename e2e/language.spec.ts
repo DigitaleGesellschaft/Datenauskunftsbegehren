@@ -68,6 +68,36 @@ for (const lang of languages) {
   });
 }
 
+test.describe('Browsersprache Englisch', () => {
+  test.use({ locale: 'en-US' });
+
+  test('Englischer Browser ohne Hash: UI und langUi sind Englisch', async ({ page }, testInfo) => {
+    await page.goto('');
+
+    // Die Oberfläche wird auf Englisch dargestellt
+    await expect(page.locator('h1')).toHaveText('Generate your data access request');
+
+    // langUi muss als Englisch erkannt und in die URL geschrieben werden (nicht "de")
+    await expect
+      .poll(async () => {
+        const hash = await page.evaluate(() => window.location.hash);
+        try {
+          return JSON.parse(decodeURIComponent(hash.slice(1))).langUi;
+        } catch {
+          return undefined;
+        }
+      })
+      .toBe('en');
+
+    // Im Sprachwähler ist konsequenterweise "English" vorausgewählt
+    await page.locator('button.circle.one').first().click();
+    await expect(page.locator('input[name="ui-language"][value="en"]')).toBeChecked();
+    await expect(page.locator('input[name="ui-language"][value="de"]')).not.toBeChecked();
+
+    await page.screenshot({ path: screenshotPath(testInfo, '01-englischer-browser.png'), fullPage: true });
+  });
+});
+
 const letterSnippets = {
   de: {
     registeredMail: 'EINSCHREIBEN',
@@ -139,7 +169,8 @@ test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page },
   await page.locator('.overlay header button').click();
 
   // Etwas eingeben, damit der Reset-Button erscheint
-  await page.locator('input[placeholder="Suche ..."]').click();
+  // Sprachunabhängiger Locator, da die UI hier auf Englisch steht (Placeholder ist übersetzt)
+  await page.locator('.svelte-select input[type="text"]').click();
   const listContainer = page.locator('div.svelte-select-list');
   await expect(listContainer).toBeVisible();
   await listContainer.locator('div.item').first().click();

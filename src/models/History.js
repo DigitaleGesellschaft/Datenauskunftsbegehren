@@ -14,7 +14,10 @@ export default class History {
   }
 
   getLastEvent() {
-    return this.data[this.data.length - 1]
+    // this.data is sorted descending by date (newest first), so the most recent
+    // event is at index 0. This determines the org's current state, e.g. an org
+    // that was removed and later re-added must count as currently valid.
+    return this.data[0]
   }
 
   isCurrentlyValid() {

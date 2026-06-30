@@ -3,6 +3,7 @@
   const dispatch = createEventDispatcher();
 
   import Select from 'svelte-select';
+  import { _ } from 'svelte-i18n';
   import { data } from '../stores.js';
 
   let { org = $bindable(undefined), options = undefined } = $props();
@@ -35,12 +36,12 @@
 
 <div class="org-selection" bind:this={wrapper}>
   {#if !isTouch}
-    <Select 
-      selectedValue={org}
+    <Select
+      value={org}
       bind:items={orgOptions}
       showIndicator="true"
-      placeholder="Suche ..."
-      noOptionsMessage="Keine Organisation gefunden"
+      placeholder={$_('org_selection.search_placeholder', { default: 'Suche ...' })}
+      noOptionsMessage={$_('org_selection.no_options', { default: 'Keine Organisation gefunden' })}
       on:select={handleSelect}
       on:clear={handleClear}
     ></Select>
