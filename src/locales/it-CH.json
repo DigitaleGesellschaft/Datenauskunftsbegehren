@@ -148,5 +148,13 @@
   "test_banner": {
     "is_test_system": "Questo è un sistema di test",
     "find_production_at": "Il sistema di produzione è disponibile su"
+  },
+  "messages": {
+    "org_not_in_dataset": "L'organizzazione {org} non è più presente nel set di dati. I tuoi dati sono stati reimpostati.",
+    "org_removed_from_list": "L'organizzazione {org} è stata rimossa dall'elenco il {date}. {reason}"
+  },
+  "org_selection": {
+    "search_placeholder": "Cerca ...",
+    "no_options": "Nessuna organizzazione trovata"
   }
 }

@@ -25,7 +25,8 @@ export function validateUserData(userData) {
   if (!validOrg) {
     messages.push({
       type: 'error',
-      text: `Die Organisation ${userData.org} ist nicht (mehr) im Datensatz vorhanden. Deine Eingabe wurde zurückgesetzt.`
+      key: 'org_not_in_dataset',
+      values: { org: userData.org }
     })
   }
   return {
@@ -53,7 +54,12 @@ export function getOrgHistoryMessage(userData) {
     if (!removal) return
     return {
       type: 'message',
-      text: `Die Organisation ${userData.org} wurde am ${lightFormat(removal.date, 'dd.MM.yyyy')} aus der Liste entfernt. ${removal.reason}`
+      key: 'org_removed_from_list',
+      values: {
+        org: userData.org,
+        date: lightFormat(removal.date, 'dd.MM.yyyy'),
+        reason: removal.reason
+      }
     }
   }
   return undefined
