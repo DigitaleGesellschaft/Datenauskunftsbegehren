@@ -48,11 +48,6 @@
   "letter_info_req_demand_list_missing": "[Liste des données manquantes]",
   "letter_info_req_demand_refusal": "Je vous prie de m'indiquer les raisons justifiant la restriction de ces informations. Cette obligation vous incombe en vertu de l'art. 18 oLPD (Ordonnance sur la protection des données)",
   "letter_info_req_demand_enforcement": "Je me réserve le droit, sans renseignements complets de votre part, d'entâmer des démarches afin de faire reconnaitre mon droit à l'information par la voie judiciaire ou de signaler le cas au Préposé fédéral à la protection des données et à la transparence (PFPDT). Je vous rends également attentif au fait que la communication intentionnelle d'informations fausses ou incomplètes est puni sur plaine d'une amende allant jusqu'à 250'000 Francs (Art. 60 LPD).",
-  "letter_handover_subject": "Requête en renseignement de données / Remise des données",
-  "letter_handover_body_1": "Je vous prie, sur la base de vos renseignements, de me remettre les données suivantes :",
-  "letter_handover_list_placeholder": "[Liste des données à remettre ou \"toutes les données\"]",
-  "letter_handover_body_2": "Je vous prie également d'indiquer les tiers auprès desquels vous avez reçu les données à remettre ou les tiers auxquels vous les avez transmis.",
-  "letter_handover_body_3": "Si vous refusez la remise en tout ou en partie, je vous prie de m'en indiquer les raisons.",
   "letter_info_req_remind": {
     "subject": "Requête en droit d'accès / Renseignement manquant",
     "unanswered_request_pre": "J'ai formulé le ",
