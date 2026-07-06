@@ -94,7 +94,7 @@
   "legal_title": "Légal",
   "privacy_imprint": "Déclaration sur la protection des données et Impressum",
   "ics": {
-    "description": "Tu as généré {causa} il y a {days}. As-tu reçu une réponse?",
+    "description": "Tu as généré {causa} il y a {days} jours. As-tu reçu une réponse?",
     "followup": "La fonction suivante te permet de générer une nouvelle demande ou un suivi.",
     "comeback": "Contacte nous  à l'adresse auskunftsbegehren@digitale-gesellschaft.ch pour tout renseignement.",
     "summary": "Réponse à ta requête?",
