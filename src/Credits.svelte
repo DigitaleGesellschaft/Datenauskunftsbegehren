@@ -7,7 +7,7 @@
     import ShutterIcon from './icons/ShutterIcon.svelte';
     import ShareIcon from './icons/ShareIcon.svelte';
 
-    import DigigesLogo from './DigigesLogo.svelte';
+    import LocalisedLogo from './LocalisedLogo.svelte';
     import { _ } from 'svelte-i18n';
     const digiges_name = $_("digiges_name", {default: "Digitale Gesellschaft"});
     const digiges_url = $_("digiges_url", {default: "https://www.digitale-gesellschaft.ch/"});
@@ -179,7 +179,7 @@
     </li>
   </ul>
   <div class="credits-footer">
-    <DigigesLogo></DigigesLogo>
+    <LocalisedLogo></LocalisedLogo>
   </div>
 </section>
 
