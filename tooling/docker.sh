@@ -4,10 +4,14 @@ set -euo pipefail
 CMD="${1:-}"
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
+CURRENT_USER="$(id -u):$(id -g)"
+NODE_USER_ARGS=(--user "${CURRENT_USER}" -e HOME=/tmp)
+
 case "$CMD" in
   dev)
     GIT_REVISION=$(git -C "${PROJECT_ROOT}" rev-parse --short HEAD 2>/dev/null || echo 'unknown')
     docker run --rm -it \
+      "${NODE_USER_ARGS[@]}" \
       --network host \
       -v "${PROJECT_ROOT}:/app" \
       -e VITE_TEST_BANNER=true \
@@ -18,10 +22,11 @@ case "$CMD" in
     ;;
   test)
     GIT_REVISION=$(git -C "${PROJECT_ROOT}" rev-parse --short HEAD 2>/dev/null || echo 'unknown')
-    PLAYWRIGHT_VERSION=$(docker run --rm -v "${PROJECT_ROOT}:/app" -w /app node:24-alpine \
+    PLAYWRIGHT_VERSION=$(docker run --rm "${NODE_USER_ARGS[@]}" -v "${PROJECT_ROOT}:/app" -w /app node:24-alpine \
       node -e "const p=require('./package.json');console.log(p.devDependencies['@playwright/test'].replace(/[\^~]/,''))")
-    EXTRA_ARGS="${@:2}"
+    EXTRA_ARGS=("${@:2}")
     docker run --rm -i \
+      "${NODE_USER_ARGS[@]}" \
       -v "${PROJECT_ROOT}:/app" \
       -w /app \
       --network host \
@@ -31,10 +36,11 @@ case "$CMD" in
                VITE_TEST_BANNER=true npx vite --port 5174 &
                while ! (echo > /dev/tcp/localhost/5173) 2>/dev/null; do sleep 0.5; done
                while ! (echo > /dev/tcp/localhost/5174) 2>/dev/null; do sleep 0.5; done
-               npx playwright test -c ./playwright.config.ts ${EXTRA_ARGS}"
+               npx playwright test -c ./playwright.config.ts \"\$@\"" bash "${EXTRA_ARGS[@]}"
     ;;
   download-data)
     docker run --rm \
+      "${NODE_USER_ARGS[@]}" \
       -v "${PROJECT_ROOT}:/app" \
       -w /app \
       node:24-alpine \
@@ -45,6 +51,7 @@ case "$CMD" in
     # node:24 (Debian) is used instead of alpine because the i18n shell scripts
     # require bash.
     docker run --rm \
+      "${NODE_USER_ARGS[@]}" \
       -v "${PROJECT_ROOT}:/app" \
       -w /app \
       node:24 \
@@ -54,6 +61,7 @@ case "$CMD" in
     # git is required because the check compares the extracted locale files
     # against the committed state.
     docker run --rm \
+      "${NODE_USER_ARGS[@]}" \
       -v "${PROJECT_ROOT}:/app" \
       -w /app \
       node:24 \

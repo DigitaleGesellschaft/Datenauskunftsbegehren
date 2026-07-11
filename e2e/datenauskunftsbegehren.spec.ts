@@ -67,7 +67,7 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
   await page.screenshot({ path: screenshotPath(testInfo, '01-dropdown-offen.png') });
 
   await searchInput.fill('Swisscom');
-  const swisscomOption = listContainer.locator('div.item >> nth=2');
+  const swisscomOption = listContainer.locator('div.item', { hasText: /^Swisscom$/ });
   await swisscomOption.click();
 
   // Eingabemaske erscheint
