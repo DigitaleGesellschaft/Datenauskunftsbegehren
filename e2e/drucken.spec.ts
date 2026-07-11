@@ -84,6 +84,20 @@ test('Print-Seite zeigt aufgelösten causa-Text ohne Platzhalter', async ({ page
   await expect(sendByPostPara).toContainText('das Datenauskunftsbegehren');
 });
 
+// Regression: ältere Versionen der App kannten kein "desire" und trugen stattdessen
+// "letter" als step ein. App.svelte normalisiert desire="letter" zu "data_info_request",
+// damit der Causa-Text auf der Druckseite (und im ICS-Export) nicht den rohen
+// Übersetzungsschlüssel "causa.print.letter" anzeigt.
+test('Print-Seite löst causa-Text auch bei altem desire="letter" auf (Regression)', async ({ page }) => {
+  const url = `#{"v":1,"desire":"letter","step":"print",${baseState}}`;
+  await page.goto(url);
+
+  const sendByPostPara = page.locator('.step-print p').first();
+  await expect(sendByPostPara).not.toContainText('{causa}');
+  await expect(sendByPostPara).not.toContainText('causa.print.letter');
+  await expect(sendByPostPara).toContainText('das Datenauskunftsbegehren');
+});
+
 test('Brief Auskunftsbegehren via Einstiegsmaske zeigt nur einen Brief', async ({ page }, testInfo) => {
   await page.goto('');
 
