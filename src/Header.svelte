@@ -5,7 +5,7 @@
   import Steps from './Steps.svelte'
 
   import InfoIcon from './icons/InfoIcon.svelte'
-  import GlobeIcon from './icons/GlobeIcon.svelte'
+  import LanguageIcon from './icons/LanguageIcon.svelte'
   let { activeStep } = $props();
 
   let showCredits = $state(false)
@@ -15,7 +15,7 @@
 <header>
   <Steps on:step activeStep={activeStep}></Steps>
   <div class="actions">
-    <button class="circle one" onclick={() => showLanguagePicker = true}><GlobeIcon width="30" height="30"></GlobeIcon></button>
+    <button class="circle one" onclick={() => showLanguagePicker = true}><LanguageIcon width="30" height="30"></LanguageIcon></button>
     <button class="circle one" onclick={() => showCredits = true}><InfoIcon width="30" height="30"></InfoIcon></button>
   </div>
 </header>
