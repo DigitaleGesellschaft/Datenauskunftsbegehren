@@ -6,6 +6,7 @@
     import InfoIcon from './icons/InfoIcon.svelte';
     import ShutterIcon from './icons/ShutterIcon.svelte';
     import ShareIcon from './icons/ShareIcon.svelte';
+    import LanguageIcon from './icons/LanguageIcon.svelte';
 
     import DigigesLogo from './DigigesLogo.svelte';
     import { _ } from 'svelte-i18n';
@@ -101,6 +102,11 @@
         <li>
           <span class="icon-credit-line">
             <ShareIcon></ShareIcon> created by <a href="https://thenounproject.com/flatdesigntheory/" target="_blank" rel="noopener noreferrer">Memed Nurrohmad</a>
+          </span>
+        </li>
+        <li>
+          <span class="icon-credit-line">
+            <LanguageIcon></LanguageIcon> created by <a href="https://thenounproject.com/rshashank19/" target="_blank" rel="noopener noreferrer">shashank singh</a>
           </span>
         </li>
       </ul>
