@@ -43,6 +43,15 @@ test('Standardsprache ist Deutsch', async ({ page }, testInfo) => {
   await page.screenshot({ path: screenshotPath(testInfo, '01-startseite-deutsch.png'), fullPage: true });
 });
 
+test('Sprachwahl-Button zeigt das Translate-Icon statt eines Globus', async ({ page }) => {
+  await page.goto('');
+
+  // Das Icon wurde vom Globus (viewBox 24x24) auf das Noun-Project-Translate-Icon (viewBox 100x100) umgestellt
+  const languageIcon = page.locator('button.circle.one').first().locator('svg');
+  await expect(languageIcon).toHaveAttribute('viewBox', '0 0 100 100');
+  await expect(languageIcon.locator('title')).toHaveText('Language');
+});
+
 for (const lang of languages) {
   test(`UI-Sprache auf ${lang.label} umstellen`, async ({ page }, testInfo) => {
     await page.goto('');
