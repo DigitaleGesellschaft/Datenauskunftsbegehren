@@ -32,7 +32,7 @@
 
   import {data, userData, userAddressHtml, orgAddressHtml, userDesire, langUi, langCor} from './stores.js'
   import { get } from 'svelte/store'
-  let desires = $derived($data && $data.desires ? $data.desires : [])
+  let desires = $derived($data && $data.desires ? $data.desires.filter(desire => desire.handle !== 'data_info_request') : [])
 
   const MEMBERSHIP_LINK = 'https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/'
   const NEWSLETTER_LINK = 'https://www.digitale-gesellschaft.ch/uber-uns/newsletter/'

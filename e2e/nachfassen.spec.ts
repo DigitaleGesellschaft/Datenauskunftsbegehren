@@ -24,6 +24,10 @@ test('Nachfassen bei ausbleibender Antwort', async ({ page }, testInfo) => {
 
   await page.screenshot({ path: screenshotPath(testInfo, '02-nachfassen-auswahl.png'), fullPage: true });
 
+  // Die Nachfassen-Auswahl darf nicht die Option für das ursprüngliche Auskunftsbegehren zeigen
+  const briefAuskunftsbegehrenButton = page.locator('button', { hasText: 'Brief Auskunftsbegehren' });
+  await expect(briefAuskunftsbegehrenButton).toHaveCount(0);
+
   const keineAntwortButton = page.locator('button', { hasText: 'Ich erhielt keine Antwort' });
   await keineAntwortButton.click();
 
