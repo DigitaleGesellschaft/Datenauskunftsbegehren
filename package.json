@@ -22,7 +22,7 @@
     "svelte": "^5.56.5",
     "svelte-check": "^4.7.3",
     "typescript": "~6.0.3",
-    "vite": "^8.1.4"
+    "vite": "^8.1.5"
   },
   "dependencies": {
     "date-fns": "^4.4.0",
