@@ -48,11 +48,6 @@
   "letter_info_req_demand_list_missing": "[Auflistung der fehlenden Daten]",
   "letter_info_req_demand_refusal": "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen Angaben geliefert werden, wieso eine Auskunft eingeschränkt wurde. Ich bitte Sie entsprechend, vollständig Auskunft zu erteilen oder Angaben zu liefern, wieso die Auskunft eingeschränkt wurde..",
   "letter_info_req_demand_enforcement": "Sollten Sie weiterhin keine vollständige Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten. Ich weise ausserdem darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art. 60 DSG).",
-  "letter_handover_subject": "Datenauskunftsbegehren / Herausgabe von Daten",
-  "letter_handover_body_1": "Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Daten herauszugeben:",
-  "letter_handover_list_placeholder": "[Auflistung der zu herauszugebenden Daten oder Angabe von \"sämtliche Daten\"]",
-  "letter_handover_body_2": "Ich verlange ferner, dass Sie Dritte, von welchen Sie die zu herauszugebenden Daten erhalten oder denen Sie die zu herauszugebenden Daten weitergegeben haben, in der Auflistung entsprechend ausweisen.",
-  "letter_handover_body_3": "Sollten Sie die Herausgabe ganz oder teilweise verweigern, ersuche ich Sie um eine entsprechende Begründung.",
   "letter_info_req_remind": {
     "subject": "Datenauskunftsbegehren / Ausbleibende Auskunft",
     "unanswered_request_pre": "Am ",
