@@ -15,8 +15,8 @@
 <header>
   <Steps on:step activeStep={activeStep}></Steps>
   <div class="actions">
-    <button class="circle one" onclick={() => showLanguagePicker = true}><LanguageIcon width="30" height="30"></LanguageIcon></button>
-    <button class="circle one" onclick={() => showCredits = true}><InfoIcon width="30" height="30"></InfoIcon></button>
+    <button class="plain one" data-qa="language-switch-button" onclick={() => showLanguagePicker = true}><LanguageIcon width="38" height="38"></LanguageIcon></button>
+    <button class="plain one" data-qa="credits-button" onclick={() => showCredits = true}><InfoIcon width="38" height="38"></InfoIcon></button>
   </div>
 </header>
 {#if showLanguagePicker}

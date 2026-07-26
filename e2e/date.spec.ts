@@ -151,7 +151,7 @@ test.describe('Datumsplatzhalter Übersetzung', () => {
     await page.screenshot({ path: screenshotPath(testInfo, '01-platzhalter-deutsch.png'), fullPage: true });
 
     // Korrespondenzsprache auf Französisch umstellen
-    await page.locator('button.circle.one').first().click();
+    await page.locator('[data-qa="language-switch-button"]').click();
     await page.locator('input[name="correspondence-language"][value="fr"]').click();
 
     // Platzhalter ist nun auf Französisch — im Brief und in der URL
@@ -178,7 +178,7 @@ test.describe('Datumsplatzhalter Übersetzung', () => {
     await expect(page.locator('#letter')).toContainText('15.06.2099');
 
     // Korrespondenzsprache auf Französisch umstellen
-    await page.locator('button.circle.one').first().click();
+    await page.locator('[data-qa="language-switch-button"]').click();
     await page.locator('input[name="correspondence-language"][value="fr"]').click();
 
     // Das echte Datum bleibt unverändert, es wird nicht durch einen Platzhalter ersetzt.
@@ -196,7 +196,7 @@ test.describe('Datumsplatzhalter Übersetzung', () => {
     await expect(page.locator('#letter')).toContainText('2020-02-20');
 
     // Korrespondenzsprache auf Französisch umstellen
-    await page.locator('button.circle.one').first().click();
+    await page.locator('[data-qa="language-switch-button"]').click();
     await page.locator('input[name="correspondence-language"][value="fr"]').click();
 
     // Das ISO-Datum bleibt unverändert (kein Platzhalter-Match → User gewinnt)
