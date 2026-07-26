@@ -28,7 +28,7 @@ test('Nachfassen bei ausbleibender Antwort', async ({ page }, testInfo) => {
   await keineAntwortButton.click();
 
   // Prüfen, dass es sich um die Vorlage ausbleibende Auskunft handelt
-  const letterSection = await page.locator('section#letter');
+  const letterSection = await page.locator('[data-qa="letter"]');
   const sectionText = await letterSection.textContent();
   expect(sectionText).toContain('Datenauskunftsbegehren / Ausbleibende Auskunft');
   expect(sectionText).toContain('E2E Person');
@@ -45,7 +45,7 @@ test('Nachfassen bei ausbleibender Antwort mit Datum im URL', async ({ page }) =
   const url = '#{"v":1,"step":"unanswered","entry":"followup","desire":"unanswered","name":"E2E Person","date":"28.7.2025","dataInfoRequestDate":"15.1.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
 
-  const letterSection = await page.locator('section#letter');
+  const letterSection = await page.locator('[data-qa="letter"]');
   const sectionText = await letterSection.textContent();
   expect(sectionText).toContain('15.1.2025');
 });
@@ -60,7 +60,7 @@ test('Nachfassen unvollständige Antwort', async ({ page }, testInfo) => {
   await keineAntwortButton.click();
 
   // Prüfen, dass es sich um die Vorlage unvollständige Antwort handelt
-  const letterSection = await page.locator('section#letter');
+  const letterSection = await page.locator('[data-qa="letter"]');
   const sectionText = await letterSection.textContent();
   expect(sectionText).toContain('Ich gehe davon aus, dass insbesondere folgende Informationen fehlen');
   expect(sectionText).toContain('E2E Person');
@@ -83,7 +83,7 @@ test('Nachfassen Daten korrigieren lassen', async ({ page }, testInfo) => {
   await keineAntwortButton.click();
 
   // Prüfen, dass es sich um die Vorlage Daten korrigieren handelt
-  const letterSection = await page.locator('section#letter');
+  const letterSection = await page.locator('[data-qa="letter"]');
   const sectionText = await letterSection.textContent();
   expect(sectionText).toContain('Aufgrund Ihrer Auskunft stellte ich fest, dass von Ihnen bearbeitete Personendaten unrichtig sind.');
   expect(sectionText).toContain('E2E Person');
@@ -106,7 +106,7 @@ test('Nachfassen Daten löschen lassen', async ({ page }, testInfo) => {
   await keineAntwortButton.click();
 
   // Prüfen, dass es sich um die Vorlage Daten löschen handelt
-  const letterSection = await page.locator('section#letter');
+  const letterSection = await page.locator('[data-qa="letter"]');
   const sectionText = await letterSection.textContent();
   expect(sectionText).toContain('Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Personendaten zu löschen:');
   expect(sectionText).toContain('E2E Person');
@@ -133,7 +133,7 @@ test('Nachfassen bietet Datenaushändigung nicht mehr an', async ({ page }) => {
   // Direkter URL-Aufruf mit desire=data_handover darf keinen Brief erzeugen
   const url = '#{"v":1,"step":"data_handover","entry":"followup","desire":"data_handover","name":"E2E Person","date":"28.7.2025","dataInfoResponseDate":"3.3.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
-  await expect(page.locator('section#letter')).toHaveCount(0);
+  await expect(page.locator('[data-qa="letter"]')).toHaveCount(0);
 });
 
 test('Vorausgewählte Organisation aus URL wird in der Auswahl angezeigt', async ({ page }, testInfo) => {

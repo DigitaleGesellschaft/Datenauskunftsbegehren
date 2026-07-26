@@ -80,7 +80,7 @@
 </script>
 
 <div id="letter-container">
-  <section id="letter" bind:this={letterDataInfoReqNode}>
+  <section id="letter" data-qa="letter" bind:this={letterDataInfoReqNode}>
     <div class="letter-head">
       <div class="address-from">
          <span

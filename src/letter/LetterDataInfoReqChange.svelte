@@ -60,7 +60,7 @@
 </script>
 
 <div id="letter-container">
-  <section id="letter" bind:this={LetterDataInfoReqChangeNode}>
+  <section id="letter" data-qa="letter" bind:this={LetterDataInfoReqChangeNode}>
     <div class="letter-head">
       <div class="address-from">
         <span

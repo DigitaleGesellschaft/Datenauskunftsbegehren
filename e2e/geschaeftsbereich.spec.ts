@@ -14,7 +14,7 @@ async function selectType(page: Page, typeLabel: string) {
 
 async function generateLetter(page: Page) {
   await page.locator('button', { hasText: 'Brief generieren' }).click();
-  await expect(page.locator('section#letter')).toBeVisible();
+  await expect(page.locator('[data-qa="letter"]')).toBeVisible();
 }
 
 test('Geschäftsbereich Adresshandel: Brief enthält spezifischen Absatz', async ({ page }, testInfo) => {
@@ -22,7 +22,7 @@ test('Geschäftsbereich Adresshandel: Brief enthält spezifischen Absatz', async
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Adresshandel');
   await expect(letter).toContainText('Zielgruppen');
   await expect(letter).toContainText('E2E Person');
@@ -35,7 +35,7 @@ test('Geschäftsbereich Kreditauskunft: Brief enthält spezifischen Absatz', asy
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Kreditauskunft');
   await expect(letter).toContainText('Bonitätsprüfung');
   await expect(letter).toContainText('E2E Person');
@@ -48,7 +48,7 @@ test('Geschäftsbereich Gastrodaten: Brief enthält spezifischen Absatz', async 
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Gastronomie');
   await expect(letter).toContainText('Contact Tracing');
   await expect(letter).toContainText('E2E Person');
@@ -61,7 +61,7 @@ test('Geschäftsbereich Kundenkarten-Anbieter: Brief enthält spezifischen Absat
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Kundenkarte');
   await expect(letter).toContainText('E2E Person');
 
@@ -74,7 +74,7 @@ test('Geschäftsbereich Mobilfunkprovider: Brief enthält BÜPF-Absatz und Handy
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Mobilfunk');
   await expect(letter).toContainText('BÜPF');
   await expect(letter).toContainText('+41 79 123 45 67');
@@ -90,7 +90,7 @@ test('Geschäftsbereich Mobilität: Brief enthält Fahrzeug-Absatz und Fahrzeugi
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Mobilität');
   await expect(letter).toContainText('Fahrzeug');
   await expect(letter).toContainText('VW Golf, ZH 123 456');
@@ -105,7 +105,7 @@ test('Geschäftsbereich Online-Portal: Brief enthält E-Mail-Adresse', async ({ 
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Online-Portal');
   await expect(letter).toContainText('Kundenaktivität');
   await expect(letter).toContainText('test@example.com');
@@ -116,12 +116,13 @@ test('Geschäftsbereich Online-Portal: Brief enthält E-Mail-Adresse', async ({ 
 
 test('Geschäftsbereich Parkplatz-Anbieter: Brief enthält spezifischen Absatz', async ({ page }, testInfo) => {
   await selectType(page, 'Parkplatz-Anbieter');
+  await page.getByLabel('Kontrollschild').fill('BE 123 456');
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
-  await expect(letter).toContainText('parkingprovider');
-  await expect(letter).toContainText('Parkieren');
+  const letter = page.locator('[data-qa="letter"]');
+  await expect(letter).toContainText('Parkplatz');
+  await expect(letter).toContainText('BE 123 456');
   await expect(letter).toContainText('E2E Person');
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-parkplatz.png'), fullPage: true });
@@ -133,7 +134,7 @@ test('Geschäftsbereich WLAN-Anbieter: Brief enthält BÜPF-Absatz und Handy-Num
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('WLAN');
   await expect(letter).toContainText('BÜPF');
   await expect(letter).toContainText('+41 79 987 65 43');

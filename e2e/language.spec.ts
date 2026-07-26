@@ -133,8 +133,8 @@ test('UI Deutsch, Korrespondenzsprache Französisch: Seite auf Deutsch, Brief au
   await expect(page.locator('button.no-print').first()).toHaveText('❮ zur Dateneingabe');
 
   // Briefinhalt ist Französisch
-  await expect(page.locator('#letter .salutation')).toContainText(letterSnippets.fr.salutation);
-  await expect(page.locator('#letter .address-to')).toContainText(letterSnippets.fr.registeredMail);
+  await expect(page.locator('[data-qa="letter"] .salutation')).toContainText(letterSnippets.fr.salutation);
+  await expect(page.locator('[data-qa="letter"] .address-to')).toContainText(letterSnippets.fr.registeredMail);
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-ui-de-brief-fr.png'), fullPage: true });
 });
@@ -146,8 +146,8 @@ test('UI Französisch, Korrespondenzsprache Deutsch: Seite auf Französisch, Bri
   await expect(page.locator('button.no-print').first()).toHaveText('❮ à la saisie');
 
   // Briefinhalt ist Deutsch
-  await expect(page.locator('#letter .salutation')).toContainText(letterSnippets.de.salutation);
-  await expect(page.locator('#letter .address-to')).toContainText(letterSnippets.de.registeredMail);
+  await expect(page.locator('[data-qa="letter"] .salutation')).toContainText(letterSnippets.de.salutation);
+  await expect(page.locator('[data-qa="letter"] .address-to')).toContainText(letterSnippets.de.registeredMail);
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-ui-fr-brief-de.png'), fullPage: true });
 });
