@@ -21,10 +21,10 @@
 </script>
 
 <div class="share">
-  {$_('share.hint', { default: '💡 Die Webadresse (URL) enthält all Deine Eingaben. Du kannst sie speichern' })}
+  {$_('share.hint', { default: '💡 Die Webadresse (URL) enthält all Deine Eingaben. Du kannst sie speichern' })}.
   {#if hasShareApi}
     {$_('share.or_send', { default: 'oder Dir senden:' })} <button class="circle" onclick={share}><ShareIcon></ShareIcon></button>
-  {/if}.
+  {/if}
 </div>
 
 <style>
