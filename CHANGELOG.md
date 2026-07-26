@@ -1,11 +1,103 @@
-# V 3.0.0 - 13.10.2025
-
-* feat: replace old logo of the Digitale Gesellschaft with the new one
-* chore: add playwright tests
-* chore: bump svelte to v4
-* chore: change build system from rollup to vite
-
-Breaking changes:
-* the port for the local execution of the dev server changed to 5173
-
-# V 2.0.0 - 30.08.2023
+- build: add release workflow
+- fix(letter): fix broken bullet visibility toggle (#193)
+- Remove italian and english as user interface language (#192)
+- fix: translation for info page links (#166)
+- remove data_handover (#173)
+- fix(header): replace ambiguous globe icon with a translate/language icon (#182)
+- fix(e2e): stop flaky Swisscom org-selection click and fix docker.sh permissions (#179)
+- chore(deps-dev): bump svelte from 5.56.5 to 5.56.7 (#191)
+- chore(deps-dev): bump vite from 8.1.4 to 8.1.5 in the vite group (#190)
+- chore(deps-dev): bump svelte-check from 4.7.2 to 4.7.3 (#189)
+- chore(deps): bump actions/setup-node from 6 to 7 (#187)
+- chore(deps-dev): bump svelte from 5.56.4 to 5.56.5 (#188)
+- chore(deps-dev): bump the vite group across 1 directory with 2 updates (#175)
+- chore(deps-dev): bump svelte-check from 4.7.1 to 4.7.2 (#178)
+- chore(deps-dev): bump @types/node from 26.1.0 to 26.1.1 (#176)
+- fix(ci): run Build Site on pull requests and fix stray newline in fr-CH.json
+- Missing word in french locations for ICS reminder (#170)
+- feat(letter): translate date placeholders with correspondence language (#152)
+- chore(deps-dev): bump @types/node from 26.0.1 to 26.1.0 (#164)
+- chore(deps-dev): bump vite from 8.1.0 to 8.1.2 in the vite group (#163)
+- fix: detect UI language from browser locale on first load (#151)
+- fix: keep and display org preselected via URL, translate org messages (#149)
+- fix(letter): keep editable-variable underline continuous under descenders (#148)
+- chore(deps): bump actions/checkout from 6 to 7 (#157)
+- chore(deps-dev): bump svelte-check from 4.6.0 to 4.7.1 (#162)
+- chore(deps-dev): bump vite from 8.0.16 to 8.1.0 in the vite group (#159)
+- chore(deps-dev): bump the playwright group with 2 updates (#158)
+- chore(deps-dev): bump svelte from 5.56.3 to 5.56.4 (#161)
+- chore(deps-dev): bump @types/node from 24.13.2 to 26.0.1 (#160)
+- chore(deps-dev): bump the playwright group with 2 updates (#156)
+- chore(deps-dev): bump svelte-check from 4.5.0 to 4.6.0 (#155)
+- chore(deps-dev): bump svelte from 5.56.1 to 5.56.3 (#153)
+- chore(deps-dev): bump @types/node from 24.12.4 to 24.13.2 (#154)
+- Add desire handover (#65)
+- chore(deps-dev): bump svelte from 5.55.10 to 5.56.1
+- chore(deps-dev): bump svelte-check from 4.4.8 to 4.5.0
+- chore(deps-dev): bump vite from 8.0.14 to 8.0.16 in the vite group
+- chore(deps): bump date-fns from 4.3.0 to 4.4.0
+- chore(deps-dev): bump svelte from 5.55.9 to 5.55.10
+- chore(deps-dev): bump vite from 8.0.13 to 8.0.14 in the vite group
+- chore(deps): bump date-fns from 4.2.1 to 4.3.0
+- fix: show Nachfassen button when step=print is loaded via URL (#137)
+- fix(variable-input): initialize default date on mount (#135)
+- fix(step-event): show event label in details header instead of undefined (#133)
+- fix(i18n): correct typos in French translation (#126)
+- chore(deps-dev): bump vite from 8.0.12 to 8.0.13 in the vite group
+- chore(deps): bump date-fns from 4.1.0 to 4.2.1
+- chore(deps-dev): bump svelte from 5.55.5 to 5.55.9
+- Update issue templates
+- chore(deps-dev): bump the playwright group across 1 directory with 2 updates
+- chore(deps-dev): bump @types/node from 24.12.2 to 24.12.4
+- chore(deps-dev): bump the vite group with 2 updates
+- chore(deps-dev): bump @sveltejs/vite-plugin-svelte in the vite group
+- chore(deps-dev): bump svelte-check from 4.4.6 to 4.4.8
+- chore(deps-dev): bump vite from 8.0.9 to 8.0.10 in the vite group
+- chore(deps-dev): bump svelte from 5.55.4 to 5.55.5
+- test: add visual screenshots to all e2e tests and upload as CI artifact (#123)
+- fix: resolve {causa} placeholder in send_by_post translation
+- feat: add i18n support for test banner
+- feat: show app version and git revision in info screen and test banner
+- chore: update package-log file
+- fix: prevent blank second page when printing short letters
+- chore: avoid commiting personal AI assistant files
+- fix: only render the selected letter when printing
+- chore: ignore personal AGENTS.md files
+- feat: docker.sh script allows now calling from everywhere and supports extra arguments for playwright
+- fix: possible race-condition make sure if the language is provided it is extracted from the parameter before fallback to navigator locale
+- ci: disable retries to avoid hiding misbehavior
+- feat: determine playwright version dynamically for the docker command
+- chore(deps-dev): bump typescript from 6.0.2 to 6.0.3
+- chore(deps-dev): bump @tsconfig/svelte from 5.0.5 to 5.0.8
+- Update credits with additional contributors
+- Update credits with additional contributors
+- chore(deps-dev): bump vite from 8.0.8 to 8.0.9 in the vite group
+- chore(deps-dev): bump the vite group with 2 updates
+- chore(deps-dev): bump typescript from 5.9.3 to 6.0.2
+- chore(deps-dev): bump @types/node from 24.8.1 to 24.12.2
+- chore(deps-dev): bump svelte from 5.55.2 to 5.55.4
+- chore(deps): bump actions/upload-pages-artifact from 4 to 5
+- deps: group vite related dependencies
+- chore(deps-dev): bump the playwright group with 2 updates (#102)
+- chore(deps-dev): bump svelte-check from 4.3.3 to 4.4.6 (#105)
+- chore(deps): bump actions/upload-pages-artifact from 3 to 4 (#101)
+- chore(deps): bump actions/configure-pages from 5 to 6 (#100)
+- chore(deps-dev): bump svelte from 5.55.1 to 5.55.2 (#106)
+- Multi language (#96)
+- fix: set proper page title
+- fix: allow closing the overlay
+- feat: don't cache the index file
+- chore: improve pages workflow
+- feat: add a test banner
+- feat: workflow to deploy the page
+- feat: bump to node 24 and provide a script to run the most important commands in docker
+- chore(deps): bump date-fns from 2.30.0 to 4.1.0 (#72)
+- Translations (#66)
+- chore(deps-dev): bump svelte from 5.40.2 to 5.55.0 (#91)
+- chore(deps): bump lodash-es from 4.17.22 to 4.17.23 (#83)
+- chore(deps): bump actions/setup-node from 4 to 6 (#88)
+- chore(deps): bump actions/upload-artifact from 6 to 7 (#87)
+- make sure that both playwright dependencies are updated at the same time
+- Upgrade to Svelte5 (#55)
+- add e2e workflow (#82)
+- chore(deps): bump actions/upload-artifact from 6 to 7 (#86)
