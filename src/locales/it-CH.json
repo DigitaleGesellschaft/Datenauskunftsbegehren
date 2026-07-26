@@ -37,7 +37,7 @@
     "done_title": "Fatto!",
     "send_by_post": "Ora devi <strong>inviare {causa} tramite raccomandata</strong>.",
     "deadline_info": "Dalla ricezione, sono concessi 30 giorni per rispondere. Salva un promemoria nel calendario per ricordarti di sollecitare nel caso in cui non dovessi ricevere risposta entro tale termine.",
-    "feedback": "Invia i tuoi commenti a <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link>.",
+    "feedback": "Invia i tuoi commenti a <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link> oppure apri una <github_link>issue su GitHub.com</github_link>.",
     "support_us_intro": "Il nostro generatore è stato sviluppato da esperti informatici e giuridici della Società digitale in innumerevoli ore ed è disponibile gratuitamente per tutti.",
     "support_us_membership": "Come <membership_link>membro, donatore o donatrice</membership_link>, sostieni il nostro lavoro.",
     "support_us_newsletter": "Per essere aggiornato/a sulle nostre attività, abbonati ora alla <newsletter_link>newsletter mensile</newsletter_link>.",

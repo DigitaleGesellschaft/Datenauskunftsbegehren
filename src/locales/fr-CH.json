@@ -37,7 +37,7 @@
     "done_title": "C'est fait !",
     "send_by_post": "Tu dois maintenant <strong>envoyer en recommandé par la poste</strong> {causa}.",
     "deadline_info": "Dès réception, 30 jours sont accordés pour répondre. Enregistre un rappel dans le calendrier pour te souvenir de relancer si tu n'as pas reçu de réponse d'ici là.",
-    "feedback": "Tu peux nous faire part de tes remarques à <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link>.",
+    "feedback": "Tu peux nous faire part de tes remarques à <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link> ou créer une <github_link>issue sur GitHub.com</github_link>.",
     "support_us_intro": "Notre générateur a été développé par des expert·e·s en informatique et en droit de la Société numérique en d'innombrables heures et est mis à disposition gratuitement.",
     "support_us_membership": "En tant que <membership_link>membre, donateur ou donatrice</membership_link>, tu soutiens notre travail.",
     "support_us_newsletter": "Pour rester informé·e de nos activités, abonne-toi dès maintenant à la <newsletter_link>newsletter mensuelle</newsletter_link>.",

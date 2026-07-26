@@ -37,7 +37,7 @@
     "done_title": "Done!",
     "send_by_post": "You now need to <strong>send {causa} by registered mail</strong>.",
     "deadline_info": "From the date of receipt, 30 days are allowed to respond. Save a calendar entry to remind yourself to follow up in case you haven't received a response by then.",
-    "feedback": "We welcome your feedback at <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link>.",
+    "feedback": "We welcome your feedback at <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link> or file an <github_link>issue on GitHub.com</github_link>.",
     "support_us_intro": "Our generator was developed by IT and legal experts of the Digital Society in countless hours and is available to everyone for free.",
     "support_us_membership": "As a <membership_link>member, donor or supporter</membership_link>, you support our work.",
     "support_us_newsletter": "To stay up to date on our activities, subscribe to our <newsletter_link>monthly newsletter</newsletter_link> now.",

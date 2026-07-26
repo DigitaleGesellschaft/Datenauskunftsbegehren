@@ -37,7 +37,7 @@
     "done_title": "Geschafft",
     "send_by_post": "Nun musst du {causa} noch <strong>eingeschrieben per Post versenden</strong>.",
     "deadline_info": "Ab dem Eingang bleiben 30 Tage für die Beantwortung. Speichere einen Termin im Kalender, um dich für ein allfälliges Nachfragen erinnern zu lassen, falls du bis dahin keine Antwort erhalten hast.",
-    "feedback": "Rückmeldungen nehmen wir unter <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link> gerne entgegen.",
+    "feedback": "Rückmeldungen nehmen wir unter <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link> gerne entgegen oder erfasse ein <github_link>Issue auf GitHub.com</github_link>.",
     "support_us_intro": "Unser Generator wurde von IT- und Rechtskundigen der Digitalen Gesellschaft in unzähligen Stunden entwickelt und steht allen frei zur Verfügung.",
     "support_us_membership": "Als <membership_link>Mitglied, Spender oder Gönnerin</membership_link> unterstützt du unsere Arbeit.",
     "support_us_newsletter": "Falls du über unsere Aktivitäten auf dem Laufenden gehalten werden möchtest, abonniere jetzt den <newsletter_link>monatlichen Newsletter</newsletter_link>.",
