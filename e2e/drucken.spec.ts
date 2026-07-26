@@ -10,7 +10,7 @@ test('Brief Auskunftsbegehren zeigt beim Drucken exakt einen Brief', async ({ pa
   const url = `#{"v":1,"entry":"followup","desire":"data_info_request","step":"print",${baseState}}`;
   await page.goto(url);
 
-  const letterSections = page.locator('section[id="letter"]');
+  const letterSections = page.locator('[data-qa="letter"]');
   await expect(letterSections).toHaveCount(1);
   await expect(letterSections.first()).toContainText('Datenauskunftsbegehren');
   await expect(letterSections.first()).not.toContainText('Ausbleibende Auskunft');
@@ -22,7 +22,7 @@ test('Normaler Brief zeigt beim Drucken exakt einen Brief', async ({ page }, tes
   const url = `#{"v":1,"step":"print",${baseState}}`;
   await page.goto(url);
 
-  await expect(page.locator('section[id="letter"]')).toHaveCount(1);
+  await expect(page.locator('[data-qa="letter"]')).toHaveCount(1);
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-druckansicht-normal.png'), fullPage: true });
 });
@@ -31,7 +31,7 @@ test('Nachfassen ausbleibende Auskunft zeigt beim Drucken exakt einen Brief', as
   const url = `#{"v":1,"entry":"followup","desire":"unanswered","step":"print",${baseState}}`;
   await page.goto(url);
 
-  const letterSections = page.locator('section[id="letter"]');
+  const letterSections = page.locator('[data-qa="letter"]');
   await expect(letterSections).toHaveCount(1);
   await expect(letterSections.first()).toContainText('Ausbleibende Auskunft');
 
@@ -42,7 +42,7 @@ test('Nachfassen unvollständige Antwort zeigt beim Drucken exakt einen Brief', 
   const url = `#{"v":1,"entry":"followup","desire":"incomplete_answer","step":"print",${baseState}}`;
   await page.goto(url);
 
-  const letterSections = page.locator('section[id="letter"]');
+  const letterSections = page.locator('[data-qa="letter"]');
   await expect(letterSections).toHaveCount(1);
   await expect(letterSections.first()).not.toContainText('Ausbleibende Auskunft');
   await expect(letterSections.first()).toContainText('Ich gehe davon aus, dass insbesondere folgende Informationen fehlen');
@@ -54,7 +54,7 @@ test('Nachfassen Daten korrigieren zeigt beim Drucken exakt einen Brief', async 
   const url = `#{"v":1,"entry":"followup","desire":"data_correction","step":"print",${baseState}}`;
   await page.goto(url);
 
-  const letterSections = page.locator('section[id="letter"]');
+  const letterSections = page.locator('[data-qa="letter"]');
   await expect(letterSections).toHaveCount(1);
   await expect(letterSections.first()).not.toContainText('Ausbleibende Auskunft');
   await expect(letterSections.first()).toContainText('Aufgrund Ihrer Auskunft stellte ich fest, dass von Ihnen bearbeitete Personendaten unrichtig sind.');
@@ -66,7 +66,7 @@ test('Nachfassen Daten löschen zeigt beim Drucken exakt einen Brief', async ({ 
   const url = `#{"v":1,"entry":"followup","desire":"data_deletion","step":"print",${baseState}}`;
   await page.goto(url);
 
-  const letterSections = page.locator('section[id="letter"]');
+  const letterSections = page.locator('[data-qa="letter"]');
   await expect(letterSections).toHaveCount(1);
   await expect(letterSections.first()).not.toContainText('Ausbleibende Auskunft');
   await expect(letterSections.first()).toContainText('Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Personendaten zu löschen:');
@@ -106,7 +106,7 @@ test('Brief Auskunftsbegehren via Einstiegsmaske zeigt nur einen Brief', async (
   await generateButton.click();
 
   // Nur ein Brief soll sichtbar sein
-  const letterSections = page.locator('section[id="letter"]');
+  const letterSections = page.locator('[data-qa="letter"]');
   await expect(letterSections).toHaveCount(1);
   await expect(letterSections.first()).toContainText('Datenauskunftsbegehren');
   await expect(letterSections.first()).not.toContainText('Ausbleibende Auskunft');

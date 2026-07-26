@@ -64,7 +64,7 @@
 </script>
 
 <div id="letter-container">
-  <section id="letter" bind:this={LetterDataInfoReqDemandNode}>
+  <section id="letter" data-qa="letter" bind:this={LetterDataInfoReqDemandNode}>
     <div class="letter-head">
       <div class="address-from">
          <span
