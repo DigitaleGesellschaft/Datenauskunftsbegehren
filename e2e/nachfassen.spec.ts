@@ -119,30 +119,25 @@ test('Nachfassen Daten löschen lassen', async ({ page }, testInfo) => {
   expect(sectionText).toContain('TT.MM.JJJJ');
 });
 
-test('Nachfassen Daten ausgehändigt bekommen', async ({ page }) => {
-  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
-  await page.goto(url);
+test('Nachfassen bietet Datenaushändigung nicht mehr an', async ({ page }) => {
+  await page.goto(baseUrl);
 
-  // Nachfassen und Daten ausgehändigt bekommen auswählen
+  // Nachfassen öffnen
   const nachfassenButton = page.locator('button', { hasText: 'Nachfassen' });
   await nachfassenButton.click();
-  const herausgabeButton = page.locator('button', { hasText: 'Ich möchte Daten ausgehändigt bekommen' });
-  await herausgabeButton.click();
 
-  // Prüfen, dass es sich um die Vorlage Herausgabe handelt
-  const letterSection = await page.locator('section#letter');
-  const sectionText = await letterSection.textContent();
-  expect(sectionText).toContain('ersuche ich Sie, folgende Daten herauszugeben');
-  expect(sectionText).toContain('Sollten Sie die Herausgabe ganz oder teilweise verweigern');
-  expect(sectionText).toContain('E2E Person');
-  expect(sectionText).toContain('E2E Absender');
-  expect(sectionText).toContain('E2E Empfänger');
-  // Datums-Platzhalter für das Antwort-Datum
-  expect(sectionText).toContain('TT.MM.JJJJ');
+  // Der Herausgabe-Wunsch darf nicht mehr auswählbar sein
+  const herausgabeButton = page.locator('button', { hasText: 'Ich möchte Daten ausgehändigt bekommen' });
+  await expect(herausgabeButton).toHaveCount(0);
+
+  // Direkter URL-Aufruf mit desire=data_handover darf keinen Brief erzeugen
+  const url = '#{"v":1,"step":"data_handover","entry":"followup","desire":"data_handover","name":"E2E Person","date":"28.7.2025","dataInfoResponseDate":"3.3.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  await page.goto(url);
+  await expect(page.locator('section#letter')).toHaveCount(0);
 });
 
 test('Vorausgewählte Organisation aus URL wird in der Auswahl angezeigt', async ({ page }, testInfo) => {
-  const url = '#{"v":1,"entry":"followup","desire":"data_handover","step":"entry","name":"E2E Person","address":"E2E Absender","org":"Agrisano","date":"9.6.2026"}';
+  const url = '#{"v":1,"entry":"followup","desire":"unanswered","step":"entry","name":"E2E Person","address":"E2E Absender","org":"Agrisano","date":"9.6.2026"}';
   await page.goto(url);
 
   // Die in der URL gewählte Organisation muss in der svelte-select Auswahl sichtbar sein
@@ -153,7 +148,7 @@ test('Vorausgewählte Organisation aus URL wird in der Auswahl angezeigt', async
 });
 
 test('Unbekannte Organisation aus URL wird zurückgesetzt und meldet einen Fehler', async ({ page }, testInfo) => {
-  const url = '#{"v":1,"entry":"followup","desire":"data_handover","step":"entry","name":"E2E Person","address":"E2E Absender","org":"NichtExistierendeOrg12345"}';
+  const url = '#{"v":1,"entry":"followup","desire":"unanswered","step":"entry","name":"E2E Person","address":"E2E Absender","org":"NichtExistierendeOrg12345"}';
   await page.goto(url);
 
   // Die Fehlermeldung zur zurückgesetzten Organisation muss erscheinen
@@ -180,18 +175,9 @@ test('Hinweis erscheint, wenn die gewählte Organisation aus der Liste entfernt 
 });
 
 test('Fehlermeldung zur unbekannten Organisation wird übersetzt (EN)', async ({ page }) => {
-  const url = '#{"v":1,"langUi":"en","entry":"followup","desire":"data_handover","step":"entry","name":"E2E Person","address":"E2E Absender","org":"NichtExistierendeOrg12345"}';
+  const url = '#{"v":1,"langUi":"en","entry":"followup","desire":"unanswered","step":"entry","name":"E2E Person","address":"E2E Absender","org":"NichtExistierendeOrg12345"}';
   await page.goto(url);
 
   const messages = page.locator('.messages');
   await expect(messages).toContainText('The organisation NichtExistierendeOrg12345 is no longer part of the dataset. Your input has been reset.');
-});
-
-test('Nachfassen Daten ausgehändigt bekommen mit Datum im URL', async ({ page }) => {
-  const url = '#{"v":1,"step":"data_handover","entry":"followup","desire":"data_handover","name":"E2E Person","date":"28.7.2025","dataInfoResponseDate":"3.3.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
-  await page.goto(url);
-
-  const letterSection = await page.locator('section#letter');
-  const sectionText = await letterSection.textContent();
-  expect(sectionText).toContain('3.3.2025');
 });

@@ -27,7 +27,7 @@
 </script>
 <div class="overlay">
   <header>
-    <button class="one circle" onclick={() => dispatch('close')}><CloseIcon></CloseIcon></button>
+    <button class="one plain" data-qa="overlay-close-button" onclick={() => dispatch('close')}><CloseIcon width="32" height="32"></CloseIcon></button>
   </header>
   <section>
     {@render children?.()}

@@ -40,7 +40,7 @@ test('Eine entfernte und wieder hinzugefügte Organisation ist auswählbar', asy
   await page.goto('');
 
   // Die wieder aktivierte Organisation muss in der Auswahl erscheinen
-  const searchInput = page.locator('input[placeholder="Suche ..."]');
+  const searchInput = page.locator('[data-qa="org-search-input"]');
   await searchInput.click();
   await searchInput.fill('E2E Wieder Aktiv');
 
@@ -54,7 +54,7 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
   await page.goto('');
 
   // Organisationsauswahl öffnen, prüfen, dass diese gut belegt ist und Swisscom auswählen
-  const searchInput = page.locator('input[placeholder="Suche ..."]');
+  const searchInput = page.locator('[data-qa="org-search-input"]');
 
   await searchInput.click();
 
@@ -66,14 +66,20 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-dropdown-offen.png') });
 
-  await searchInput.fill('Swisscom');
-  const swisscomOption = listContainer.locator('div.item >> nth=2');
-  await swisscomOption.click();
+  const swisscomOption = listContainer.locator('[data-qa="org-option"]', { hasText: /^Swisscom$/ });
 
   // Eingabemaske erscheint
   const stepUI = page.locator('div.step-ui');
-  await expect(stepUI).toBeVisible();
-  await expect(stepUI.locator('h2')).toContainText('Mach noch einige Angaben für das Auskunftsbegehren «Swisscom»');
+  // svelte-select rendert seine gefilterte Liste bei jedem Tastendruck neu; ein Klick kann daher
+  // gelegentlich in dem kurzen Moment landen, in dem der alte Listeneintrag bereits entfernt und der
+  // neue noch nicht nutzbar ist, sodass die Auswahl nicht ausgelöst wird. Klick + Übergangsprüfung
+  // werden deshalb als Ganzes wiederholt, statt nur auf einen einzelnen flakigen Klick zu vertrauen.
+  await expect(async () => {
+    await searchInput.fill('Swisscom');
+    await swisscomOption.click();
+    await expect(stepUI).toBeVisible({ timeout: 2000 });
+    await expect(stepUI.locator('h2')).toContainText('Mach noch einige Angaben für das Auskunftsbegehren «Swisscom»', { timeout: 2000 });
+  }).toPass({ timeout: 15000 });
   const mobileCheckbox = stepUI.locator('input[type="checkbox"][value="mobile"]');
   await expect(mobileCheckbox).toBeChecked();
   const onlineCheckbox = stepUI.locator('input[type="checkbox"][value="online"]');
