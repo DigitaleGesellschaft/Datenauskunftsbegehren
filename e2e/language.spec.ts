@@ -43,12 +43,42 @@ test('Standardsprache ist Deutsch', async ({ page }, testInfo) => {
   await page.screenshot({ path: screenshotPath(testInfo, '01-startseite-deutsch.png'), fullPage: true });
 });
 
+test('Sprachwahl-Button zeigt das Translate-Icon statt eines Globus', async ({ page }) => {
+  await page.goto('');
+
+  // Das Icon wurde vom Globus (viewBox 24x24) auf das Noun-Project-Translate-Icon (viewBox 100x100) umgestellt
+  const languageButton = page.locator('[data-qa="language-switch-button"]');
+  const languageIcon = languageButton.locator('svg');
+  await expect(languageIcon).toHaveAttribute('viewBox', '0 0 100 100');
+  await expect(languageIcon.locator('title')).toHaveText('Language');
+
+  // Kein Kreis mehr um das Icon (kein Rahmen, kein Hintergrund), Icon dafür grösser dargestellt
+  await expect(languageButton).toHaveCSS('border-style', 'none');
+  await expect(languageButton).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect(languageIcon).toHaveAttribute('width', '38');
+
+  // Aus Konsistenzgründen auch beim Info-Button kein Kreis mehr
+  const infoButton = page.locator('[data-qa="credits-button"]');
+  await expect(infoButton).toHaveCSS('border-style', 'none');
+  await expect(infoButton).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+});
+
+test('Sprachwahl-Dialog: kein Kreis mehr um das Schliessen-Icon', async ({ page }) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="language-switch-button"]').click();
+
+  const closeButton = page.locator('[data-qa="overlay-close-button"]');
+  await expect(closeButton).toHaveCSS('border-style', 'none');
+  await expect(closeButton).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+});
+
 for (const lang of languages) {
   test(`UI-Sprache auf ${lang.label} umstellen`, async ({ page }, testInfo) => {
     await page.goto('');
 
-    // Spracheinstellungen öffnen (erster button.circle.one)
-    const settingsButton = page.locator('button.circle.one').first();
+    // Spracheinstellungen öffnen
+    const settingsButton = page.locator('[data-qa="language-switch-button"]');
     await settingsButton.click();
 
     await page.screenshot({ path: screenshotPath(testInfo, '01-spracheinstellungen.png'), fullPage: true });
@@ -90,7 +120,7 @@ test.describe('Browsersprache Englisch', () => {
       .toBe('en');
 
     // Im Sprachwähler ist konsequenterweise "English" vorausgewählt
-    await page.locator('button.circle.one').first().click();
+    await page.locator('[data-qa="language-switch-button"]').click();
     await expect(page.locator('input[name="ui-language"][value="en"]')).toBeChecked();
     await expect(page.locator('input[name="ui-language"][value="de"]')).not.toBeChecked();
 
@@ -146,7 +176,7 @@ test('UI-Sprache von Deutsch auf Englisch wechseln', async ({ page }, testInfo) 
   await expect(page.locator('h1')).toHaveText('Generiere dein Datenauskunftsbegehren');
 
   // Spracheinstellungen öffnen und auf Englisch wechseln
-  await page.locator('button.circle.one').first().click();
+  await page.locator('[data-qa="language-switch-button"]').click();
   await page.locator('input[name="ui-language"][value="en"]').click();
 
   // Seite ist jetzt auf Englisch
@@ -159,21 +189,20 @@ test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page },
   await page.goto('');
 
   // UI-Sprache auf Englisch, Korrespondenzsprache auf Französisch setzen
-  await page.locator('button.circle.one').first().click();
+  await page.locator('[data-qa="language-switch-button"]').click();
   await page.locator('input[name="ui-language"][value="en"]').click();
   await page.locator('input[name="correspondence-language"][value="fr"]').click();
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-spracheinstellungen.png'), fullPage: true });
 
   // Spracheinstellungen schliessen (Close-Button im Overlay)
-  await page.locator('.overlay header button').click();
+  await page.locator('[data-qa="overlay-close-button"]').click();
 
   // Etwas eingeben, damit der Reset-Button erscheint
-  // Sprachunabhängiger Locator, da die UI hier auf Englisch steht (Placeholder ist übersetzt)
-  await page.locator('.svelte-select input[type="text"]').click();
+  await page.locator('[data-qa="org-search-input"]').click();
   const listContainer = page.locator('div.svelte-select-list');
   await expect(listContainer).toBeVisible();
-  await listContainer.locator('div.item').first().click();
+  await listContainer.locator('[data-qa="org-option"]').first().click();
 
   // Eingaben zurücksetzen
   await page.locator('button', { hasText: 'Reset inputs' }).click();
@@ -182,8 +211,8 @@ test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page },
   await expect(page.locator('h1')).toHaveText('Generate your data access request');
 
   // Korrespondenzsprache ist noch Französisch
-  await expect(page.locator('button.circle.one').first()).toBeVisible();
-  await page.locator('button.circle.one').first().click();
+  await expect(page.locator('[data-qa="language-switch-button"]')).toBeVisible();
+  await page.locator('[data-qa="language-switch-button"]').click();
   await expect(page.locator('input[name="correspondence-language"][value="fr"]')).toBeChecked();
   await expect(page.locator('input[name="ui-language"][value="en"]')).toBeChecked();
 
