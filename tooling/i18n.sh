@@ -14,8 +14,6 @@ cd "$(dirname "$0")/.."
 UI_LOCALES=(
   src/locales/de-CH.json
   src/locales/fr-CH.json
-  src/locales/en.json
-  src/locales/it-CH.json
 )
 
 # Directories to scan — letter/ is intentionally excluded.

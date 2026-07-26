@@ -174,10 +174,10 @@ test('Hinweis erscheint, wenn die gewählte Organisation aus der Liste entfernt 
   await page.screenshot({ path: screenshotPath(testInfo, '01-org-aus-liste-entfernt.png'), fullPage: true });
 });
 
-test('Fehlermeldung zur unbekannten Organisation wird übersetzt (EN)', async ({ page }) => {
-  const url = '#{"v":1,"langUi":"en","entry":"followup","desire":"unanswered","step":"entry","name":"E2E Person","address":"E2E Absender","org":"NichtExistierendeOrg12345"}';
+test('Fehlermeldung zur unbekannten Organisation wird übersetzt (FR)', async ({ page }) => {
+  const url = '#{"v":1,"langUi":"fr","entry":"followup","desire":"unanswered","step":"entry","name":"E2E Person","address":"E2E Absender","org":"NichtExistierendeOrg12345"}';
   await page.goto(url);
 
   const messages = page.locator('.messages');
-  await expect(messages).toContainText('The organisation NichtExistierendeOrg12345 is no longer part of the dataset. Your input has been reset.');
+  await expect(messages).toContainText("L'organisation NichtExistierendeOrg12345 ne fait plus partie du jeu de données. Votre saisie a été réinitialisée.");
 });
