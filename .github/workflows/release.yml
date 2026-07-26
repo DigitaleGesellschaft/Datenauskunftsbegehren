@@ -1,0 +1,127 @@
+name: Manuelles Release (semver + changelog + commit)
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Art des Releases (patch, minor, major)'
+        required: true
+        default: 'patch'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Repository auschecken
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🧮 Version berechnen (semver)
+        id: semver
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          VERSION=${LAST_TAG#v}
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+
+          TYPE="${{ github.event.inputs.release_type }}"
+
+          case "$TYPE" in
+            patch)
+              PATCH=$((PATCH + 1));;
+            minor)
+              MINOR=$((MINOR + 1)); PATCH=0;;
+            major)
+              MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0;;
+            *)
+              echo "Ungültiger release_type: $TYPE"; exit 1;;
+          esac
+
+          NEW_VERSION="v$MAJOR.$MINOR.$PATCH"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "last_tag=$LAST_TAG" >> $GITHUB_OUTPUT
+
+      - name: 📝 Changelog erzeugen
+        id: changelog
+        run: |
+          LAST_TAG="${{ steps.semver.outputs.last_tag }}"
+          if [ "$LAST_TAG" = "v0.0.0" ]; then
+            LOG=$(git log --pretty=format:"- %s")
+          else
+            LOG=$(git log "$LAST_TAG"..HEAD --pretty=format:"- %s")
+          fi
+
+          echo "$LOG" > CHANGELOG.md
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$LOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: 🟨 Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Abhängigkeiten installieren
+        run: npm install
+
+      - name: 🛠️ Projekt kompilieren
+        run: npm run build
+
+      - name: 🔍 Prüfen, ob dist Ordner existiert
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "❌ dist Ordner wurde nicht gefunden!"
+            exit 1
+          fi
+
+      - name: 📦 dist Ordner als Archiv packen
+        run: |
+          cd dist
+          tar -czf ../dist.tar.gz .
+          cd ..
+          zip -r dist.zip dist/
+
+      # jq installieren
+      - name: 🧰 jq installieren
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      # Version in package.json schreiben
+      - name: 📝 Version in package.json setzen
+        run: |
+          VERSION=${{ steps.semver.outputs.version }}
+          jq --arg version "${VERSION#v}" '.version = $version' package.json > package.tmp.json
+          mv package.tmp.json package.json
+
+      # Commit & Push Änderungen
+      - name: 💾 Commit & Push package.json + CHANGELOG.md
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add package.json CHANGELOG.md
+          git commit -m "chore(release): ${{ steps.semver.outputs.version }}"
+          git tag ${{ steps.semver.outputs.version }}
+          git push origin HEAD
+          git push origin ${{ steps.semver.outputs.version }}
+
+      - name: 🏷️ GitHub Release erstellen
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.semver.outputs.version }}
+          name: Release ${{ steps.semver.outputs.version }}
+          body: |
+            📝 **Changelog:**
+
+            ${{ steps.changelog.outputs.changelog }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📎 dist Archive anhängen
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.semver.outputs.version }}
+          files: |
+            dist.tar.gz
+            dist.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
