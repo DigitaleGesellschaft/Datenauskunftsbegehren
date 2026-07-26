@@ -18,22 +18,6 @@ const languages = [
     languagePickerTitle: 'Paramètres de langue',
     uiLanguageLabel: "Langue de l'interface",
   },
-  {
-    code: 'en',
-    label: 'English',
-    appTitle: 'Generate your data access request',
-    introSnippet: 'Under data protection law, every person has the right',
-    languagePickerTitle: 'Language settings',
-    uiLanguageLabel: 'Interface language',
-  },
-  {
-    code: 'it',
-    label: 'Italiano',
-    appTitle: 'Genera la tua richiesta di accesso ai dati',
-    introSnippet: 'Secondo la legge sulla protezione dei dati',
-    languagePickerTitle: 'Impostazioni lingua',
-    uiLanguageLabel: "Lingua dell'interfaccia",
-  },
 ];
 
 test('Standardsprache ist Deutsch', async ({ page }, testInfo) => {
@@ -98,16 +82,16 @@ for (const lang of languages) {
   });
 }
 
-test.describe('Browsersprache Englisch', () => {
+test.describe('Browsersprache Englisch (nicht unterstützt)', () => {
   test.use({ locale: 'en-US' });
 
-  test('Englischer Browser ohne Hash: UI und langUi sind Englisch', async ({ page }, testInfo) => {
+  test('Englischer Browser ohne Hash: Fallback auf Deutsch', async ({ page }, testInfo) => {
     await page.goto('');
 
-    // Die Oberfläche wird auf Englisch dargestellt
-    await expect(page.locator('h1')).toHaveText('Generate your data access request');
+    // Englisch wird nicht mehr unterstützt, daher Fallback auf die Standardsprache Deutsch
+    await expect(page.locator('h1')).toHaveText('Generiere dein Datenauskunftsbegehren');
 
-    // langUi muss als Englisch erkannt und in die URL geschrieben werden (nicht "de")
+    // langUi muss als "de" in die URL geschrieben werden
     await expect
       .poll(async () => {
         const hash = await page.evaluate(() => window.location.hash);
@@ -117,12 +101,11 @@ test.describe('Browsersprache Englisch', () => {
           return undefined;
         }
       })
-      .toBe('en');
+      .toBe('de');
 
-    // Im Sprachwähler ist konsequenterweise "English" vorausgewählt
+    // Im Sprachwähler ist konsequenterweise "Deutsch" vorausgewählt
     await page.locator('[data-qa="language-switch-button"]').click();
-    await expect(page.locator('input[name="ui-language"][value="en"]')).toBeChecked();
-    await expect(page.locator('input[name="ui-language"][value="de"]')).not.toBeChecked();
+    await expect(page.locator('input[name="ui-language"][value="de"]')).toBeChecked();
 
     await page.screenshot({ path: screenshotPath(testInfo, '01-englischer-browser.png'), fullPage: true });
   });
@@ -169,29 +152,29 @@ test('UI Französisch, Korrespondenzsprache Deutsch: Seite auf Französisch, Bri
   await page.screenshot({ path: screenshotPath(testInfo, '01-ui-fr-brief-de.png'), fullPage: true });
 });
 
-test('UI-Sprache von Deutsch auf Englisch wechseln', async ({ page }, testInfo) => {
+test('UI-Sprache von Deutsch auf Französisch wechseln', async ({ page }, testInfo) => {
   await page.goto('');
 
   // Seite ist zuerst auf Deutsch
   await expect(page.locator('h1')).toHaveText('Generiere dein Datenauskunftsbegehren');
 
-  // Spracheinstellungen öffnen und auf Englisch wechseln
+  // Spracheinstellungen öffnen und auf Französisch wechseln
   await page.locator('[data-qa="language-switch-button"]').click();
-  await page.locator('input[name="ui-language"][value="en"]').click();
+  await page.locator('input[name="ui-language"][value="fr"]').click();
 
-  // Seite ist jetzt auf Englisch
-  await expect(page.locator('h1')).toHaveText('Generate your data access request');
+  // Seite ist jetzt auf Französisch
+  await expect(page.locator('h1')).toHaveText("Générer une demande d'accès à ses données personnelles");
 
-  await page.screenshot({ path: screenshotPath(testInfo, '01-sprache-gewechselt-englisch.png'), fullPage: true });
+  await page.screenshot({ path: screenshotPath(testInfo, '01-sprache-gewechselt-franzoesisch.png'), fullPage: true });
 });
 
 test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page }, testInfo) => {
   await page.goto('');
 
-  // UI-Sprache auf Englisch, Korrespondenzsprache auf Französisch setzen
+  // UI-Sprache auf Französisch, Korrespondenzsprache auf Deutsch setzen
   await page.locator('[data-qa="language-switch-button"]').click();
-  await page.locator('input[name="ui-language"][value="en"]').click();
-  await page.locator('input[name="correspondence-language"][value="fr"]').click();
+  await page.locator('input[name="ui-language"][value="fr"]').click();
+  await page.locator('input[name="correspondence-language"][value="de"]').click();
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-spracheinstellungen.png'), fullPage: true });
 
@@ -205,16 +188,16 @@ test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page },
   await listContainer.locator('[data-qa="org-option"]').first().click();
 
   // Eingaben zurücksetzen
-  await page.locator('button', { hasText: 'Reset inputs' }).click();
+  await page.locator('button', { hasText: 'Réinitialiser les entrées' }).click();
 
-  // UI-Sprache ist noch Englisch
-  await expect(page.locator('h1')).toHaveText('Generate your data access request');
+  // UI-Sprache ist noch Französisch
+  await expect(page.locator('h1')).toHaveText("Générer une demande d'accès à ses données personnelles");
 
-  // Korrespondenzsprache ist noch Französisch
+  // Korrespondenzsprache ist noch Deutsch
   await expect(page.locator('[data-qa="language-switch-button"]')).toBeVisible();
   await page.locator('[data-qa="language-switch-button"]').click();
-  await expect(page.locator('input[name="correspondence-language"][value="fr"]')).toBeChecked();
-  await expect(page.locator('input[name="ui-language"][value="en"]')).toBeChecked();
+  await expect(page.locator('input[name="correspondence-language"][value="de"]')).toBeChecked();
+  await expect(page.locator('input[name="ui-language"][value="fr"]')).toBeChecked();
 
   await page.screenshot({ path: screenshotPath(testInfo, '02-sprachen-nach-reset.png'), fullPage: true });
 });

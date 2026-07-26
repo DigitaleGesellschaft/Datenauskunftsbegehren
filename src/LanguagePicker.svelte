@@ -5,8 +5,6 @@
   const uiLanguages = [
     { code: 'de', label: 'Deutsch' },
     { code: 'fr', label: 'Français' },
-    { code: 'en', label: 'English' },
-    { code: 'it', label: 'Italiano' },
   ];
 
   const correspondenceLanguages = [
