@@ -152,6 +152,42 @@ test('UI Französisch, Korrespondenzsprache Deutsch: Seite auf Französisch, Bri
   await page.screenshot({ path: screenshotPath(testInfo, '01-ui-fr-brief-de.png'), fullPage: true });
 });
 
+test('Wechsel der Benutzeroberflächensprache stellt automatisch auch die Korrespondenzsprache um', async ({ page }, testInfo) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="language-switch-button"]').click();
+
+  // Standardmässig sind beide Sprachen Deutsch
+  await expect(page.locator('input[name="correspondence-language"][value="de"]')).toBeChecked();
+
+  // UI-Sprache auf Französisch umstellen
+  await page.locator('input[name="ui-language"][value="fr"]').click();
+
+  // Die Korrespondenzsprache ist automatisch mitgewechselt
+  await expect(page.locator('input[name="correspondence-language"][value="fr"]')).toBeChecked();
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-korrespondenzsprache-automatisch-mitgewechselt.png'), fullPage: true });
+});
+
+test('Korrespondenzsprache kann nach dem automatischen Mitwechseln manuell abweichend gewählt werden', async ({ page }, testInfo) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="language-switch-button"]').click();
+
+  // UI-Sprache auf Französisch umstellen — Korrespondenzsprache folgt automatisch
+  await page.locator('input[name="ui-language"][value="fr"]').click();
+  await expect(page.locator('input[name="correspondence-language"][value="fr"]')).toBeChecked();
+
+  // Korrespondenzsprache manuell wieder auf Deutsch zurückstellen
+  await page.locator('input[name="correspondence-language"][value="de"]').click();
+
+  // UI bleibt Französisch, Korrespondenzsprache ist nun Deutsch
+  await expect(page.locator('input[name="ui-language"][value="fr"]')).toBeChecked();
+  await expect(page.locator('input[name="correspondence-language"][value="de"]')).toBeChecked();
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-korrespondenzsprache-manuell-abweichend.png'), fullPage: true });
+});
+
 test('UI-Sprache von Deutsch auf Französisch wechseln', async ({ page }, testInfo) => {
   await page.goto('');
 
