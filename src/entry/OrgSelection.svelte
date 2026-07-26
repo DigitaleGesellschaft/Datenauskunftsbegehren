@@ -42,11 +42,14 @@
       showIndicator="true"
       placeholder={$_('org_selection.search_placeholder', { default: 'Suche ...' })}
       noOptionsMessage={$_('org_selection.no_options', { default: 'Keine Organisation gefunden' })}
+      inputAttributes={{ 'data-qa': 'org-search-input' }}
       on:select={handleSelect}
       on:clear={handleClear}
-    ></Select>
+    >
+      <div slot="item" let:item data-qa="org-option">{item.label}</div>
+    </Select>
   {:else}
-    <select value={org} oninput={(event) => handleSelect({detail: {value: event.target.value}})}>
+    <select data-qa="org-search-select" value={org} oninput={(event) => handleSelect({detail: {value: event.target.value}})}>
       {#each orgOptions as org}
         <option value="{org}">{org}</option>
       {/each}
