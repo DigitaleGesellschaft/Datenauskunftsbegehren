@@ -105,7 +105,7 @@ jobs:
           git push origin ${{ steps.semver.outputs.version }}
 
       - name: 🏷️ GitHub Release erstellen
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.semver.outputs.version }}
           name: Release ${{ steps.semver.outputs.version }}
@@ -117,7 +117,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 📎 dist Archive anhängen
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.semver.outputs.version }}
           files: |
