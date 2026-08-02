@@ -91,7 +91,7 @@ test.describe('VariableInput Datum', () => {
     const generateButton = page.locator('button', { hasText: 'Brief generieren' });
     await generateButton.click();
 
-    await expect(page.locator('section#letter')).toContainText('15.06.2099');
+    await expect(page.locator('[data-qa="letter"]')).toContainText('15.06.2099');
 
     await page.screenshot({ path: screenshotPath(testInfo, '01-datum-konvertiert-brief.png'), fullPage: true });
   });
@@ -130,12 +130,12 @@ test.describe('Datumsplatzhalter Übersetzung', () => {
     test(`Platzhalter-Format für Korrespondenzsprache «${lang}» ist ${placeholder}`, async ({ page }) => {
       await page.goto(`#${demandHash('de', lang)}`);
 
-      await expect(page.locator('#letter')).toContainText(placeholder);
+      await expect(page.locator('[data-qa="letter"]')).toContainText(placeholder);
 
       // Kein Platzhalter einer anderen Sprache ist vorhanden
       for (const [otherLang, otherPlaceholder] of Object.entries(placeholderByLang)) {
         if (otherLang !== lang) {
-          await expect(page.locator('#letter')).not.toContainText(otherPlaceholder);
+          await expect(page.locator('[data-qa="letter"]')).not.toContainText(otherPlaceholder);
         }
       }
     });
@@ -145,18 +145,18 @@ test.describe('Datumsplatzhalter Übersetzung', () => {
     await page.goto(`#${demandHash('de', 'de')}`);
 
     // Platzhalter ist zunächst auf Deutsch — im Brief und in der URL
-    await expect(page.locator('#letter')).toContainText('TT.MM.JJJJ');
+    await expect(page.locator('[data-qa="letter"]')).toContainText('TT.MM.JJJJ');
     await expect(page).toHaveURL(/TT\.MM\.JJJJ/);
 
     await page.screenshot({ path: screenshotPath(testInfo, '01-platzhalter-deutsch.png'), fullPage: true });
 
     // Korrespondenzsprache auf Französisch umstellen
-    await page.locator('button.circle.one').first().click();
+    await page.locator('[data-qa="language-switch-button"]').click();
     await page.locator('input[name="correspondence-language"][value="fr"]').click();
 
     // Platzhalter ist nun auf Französisch — im Brief und in der URL
-    await expect(page.locator('#letter')).toContainText('JJ.MM.AAAA');
-    await expect(page.locator('#letter')).not.toContainText('TT.MM.JJJJ');
+    await expect(page.locator('[data-qa="letter"]')).toContainText('JJ.MM.AAAA');
+    await expect(page.locator('[data-qa="letter"]')).not.toContainText('TT.MM.JJJJ');
     await expect(page).toHaveURL(/JJ\.MM\.AAAA/);
     await expect(page).not.toHaveURL(/TT\.MM\.JJJJ/);
 
@@ -165,8 +165,8 @@ test.describe('Datumsplatzhalter Übersetzung', () => {
     // Zurück auf Deutsch wechseln — Platzhalter wird wieder übersetzt
     await page.locator('input[name="correspondence-language"][value="de"]').click();
 
-    await expect(page.locator('#letter')).toContainText('TT.MM.JJJJ');
-    await expect(page.locator('#letter')).not.toContainText('JJ.MM.AAAA');
+    await expect(page.locator('[data-qa="letter"]')).toContainText('TT.MM.JJJJ');
+    await expect(page.locator('[data-qa="letter"]')).not.toContainText('JJ.MM.AAAA');
     await expect(page).toHaveURL(/TT\.MM\.JJJJ/);
     await expect(page).not.toHaveURL(/JJ\.MM\.AAAA/);
   });
@@ -175,15 +175,15 @@ test.describe('Datumsplatzhalter Übersetzung', () => {
     // Echtes Datum direkt über die URL setzen (zuverlässiger als Tippen ins contenteditable)
     await page.goto(`#${demandHash('de', 'de', { dataInfoRequestDate: '15.06.2099' })}`);
 
-    await expect(page.locator('#letter')).toContainText('15.06.2099');
+    await expect(page.locator('[data-qa="letter"]')).toContainText('15.06.2099');
 
     // Korrespondenzsprache auf Französisch umstellen
-    await page.locator('button.circle.one').first().click();
+    await page.locator('[data-qa="language-switch-button"]').click();
     await page.locator('input[name="correspondence-language"][value="fr"]').click();
 
     // Das echte Datum bleibt unverändert, es wird nicht durch einen Platzhalter ersetzt.
     // (Das noch leere Antwort-Datumsfeld wird hingegen zu JJ.MM.AAAA übersetzt.)
-    await expect(page.locator('#letter')).toContainText('15.06.2099');
+    await expect(page.locator('[data-qa="letter"]')).toContainText('15.06.2099');
     await expect(page).toHaveURL(/15\.06\.2099/);
   });
 
@@ -193,14 +193,14 @@ test.describe('Datumsplatzhalter Übersetzung', () => {
     // und bleibt deshalb unverändert.
     await page.goto(`#${demandHash('de', 'de', { dataInfoRequestDate: '2020-02-20' })}`);
 
-    await expect(page.locator('#letter')).toContainText('2020-02-20');
+    await expect(page.locator('[data-qa="letter"]')).toContainText('2020-02-20');
 
     // Korrespondenzsprache auf Französisch umstellen
-    await page.locator('button.circle.one').first().click();
+    await page.locator('[data-qa="language-switch-button"]').click();
     await page.locator('input[name="correspondence-language"][value="fr"]').click();
 
     // Das ISO-Datum bleibt unverändert (kein Platzhalter-Match → User gewinnt)
-    await expect(page.locator('#letter')).toContainText('2020-02-20');
+    await expect(page.locator('[data-qa="letter"]')).toContainText('2020-02-20');
     await expect(page).toHaveURL(/2020-02-20/);
   });
 });
@@ -213,7 +213,7 @@ test.describe('Editable-Variable Unterstreichung', () => {
     const url = '#{"v":1,"entry":"followup","desire":"unanswered","step":"unanswered","name":"","date":"9.6.2026","dataInfoRequestDate":"TT.MM.JJJJ"}';
     await page.goto(url);
 
-    const span = page.locator('section#letter span.editable-variable[data-label="Datum Begehren"]');
+    const span = page.locator('[data-qa="letter"] span.editable-variable[data-label="Datum Begehren"]');
     await expect(span).toBeVisible();
     await expect(span).toHaveText('TT.MM.JJJJ');
 

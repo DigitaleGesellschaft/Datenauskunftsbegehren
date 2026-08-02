@@ -39,6 +39,7 @@ export default class Data {
       })
 
     const desires = data.desires
+      .filter(desire => desire.handle !== 'data_handover')
       .map(desire => {
           const e = new Desire()
           promises.push(e.load({data: desire}))

@@ -4,12 +4,10 @@ import frCHLetter from './locales/fr-CH.letter.json';
 
 register('de', () => import('./locales/de-CH.json'));
 register('fr', () => import('./locales/fr-CH.json'));
-register('en', () => import('./locales/en.json'));
-register('it', () => import('./locales/it-CH.json'));
 addMessages('de-letter', deCHLetter);
 addMessages('fr-letter', frCHLetter);
 
-export const SUPPORTED_LANGS = ['de', 'fr', 'en', 'it'];
+export const SUPPORTED_LANGS = ['de', 'fr'];
 
 const DEFAULT_LANG = import.meta.env.VITE_DEFAULT_LANG || 'de';
 

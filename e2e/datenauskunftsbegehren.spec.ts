@@ -5,7 +5,7 @@ test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, tes
   const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
 
-  const letterSection = await page.locator('section#letter');
+  const letterSection = await page.locator('[data-qa="letter"]');
 
   const sectionText = await letterSection.textContent();
 
@@ -40,7 +40,7 @@ test('Eine entfernte und wieder hinzugefügte Organisation ist auswählbar', asy
   await page.goto('');
 
   // Die wieder aktivierte Organisation muss in der Auswahl erscheinen
-  const searchInput = page.locator('input[placeholder="Suche ..."]');
+  const searchInput = page.locator('[data-qa="org-search-input"]');
   await searchInput.click();
   await searchInput.fill('E2E Wieder Aktiv');
 
@@ -54,7 +54,7 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
   await page.goto('');
 
   // Organisationsauswahl öffnen, prüfen, dass diese gut belegt ist und Swisscom auswählen
-  const searchInput = page.locator('input[placeholder="Suche ..."]');
+  const searchInput = page.locator('[data-qa="org-search-input"]');
 
   await searchInput.click();
 
@@ -66,14 +66,20 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-dropdown-offen.png') });
 
-  await searchInput.fill('Swisscom');
-  const swisscomOption = listContainer.locator('div.item', { hasText: /^Swisscom$/ });
-  await swisscomOption.click();
+  const swisscomOption = listContainer.locator('[data-qa="org-option"]', { hasText: /^Swisscom$/ });
 
   // Eingabemaske erscheint
   const stepUI = page.locator('div.step-ui');
-  await expect(stepUI).toBeVisible();
-  await expect(stepUI.locator('h2')).toContainText('Mach noch einige Angaben für das Auskunftsbegehren «Swisscom»');
+  // svelte-select rendert seine gefilterte Liste bei jedem Tastendruck neu; ein Klick kann daher
+  // gelegentlich in dem kurzen Moment landen, in dem der alte Listeneintrag bereits entfernt und der
+  // neue noch nicht nutzbar ist, sodass die Auswahl nicht ausgelöst wird. Klick + Übergangsprüfung
+  // werden deshalb als Ganzes wiederholt, statt nur auf einen einzelnen flakigen Klick zu vertrauen.
+  await expect(async () => {
+    await searchInput.fill('Swisscom');
+    await swisscomOption.click();
+    await expect(stepUI).toBeVisible({ timeout: 2000 });
+    await expect(stepUI.locator('h2')).toContainText('Mach noch einige Angaben für das Auskunftsbegehren «Swisscom»', { timeout: 2000 });
+  }).toPass({ timeout: 15000 });
   const mobileCheckbox = stepUI.locator('input[type="checkbox"][value="mobile"]');
   await expect(mobileCheckbox).toBeChecked();
   const onlineCheckbox = stepUI.locator('input[type="checkbox"][value="online"]');
@@ -102,7 +108,7 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
   // Brief erstellen und Inhalt prüfen
   const generateButton = page.locator('button', { hasText: 'Brief generieren' });
   await generateButton.click();
-  const letterSection = page.locator('section#letter');
+  const letterSection = page.locator('[data-qa="letter"]');
   await expect(letterSection).toContainText('E2E Test');
   await expect(letterSection).toContainText('E2E Strasse');
   await expect(letterSection).toContainText('1000 E2EOrt');
@@ -112,4 +118,38 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
   await expect(letterSection).not.toContainText('Online-Portal');
 
   await page.screenshot({ path: screenshotPath(testInfo, '04-brief-generiert.png'), fullPage: true });
+});
+
+// Regression: Das Ein-/Ausblenden eines einzelnen Bullet-Punkts (z.B. bei Bahnhof Parking AG)
+// löste einen "handler.apply is not a function"- und einen Svelte state_unsafe_mutation-Fehler
+// aus, statt den Punkt für den Druck auszublenden.
+test('Ein einzelner Bullet-Punkt kann aus- und wieder eingeblendet werden', async ({ page }, testInfo) => {
+  const consoleErrors: string[] = [];
+  page.on('console', msg => {
+    if (msg.type() === 'error') consoleErrors.push(msg.text());
+  });
+  page.on('pageerror', error => consoleErrors.push(error.message));
+
+  const url = '#{"v":1,"langUi":"de","langCor":"de","org":"Bahnhof Parking AG","entry":"org","types":["parking"],"step":"data_info_request","name":"E2E Person","date":"28.7.2025","address":"E2E Absender"}';
+  await page.goto(url);
+
+  const letterSection = page.locator('[data-qa="letter"]');
+  const firstBullet = letterSection.locator('[data-qa="bullet-item"]').first();
+  await expect(firstBullet).toContainText('Bahnhof Parking Bern');
+
+  const toggleButton = firstBullet.locator('[data-qa="bullet-toggle"]');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '05-bullets-sichtbar.png'), fullPage: true });
+
+  // Bullet ausblenden
+  await toggleButton.click();
+  await expect(firstBullet).toHaveClass(/hide-for-print/);
+
+  await page.screenshot({ path: screenshotPath(testInfo, '06-bullet-ausgeblendet.png'), fullPage: true });
+
+  // Bullet wieder einblenden
+  await toggleButton.click();
+  await expect(firstBullet).not.toHaveClass(/hide-for-print/);
+
+  expect(consoleErrors).toEqual([]);
 });

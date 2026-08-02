@@ -88,10 +88,10 @@
 <ul>
   {#if bullets}
     {#each bullets as bullet}
-      <li class:hide-for-print={$userData.hiddenBullets && $userData.hiddenBullets.includes(bullet.hash)}>
+      <li data-qa="bullet-item" class:hide-for-print={$userData.hiddenBullets && $userData.hiddenBullets.includes(bullet.hash)}>
         {bullet.text}
         <Bullets bullets={bullet.bullets} on:toggle={handleToggle} isChild={true}></Bullets>
-         <HideNodeAction on:toggle={handleToggle({detail: bullet.hash})} setClass={false} 
+         <HideNodeAction on:toggle={() => handleToggle({detail: bullet.hash})} setClass={false} dataQa="bullet-toggle"
          title={$_("bullets.toggle_visibility", {default: "Ein-/ausblenden, damit nur die Daten angefordert werden, die auch bearbeitet werden und von Interesse sind."})}></HideNodeAction>
       </li>
     {/each}
