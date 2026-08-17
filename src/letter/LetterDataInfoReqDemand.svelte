@@ -119,7 +119,7 @@
     </div>
 
     <h1 class="subject" contenteditable spellcheck="false">
-      {$_("data_info_request")}
+      {$_("letter_info_req_demand_subject", { default: "Datenauskunftsbegehren / Unvollständige Auskunft" })}
     </h1>
 
     <p class="salutation" contenteditable spellcheck="false">
@@ -147,10 +147,10 @@
        <li contenteditable spellcheck="false">...</li>
      </ul>
     <p contenteditable spellcheck="false">
-      {$_("letter_info_req_demand_refusal", {default: "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen Angaben geliefert werden, wieso eine Auskunft eingeschränkt wurde. Ich bitte Sie entsprechend, vollständig Auskunft zu erteilen oder Angaben zu liefern, wieso die Auskunft eingeschränkt wurde.."})}
+      {$_("letter_info_req_demand_refusal", {default: "Gemäss Art.\u00A018 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31.\u00A0August\u00A02022 müssen Angaben geliefert werden, wieso eine Auskunft eingeschränkt wurde. Ich bitte Sie entsprechend, vollständig Auskunft zu erteilen oder Angaben zu liefern, wieso die Auskunft eingeschränkt wurde.."})}
     </p>
     <p contenteditable spellcheck="false">
-      {$_("letter_info_req_demand_enforcement", {default: "Sollten Sie weiterhin keine vollständige Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten. Ich weise ausserdem darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art. 60 DSG)."})}
+      {$_("letter_info_req_demand_enforcement", {default: "Sollten Sie weiterhin keine vollständige Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten. Ich weise ausserdem darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art.\u00A060\u00A0DSG)."})}
     </p>
 
      <div class="no-break-inside">

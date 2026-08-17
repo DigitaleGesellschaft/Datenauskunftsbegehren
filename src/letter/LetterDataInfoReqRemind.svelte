@@ -131,10 +131,10 @@
         class:empty={!$userData.dataInfoRequestDate || $userData.dataInfoRequestDate.length === 0}
         bind:innerHTML={$userData.dataInfoRequestDate}></span>{$_("letter_info_req_remind.unanswered_request_post", { default: " stellte ich ein Datenauskunftsbegehren, das bis heute unbeantwortet geblieben ist." })}</p>
     <p contenteditable spellcheck="false">
-      {$_("letter_info_req_remind.legal_reference", { default: "Gemäss Art. 18 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31. August 2022 müssen die Auskunft oder die Information über eine verzögerte Auskunft innerhalb von 30 Tagen erfolgen. Ebenfalls innerhalb von 30 Tagen muss mitgeteilt werden, wenn die Auskunft verweigert oder aufgeschoben wird." })}
+      {$_("letter_info_req_remind.legal_reference", { default: "Gemäss Art.\u00A018 der Verordnung über den Datenschutz (Datenschutzverordnung, DSV) vom 31.\u00A0August\u00A02022 müssen die Auskunft oder die Information über eine verzögerte Auskunft innerhalb von 30 Tagen erfolgen. Ebenfalls innerhalb von 30 Tagen muss mitgeteilt werden, wenn die Auskunft verweigert oder aufgeschoben wird." })}
     </p>
     <p contenteditable spellcheck="false">
-      {$_("letter_info_req_remind.enforcement", { default: "Ich bitte Sie entsprechend, die Auskunft zu erteilen. Sollten Sie weiterhin keine Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten.  Ich weise ausserdem vorsorglich darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art. 60 DSG)." })}
+      {$_("letter_info_req_remind.enforcement", { default: "Ich bitte Sie entsprechend, die Auskunft zu erteilen. Sollten Sie weiterhin keine Auskunft erteilen, behalte ich mir jederzeit vor, mein Auskunftsrecht auf dem Rechtsweg durchzusetzen oder Anzeige beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) zu erstatten.  Ich weise ausserdem vorsorglich darauf hin, dass das vorsätzliche Erteilen einer falschen oder unvollständigen Auskunft auf Antrag mit Busse bis zu 250'000 Franken bestraft werden kann (Art.\u00A060\u00A0DSG)." })}
     </p>
 
     <div class="no-break-inside">
