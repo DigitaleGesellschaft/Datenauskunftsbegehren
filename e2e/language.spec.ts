@@ -237,3 +237,28 @@ test('Sprachen bleiben nach "Eingaben zurücksetzen" erhalten', async ({ page },
 
   await page.screenshot({ path: screenshotPath(testInfo, '02-sprachen-nach-reset.png'), fullPage: true });
 });
+
+test('Meldung zu fehlenden Suchtreffern in der Organisationsauswahl ist übersetzt', async ({ page }, testInfo) => {
+  await page.goto('');
+
+  // Ohne Treffer erscheint der übersetzte Hinweis statt der englischen Standardmeldung von svelte-select
+  const searchInput = page.locator('[data-qa="org-search-input"]');
+  await searchInput.click();
+  await searchInput.fill('NichtExistierendeOrg12345');
+
+  const listContainer = page.locator('div.svelte-select-list');
+  await expect(listContainer).toHaveText('Keine Organisation gefunden');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-keine-organisation-gefunden-deutsch.png') });
+
+  // Nach dem Wechsel auf Französisch ist der Hinweis ebenfalls übersetzt
+  await page.locator('[data-qa="language-switch-button"]').click();
+  await page.locator('input[name="ui-language"][value="fr"]').click();
+  await page.locator('[data-qa="overlay-close-button"]').click();
+
+  await searchInput.click();
+  await searchInput.fill('NichtExistierendeOrg12345');
+  await expect(listContainer).toHaveText('Aucune organisation trouvée');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '02-keine-organisation-gefunden-franzoesisch.png') });
+});
