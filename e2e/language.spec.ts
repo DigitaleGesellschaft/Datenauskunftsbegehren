@@ -136,6 +136,15 @@ test('UI Deutsch, Korrespondenzsprache Französisch: Seite auf Deutsch, Brief au
   await expect(page.locator('[data-qa="letter"] .salutation')).toContainText(letterSnippets.fr.salutation);
   await expect(page.locator('[data-qa="letter"] .address-to')).toContainText(letterSnippets.fr.registeredMail);
 
+  // Rechtsverweise und Datum dürfen nicht umbrechen: Abkürzung, Nummer bzw.
+  // Tag, Monat und Jahr sind mit geschützten Leerzeichen (U+00A0) verbunden.
+  const NBSP = '\u00A0';
+  const letterText = await page.locator('[data-qa="letter"]').textContent();
+  expect(letterText).toContain(`25${NBSP}septembre${NBSP}2020`);
+  expect(letterText).not.toContain('25 septembre 2020');
+  expect(letterText).toContain(`art.${NBSP}25 de la Loi`);
+  expect(letterText).not.toContain('art. 25 de la Loi');
+
   await page.screenshot({ path: screenshotPath(testInfo, '01-ui-de-brief-fr.png'), fullPage: true });
 });
 
