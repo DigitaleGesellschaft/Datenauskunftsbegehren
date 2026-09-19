@@ -6,7 +6,7 @@
 
   let types = $derived($data && $data.types ? $data.types : [])
   let events = $derived($data && $data.events ? $data.events : [])
-  let desires = $derived($data && $data.desires ? $data.desires : [])
+  let desires = $derived($data && $data.desires ? $data.desires.filter(desire => desire.handle !== 'data_info_request') : [])
 </script>
 
 <div class="step-one">
