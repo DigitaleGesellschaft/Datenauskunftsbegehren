@@ -157,7 +157,7 @@
     {/if}
 
     <p contenteditable spellcheck="false">
-      {$_("letter.initial_request", {default: "Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25.\u00A0September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden."})}
+      {$_("letter.initial_request", {default: "Ich ersuche Sie mit Verweis auf Art.\u00A025 des Bundesgesetzes über den Datenschutz (DSG) vom 25.\u00A0September\u00A02020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden."})}
     </p>
     <p>
       {$_("letter.info_requirement", {default: "Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist."})}

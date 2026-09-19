@@ -115,7 +115,7 @@
     </div>
 
     <h1 class="subject" contenteditable spellcheck="false">
-       {$_("data_access_request", {default: "Datenauskunftsbegehren"})}
+       {$_("letter_info_req_change_subject", {default: "Datenauskunftsbegehren / Berichtigung"})}
      </h1>
 
      <p class="salutation" contenteditable spellcheck="false">

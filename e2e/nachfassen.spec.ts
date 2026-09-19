@@ -62,6 +62,7 @@ test('Nachfassen unvollständige Antwort', async ({ page }, testInfo) => {
   // Prüfen, dass es sich um die Vorlage unvollständige Antwort handelt
   const letterSection = await page.locator('[data-qa="letter"]');
   const sectionText = await letterSection.textContent();
+  expect(sectionText).toContain('Datenauskunftsbegehren / Unvollständige Auskunft');
   expect(sectionText).toContain('Ich gehe davon aus, dass insbesondere folgende Informationen fehlen');
   expect(sectionText).toContain('E2E Person');
   expect(sectionText).toContain('E2E Absender');
@@ -71,6 +72,29 @@ test('Nachfassen unvollständige Antwort', async ({ page }, testInfo) => {
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-unvollstaendige-antwort.png'), fullPage: true });
   // Beide Datums-Platzhalter (Begehren + Antwort) müssen erscheinen
   expect(sectionText?.match(/TT\.MM\.JJJJ/g)?.length).toBeGreaterThanOrEqual(2);
+});
+
+// Rechtsverweise und Datumsangaben dürfen nicht umbrechen: Abkürzung, Nummer
+// bzw. Tag, Monat und Jahr sind mit geschützten Leerzeichen (U+00A0) verbunden.
+const NBSP = '\u00A0';
+
+test('Rechtsverweise und Datum bleiben dank geschützter Leerzeichen am Stück', async ({ page }) => {
+  const followUpUrl = (desire: string) =>
+    `#{"v":1,"step":"${desire}","entry":"followup","desire":"${desire}","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}`;
+
+  for (const desire of ['unanswered', 'incomplete_answer']) {
+    await page.goto(followUpUrl(desire));
+    const letterText = await page.locator('[data-qa="letter"]').textContent();
+
+    expect(letterText).toContain(`31.${NBSP}August${NBSP}2022`);
+    expect(letterText).not.toContain('31. August 2022');
+
+    expect(letterText).toContain(`Art.${NBSP}18 der Verordnung`);
+    expect(letterText).not.toContain('Art. 18 der Verordnung');
+
+    expect(letterText).toContain(`Art.${NBSP}60${NBSP}DSG`);
+    expect(letterText).not.toContain('Art. 60 DSG');
+  }
 });
 
 test('Nachfassen Daten korrigieren lassen', async ({ page }, testInfo) => {
@@ -85,6 +109,7 @@ test('Nachfassen Daten korrigieren lassen', async ({ page }, testInfo) => {
   // Prüfen, dass es sich um die Vorlage Daten korrigieren handelt
   const letterSection = await page.locator('[data-qa="letter"]');
   const sectionText = await letterSection.textContent();
+  expect(sectionText).toContain('Datenauskunftsbegehren / Berichtigung');
   expect(sectionText).toContain('Aufgrund Ihrer Auskunft stellte ich fest, dass von Ihnen bearbeitete Personendaten unrichtig sind.');
   expect(sectionText).toContain('E2E Person');
   expect(sectionText).toContain('E2E Absender');
@@ -108,6 +133,7 @@ test('Nachfassen Daten löschen lassen', async ({ page }, testInfo) => {
   // Prüfen, dass es sich um die Vorlage Daten löschen handelt
   const letterSection = await page.locator('[data-qa="letter"]');
   const sectionText = await letterSection.textContent();
+  expect(sectionText).toContain('Datenauskunftsbegehren / Löschung');
   expect(sectionText).toContain('Aufgrund Ihrer Auskunft ersuche ich Sie, folgende Personendaten zu löschen:');
   expect(sectionText).toContain('E2E Person');
   expect(sectionText).toContain('E2E Absender');
