@@ -15,6 +15,11 @@ test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, tes
   expect(sectionText).toContain('E2E Empfänger');
   expect(sectionText).toContain('28.7.2025');
 
+  // Regression: Die Rechtsgrundlage darf nicht als abschliessend formuliert sein,
+  // damit auch Anspruchsgrundlagen jenseits von Art. 25 DSG offenbleiben (#194)
+  expect(sectionText).toContain('insbesondere mit Verweis auf Art. 25');
+  expect(sectionText).toContain('insbesondere gemäss DSG');
+
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-aus-url.png'), fullPage: true });
 });
 

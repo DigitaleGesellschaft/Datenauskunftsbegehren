@@ -11,8 +11,8 @@
   "data_info_request": "Requête de données traitées",
   "salutation": "Chère Madame, cher Monsieur,",
   "letter": {
-    "initial_request": "Je vous prie de m'indiquer dans un délai de 30 jours si des données me concernant on fait l'objet d'un traitement. Cette demande est fondée sur l'art. 25 de la Loi fédérale sur la protection des données (LPD) du 25 septembre 2020.",
-    "info_requirement": "Dans la mesure où des données me concernant ont fait l'objet d'un traitement, je vous prie de me communiquer les informations pertinentes pour me permettre d'exercer mes droits selon la LPD et pour garantir la transparence dans le traitement de mes données.",
+    "initial_request": "Je vous prie de m'indiquer dans un délai de 30 jours si des données me concernant ont fait l'objet d'un traitement. Cette demande est fondée notamment sur l'art. 25 de la Loi fédérale sur la protection des données (LPD) du 25 septembre 2020.",
+    "info_requirement": "Dans la mesure où des données me concernant ont fait l'objet d'un traitement, je vous prie de me communiquer les informations pertinentes pour me permettre d'exercer mes droits, notamment selon la LPD, et pour garantir la transparence dans le traitement de mes données.",
     "request_info_list": "Je vous sollicite dans ce cadre de me transmettre les informations suivantes:",
     "list_item_1": "L'identité et les données de contact de tous les responsables",
     "list_item_2": "Les données à l'état brut qui ont été traitées",
