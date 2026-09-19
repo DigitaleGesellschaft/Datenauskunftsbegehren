@@ -43,19 +43,6 @@ test('Geschäftsbereich Kreditauskunft: Brief enthält spezifischen Absatz', asy
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-kreditauskunft.png'), fullPage: true });
 });
 
-test('Geschäftsbereich Gastrodaten: Brief enthält spezifischen Absatz', async ({ page }, testInfo) => {
-  await selectType(page, 'Gastrodaten');
-  await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
-  await generateLetter(page);
-
-  const letter = page.locator('[data-qa="letter"]');
-  await expect(letter).toContainText('Gastronomie');
-  await expect(letter).toContainText('Contact Tracing');
-  await expect(letter).toContainText('E2E Person');
-
-  await page.screenshot({ path: screenshotPath(testInfo, '01-brief-gastrodaten.png'), fullPage: true });
-});
-
 test('Geschäftsbereich Kundenkarten-Anbieter: Brief enthält spezifischen Absatz', async ({ page }, testInfo) => {
   await selectType(page, 'Kundenkarten-Anbieter');
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');

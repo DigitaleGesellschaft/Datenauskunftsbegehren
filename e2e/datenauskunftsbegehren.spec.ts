@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { screenshotPath } from './screenshot';
+import { removeTypeFromDataset } from './dataset';
 
 test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, testInfo) => {
   const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
@@ -75,10 +76,10 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
   // neue noch nicht nutzbar ist, sodass die Auswahl nicht ausgelöst wird. Klick + Übergangsprüfung
   // werden deshalb als Ganzes wiederholt, statt nur auf einen einzelnen flakigen Klick zu vertrauen.
   await expect(async () => {
+    await searchInput.click();
     await searchInput.fill('Swisscom');
-    await swisscomOption.click();
-    await expect(stepUI).toBeVisible({ timeout: 2000 });
-    await expect(stepUI.locator('h2')).toContainText('Mach noch einige Angaben für das Auskunftsbegehren «Swisscom»', { timeout: 2000 });
+    await swisscomOption.click({ timeout: 2000 });
+    await expect(stepUI.locator('h2', { hasText: 'Mach noch einige Angaben für das Auskunftsbegehren «Swisscom»' })).toBeVisible({ timeout: 2000 });
   }).toPass({ timeout: 15000 });
   const mobileCheckbox = stepUI.locator('input[type="checkbox"][value="mobile"]');
   await expect(mobileCheckbox).toBeChecked();
@@ -118,6 +119,47 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
   await expect(letterSection).not.toContainText('Online-Portal');
 
   await page.screenshot({ path: screenshotPath(testInfo, '04-brief-generiert.png'), fullPage: true });
+});
+
+// Organisationen ohne Geschäftsbereich (z.B. ehemalige Gastro-Anbieter nach Entfernen des Typs
+// "gastro", Datenauskunftsbegehren-Data#97) müssen weiterhin ein normales Begehren erlauben.
+test('Datenauskunftsbegehren für Organisation ohne Geschäftsbereich generieren', async ({ page }, testInfo) => {
+  await removeTypeFromDataset(page, 'gastro');
+  await page.goto('');
+
+  const searchInput = page.locator('[data-qa="org-search-input"]');
+  await searchInput.click();
+  const listContainer = page.locator('div.svelte-select-list');
+  const option = listContainer.locator('[data-qa="org-option"]', { hasText: /^Lunchgate AG$/ });
+
+  const stepUI = page.locator('div.step-ui');
+  // siehe Swisscom-Test: Klick + Übergangsprüfung gemeinsam wiederholen, da svelte-select neu rendert
+  await expect(async () => {
+    await searchInput.click();
+    await searchInput.fill('Lunchgate');
+    await option.click({ timeout: 2000 });
+    await expect(stepUI.locator('h2', { hasText: 'Mach noch einige Angaben für das Auskunftsbegehren «Lunchgate AG»' })).toBeVisible({ timeout: 2000 });
+  }).toPass({ timeout: 15000 });
+
+  // Ohne Geschäftsbereich gibt es keine Dienst-Auswahl, nur die Absenderangaben
+  await expect(stepUI).not.toContainText('Welche Dienste nutzt Du?');
+  await expect(stepUI.locator('input[type="checkbox"]')).toHaveCount(0);
+
+  await stepUI.locator('input#userName').fill('E2E Test');
+  await stepUI.locator('textarea#userAddress').fill('E2E Strasse\n1000 E2EOrt');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-org-ohne-typ-formular.png'), fullPage: true });
+
+  await page.locator('button', { hasText: 'Brief generieren' }).click();
+  const letterSection = page.locator('[data-qa="letter"]');
+  await expect(letterSection).toContainText('E2E Test');
+  await expect(letterSection).toContainText('Lunchgate AG');
+  await expect(letterSection).toContainText('Badenerstrasse 255');
+  await expect(letterSection).toContainText('Auskunft');
+  await expect(letterSection).not.toContainText('Gastronomie');
+  await expect(letterSection).not.toContainText('Contact Tracing');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '02-org-ohne-typ-brief.png'), fullPage: true });
 });
 
 // Regression: Das Ein-/Ausblenden eines einzelnen Bullet-Punkts (z.B. bei Bahnhof Parking AG)
