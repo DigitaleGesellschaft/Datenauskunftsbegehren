@@ -1,5 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 import { screenshotPath } from './screenshot';
+import { removeTypeFromDataset } from './dataset';
 
 // Gespeicherte Links können Geschäftsbereiche enthalten, die es im Datensatz nicht
 // (mehr) gibt – etwa den entfernten Typ "gastro" (Datenauskunftsbegehren-Data#97) oder einen
@@ -9,6 +10,10 @@ const unknownTypes = [
   { name: 'entfernter Typ', handle: 'gastro' },
   { name: 'Fantasie-Typ', handle: 'e2e-fantasie' },
 ];
+
+test.beforeEach(async ({ page }) => {
+  await removeTypeFromDataset(page, 'gastro');
+});
 
 function urlFor(userData: object) {
   return '#' + encodeURI(JSON.stringify({ v: 1, langUi: 'de', langCor: 'de', ...userData }));

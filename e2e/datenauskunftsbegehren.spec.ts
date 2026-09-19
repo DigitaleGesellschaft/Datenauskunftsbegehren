@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { screenshotPath } from './screenshot';
+import { removeTypeFromDataset } from './dataset';
 
 test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, testInfo) => {
   const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
@@ -75,10 +76,10 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
   // neue noch nicht nutzbar ist, sodass die Auswahl nicht ausgelöst wird. Klick + Übergangsprüfung
   // werden deshalb als Ganzes wiederholt, statt nur auf einen einzelnen flakigen Klick zu vertrauen.
   await expect(async () => {
+    await searchInput.click();
     await searchInput.fill('Swisscom');
-    await swisscomOption.click();
-    await expect(stepUI).toBeVisible({ timeout: 2000 });
-    await expect(stepUI.locator('h2')).toContainText('Mach noch einige Angaben für das Auskunftsbegehren «Swisscom»', { timeout: 2000 });
+    await swisscomOption.click({ timeout: 2000 });
+    await expect(stepUI.locator('h2', { hasText: 'Mach noch einige Angaben für das Auskunftsbegehren «Swisscom»' })).toBeVisible({ timeout: 2000 });
   }).toPass({ timeout: 15000 });
   const mobileCheckbox = stepUI.locator('input[type="checkbox"][value="mobile"]');
   await expect(mobileCheckbox).toBeChecked();
@@ -123,6 +124,7 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
 // Organisationen ohne Geschäftsbereich (z.B. ehemalige Gastro-Anbieter nach Entfernen des Typs
 // "gastro", Datenauskunftsbegehren-Data#97) müssen weiterhin ein normales Begehren erlauben.
 test('Datenauskunftsbegehren für Organisation ohne Geschäftsbereich generieren', async ({ page }, testInfo) => {
+  await removeTypeFromDataset(page, 'gastro');
   await page.goto('');
 
   const searchInput = page.locator('[data-qa="org-search-input"]');
@@ -133,9 +135,10 @@ test('Datenauskunftsbegehren für Organisation ohne Geschäftsbereich generieren
   const stepUI = page.locator('div.step-ui');
   // siehe Swisscom-Test: Klick + Übergangsprüfung gemeinsam wiederholen, da svelte-select neu rendert
   await expect(async () => {
+    await searchInput.click();
     await searchInput.fill('Lunchgate');
-    await option.click();
-    await expect(stepUI.locator('h2')).toContainText('Mach noch einige Angaben für das Auskunftsbegehren «Lunchgate AG»', { timeout: 2000 });
+    await option.click({ timeout: 2000 });
+    await expect(stepUI.locator('h2', { hasText: 'Mach noch einige Angaben für das Auskunftsbegehren «Lunchgate AG»' })).toBeVisible({ timeout: 2000 });
   }).toPass({ timeout: 15000 });
 
   // Ohne Geschäftsbereich gibt es keine Dienst-Auswahl, nur die Absenderangaben

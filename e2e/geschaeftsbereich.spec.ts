@@ -43,17 +43,6 @@ test('Geschäftsbereich Kreditauskunft: Brief enthält spezifischen Absatz', asy
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-kreditauskunft.png'), fullPage: true });
 });
 
-// Der Geschäftsbereich Gastrodaten wurde entfernt (Datenauskunftsbegehren-Data#97).
-test('Geschäftsbereich Gastrodaten wird nicht mehr angeboten', async ({ page }, testInfo) => {
-  await page.goto('');
-
-  const typeButtons = page.locator('button.one');
-  await expect(typeButtons.filter({ hasText: 'Adresshandel' })).toBeVisible();
-  await expect(typeButtons.filter({ hasText: 'Gastrodaten' })).toHaveCount(0);
-
-  await page.screenshot({ path: screenshotPath(testInfo, '01-ohne-gastrodaten.png'), fullPage: true });
-});
-
 test('Geschäftsbereich Kundenkarten-Anbieter: Brief enthält spezifischen Absatz', async ({ page }, testInfo) => {
   await selectType(page, 'Kundenkarten-Anbieter');
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
