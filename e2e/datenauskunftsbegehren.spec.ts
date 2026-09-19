@@ -120,6 +120,45 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
   await page.screenshot({ path: screenshotPath(testInfo, '04-brief-generiert.png'), fullPage: true });
 });
 
+// Organisationen ohne Geschäftsbereich (z.B. ehemalige Gastro-Anbieter nach Entfernen des Typs
+// "gastro", Datenauskunftsbegehren-Data#97) müssen weiterhin ein normales Begehren erlauben.
+test('Datenauskunftsbegehren für Organisation ohne Geschäftsbereich generieren', async ({ page }, testInfo) => {
+  await page.goto('');
+
+  const searchInput = page.locator('[data-qa="org-search-input"]');
+  await searchInput.click();
+  const listContainer = page.locator('div.svelte-select-list');
+  const option = listContainer.locator('[data-qa="org-option"]', { hasText: /^Lunchgate AG$/ });
+
+  const stepUI = page.locator('div.step-ui');
+  // siehe Swisscom-Test: Klick + Übergangsprüfung gemeinsam wiederholen, da svelte-select neu rendert
+  await expect(async () => {
+    await searchInput.fill('Lunchgate');
+    await option.click();
+    await expect(stepUI.locator('h2')).toContainText('Mach noch einige Angaben für das Auskunftsbegehren «Lunchgate AG»', { timeout: 2000 });
+  }).toPass({ timeout: 15000 });
+
+  // Ohne Geschäftsbereich gibt es keine Dienst-Auswahl, nur die Absenderangaben
+  await expect(stepUI).not.toContainText('Welche Dienste nutzt Du?');
+  await expect(stepUI.locator('input[type="checkbox"]')).toHaveCount(0);
+
+  await stepUI.locator('input#userName').fill('E2E Test');
+  await stepUI.locator('textarea#userAddress').fill('E2E Strasse\n1000 E2EOrt');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-org-ohne-typ-formular.png'), fullPage: true });
+
+  await page.locator('button', { hasText: 'Brief generieren' }).click();
+  const letterSection = page.locator('[data-qa="letter"]');
+  await expect(letterSection).toContainText('E2E Test');
+  await expect(letterSection).toContainText('Lunchgate AG');
+  await expect(letterSection).toContainText('Badenerstrasse 255');
+  await expect(letterSection).toContainText('Auskunft');
+  await expect(letterSection).not.toContainText('Gastronomie');
+  await expect(letterSection).not.toContainText('Contact Tracing');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '02-org-ohne-typ-brief.png'), fullPage: true });
+});
+
 // Regression: Das Ein-/Ausblenden eines einzelnen Bullet-Punkts (z.B. bei Bahnhof Parking AG)
 // löste einen "handler.apply is not a function"- und einen Svelte state_unsafe_mutation-Fehler
 // aus, statt den Punkt für den Druck auszublenden.

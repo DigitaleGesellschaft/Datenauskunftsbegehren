@@ -6,6 +6,15 @@ function isValidOrg(org) {
   return !org || !!data.getCurrentlySelectableOrgs().find(o => o.name === org);
 }
 
+// Types can be removed from the dataset (e.g. "gastro"), while old URLs may still reference them.
+function isKnownType(type) {
+  return !!data.getType(type);
+}
+
+function hasOnlyKnownTypes(types) {
+  return !types || types.every(isKnownType);
+}
+
 export function validateUserData(userData) {
   // if the user was already past step entry, that is any letter or print, we treat everything as valid
   // HACK: catch up with URLs from fromer app versions containing "step:letter" (but doesn't know 'desire')
@@ -29,7 +38,7 @@ export function validateUserData(userData) {
     })
   }
   return {
-    isValid: validOrg,
+    isValid: validOrg && hasOnlyKnownTypes(userData.types),
     messages
   }
 }
@@ -40,6 +49,12 @@ export function getValidUserData(userData) {
     delete userData.org;
     if (org && userData.types) {
       userData.types = userData.types.filter(type => !org.hasType(type))
+    }
+  }
+  if (userData.types) {
+    userData.types = userData.types.filter(isKnownType);
+    if (userData.entry === 'type' && userData.types.length === 0) {
+      delete userData.entry;
     }
   }
   return userData;
