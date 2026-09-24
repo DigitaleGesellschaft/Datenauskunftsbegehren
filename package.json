@@ -28,6 +28,7 @@
     "date-fns": "^4.4.0",
     "image-capture": "^0.4.0",
     "lodash-es": "^4.18.1",
+    "svelte-floating-ui": "^1.5.8",
     "svelte-i18n": "^4.0.1",
     "svelte-select": "^6.0.0"
   }
