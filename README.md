@@ -16,7 +16,20 @@ Please open issues here for anything you find not working correctly with the App
 
 Works with:
 
-- Node v24
+- Node v26
+
+Alternatively, all commands can be run in Docker containers without a local Node.js installation:
+
+```bash
+tooling/docker.sh download-data  # fetch the latest data_de.json/data_fr.json
+tooling/docker.sh dev            # start the Vite dev server
+tooling/docker.sh test [args]    # run the Playwright end-to-end tests
+tooling/docker.sh build          # build the production bundle into dist/
+tooling/docker.sh check          # run svelte-check and the TypeScript check
+tooling/docker.sh preview        # build and serve the production bundle on port 8080
+tooling/docker.sh i18n           # extract translation keys into the locale files
+tooling/docker.sh i18n-check     # verify the locale files are complete and up to date
+```
 
 Download the latest data files:
 
