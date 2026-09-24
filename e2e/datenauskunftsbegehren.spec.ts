@@ -68,18 +68,14 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
 
   const swisscomOption = listContainer.locator('[data-qa="org-option"]', { hasText: /^Swisscom$/ });
 
+  await searchInput.fill('Swisscom');
+  await swisscomOption.click();
+
   // Eingabemaske erscheint
   const stepUI = page.locator('div.step-ui');
-  // svelte-select rendert seine gefilterte Liste bei jedem Tastendruck neu; ein Klick kann daher
-  // gelegentlich in dem kurzen Moment landen, in dem der alte Listeneintrag bereits entfernt und der
-  // neue noch nicht nutzbar ist, sodass die Auswahl nicht ausgelöst wird. Klick + Übergangsprüfung
-  // werden deshalb als Ganzes wiederholt, statt nur auf einen einzelnen flakigen Klick zu vertrauen.
-  await expect(async () => {
-    await searchInput.fill('Swisscom');
-    await swisscomOption.click();
-    await expect(stepUI).toBeVisible({ timeout: 2000 });
-    await expect(stepUI.locator('h2')).toContainText('Mach noch einige Angaben für das Auskunftsbegehren «Swisscom»', { timeout: 2000 });
-  }).toPass({ timeout: 15000 });
+  // Die Startseite hat selbst mehrere h2 und bleibt bis zur (asynchronen) Auswahl sichtbar; ein unspezifischer
+  // h2-Locator würde dann sofort mit einer Strict-Mode-Verletzung statt nach Warten fehlschlagen.
+  await expect(stepUI.getByRole('heading', { level: 2, name: 'Mach noch einige Angaben für das Auskunftsbegehren «Swisscom»' })).toBeVisible();
   const mobileCheckbox = stepUI.locator('input[type="checkbox"][value="mobile"]');
   await expect(mobileCheckbox).toBeChecked();
   const onlineCheckbox = stepUI.locator('input[type="checkbox"][value="online"]');
@@ -118,6 +114,51 @@ test('Datenauskunftsbegehren für Swisscom generieren', async ({ page }, testInf
   await expect(letterSection).not.toContainText('Online-Portal');
 
   await page.screenshot({ path: screenshotPath(testInfo, '04-brief-generiert.png'), fullPage: true });
+});
+
+// Die Liste darf beim Tippen nicht die Position wechseln: Früher öffnete sich die ungefilterte Liste
+// mangels Platz oberhalb des Suchfelds und sprang nach dem Filtern darunter, sodass ein Klick auf
+// einen Eintrag daneben landen konnte.
+test('Organisationsliste bleibt beim Filtern unter dem Suchfeld', async ({ page }, testInfo) => {
+  await page.goto('');
+
+  const searchInput = page.locator('[data-qa="org-search-input"]');
+  await searchInput.click();
+
+  const listContainer = page.locator('div.svelte-select-list');
+  await expect(listContainer).toContainText('Swiss Life');
+
+  const listTopBelowInput = () => page.evaluate(() => {
+    const input = document.querySelector('[data-qa="org-search-input"]')!.getBoundingClientRect();
+    const list = document.querySelector('div.svelte-select-list')!.getBoundingClientRect();
+    return list.top >= input.bottom;
+  });
+
+  await expect.poll(listTopBelowInput).toBe(true);
+
+  // Position in jedem Frame nach der Eingabe aufzeichnen, damit auch ein kurzzeitiger Sprung auffällt
+  await page.evaluate(() => {
+    const recording = { positions: [] as boolean[], done: false };
+    (window as any).__listPositions = recording;
+    const start = performance.now();
+    const record = () => {
+      const input = document.querySelector('[data-qa="org-search-input"]')!.getBoundingClientRect();
+      const list = document.querySelector('div.svelte-select-list');
+      if (list) recording.positions.push(list.getBoundingClientRect().top >= input.bottom);
+      if (performance.now() - start < 500) requestAnimationFrame(record);
+      else recording.done = true;
+    };
+    requestAnimationFrame(record);
+  });
+  await searchInput.fill('Swisscom');
+  await expect(listContainer.locator('[data-qa="org-option"]', { hasText: /^Swisscom$/ })).toBeVisible();
+  await expect.poll(() => page.evaluate(() => (window as any).__listPositions.done)).toBe(true);
+
+  const positions: boolean[] = await page.evaluate(() => (window as any).__listPositions.positions);
+  expect(positions.length).toBeGreaterThan(0);
+  expect(positions.every(Boolean)).toBe(true);
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-gefilterte-liste.png') });
 });
 
 // Regression: Das Ein-/Ausblenden eines einzelnen Bullet-Punkts (z.B. bei Bahnhof Parking AG)

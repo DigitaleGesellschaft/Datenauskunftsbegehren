@@ -3,6 +3,7 @@
   const dispatch = createEventDispatcher();
 
   import Select from 'svelte-select';
+  import { offset, shift } from 'svelte-floating-ui/dom';
   import { _ } from 'svelte-i18n';
   import { data } from '../stores.js';
 
@@ -10,7 +11,15 @@
 
   let wrapper = $state();
   let isTouch = $state(false);
-  
+
+  // Keep the list below the input. With the default flip() the full list opens above the input
+  // when there is not enough space below, then jumps below as soon as filtering shortens it,
+  // so a click aimed at an option can land next to the list.
+  const floatingConfig = {
+    placement: 'bottom-start',
+    middleware: [offset(5), shift()],
+  };
+
   let orgOptions = $derived((options ? options : $data.getCurrentlySelectableOrgs())
     .map(o => o.name));
 
@@ -41,6 +50,7 @@
       items={orgOptions}
       placeholder={$_('org_selection.search_placeholder', { default: 'Suche ...' })}
       inputAttributes={{ 'data-qa': 'org-search-input' }}
+      {floatingConfig}
       onselect={handleSelect}
       onclear={handleClear}
     >
