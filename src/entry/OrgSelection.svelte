@@ -14,8 +14,8 @@
   let orgOptions = $derived((options ? options : $data.getCurrentlySelectableOrgs())
     .map(o => o.name));
 
-  function handleSelect(event) {
-    org = event.detail.value;
+  function handleSelect(selection) {
+    org = selection?.value;
     dispatch('input', org);
   }
 
@@ -38,18 +38,21 @@
   {#if !isTouch}
     <Select
       value={org}
-      bind:items={orgOptions}
-      showIndicator="true"
+      items={orgOptions}
       placeholder={$_('org_selection.search_placeholder', { default: 'Suche ...' })}
-      noOptionsMessage={$_('org_selection.no_options', { default: 'Keine Organisation gefunden' })}
       inputAttributes={{ 'data-qa': 'org-search-input' }}
-      on:select={handleSelect}
-      on:clear={handleClear}
+      onselect={handleSelect}
+      onclear={handleClear}
     >
-      <div slot="item" let:item data-qa="org-option">{item.label}</div>
+      {#snippet item({ item: option })}
+        <div data-qa="org-option">{option.label}</div>
+      {/snippet}
+      {#snippet empty()}
+        <div class="empty">{$_('org_selection.no_options', { default: 'Keine Organisation gefunden' })}</div>
+      {/snippet}
     </Select>
   {:else}
-    <select data-qa="org-search-select" value={org} oninput={(event) => handleSelect({detail: {value: event.target.value}})}>
+    <select data-qa="org-search-select" value={org} oninput={(event) => handleSelect({ value: event.target.value })}>
       {#each orgOptions as org}
         <option value="{org}">{org}</option>
       {/each}
@@ -63,27 +66,26 @@
     margin-bottom: 12px;
 
     --border: 2px solid var(--color-one);
-    --borderFocusColor: var(--color-one);
-    --borderHoverColor: var(--color-one);
-    --borderRadius: 12px;
+    --border-focused: 2px solid var(--color-one);
+    --border-hover: 2px solid var(--color-one);
+    --border-radius: 12px;
 
-    --indicatorTop: 5px;
-    --indicatorRight: 6px;
-    --indicatorWidth: 16px;
-    --indicatorHeight: 16px;
+    --clear-select-width: 16px;
+    --clear-select-height: 16px;
+    --clear-select-margin: 0 6px 0 0;
 
-    --clearSelectTop: 5px;
-    --clearSelectRight: 22px;
-    --clearSelectWidth: 16px;
-    --clearSelectHeight: 16px;
+    --item-is-active-bg: var(--color-one);
+    --item-hover-bg: var(--color-ui-three);
 
-    --itemIsActiveBG: var(--color-one);
-    --itemHoverBG: var(--color-ui-three);
+    --input-color: black;
+    --placeholder-color: gray;
 
-    --inputColor: black;
-    --placeholderColor: gray;
-
-    --inputFontSize: 16px;
+    --font-size: 16px;
     --height: var(--input-height);
+  }
+
+  .empty {
+    padding: 20px 0;
+    text-align: center;
   }
 </style>

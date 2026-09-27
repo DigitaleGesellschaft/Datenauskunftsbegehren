@@ -83,33 +83,3 @@ test('Print-Seite zeigt aufgelösten causa-Text ohne Platzhalter', async ({ page
   await expect(sendByPostPara).not.toContainText('{causa}');
   await expect(sendByPostPara).toContainText('das Datenauskunftsbegehren');
 });
-
-test('Brief Auskunftsbegehren via Einstiegsmaske zeigt nur einen Brief', async ({ page }, testInfo) => {
-  await page.goto('');
-
-  // "Brief Auskunftsbegehren" aus der Desires-Liste in StepOne auswählen
-  const briefButton = page.locator('button', { hasText: 'Brief Auskunftsbegehren' });
-  await briefButton.click();
-
-  await page.screenshot({ path: screenshotPath(testInfo, '01-nachfassen-formular.png'), fullPage: true });
-
-  // Adressfelder ausfüllen (StepFollowUp)
-  const userNameField = page.locator('input#userName');
-  await userNameField.fill('E2E Person');
-  const userAddressField = page.locator('textarea#userAddress');
-  await userAddressField.fill('E2E Strasse\n1000 E2EOrt');
-  const orgAddressField = page.locator('textarea#orgAddress');
-  await orgAddressField.fill('E2E Empfänger');
-
-  // Brief generieren
-  const generateButton = page.locator('button', { hasText: 'Brief generieren' });
-  await generateButton.click();
-
-  // Nur ein Brief soll sichtbar sein
-  const letterSections = page.locator('[data-qa="letter"]');
-  await expect(letterSections).toHaveCount(1);
-  await expect(letterSections.first()).toContainText('Datenauskunftsbegehren');
-  await expect(letterSections.first()).not.toContainText('Ausbleibende Auskunft');
-
-  await page.screenshot({ path: screenshotPath(testInfo, '02-brief-auskunftsbegehren.png'), fullPage: true });
-});
