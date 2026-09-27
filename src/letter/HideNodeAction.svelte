@@ -10,10 +10,11 @@
    * @typedef {Object} Props
    * @property {string} [title]
    * @property {boolean} [setClass]
+   * @property {string} [dataQa]
    */
 
   /** @type {Props} */
-  let { title = "", setClass = true } = $props();
+  let { title = "", setClass = true, dataQa = "hide-node-action" } = $props();
 
   function toggleNode() {
     if (setClass) {
@@ -29,7 +30,7 @@
   })
   
 </script>
-<button type="button" class="hide-node-action" bind:this={node} onclick={toggleNode} title="{title}">
+<button type="button" class="hide-node-action" data-qa={dataQa} bind:this={node} onclick={toggleNode} title="{title}">
   <EyeIcon></EyeIcon>
 </button>
 <style>

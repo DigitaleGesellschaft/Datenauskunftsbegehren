@@ -19,8 +19,8 @@ test('Info kann angezeigt werden', async ({ page }, testInfo) => {
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-startseite.png'), fullPage: true });
 
-  // Info anzeigen (letzter button.circle.one in der Header-Leiste)
-  const creditsButton = page.locator('button.circle.one').last();
+  // Info anzeigen
+  const creditsButton = page.locator('[data-qa="credits-button"]');
   await creditsButton.click();
 
   // Prüfen, dass der entsprechende Text angezeigt wird
@@ -33,7 +33,7 @@ test('Info kann angezeigt werden', async ({ page }, testInfo) => {
 test('Info kann angezeigt werden und zeigt Version und Git-Revision', async ({ page }) => {
   await page.goto('');
 
-  const creditsButton = page.locator('button.circle.one').last();
+  const creditsButton = page.locator('[data-qa="credits-button"]');
   await creditsButton.click();
 
   const credits = page.locator('.credits');

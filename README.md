@@ -50,8 +50,6 @@ Translation files are located in the [locales](./src/locales/) folder:
 |------|---------|---------------|
 | `de-CH.json` | UI strings (German) | `npm run i18n` |
 | `fr-CH.json` | UI strings (French) | `npm run i18n` |
-| `en.json` | UI strings (English) | `npm run i18n` |
-| `it-CH.json` | UI strings (Italian) | `npm run i18n` |
 | `de-CH.letter.json` | Letter text (German) | Edit manually |
 | `fr-CH.letter.json` | Letter text (French) | Edit manually |
 
@@ -80,9 +78,7 @@ Poedit is an open-source program but lacks the possibility to display the langua
 
 The default language is German (`de`). It can be changed via the `VITE_DEFAULT_LANG` environment variable — useful when hosting the app on a website in a different language.
 
-Valid values: `de`, `fr`, `en`, `it`
-
-> Note: The correspondence language (used for the generated letter) only supports `de` and `fr`. Any other value falls back to `de`.
+Valid values: `de`, `fr`
 
 Either pass it directly at build time:
 

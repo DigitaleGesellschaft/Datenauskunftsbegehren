@@ -268,6 +268,14 @@ button.circle svg {
   justify-self: center;
 }
 
+button.plain {
+  border: none;
+  background: none;
+  width: auto;
+  height: auto;
+  padding: 4px;
+}
+
 button.step {
   border: none;
   background: none;

@@ -5,14 +5,20 @@
   const uiLanguages = [
     { code: 'de', label: 'Deutsch' },
     { code: 'fr', label: 'Français' },
-    { code: 'en', label: 'English' },
-    { code: 'it', label: 'Italiano' },
   ];
 
   const correspondenceLanguages = [
     { code: 'de', label: 'Deutsch' },
     { code: 'fr', label: 'Français' },
   ];
+
+  // Switching the UI language also switches the correspondence language, so
+  // by default both stay in sync. The correspondence language can still be
+  // changed independently afterwards via its own selector below.
+  function setUiLanguage(code) {
+    langUi.set(code);
+    langCor.set(code);
+  }
 </script>
 
 <div class="language-picker">
@@ -27,7 +33,7 @@
           name="ui-language"
           value={lang.code}
           checked={$langUi === lang.code}
-          onchange={() => langUi.set(lang.code)}
+          onchange={() => setUiLanguage(lang.code)}
         />
         {lang.label}
       </label>
