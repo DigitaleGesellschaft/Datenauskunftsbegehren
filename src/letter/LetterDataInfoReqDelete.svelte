@@ -59,7 +59,7 @@
 </script>
 
 <div id="letter-container">
-  <section id="letter" bind:this={LetterDataInfoReqDeleteNode}>
+  <section id="letter" data-qa="letter" bind:this={LetterDataInfoReqDeleteNode}>
     <div class="letter-head">
       <div class="address-from">
          <span

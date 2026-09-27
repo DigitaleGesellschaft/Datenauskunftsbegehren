@@ -16,7 +16,20 @@ Please open issues here for anything you find not working correctly with the App
 
 Works with:
 
-- Node v24
+- Node v26
+
+Alternatively, all commands can be run in Docker containers without a local Node.js installation:
+
+```bash
+tooling/docker.sh download-data  # fetch the latest data_de.json/data_fr.json
+tooling/docker.sh dev            # start the Vite dev server
+tooling/docker.sh test [args]    # run the Playwright end-to-end tests
+tooling/docker.sh build          # build the production bundle into dist/
+tooling/docker.sh check          # run svelte-check and the TypeScript check
+tooling/docker.sh preview        # build and serve the production bundle on port 8080
+tooling/docker.sh i18n           # extract translation keys into the locale files
+tooling/docker.sh i18n-check     # verify the locale files are complete and up to date
+```
 
 Download the latest data files:
 
@@ -50,8 +63,6 @@ Translation files are located in the [locales](./src/locales/) folder:
 |------|---------|---------------|
 | `de-CH.json` | UI strings (German) | `npm run i18n` |
 | `fr-CH.json` | UI strings (French) | `npm run i18n` |
-| `en.json` | UI strings (English) | `npm run i18n` |
-| `it-CH.json` | UI strings (Italian) | `npm run i18n` |
 | `de-CH.letter.json` | Letter text (German) | Edit manually |
 | `fr-CH.letter.json` | Letter text (French) | Edit manually |
 
@@ -80,9 +91,7 @@ Poedit is an open-source program but lacks the possibility to display the langua
 
 The default language is German (`de`). It can be changed via the `VITE_DEFAULT_LANG` environment variable — useful when hosting the app on a website in a different language.
 
-Valid values: `de`, `fr`, `en`, `it`
-
-> Note: The correspondence language (used for the generated letter) only supports `de` and `fr`. Any other value falls back to `de`.
+Valid values: `de`, `fr`
 
 Either pass it directly at build time:
 
