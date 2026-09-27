@@ -16,7 +16,7 @@
   // when there is not enough space below, then jumps below as soon as filtering shortens it,
   // so a click aimed at an option can land next to the list.
   const floatingConfig = {
-    placement: 'bottom-start',
+    placement: /** @type {const} */ ('bottom-start'),
     middleware: [offset(5), shift()],
   };
 
