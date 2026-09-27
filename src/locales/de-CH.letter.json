@@ -11,8 +11,8 @@
   "data_info_request": "Datenauskunftsbegehren",
   "salutation": "Sehr geehrte Angesprochene",
   "letter": {
-    "initial_request": "Ich ersuche Sie mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25. September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.",
-    "info_requirement": "Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist.",
+    "initial_request": "Ich ersuche Sie, insbesondere mit Verweis auf Art. 25 des Bundesgesetzes über den Datenschutz (DSG) vom 25. September 2020, mir innerhalb von 30 Tagen mitzuteilen, ob Daten über mich bearbeitet werden.",
+    "info_requirement": "Sofern Daten über mich bearbeitet werden, ersuche ich Sie weiter, mir diejenigen Informationen mitzuteilen, die erforderlich sind, damit ich meine Rechte insbesondere gemäss DSG geltend machen kann und eine transparente Bearbeitung meiner Daten gewährleistet ist.",
     "request_info_list": "Ich ersuche Sie in diesem Rahmen, mir in jedem Fall folgende Informationen mitzuteilen:",
     "list_item_1": "Identität und Kontaktdaten aller Verantwortlichen",
     "list_item_2": "Alle bearbeiteten Personendaten als solche",
