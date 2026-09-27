@@ -2,6 +2,10 @@ import { test, expect } from '@playwright/test';
 import { screenshotPath } from './screenshot';
 import { removeTypeFromDataset } from './dataset';
 
+// Rechtsverweise und Datumsangaben dürfen nicht umbrechen: Abkürzung, Nummer
+// bzw. Tag, Monat und Jahr sind mit geschützten Leerzeichen (U+00A0) verbunden.
+const NBSP = '\u00A0';
+
 test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, testInfo) => {
   const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
@@ -18,10 +22,23 @@ test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, tes
 
   // Regression: Die Rechtsgrundlage darf nicht als abschliessend formuliert sein,
   // damit auch Anspruchsgrundlagen jenseits von Art. 25 DSG offenbleiben (#194)
-  expect(sectionText).toContain('insbesondere mit Verweis auf Art. 25');
+  expect(sectionText).toContain(`insbesondere mit Verweis auf Art.${NBSP}25`);
   expect(sectionText).toContain('insbesondere gemäss DSG');
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-aus-url.png'), fullPage: true });
+});
+
+test('Rechtsverweise und Datum bleiben dank geschützter Leerzeichen am Stück', async ({ page }) => {
+  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  await page.goto(url);
+
+  const letterText = await page.locator('[data-qa="letter"]').textContent();
+
+  expect(letterText).toContain(`25.${NBSP}September${NBSP}2020`);
+  expect(letterText).not.toContain('25. September 2020');
+
+  expect(letterText).toContain(`Art.${NBSP}25 des Bundesgesetzes`);
+  expect(letterText).not.toContain('Art. 25 des Bundesgesetzes');
 });
 
 test('Eine entfernte und wieder hinzugefügte Organisation ist auswählbar', async ({ page }, testInfo) => {
