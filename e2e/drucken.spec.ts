@@ -97,3 +97,15 @@ test('Print-Seite löst causa-Text auch bei altem desire="letter" auf (Regressio
   await expect(sendByPostPara).not.toContainText('causa.print.letter');
   await expect(sendByPostPara).toContainText('das Datenauskunftsbegehren');
 });
+
+test('Print-Seite verlinkt GitHub Issues neben der E-Mail-Adresse im Feedback-Hinweis', async ({ page }) => {
+  const url = `#{"v":1,"step":"print",${baseState}}`;
+  await page.goto(url);
+
+  const emailLink = page.locator('a[href="mailto:auskunftsbegehren@digitale-gesellschaft.ch"]');
+  await expect(emailLink).toBeVisible();
+
+  const githubLink = page.locator('a[href="https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren/issues"]');
+  await expect(githubLink).toBeVisible();
+  await expect(githubLink).toHaveAttribute('target', '_blank');
+});
