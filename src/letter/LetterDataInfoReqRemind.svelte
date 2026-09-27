@@ -61,7 +61,7 @@
 </script>
 
 <div id="letter-container">
-  <section id="letter" bind:this={LetterDataInfoReqRemindNode}>
+  <section id="letter" data-qa="letter" bind:this={LetterDataInfoReqRemindNode}>
     <div class="letter-head">
       <div class="address-from">
          <span

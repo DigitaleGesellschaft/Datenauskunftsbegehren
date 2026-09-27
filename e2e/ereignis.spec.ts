@@ -14,7 +14,7 @@ async function selectEvent(page: Page, eventLabel: string) {
 
 async function generateLetter(page: Page) {
   await page.locator('button', { hasText: 'Brief generieren' }).click();
-  await expect(page.locator('section#letter')).toBeVisible();
+  await expect(page.locator('[data-qa="letter"]')).toBeVisible();
 }
 
 test('Ereignis Werbeanruf: Brief enthält Datum und Telefonnummer', async ({ page }, testInfo) => {
@@ -27,7 +27,7 @@ test('Ereignis Werbeanruf: Brief enthält Datum und Telefonnummer', async ({ pag
 
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Werbeanruf');
   await expect(letter).toContainText('15.03.2024');
   await expect(letter).toContainText('+41 44 123 45 67');
@@ -46,7 +46,7 @@ test('Ereignis Werbemail: Brief enthält Datum und E-Mail-Adresse', async ({ pag
 
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Werbemail');
   await expect(letter).toContainText('20.06.2024');
   await expect(letter).toContainText('test@example.com');
@@ -59,7 +59,7 @@ test('Ereignis Werbung per Post: Datum wird ohne explizite Eingabe im Brief ange
   await selectEvent(page, 'Mir wurde Werbung per Post zugestellt');
   await fillUserAddress(page, 'E2E Person', 'E2E Strasse\n1000 E2EOrt');
   await generateLetter(page);
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter.locator('#eventDate')).not.toHaveText('');
   await expect(letter.locator('#eventDate')).not.toHaveClass(/empty/);
 });
@@ -74,7 +74,7 @@ test('Ereignis Werbung per Post: Brief enthält Datum', async ({ page }, testInf
 
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Werbung per Post');
   await expect(letter).toContainText('10.09.2024');
   await expect(letter).toContainText('E2E Person');
@@ -90,7 +90,7 @@ test('Ereignis Gerücht: Brief enthält den spezifischen Absatz', async ({ page 
 
   await generateLetter(page);
 
-  const letter = page.locator('section#letter');
+  const letter = page.locator('[data-qa="letter"]');
   await expect(letter).toContainText('Im Zusammenhang mit');
   await expect(letter).toContainText('werden Personendaten bearbeitet');
   await expect(letter).toContainText('E2E Person');

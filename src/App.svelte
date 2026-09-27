@@ -1,6 +1,6 @@
 <script>
   import { onMount, tick } from 'svelte';
-  import { _, isLoading } from 'svelte-i18n';
+  import { _, isLoading, locale } from 'svelte-i18n';
 
   import Header from './Header.svelte'
   // Auskunftsbegehren
@@ -17,26 +17,24 @@
   // Auskunftsbegehren - Löschung von Daten
   // Löschbegehren nach erteilter Auskunft
   import LetterDataInfoReqDelete from './letter/LetterDataInfoReqDelete.svelte'
-  // Auskunftsbegehren - Herausgabe von Daten
-  // Begehren zur Herausgabe nach erteilter Auskunft
-  import LetterDataInfoReqHandover from './letter/LetterDataInfoReqHandover.svelte'
 
   import Entry from './entry/Entry.svelte'
   import Share from './Share.svelte'
   import Messages from './Messages.svelte'
   import IcsDownload from './IcsDownload.svelte'
-  import DigigesLogo from './DigigesLogo.svelte'
+  import LocalisedLogo from './LocalisedLogo.svelte'
   import TestBanner from './TestBanner.svelte'
 
-  const showTestBanner = import.meta.env.VITE_TEST_BANNER === 'true'
+    const showTestBanner = import.meta.env.VITE_TEST_BANNER === 'true'
 
   import {data, userData, userAddressHtml, orgAddressHtml, userDesire, langUi, langCor} from './stores.js'
   import { get } from 'svelte/store'
-  let desires = $derived($data && $data.desires ? $data.desires : [])
+  let desires = $derived($data && $data.desires ? $data.desires.filter(desire => desire.handle !== 'data_info_request') : [])
 
   const MEMBERSHIP_LINK = 'https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/'
   const NEWSLETTER_LINK = 'https://www.digitale-gesellschaft.ch/uber-uns/newsletter/'
   const GITHUB_ISSUES_LINK = 'https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren/issues'
+  const digiges_url = $_("digiges_url", {default: "https://www.digitale-gesellschaft.ch/"});
 
   let normalizedDesire = $derived(
     ($userData.desire === 'letter' ? 'data_info_request' : $userData.desire) || 'data_info_request'
@@ -183,8 +181,6 @@
         <LetterDataInfoReqChange></LetterDataInfoReqChange>
       {:else if $userData.desire === 'data_deletion'}
         <LetterDataInfoReqDelete></LetterDataInfoReqDelete>
-      {:else if $userData.desire === 'data_handover' || $userData.step === 'print' }
-        <LetterDataInfoReqHandover></LetterDataInfoReqHandover>        
       {/if}
     {/if}
     <div class="actions">
@@ -208,8 +204,8 @@
   {/if}
 
   <footer>
-    <a href="https://www.digitale-gesellschaft.ch" target="_blank" rel="noopener noreferrer">
-      <DigigesLogo></DigigesLogo>
+    <a href="{$_('digiges_url', { default: 'https://www.digitale-gesellschaft.ch/' })}" target="_blank" rel="noopener noreferrer">
+      <LocalisedLogo></LocalisedLogo>
     </a>
   </footer>
 </main>
