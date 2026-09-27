@@ -37,10 +37,21 @@ case "$CMD" in
       --network host \
       -e GIT_REVISION="${GIT_REVISION}" \
       "mcr.microsoft.com/playwright:v${PLAYWRIGHT_VERSION}-noble" \
-      bash -c "npm install && npm run dev &
+      bash -c "npm install || exit 1
+               # Both servers start only after npm install: node_modules may still hold the musl
+               # binaries from an alpine-based command, which crashes vite in this glibc image.
+               npm run dev &
                VITE_TEST_BANNER=true npx vite --port 5174 &
-               while ! (echo > /dev/tcp/localhost/5173) 2>/dev/null; do sleep 0.5; done
-               while ! (echo > /dev/tcp/localhost/5174) 2>/dev/null; do sleep 0.5; done
+               wait_for_port() {
+                 for _ in \$(seq 120); do
+                   (echo > /dev/tcp/localhost/\$1) 2>/dev/null && return 0
+                   sleep 0.5
+                 done
+                 echo \"Dev server on port \$1 did not start within 60s\" >&2
+                 exit 1
+               }
+               wait_for_port 5173
+               wait_for_port 5174
                npx playwright test -c ./playwright.config.ts \"\$@\"" bash "${EXTRA_ARGS[@]}"
     ;;
   download-data)
