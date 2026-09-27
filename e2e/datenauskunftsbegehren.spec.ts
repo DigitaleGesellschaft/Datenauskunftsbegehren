@@ -1,5 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { screenshotPath } from './screenshot';
+import { removeTypeFromDataset } from './dataset';
+
+// Rechtsverweise und Datumsangaben dürfen nicht umbrechen: Abkürzung, Nummer
+// bzw. Tag, Monat und Jahr sind mit geschützten Leerzeichen (U+00A0) verbunden.
+const NBSP = '\u00A0';
 
 test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, testInfo) => {
   const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
@@ -15,7 +20,25 @@ test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, tes
   expect(sectionText).toContain('E2E Empfänger');
   expect(sectionText).toContain('28.7.2025');
 
+  // Regression: Die Rechtsgrundlage darf nicht als abschliessend formuliert sein,
+  // damit auch Anspruchsgrundlagen jenseits von Art. 25 DSG offenbleiben (#194)
+  expect(sectionText).toContain(`insbesondere mit Verweis auf Art.${NBSP}25`);
+  expect(sectionText).toContain('insbesondere gemäss DSG');
+
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-aus-url.png'), fullPage: true });
+});
+
+test('Rechtsverweise und Datum bleiben dank geschützter Leerzeichen am Stück', async ({ page }) => {
+  const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  await page.goto(url);
+
+  const letterText = await page.locator('[data-qa="letter"]').textContent();
+
+  expect(letterText).toContain(`25.${NBSP}September${NBSP}2020`);
+  expect(letterText).not.toContain('25. September 2020');
+
+  expect(letterText).toContain(`Art.${NBSP}25 des Bundesgesetzes`);
+  expect(letterText).not.toContain('Art. 25 des Bundesgesetzes');
 });
 
 test('Eine entfernte und wieder hinzugefügte Organisation ist auswählbar', async ({ page }, testInfo) => {
@@ -159,6 +182,44 @@ test('Organisationsliste bleibt beim Filtern unter dem Suchfeld', async ({ page 
   expect(positions.every(Boolean)).toBe(true);
 
   await page.screenshot({ path: screenshotPath(testInfo, '01-gefilterte-liste.png') });
+});
+
+// Organisationen ohne Geschäftsbereich (z.B. ehemalige Gastro-Anbieter nach Entfernen des Typs
+// "gastro", Datenauskunftsbegehren-Data#97) müssen weiterhin ein normales Begehren erlauben.
+test('Datenauskunftsbegehren für Organisation ohne Geschäftsbereich generieren', async ({ page }, testInfo) => {
+  await removeTypeFromDataset(page, 'gastro');
+  await page.goto('');
+
+  const searchInput = page.locator('[data-qa="org-search-input"]');
+  await searchInput.click();
+  const listContainer = page.locator('div.svelte-select-list');
+  const option = listContainer.locator('[data-qa="org-option"]', { hasText: /^Lunchgate AG$/ });
+
+  await searchInput.fill('Lunchgate');
+  await option.click();
+
+  const stepUI = page.locator('div.step-ui');
+  await expect(stepUI.getByRole('heading', { level: 2, name: 'Mach noch einige Angaben für das Auskunftsbegehren «Lunchgate AG»' })).toBeVisible();
+
+  // Ohne Geschäftsbereich gibt es keine Dienst-Auswahl, nur die Absenderangaben
+  await expect(stepUI).not.toContainText('Welche Dienste nutzt Du?');
+  await expect(stepUI.locator('input[type="checkbox"]')).toHaveCount(0);
+
+  await stepUI.locator('input#userName').fill('E2E Test');
+  await stepUI.locator('textarea#userAddress').fill('E2E Strasse\n1000 E2EOrt');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-org-ohne-typ-formular.png'), fullPage: true });
+
+  await page.locator('button', { hasText: 'Brief generieren' }).click();
+  const letterSection = page.locator('[data-qa="letter"]');
+  await expect(letterSection).toContainText('E2E Test');
+  await expect(letterSection).toContainText('Lunchgate AG');
+  await expect(letterSection).toContainText('Badenerstrasse 255');
+  await expect(letterSection).toContainText('Auskunft');
+  await expect(letterSection).not.toContainText('Gastronomie');
+  await expect(letterSection).not.toContainText('Contact Tracing');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '02-org-ohne-typ-brief.png'), fullPage: true });
 });
 
 // Regression: Das Ein-/Ausblenden eines einzelnen Bullet-Punkts (z.B. bei Bahnhof Parking AG)

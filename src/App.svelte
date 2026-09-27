@@ -29,10 +29,11 @@
 
   import {data, userData, userAddressHtml, orgAddressHtml, userDesire, langUi, langCor} from './stores.js'
   import { get } from 'svelte/store'
-  let desires = $derived($data && $data.desires ? $data.desires : [])
+  let desires = $derived($data && $data.desires ? $data.desires.filter(desire => desire.handle !== 'data_info_request') : [])
 
   const MEMBERSHIP_LINK = 'https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/'
   const NEWSLETTER_LINK = 'https://www.digitale-gesellschaft.ch/uber-uns/newsletter/'
+  const GITHUB_ISSUES_LINK = 'https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren/issues'
   const digiges_url = $_("digiges_url", {default: "https://www.digitale-gesellschaft.ch/"});
 
   let normalizedDesire = $derived(
@@ -137,8 +138,11 @@
           <p>{$_('print.deadline_info', { default: 'Ab dem Eingang bleiben 30 Tage für die Beantwortung. Speichere einen Termin im Kalender, um dich für ein allfälliges Nachfragen erinnern zu lassen, falls du bis dahin keine Antwort erhalten hast.' })}</p>
           <IcsDownload></IcsDownload>
           <p>{@html $_('print.feedback', {
-            default: 'Rückmeldungen nehmen wir unter <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link> gerne entgegen.',
-            values: { email_link: (text) => `<a href="mailto:auskunftsbegehren@digitale-gesellschaft.ch">${text}</a>` }
+            default: 'Rückmeldungen nehmen wir unter <email_link>auskunftsbegehren@digitale-gesellschaft.ch</email_link> gerne entgegen oder erfasse ein <github_link>Issue auf GitHub.com</github_link>.',
+            values: {
+              email_link: (text) => `<a href="mailto:auskunftsbegehren@digitale-gesellschaft.ch">${text}</a>`,
+              github_link: (text) => `<a target="_blank" rel="noopener noreferrer" href="${GITHUB_ISSUES_LINK}">${text}</a>`
+            }
           })}</p>
           <p>
             {$_('print.support_us_intro', { default: 'Unser Generator wurde von IT- und Rechtskundigen der Digitalen Gesellschaft in unzähligen Stunden entwickelt und steht allen frei zur Verfügung.' })}
