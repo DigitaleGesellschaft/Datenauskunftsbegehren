@@ -28,6 +28,24 @@ test('Der generierte Brief enthält die Daten aus der Url', async ({ page }, tes
   await page.screenshot({ path: screenshotPath(testInfo, '01-brief-aus-url.png'), fullPage: true });
 });
 
+// Regression: ältere Versionen der App verwendeten "letter" statt "data_info_request"
+// als step-Namen. App.svelte fängt das in onMount ab und schreibt den step um, damit
+// alte, geteilte oder als Lesezeichen gespeicherte URLs weiterhin den Brief anzeigen.
+test('Alte URL mit step="letter" zeigt weiterhin den Brief (Regression)', async ({ page }, testInfo) => {
+  const url = '#{"v":1,"step":"letter","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
+  await page.goto(url);
+
+  const letterSection = await page.locator('section#letter');
+  const sectionText = await letterSection.textContent();
+
+  expect(sectionText).toContain('E2E Person');
+  expect(sectionText).toContain('E2E Absender');
+  expect(sectionText).toContain('E2E Empfänger');
+  expect(sectionText).toContain('28.7.2025');
+
+  await page.screenshot({ path: screenshotPath(testInfo, '01-brief-aus-alter-letter-url.png'), fullPage: true });
+});
+
 test('Rechtsverweise und Datum bleiben dank geschützter Leerzeichen am Stück', async ({ page }) => {
   const url = '#{"v":1,"step":"data_info_request","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}';
   await page.goto(url);
