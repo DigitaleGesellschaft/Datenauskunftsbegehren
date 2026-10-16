@@ -73,8 +73,8 @@
       {
         default: "<art_25_dsg_url>{art_25_dsg}</art_25_dsg_url> <art_19_vdsg_url>{art_19_vdsg}</art_19_vdsg_url>",
         values: {
-          art_25_dsg_url: (text) => `<span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="${art_25_dsg_url}">${text}</a>)</span>`,
-          art_19_vdsg_url: (text) => `<span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="${art_19_vdsg_url}">${text}</a>)</span>`,
+          art_25_dsg_url: (text) => `<span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="${art_25_dsg_url}">${text}</a>)</span>`,
+          art_19_vdsg_url: (text) => `<span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="${art_19_vdsg_url}">${text}</a>)</span>`,
           art_25_dsg,
           art_19_vdsg
         }
@@ -127,7 +127,7 @@
   <ul>
     <li><strong>{$_("concept_realisation", { default: "Konzept und Umsetzung" })}</strong>: Beni Buess, Erik Schönenberger, Simon Gantenbein, Nikolaus Langner, Lukas Burkhard, Patrick Uhlmann</li>
     <li><strong>{$_("additional_notes_and_revision", { default: "Ergänzungen und Überarbeitungen" })}</strong>: Anna Walter, Erik Schönenberger, Martin Steiger, Salvi Pittà, Michael Prager, Jack Meyer, Ava Greve, Stefan Schegg</li>
-    <li><strong>{$_("campaign", { default: "Kampagne" })}</strong>: Vanessa Peter und das Team der Hochschule der Künste in Bern</li>
+    <li><strong>{$_("testing", { default: "Testing" })}</strong>: Pierre</li>
     <li>{$_("danke_freunde_ideen", { default: "Danke an viele Freund*innen für die Ideen ♥️" })}</li>
     <li>Built for the Web using HTML, CSS, JavaScript and <a target="_blank" rel="noopener noreferrer" href="https://svelte.dev/">Svelte</a></li>
     <li>Icons from <a target="_blank" rel="noopener noreferrer" href="https://thenounproject.com">the Noun Project</a>: 
@@ -226,7 +226,7 @@
     height: 1em;
   }
 
-  .no-wrap {
+  :global(.no-wrap) {
     white-space: nowrap;
   }
 

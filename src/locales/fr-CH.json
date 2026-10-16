@@ -95,7 +95,6 @@
   "mercator_logo_alt": "Logo Fondation Mercator",
   "concept_realisation": "Concept et réalisation",
   "additional_notes_and_revision": "Compléments et révisions",
-  "campaign": "Campagne",
   "danke_freunde_ideen": "Merci à nos ami-e-s pour leurs idées ♥️",
   "code_license_info": "Le <repo>{generator_source_code}</repo> est sous la licence <license>3-Clause BSD Licence</license> et visible sur GitHub.",
   "legal_title": "Légal",
@@ -171,5 +170,6 @@
   "org_selection": {
     "search_placeholder": "Rechercher ...",
     "no_options": "Aucune organisation trouvée"
-  }
+  },
+  "testing": "Tests"
 }
