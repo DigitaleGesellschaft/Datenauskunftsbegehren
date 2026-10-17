@@ -14,6 +14,8 @@ if (gitRevision === 'unknown') {
 
 // https://vite.dev/config/
 export default defineConfig({
+  // relative paths, so the build also runs in a sub folder (e.g. /auskunftsbegehren/)
+  base: './',
   define: {
     __APP_VERSION__: JSON.stringify(version),
     __GIT_REVISION__: JSON.stringify(gitRevision),
