@@ -65,13 +65,28 @@ jobs:
       - name: 📦 Abhängigkeiten installieren
         run: npm install
 
+      - name: 📥 Aktuellste Daten herunterladen
+        id: data
+        run: |
+          DATA_URL=https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/latest
+          wget -O public/data_de.json $DATA_URL/download/data_de.json
+          wget -O public/data_fr.json $DATA_URL/download/data_fr.json
+          DATA_VERSION=$(curl -fsSL -o /dev/null -w '%{url_effective}' $DATA_URL | sed 's#.*/tag/##')
+          echo "version=$DATA_VERSION" >> $GITHUB_OUTPUT
+
       - name: 🛠️ Projekt kompilieren
         run: npm run build
 
-      - name: 🔍 Prüfen, ob dist Ordner existiert
+      - name: 🔍 Prüfen, ob dist Ordner vollständig ist
         run: |
-          if [ ! -d "dist" ]; then
-            echo "❌ dist Ordner wurde nicht gefunden!"
+          for f in dist/index.html dist/data_de.json dist/data_fr.json; do
+            if [ ! -f "$f" ]; then
+              echo "❌ $f wurde nicht gefunden!"
+              exit 1
+            fi
+          done
+          if grep -qE '(src|href)="/assets/' dist/index.html; then
+            echo "❌ index.html verwendet absolute Pfade, das Release läuft so nicht in einem Unterordner!"
             exit 1
           fi
 
@@ -110,6 +125,8 @@ jobs:
           tag_name: ${{ steps.semver.outputs.version }}
           name: Release ${{ steps.semver.outputs.version }}
           body: |
+            📊 **Daten:** [${{ steps.data.outputs.version }}](https://github.com/DigitaleGesellschaft/Datenauskunftsbegehren-Data/releases/tag/${{ steps.data.outputs.version }})
+
             📝 **Changelog:**
 
             ${{ steps.changelog.outputs.changelog }}
