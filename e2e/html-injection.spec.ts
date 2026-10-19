@@ -48,6 +48,31 @@ test('HTML aus dem URL-Fragment wird beim Laden entfernt', async ({ page }) => {
   expect(await wasInjected(page)).toBe(false);
 });
 
+test('Eigene Einleitung aus dem URL-Fragment kann keine Kennungsfelder als HTML einfügen', async ({ page }) => {
+  await page.goto(`#{"v":1,"step":"print","name":"E2E Person","customOpening":"Einleitung {string:org}","org":"${injectedImage}",${baseState}}`);
+
+  const letter = page.locator('[data-qa="letter"]');
+  await expect(letter).toContainText('Einleitung {string:org}');
+  await expect(letter.locator('img')).toHaveCount(0);
+  expect(await wasInjected(page)).toBe(false);
+});
+
+test('Absatz aus dem Datensatz kann keine Kennungsfelder als HTML einfügen', async ({ page }) => {
+  await page.route(/\/data_(de|fr)\.json$/, async route => {
+    const response = await route.fetch();
+    const json = await response.json();
+    const org = json.orgs.find((o: { name: string }) => o.name === 'Migros');
+    org.privacyStatement.paragraphs = ['Absatz {string:desire}'];
+    await route.fulfill({ json });
+  });
+  await page.goto(`#{"v":1,"org":"Migros","entry":"org","step":"print","name":"E2E Person","desire":"${injectedImage}",${baseState}}`);
+
+  const letter = page.locator('[data-qa="letter"]');
+  await expect(letter).toContainText('Absatz {string:desire}');
+  await expect(letter.locator('img')).toHaveCount(0);
+  expect(await wasInjected(page)).toBe(false);
+});
+
 test('Zeilenumbrüche und Sonderzeichen aus dem URL-Fragment bleiben erhalten', async ({ page }) => {
   await page.goto(`#{"v":1,"step":"print","name":"Muster &amp; Partner","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"Bahnhofstrasse 1<br>8001 Zürich"}`);
 

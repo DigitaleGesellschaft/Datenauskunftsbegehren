@@ -2,7 +2,7 @@ import { readable, writable, derived, get } from 'svelte/store';
 
 const DEFAULT_LANG = import.meta.env.VITE_DEFAULT_LANG || 'de'
 const DEFAULT_COR_LANG = ['de', 'fr'].includes(DEFAULT_LANG) ? DEFAULT_LANG : 'de'
-import {nl2br, br2nl, sanitizeHtml} from './lib.js'
+import {nl2br, br2nl, sanitizeHtml, IDENTIFIER_FIELDS} from './lib.js'
 import { throttle } from 'lodash-es';
 import {data as d, validateUserData, getValidUserData, getOrgHistoryMessage} from './data.js';
 import { _, locale } from 'svelte-i18n';
@@ -18,10 +18,8 @@ window.addEventListener('hashchange', (event) => {
   })
 })
 
-// Fields holding identifiers instead of letter content. Everything else is
-// rendered as HTML in the letter and must not carry markup from the URL.
-const IDENTIFIER_FIELDS = ['v', 'step', 'org', 'entry', 'types', 'event', 'desire', 'customOpening', 'hiddenBullets', 'langUi', 'langCor']
-
+// Everything except the identifier fields is rendered as HTML in the letter
+// and must not carry markup from the URL.
 /** @param {any} data */
 function sanitizeUserData(data) {
   for (const [key, value] of Object.entries(data)) {

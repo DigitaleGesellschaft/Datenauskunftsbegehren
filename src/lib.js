@@ -26,6 +26,10 @@ export function br2nl(string = '') {
   return string.replaceAll('<br>', '\n')
 }
 
+// Fields of the user data holding identifiers instead of letter content. They are
+// not sanitized and therefore must never be rendered as HTML.
+export const IDENTIFIER_FIELDS = ['v', 'step', 'org', 'entry', 'types', 'event', 'desire', 'customOpening', 'hiddenBullets', 'langUi', 'langCor']
+
 export function escapeHtml(string = '') {
   return string
     .replaceAll('&', '&amp;')

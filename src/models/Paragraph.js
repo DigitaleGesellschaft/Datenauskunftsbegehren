@@ -1,3 +1,5 @@
+import { IDENTIFIER_FIELDS } from '../lib.js'
+
 const matchVariableRegExp = /(\{[^}]{1,}\})/g
 
 export default class Paragraph {
@@ -69,6 +71,8 @@ const variableRegExp = /\{(?<type>string|number|tel|email|date)?(?::)?(?<name>[a
 function getVariablesFromString(string) {
   const matches = [...string.matchAll(variableRegExp)]
   return matches
+    // variables are rendered as HTML, identifier fields stay plain text
+    .filter(match => !IDENTIFIER_FIELDS.includes(match.groups.name))
     .map(match => {
       return {
         type: match.groups.type,
