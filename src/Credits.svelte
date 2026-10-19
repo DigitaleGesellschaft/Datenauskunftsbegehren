@@ -111,7 +111,7 @@
   <div class="logo-block">
     <div>
       <p>
-        {$_("support_volunteers", { default: "Der Online-Generator für Datenauskunftsbegehren wurde und wird nur dank hunderten von Arbeitsstunden von freiwilligen Aktivist:innen konzipiert, aufgebaut, unterhalten und weiterentwickelt." })}
+        {$_("support_volunteers", { default: "Der Online-Generator für Datenauskunftsbegehren wurde und wird nur dank Hunderten von Arbeitsstunden von freiwilligen Aktivist:innen konzipiert, aufgebaut, unterhalten und weiterentwickelt." })}
       </p>
       <p>
         {@html $_(

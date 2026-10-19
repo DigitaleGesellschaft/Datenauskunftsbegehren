@@ -60,6 +60,7 @@ test('Credits danken Stiftung Mercator und Digitalfonds mit Logos neben dem Text
 
   const credits = page.locator('.credits');
   await expect(credits.getByRole('heading', { name: 'Vielen Dank für die Unterstützung!' })).toBeVisible();
+  await expect(credits).toContainText('nur dank Hunderten von Arbeitsstunden');
   await expect(credits.getByRole('link', { name: 'Stiftung Mercator Schweiz' })).toHaveAttribute('href', 'https://www.stiftung-mercator.ch/');
   await expect(credits.getByRole('link', { name: 'Digitalfonds', exact: true })).toHaveAttribute('href', 'http://digitalfonds.ch/');
   await expect(credits.getByRole('link', { name: 'Mitglied' })).toHaveAttribute('href', 'https://www.digitale-gesellschaft.ch/uber-uns/kontakt/');
@@ -72,6 +73,26 @@ test('Credits danken Stiftung Mercator und Digitalfonds mit Logos neben dem Text
     await expect(logo).toBeVisible();
     const logoBox = await logo.boundingBox();
     expect(logoBox!.x).toBeGreaterThan(textBox!.x + textBox!.width);
+  }
+});
+
+test('Credits danken auf Französisch der Fondation Mercator Suisse und dem Fonds numérique', async ({ page }) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="language-switch-button"]').click();
+  await page.locator('input[name="ui-language"][value="fr"]').click();
+  await page.locator('[data-qa="overlay-close-button"]').click();
+  await page.locator('[data-qa="credits-button"]').click();
+
+  const credits = page.locator('.credits');
+  await expect(credits.getByRole('heading', { name: 'Merci pour ton soutien !' })).toBeVisible();
+  await expect(credits).toContainText('grâce à des centaines d’heures de travail militant bénévole');
+  await expect(credits.getByRole('link', { name: 'Fondation Mercator Suisse' })).toHaveAttribute('href', 'https://www.stiftung-mercator.ch/fr/');
+  await expect(credits.getByRole('link', { name: 'Fonds numérique', exact: true })).toHaveAttribute('href', 'http://digitalfonds.ch/');
+  await expect(credits.getByRole('link', { name: 'membre', exact: true })).toHaveAttribute('href', 'https://www.societe-numerique.ch/a-propos-de-nous/nous-contacter/');
+  await expect(credits.getByRole('link', { name: 'don', exact: true })).toHaveAttribute('href', 'https://www.societe-numerique.ch/a-propos-de-nous/devenir-membre-donateur-ou-soutien/');
+  for (const alt of ['Logo Fondation Mercator', 'Logo Fonds numérique']) {
+    await expect(credits.getByRole('img', { name: alt })).toBeVisible();
   }
 });
 

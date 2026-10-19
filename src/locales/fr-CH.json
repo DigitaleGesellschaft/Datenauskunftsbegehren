@@ -56,7 +56,7 @@
   "digiges_name": "Société numérique",
   "digiges_url": "https://www.societe-numerique.ch/",
   "fragment": "Fragment",
-  "mercator_org": "Fondation Mercator Schweiz",
+  "mercator_org": "Fondation Mercator Suisse",
   "generator_source_code": "Source code du générateur",
   "version": "Version",
   "credits": {
@@ -88,7 +88,7 @@
   "further_steps_title": "Étapes suivantes",
   "further_steps_p1": "Face à une réponse incomplète, il convient d'envoyer une seconde lettre précisant ce qui manque. Si la situation persiste, une action judiciaire peut être engagée. Cette procédure est ouverte au domicile du plaignant ou de la personne responsable du traitement des données.",
   "further_steps_p2": "Il est possible de réclamer la correction ou la suppression (ainsi que l'accès ultérieur) des données, sauf en cas d'un intérêt public ou privé prépondérant ou d'obligation légale contraire.",
-  "thanks_support_title": "Merci pour votre soutien !",
+  "thanks_support_title": "Merci pour ton soutien !",
   "mercator_logo_alt": "Logo Fondation Mercator",
   "concept_realisation": "Concept et réalisation",
   "additional_notes_and_revision": "Compléments et révisions",
@@ -169,12 +169,12 @@
     "no_options": "Aucune organisation trouvée"
   },
   "testing": "Tests",
-  "support_volunteers": "Le générateur en ligne de demandes d'accès aux données a été et continue d'être conçu, développé, maintenu et amélioré uniquement grâce à des centaines d'heures de travail d'activistes bénévoles.",
-  "support_funding": "La coordination, l'accompagnement juridique et d'autres travaux engendrent néanmoins des coûts. Pendant la phase de mise en place, nous avons été soutenus par la <mercator>{mercator_org}</mercator>, puis par le <digitalfonds>{digitalfonds_name}</digitalfonds> pour la révision et la version française.",
-  "support_call": "Toi aussi, tu peux nous soutenir, que ce soit en devenant <membership>membre</membership> ou en faisant un <donation>don</donation>.",
+  "support_volunteers": "Le générateur en ligne de demandes d’accès aux données a été conçu et mis en place grâce à des centaines d’heures de travail militant bénévole. C’est aussi grâce à cet engagement qu’il est entretenu et continue d’évoluer.",
+  "support_funding": "La coordination, l’accompagnement juridique et d’autres travaux entraînent néanmoins des frais. La <mercator>{mercator_org}</mercator> nous a soutenus lors de la création du générateur, puis le <digitalfonds>{digitalfonds_name}</digitalfonds> lors de sa refonte et de la réalisation de sa version française.",
+  "support_call": "Toi aussi, tu peux nous soutenir en devenant <membership>membre</membership> ou en faisant un <donation>don</donation>.",
   "digitalfonds_url": "http://digitalfonds.ch/",
-  "digitalfonds_name": "Digitalfonds",
-  "digiges_contact_url": "https://www.digitale-gesellschaft.ch/uber-uns/kontakt/",
-  "digiges_donation_url": "https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/",
-  "digitalfonds_logo_alt": "Logo Digitalfonds"
+  "digitalfonds_name": "Fonds numérique",
+  "digiges_contact_url": "https://www.societe-numerique.ch/a-propos-de-nous/nous-contacter/",
+  "digiges_donation_url": "https://www.societe-numerique.ch/a-propos-de-nous/devenir-membre-donateur-ou-soutien/",
+  "digitalfonds_logo_alt": "Logo Fonds numérique"
 }
