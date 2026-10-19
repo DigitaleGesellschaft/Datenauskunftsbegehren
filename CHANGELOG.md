@@ -1,1 +1,2 @@
-- Hardening (#236)
+- fix(release): build after the version bump and redeploy GitHub Pages
+- chore(credits): replace campaign entry with testing credit (#234)
