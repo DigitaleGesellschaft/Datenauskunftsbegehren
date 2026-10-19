@@ -1,8 +1,9 @@
 <IfModule mod_headers.c>
-  <FilesMatch "-[a-z0-9]{8}\.(js|css)$">
+  # Vite content hash: 8 characters base64url, e.g. index-CJpgqc0f.css or stores-CB-UygPI.js
+  <FilesMatch "-[A-Za-z0-9_-]{8}\.(js|css)$">
    Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
-  <FilesMatch "(main\.js|index.html|global.css|bundle.css|data_de\.json|data_fr\.json)$">
+  <FilesMatch "^(index\.html|data_de\.json|data_fr\.json)$">
    Header set Cache-Control "no-cache"
   </FilesMatch>
 </IfModule>
