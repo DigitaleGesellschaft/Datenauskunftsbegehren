@@ -26,6 +26,44 @@ export function br2nl(string = '') {
   return string.replaceAll('<br>', '\n')
 }
 
+// Fields of the user data holding identifiers instead of letter content. They are
+// not sanitized and therefore must never be rendered as HTML.
+export const IDENTIFIER_FIELDS = ['v', 'step', 'org', 'entry', 'types', 'event', 'desire', 'customOpening', 'hiddenBullets', 'langUi', 'langCor']
+
+export function escapeHtml(string = '') {
+  return string
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;')
+}
+
+// Reduces HTML (e.g. from a contenteditable or the URL fragment) to text and line breaks.
+// DOMParser creates an inert document: no scripts run and no resources are loaded.
+export function sanitizeHtml(html = '') {
+  const doc = new DOMParser().parseFromString(html, 'text/html')
+  let result = ''
+  /** @param {Node} node */
+  const walk = node => {
+    for (const child of node.childNodes) {
+      if (child.nodeType === Node.TEXT_NODE) {
+        result += escapeHtml(child.textContent ?? '')
+      } else if (child.nodeName === 'BR') {
+        result += '<br>'
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        // contenteditable wraps new lines in block elements
+        if (['DIV', 'P'].includes(child.nodeName) && result.length > 0) {
+          result += '<br>'
+        }
+        walk(child)
+      }
+    }
+  }
+  walk(doc.body)
+  return result
+}
+
 export function removeLeadingTrailingNewlines(string) {
   return string.replace(/^\n|\n$/g, '')
 }

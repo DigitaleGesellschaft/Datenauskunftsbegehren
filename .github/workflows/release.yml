@@ -7,6 +7,14 @@ on:
         description: 'Art des Releases (patch, minor, major)'
         required: true
         default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
 
 jobs:
   release:
@@ -20,12 +28,12 @@ jobs:
 
       - name: 🧮 Version berechnen (semver)
         id: semver
+        env:
+          TYPE: ${{ github.event.inputs.release_type }}
         run: |
           LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
           VERSION=${LAST_TAG#v}
           IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-
-          TYPE="${{ github.event.inputs.release_type }}"
 
           case "$TYPE" in
             patch)
@@ -44,8 +52,9 @@ jobs:
 
       - name: 📝 Changelog erzeugen
         id: changelog
+        env:
+          LAST_TAG: ${{ steps.semver.outputs.last_tag }}
         run: |
-          LAST_TAG="${{ steps.semver.outputs.last_tag }}"
           if [ "$LAST_TAG" = "v0.0.0" ]; then
             LOG=$(git log --pretty=format:"- %s")
           else
@@ -53,9 +62,11 @@ jobs:
           fi
 
           echo "$LOG" > CHANGELOG.md
-          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          # random delimiter, so a commit subject cannot end the output early
+          DELIMITER="EOF_$(openssl rand -hex 16)"
+          echo "changelog<<$DELIMITER" >> $GITHUB_OUTPUT
           echo "$LOG" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo "$DELIMITER" >> $GITHUB_OUTPUT
 
       - name: 🟨 Node.js einrichten
         uses: actions/setup-node@v7
@@ -63,7 +74,10 @@ jobs:
           node-version: '26'
 
       - name: 📦 Abhängigkeiten installieren
-        run: npm install
+        run: npm ci
+
+      - name: 🌐 Übersetzungen prüfen
+        run: npm run i18n-check
 
       - name: 📥 Aktuellste Daten herunterladen
         id: data
