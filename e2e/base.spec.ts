@@ -53,6 +53,28 @@ test('Credits führen Testing auf und keinen Abschnitt Kampagne mehr', async ({ 
   await expect(credits).not.toContainText('Kampagne');
 });
 
+test('Credits danken Stiftung Mercator und Digitalfonds mit Logos neben dem Text', async ({ page }) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="credits-button"]').click();
+
+  const credits = page.locator('.credits');
+  await expect(credits.getByRole('heading', { name: 'Vielen Dank für die Unterstützung!' })).toBeVisible();
+  await expect(credits.getByRole('link', { name: 'Stiftung Mercator Schweiz' })).toHaveAttribute('href', 'https://www.stiftung-mercator.ch/');
+  await expect(credits.getByRole('link', { name: 'Digitalfonds', exact: true })).toHaveAttribute('href', 'http://digitalfonds.ch/');
+  await expect(credits.getByRole('link', { name: 'Mitglied' })).toHaveAttribute('href', 'https://www.digitale-gesellschaft.ch/uber-uns/kontakt/');
+  await expect(credits.getByRole('link', { name: 'Spende' })).toHaveAttribute('href', 'https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/');
+  await expect(credits).not.toContainText('Digitalisierung + Gesellschaft');
+
+  const textBox = await credits.getByText('Nichtsdestotrotz fallen').boundingBox();
+  for (const alt of ['Logo Stiftung Mercator', 'Logo Digitalfonds']) {
+    const logo = credits.getByRole('img', { name: alt });
+    await expect(logo).toBeVisible();
+    const logoBox = await logo.boundingBox();
+    expect(logoBox!.x).toBeGreaterThan(textBox!.x + textBox!.width);
+  }
+});
+
 test('Gesetzesverweise in den Credits werden nicht umgebrochen', async ({ page }) => {
   await page.goto('');
 
