@@ -3,14 +3,14 @@
   import { c as _ } from '../stores.js';
   import HideNodeAction from './HideNodeAction.svelte';
   import {data, getDatePlaceholder, orgAddressHtml, userAddressHtml, userData} from '../stores.js';
-  import {nl2br} from '../lib.js';
+  import {nl2br, escapeHtml} from '../lib.js';
 
   // Ausbleibende Auskunft
   // Keine Reaktion auf Auskunftsbegehren
   let LetterDataInfoReqRemindNode = $state()
   let selectedOrg = $derived($data.getOrg($userData.org))
   let customOpening
-  let orgAddressTo = $derived(selectedOrg ? nl2br(selectedOrg.address) : '')
+  let orgAddressTo = $derived(selectedOrg ? nl2br(escapeHtml(selectedOrg.address)) : '')
   let hidePrivacyStatementParagraphs = false
 
   function setCaretToEndOf(node) {

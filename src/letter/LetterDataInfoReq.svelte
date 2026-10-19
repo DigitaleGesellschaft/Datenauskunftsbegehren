@@ -7,7 +7,7 @@
   import { c as _ } from '../stores.js';
 
   import { data, userData, userAddressHtml, orgAddressHtml, idImages } from '../stores.js';
-  import {nl2br} from '../lib.js';
+  import {nl2br, escapeHtml} from '../lib.js';
 
   // Erstes Anschreiben
   // Auskunftsbegehren
@@ -16,7 +16,7 @@
   let selectedTypes = $derived($data.getTypes($userData.types || []))
   let selectedEvent = $derived($data.getEvent($userData.event))
   let customOpening = $state()
-  let orgAddressTo = $derived(selectedOrg ? nl2br(selectedOrg.address) : '')
+  let orgAddressTo = $derived(selectedOrg ? nl2br(escapeHtml(selectedOrg.address)) : '')
   let hidePrivacyStatementParagraphs = $state(false)
 
   let imageRemoved = { both: false, front: false, back: false}
