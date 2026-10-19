@@ -56,8 +56,7 @@
   "digiges_name": "Société numérique",
   "digiges_url": "https://www.societe-numerique.ch/",
   "fragment": "Fragment",
-  "mercator_program": "Programme «Digitalisation + Société»",
-  "mercator_org": "Fondation Mercator Schweiz",
+  "mercator_org": "Fondation Mercator Suisse",
   "generator_source_code": "Source code du générateur",
   "version": "Version",
   "credits": {
@@ -84,18 +83,15 @@
   "art_25_dsg_url": "https://www.fedlex.admin.ch/eli/oc/2022/491/fr#art_25",
   "art_19_vdsg_url": "https://www.fedlex.admin.ch/eli/oc/2022/568/fr#art_19",
   "art_32_dsg_url": "https://www.fedlex.admin.ch/eli/oc/2022/491/fr#art_32",
-  "mercator_program_url": "https://www.stiftung-mercator.ch/fr/notre-travail/num%C3%A9risation-soci%C3%A9t%C3%A9",
   "mercator_org_url": "https://www.stiftung-mercator.ch/fr/",
   "digiges_rechtliches_url": "https://www.societe-numerique.ch/a-propos-de-nous/questions-juridiques/",
   "further_steps_title": "Étapes suivantes",
   "further_steps_p1": "Face à une réponse incomplète, il convient d'envoyer une seconde lettre précisant ce qui manque. Si la situation persiste, une action judiciaire peut être engagée. Cette procédure est ouverte au domicile du plaignant ou de la personne responsable du traitement des données.",
   "further_steps_p2": "Il est possible de réclamer la correction ou la suppression (ainsi que l'accès ultérieur) des données, sauf en cas d'un intérêt public ou privé prépondérant ou d'obligation légale contraire.",
-  "thanks_support_title": "Nous sommes très reconnaissants de votre soutien financier",
-  "mercator_grant": "Le projet a été initié par le <program>{mercator_program}</program> de <mercator>{mercator_org}</mercator>.",
+  "thanks_support_title": "Merci pour ton soutien !",
   "mercator_logo_alt": "Logo Fondation Mercator",
   "concept_realisation": "Concept et réalisation",
   "additional_notes_and_revision": "Compléments et révisions",
-  "campaign": "Campagne",
   "danke_freunde_ideen": "Merci à nos ami-e-s pour leurs idées ♥️",
   "code_license_info": "Le <repo>{generator_source_code}</repo> est sous la licence <license>3-Clause BSD Licence</license> et visible sur GitHub.",
   "legal_title": "Légal",
@@ -171,5 +167,14 @@
   "org_selection": {
     "search_placeholder": "Rechercher ...",
     "no_options": "Aucune organisation trouvée"
-  }
+  },
+  "testing": "Tests",
+  "support_volunteers": "Le générateur en ligne de demandes d’accès aux données a été conçu et mis en place grâce à des centaines d’heures de travail militant bénévole. C’est aussi grâce à cet engagement qu’il est entretenu et continue d’évoluer.",
+  "support_funding": "La coordination, l’accompagnement juridique et d’autres travaux entraînent néanmoins des frais. La <mercator>{mercator_org}</mercator> nous a soutenus lors de la création du générateur, puis le <digitalfonds>{digitalfonds_name}</digitalfonds> lors de sa refonte et de la réalisation de sa version française.",
+  "support_call": "Toi aussi, tu peux nous soutenir en devenant <membership>membre</membership> ou en faisant un <donation>don</donation>.",
+  "digitalfonds_url": "http://digitalfonds.ch/",
+  "digitalfonds_name": "Fonds numérique",
+  "digiges_contact_url": "https://www.societe-numerique.ch/a-propos-de-nous/nous-contacter/",
+  "digiges_donation_url": "https://www.societe-numerique.ch/a-propos-de-nous/devenir-membre-donateur-ou-soutien/",
+  "digitalfonds_logo_alt": "Logo Fonds numérique"
 }

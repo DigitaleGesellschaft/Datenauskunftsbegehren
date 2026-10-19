@@ -56,7 +56,6 @@
   "digiges_name": "Digitale Gesellschaft",
   "digiges_url": "https://www.digitale-gesellschaft.ch/",
   "fragment": "Fragment",
-  "mercator_program": "Programm «Digitalisierung + Gesellschaft»",
   "mercator_org": "Stiftung Mercator Schweiz",
   "generator_source_code": "Quellcode des Generators",
   "version": "Version",
@@ -84,18 +83,15 @@
   "art_25_dsg_url": "https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_25",
   "art_19_vdsg_url": "https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_19",
   "art_32_dsg_url": "https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_32",
-  "mercator_program_url": "https://www.stiftung-mercator.ch/unsere-arbeit/digitalisierung-gesellschaft",
   "mercator_org_url": "https://www.stiftung-mercator.ch/",
   "digiges_rechtliches_url": "https://www.digitale-gesellschaft.ch/uber-uns/rechtliches/",
   "further_steps_title": "Weitere Schritte",
   "further_steps_p1": "Bleibt eine Antwort aus oder ist sie unvollständig, kann mit einem zweiten Brief nachgefasst und darauf hingewiesen werden. Im Anschluss kann gegen private Inhaber von Datensammlungen am Wohnsitz der betroffenen Person oder am Wohnsitz des Inhabers der Datensammlung eine gerichtliche Klage zur Durchsetzung des Auskunftsrechts eingereicht werden",
   "further_steps_p2": "Ebenfalls kann die Berichtigung von falschen oder die Löschung von Daten (sowie die weitere Beschaffung) verlangt werden, sofern diese Datenbearbeitung nicht durch ein überwiegendes privates oder öffentliches Interesse oder durch ein Gesetz gerechtfertigt ist",
-  "thanks_support_title": "Vielen Dank für die finanzielle Unterstützung",
-  "mercator_grant": "Das Projekt wird vom <program>{mercator_program}</program> der <mercator>{mercator_org}</mercator> gefördert.",
+  "thanks_support_title": "Vielen Dank für die Unterstützung!",
   "mercator_logo_alt": "Logo Stiftung Mercator",
   "concept_realisation": "Konzept und Umsetzung",
   "additional_notes_and_revision": "Ergänzungen und Überarbeitungen",
-  "campaign": "Kampagne",
   "danke_freunde_ideen": "Danke an viele Freund*innen für die Ideen ♥️",
   "code_license_info": "Der <repo>{generator_source_code}</repo> ist unter der <license>3-Clause BSD Licence</license> lizenziert und auf Github einsehbar.",
   "legal_title": "Rechtliches",
@@ -171,5 +167,14 @@
   "org_selection": {
     "search_placeholder": "Suche ...",
     "no_options": "Keine Organisation gefunden"
-  }
+  },
+  "testing": "Testing",
+  "support_volunteers": "Der Online-Generator für Datenauskunftsbegehren wurde und wird nur dank Hunderten von Arbeitsstunden von freiwilligen Aktivist:innen konzipiert, aufgebaut, unterhalten und weiterentwickelt.",
+  "support_funding": "Nichtsdestotrotz fallen für Koordination, rechtliche Begleitung und weitere Arbeiten Kosten an. Während der Aufbauphase hat uns die <mercator>{mercator_org}</mercator> unterstützt, während der Überarbeitung und für die französische Fassung der <digitalfonds>{digitalfonds_name}</digitalfonds>.",
+  "support_call": "Auch du kannst uns unterstützen, sei es als <membership>Mitglied</membership> oder mit einer <donation>Spende</donation>.",
+  "digitalfonds_url": "http://digitalfonds.ch/",
+  "digitalfonds_name": "Digitalfonds",
+  "digiges_contact_url": "https://www.digitale-gesellschaft.ch/uber-uns/kontakt/",
+  "digiges_donation_url": "https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/",
+  "digitalfonds_logo_alt": "Logo Digitalfonds"
 }

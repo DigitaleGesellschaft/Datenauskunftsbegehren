@@ -41,3 +41,69 @@ test('Info kann angezeigt werden und zeigt Version und Git-Revision', async ({ p
   await expect(credits).toContainText(packageJson.version);
   await expect(credits).toContainText(gitRevision);
 });
+
+test('Credits führen Testing auf und keinen Abschnitt Kampagne mehr', async ({ page }) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="credits-button"]').click();
+
+  const credits = page.locator('.credits');
+  await expect(credits.getByText('Konzept und Umsetzung')).toBeVisible();
+  await expect(credits.locator('li', { hasText: 'Testing' })).toContainText('Pierre');
+  await expect(credits).not.toContainText('Kampagne');
+});
+
+test('Credits danken Stiftung Mercator und Digitalfonds mit Logos neben dem Text', async ({ page }) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="credits-button"]').click();
+
+  const credits = page.locator('.credits');
+  await expect(credits.getByRole('heading', { name: 'Vielen Dank für die Unterstützung!' })).toBeVisible();
+  await expect(credits).toContainText('nur dank Hunderten von Arbeitsstunden');
+  await expect(credits.getByRole('link', { name: 'Stiftung Mercator Schweiz' })).toHaveAttribute('href', 'https://www.stiftung-mercator.ch/');
+  await expect(credits.getByRole('link', { name: 'Digitalfonds', exact: true })).toHaveAttribute('href', 'http://digitalfonds.ch/');
+  await expect(credits.getByRole('link', { name: 'Mitglied' })).toHaveAttribute('href', 'https://www.digitale-gesellschaft.ch/uber-uns/kontakt/');
+  await expect(credits.getByRole('link', { name: 'Spende' })).toHaveAttribute('href', 'https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/');
+  await expect(credits).not.toContainText('Digitalisierung + Gesellschaft');
+
+  const textBox = await credits.getByText('Nichtsdestotrotz fallen').boundingBox();
+  for (const alt of ['Logo Stiftung Mercator', 'Logo Digitalfonds']) {
+    const logo = credits.getByRole('img', { name: alt });
+    await expect(logo).toBeVisible();
+    const logoBox = await logo.boundingBox();
+    expect(logoBox!.x).toBeGreaterThan(textBox!.x + textBox!.width);
+  }
+});
+
+test('Credits danken auf Französisch der Fondation Mercator Suisse und dem Fonds numérique', async ({ page }) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="language-switch-button"]').click();
+  await page.locator('input[name="ui-language"][value="fr"]').click();
+  await page.locator('[data-qa="overlay-close-button"]').click();
+  await page.locator('[data-qa="credits-button"]').click();
+
+  const credits = page.locator('.credits');
+  await expect(credits.getByRole('heading', { name: 'Merci pour ton soutien !' })).toBeVisible();
+  await expect(credits).toContainText('grâce à des centaines d’heures de travail militant bénévole');
+  await expect(credits.getByRole('link', { name: 'Fondation Mercator Suisse' })).toHaveAttribute('href', 'https://www.stiftung-mercator.ch/fr/');
+  await expect(credits.getByRole('link', { name: 'Fonds numérique', exact: true })).toHaveAttribute('href', 'http://digitalfonds.ch/');
+  await expect(credits.getByRole('link', { name: 'membre', exact: true })).toHaveAttribute('href', 'https://www.societe-numerique.ch/a-propos-de-nous/nous-contacter/');
+  await expect(credits.getByRole('link', { name: 'don', exact: true })).toHaveAttribute('href', 'https://www.societe-numerique.ch/a-propos-de-nous/devenir-membre-donateur-ou-soutien/');
+  for (const alt of ['Logo Fondation Mercator', 'Logo Fonds numérique']) {
+    await expect(credits.getByRole('img', { name: alt })).toBeVisible();
+  }
+});
+
+test('Gesetzesverweise in den Credits werden nicht umgebrochen', async ({ page }) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="credits-button"]').click();
+
+  const references = page.locator('.credits .no-wrap');
+  await expect(references).toHaveCount(5);
+  for (const reference of await references.all()) {
+    await expect(reference).toHaveCSS('white-space', 'nowrap');
+  }
+});

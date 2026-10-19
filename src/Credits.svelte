@@ -21,13 +21,15 @@
     const art_19_vdsg_url = $_("art_19_vdsg_url", {default: "https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_19"});
     const art_32_dsg = $_("art_32_dsg", {default: "Art. 32 DSG"});
     const art_32_dsg_url = $_("art_32_dsg_url", {default: "https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_32"});
-    const mercator_program_url = $_("mercator_program_url", {default: "https://www.stiftung-mercator.ch/unsere-arbeit/digitalisierung-gesellschaft"});
     const mercator_org_url = $_("mercator_org_url", {default: "https://www.stiftung-mercator.ch/"});
     const digiges_rechtliches_url = $_("digiges_rechtliches_url", {default: "https://www.digitale-gesellschaft.ch/uber-uns/rechtliches/"});
     const fragment_label = $_("fragment", {default: "Fragment"});
     const privacy_imprint = $_("privacy_imprint", {default: "Datenschutzerklärung und Impressum"});
-    const mercator_program = $_("mercator_program", {default: "Programm «Digitalisierung + Gesellschaft»"});
     const mercator_org = $_("mercator_org", {default: "Stiftung Mercator Schweiz"});
+    const digitalfonds_url = $_("digitalfonds_url", {default: "http://digitalfonds.ch/"});
+    const digitalfonds_name = $_("digitalfonds_name", {default: "Digitalfonds"});
+    const digiges_contact_url = $_("digiges_contact_url", {default: "https://www.digitale-gesellschaft.ch/uber-uns/kontakt/"});
+    const digiges_donation_url = $_("digiges_donation_url", {default: "https://www.digitale-gesellschaft.ch/uber-uns/unterstuetzer-werden/"});
     const generator_source_code = $_("generator_source_code", {default: "Quellcode des Generators"});
 
 </script>
@@ -73,8 +75,8 @@
       {
         default: "<art_25_dsg_url>{art_25_dsg}</art_25_dsg_url> <art_19_vdsg_url>{art_19_vdsg}</art_19_vdsg_url>",
         values: {
-          art_25_dsg_url: (text) => `<span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="${art_25_dsg_url}">${text}</a>)</span>`,
-          art_19_vdsg_url: (text) => `<span class="no-warp">(<a target="_blank" rel="noopener noreferrer" href="${art_19_vdsg_url}">${text}</a>)</span>`,
+          art_25_dsg_url: (text) => `<span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="${art_25_dsg_url}">${text}</a>)</span>`,
+          art_19_vdsg_url: (text) => `<span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="${art_19_vdsg_url}">${text}</a>)</span>`,
           art_25_dsg,
           art_19_vdsg
         }
@@ -105,29 +107,49 @@
         }
       })}
   </p>
-  <h2>{$_("thanks_support_title", { default: "Vielen Dank für die finanzielle Unterstützung" })}</h2>
+  <h2>{$_("thanks_support_title", { default: "Vielen Dank für die Unterstützung!" })}</h2>
   <div class="logo-block">
-    <p>
-      {@html $_(
-        "mercator_grant",
-        {
-          default: "Das Projekt wird vom <program>{mercator_program}</program> der <mercator>{mercator_org}</mercator> gefördert.",
-          values: {
-            program: (text) => `<a target="_blank" rel="noopener noreferrer" href="${mercator_program_url}">${text}</a>`,
-            mercator: (text) => `<a target="_blank" rel="noopener noreferrer" href="${mercator_org_url}">${text}</a>`,
-            mercator_program,
-            mercator_org
+    <div>
+      <p>
+        {$_("support_volunteers", { default: "Der Online-Generator für Datenauskunftsbegehren wurde und wird nur dank Hunderten von Arbeitsstunden von freiwilligen Aktivist:innen konzipiert, aufgebaut, unterhalten und weiterentwickelt." })}
+      </p>
+      <p>
+        {@html $_(
+          "support_funding",
+          {
+            default: "Nichtsdestotrotz fallen für Koordination, rechtliche Begleitung und weitere Arbeiten Kosten an. Während der Aufbauphase hat uns die <mercator>{mercator_org}</mercator> unterstützt, während der Überarbeitung und für die französische Fassung der <digitalfonds>{digitalfonds_name}</digitalfonds>.",
+            values: {
+              mercator: (text) => `<a target="_blank" rel="noopener noreferrer" href="${mercator_org_url}">${text}</a>`,
+              digitalfonds: (text) => `<a target="_blank" rel="noopener noreferrer" href="${digitalfonds_url}">${text}</a>`,
+              mercator_org,
+              digitalfonds_name
+            }
           }
-        }
-      )}
-    </p>
-    <a class="logo-link" target="_blank" rel="noopener noreferrer" href="https://www.stiftung-mercator.ch"><img alt={$_("mercator_logo_alt", { default: "Logo Stiftung Mercator" })} width="100px" src="./mercator_logo.png"></a>
+        )}
+      </p>
+      <p>
+        {@html $_(
+          "support_call",
+          {
+            default: "Auch du kannst uns unterstützen, sei es als <membership>Mitglied</membership> oder mit einer <donation>Spende</donation>.",
+            values: {
+              membership: (text) => `<a target="_blank" rel="noopener noreferrer" href="${digiges_contact_url}">${text}</a>`,
+              donation: (text) => `<a target="_blank" rel="noopener noreferrer" href="${digiges_donation_url}">${text}</a>`
+            }
+          }
+        )}
+      </p>
+    </div>
+    <div class="logos">
+      <a class="logo-link" target="_blank" rel="noopener noreferrer" href={mercator_org_url}><img alt={$_("mercator_logo_alt", { default: "Logo Stiftung Mercator" })} width="100" src="./mercator_logo.png"></a>
+      <a class="logo-link" target="_blank" rel="noopener noreferrer" href={digitalfonds_url}><img alt={$_("digitalfonds_logo_alt", { default: "Logo Digitalfonds" })} width="100" src="./digitalfonds_logo.png"></a>
+    </div>
   </div>
   <h2>Credits</h2>
   <ul>
     <li><strong>{$_("concept_realisation", { default: "Konzept und Umsetzung" })}</strong>: Beni Buess, Erik Schönenberger, Simon Gantenbein, Nikolaus Langner, Lukas Burkhard, Patrick Uhlmann</li>
     <li><strong>{$_("additional_notes_and_revision", { default: "Ergänzungen und Überarbeitungen" })}</strong>: Anna Walter, Erik Schönenberger, Martin Steiger, Salvi Pittà, Michael Prager, Jack Meyer, Ava Greve, Stefan Schegg</li>
-    <li><strong>{$_("campaign", { default: "Kampagne" })}</strong>: Vanessa Peter und das Team der Hochschule der Künste in Bern</li>
+    <li><strong>{$_("testing", { default: "Testing" })}</strong>: Pierre</li>
     <li>{$_("danke_freunde_ideen", { default: "Danke an viele Freund*innen für die Ideen ♥️" })}</li>
     <li>Built for the Web using HTML, CSS, JavaScript and <a target="_blank" rel="noopener noreferrer" href="https://svelte.dev/">Svelte</a></li>
     <li>Icons from <a target="_blank" rel="noopener noreferrer" href="https://thenounproject.com">the Noun Project</a>: 
@@ -226,13 +248,25 @@
     height: 1em;
   }
 
-  .no-wrap {
+  :global(.no-wrap) {
     white-space: nowrap;
+  }
+
+  .logos {
+    display: flex;
+    gap: 20px;
+    align-items: center;
   }
 
   @media screen and (min-width: 600px) {
     .logo-block {
       display: flex;
+      gap: 20px;
+    }
+
+    .logos {
+      flex-direction: column;
+      flex-shrink: 0;
     }
   }
 
