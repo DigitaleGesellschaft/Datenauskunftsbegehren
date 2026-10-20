@@ -47,13 +47,13 @@
   "letter_info_req_demand_missing_info": "Je considère manquantes notamment les informations suivantes:",
   "letter_info_req_demand_list_missing": "[Liste des données manquantes]",
   "letter_info_req_demand_subject": "Requête en droit d'accès / Renseignement incomplet",
-  "letter_info_req_demand_refusal": "Je vous prie de m'indiquer les raisons justifiant la restriction de ces informations. Cette obligation vous incombe en vertu de l'art. 18 oLPD (Ordonnance sur la protection des données)",
+  "letter_info_req_demand_refusal": "Je vous prie de m'indiquer les raisons justifiant la restriction de ces informations. Cette obligation vous incombe en vertu de l'art. 18 OPDo (Ordonnance sur la protection des données)",
   "letter_info_req_demand_enforcement": "Je me réserve le droit, sans renseignements complets de votre part, d'entâmer des démarches afin de faire reconnaitre mon droit à l'information par la voie judiciaire ou de signaler le cas au Préposé fédéral à la protection des données et à la transparence (PFPDT). Je vous rends également attentif au fait que la communication intentionnelle d'informations fausses ou incomplètes est puni sur plaine d'une amende allant jusqu'à 250'000 Francs (Art. 60 LPD).",
   "letter_info_req_remind": {
     "subject": "Requête en droit d'accès / Renseignement manquant",
     "unanswered_request_pre": "J'ai formulé le ",
     "unanswered_request_post": " une demande d'accès à mes données personnelles, qui est restée sans réponse.",
-    "legal_reference": "Les renseignements demandés ou un éventuel retard dans leur réédition doivent être communiqués dans les 30 jours à compter du dépôt de la requête (art. 18 oLPD [Ordonnance sur la protection des donnnées]). Ce délai vaut également pour annoncer un refus ou une restriction.",
+    "legal_reference": "Les renseignements demandés ou un éventuel retard dans leur réédition doivent être communiqués dans les 30 jours à compter du dépôt de la requête (art. 18 OPDo [Ordonnance sur la protection des données]). Ce délai vaut également pour annoncer un refus ou une restriction.",
     "enforcement": "Je vous prie donc de me fournir les renseignements demandés. Je me réserve le droit, sans réponse de votre part, d'entâmer des démarches afin de faire reconnaitre mon droit à l'information par la voie judiciaire ou de signaler le cas au Préposé fédéral à la protection des données et à la transparence (PFPDT). Je vous rends également attentif au fait que la communication intentionnelle d'informations fausses ou incomplètes est puni sur plaine d'une amende allant jusqu'à 250'000 Francs (Art. 60 LPD)."
   }
 }

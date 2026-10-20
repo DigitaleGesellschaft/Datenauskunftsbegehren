@@ -13,12 +13,12 @@
     const digiges_name = $_("digiges_name", {default: "Digitale Gesellschaft"});
     const digiges_url = $_("digiges_url", {default: "https://www.digitale-gesellschaft.ch/"});
     const wikipedia_fragment_url = $_("wikipedia_fragment_url", {default: "https://en.wikipedia.org/wiki/URI_fragment"});
-    const art_18_vdsg = $_("art_18_vdsg", {default: "Art. 18 Abs. 1 VDSG"});
-    const art_18_vdsg_url = $_("art_18_vdsg_url", {default: "https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_18"});
+    const art_18_dsv = $_("art_18_dsv", {default: "Art. 18 Abs. 1 DSV"});
+    const art_18_dsv_url = $_("art_18_dsv_url", {default: "https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_18"});
     const art_25_dsg = $_("art_25_dsg", {default: "Art. 25 DSG"});
     const art_25_dsg_url = $_("art_25_dsg_url", {default: "https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_25"});
-    const art_19_vdsg = $_("art_19_vdsg", {default: "Art. 19 VDSG"});
-    const art_19_vdsg_url = $_("art_19_vdsg_url", {default: "https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_19"});
+    const art_19_dsv = $_("art_19_dsv", {default: "Art. 19 DSV"});
+    const art_19_dsv_url = $_("art_19_dsv_url", {default: "https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_19"});
     const art_32_dsg = $_("art_32_dsg", {default: "Art. 32 DSG"});
     const art_32_dsg_url = $_("art_32_dsg_url", {default: "https://www.fedlex.admin.ch/eli/oc/2022/491/de#art_32"});
     const mercator_org_url = $_("mercator_org_url", {default: "https://www.stiftung-mercator.ch/"});
@@ -59,26 +59,26 @@
   <p>
     {$_("notes_for_orgs_p1", { default: "Ab dem Zeitpunkt des Eingangs müssen Datenauskunftsbegehren innert 30 Tagen beantwortet werden. Falls die Frist nicht ausreicht, muss entsprechend informiert und die Frist, in der die Auskunft erfolgt, mitgeteilt werden. Falls die Auskunft nicht oder nicht vollständig erteilt werden kann, muss dieser Entscheid begründet werden" })}
     {@html $_(
-      "url_art_18_vdsg",
+      "url_art_18_dsv",
       {
-        default: "<art_18_vdsg_url>{art_18_vdsg}</art_18_vdsg_url>",
+        default: "<art_18_dsv_url>{art_18_dsv}</art_18_dsv_url>",
         values: {
-          art_18_vdsg_url: (text) => `<span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="${art_18_vdsg_url}">${text}</a>)</span>`,
-          art_18_vdsg
+          art_18_dsv_url: (text) => `<span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="${art_18_dsv_url}">${text}</a>)</span>`,
+          art_18_dsv
         }
       })}
   </p>
   <p>
     {$_("notes_for_orgs_p2", { default: "Das Zusammenstellen der Daten kann einen grösseren Arbeitsaufwand bedeuten. Dennoch ist die Auskunft in der Regel kostenlos zu erteilen. Falls der Zweck oder der Inhalt des Begehrens unklar ist, lohnt es sich allenfalls – gemeinsam mit der gesuchstellenden Person – die Auskunft einzugrenzen." })}
     {@html $_(
-      "url_art_25_dsg_art_19_vdsg",
+      "url_art_25_dsg_art_19_dsv",
       {
-        default: "<art_25_dsg_url>{art_25_dsg}</art_25_dsg_url> <art_19_vdsg_url>{art_19_vdsg}</art_19_vdsg_url>",
+        default: "<art_25_dsg_url>{art_25_dsg}</art_25_dsg_url> <art_19_dsv_url>{art_19_dsv}</art_19_dsv_url>",
         values: {
           art_25_dsg_url: (text) => `<span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="${art_25_dsg_url}">${text}</a>)</span>`,
-          art_19_vdsg_url: (text) => `<span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="${art_19_vdsg_url}">${text}</a>)</span>`,
+          art_19_dsv_url: (text) => `<span class="no-wrap">(<a target="_blank" rel="noopener noreferrer" href="${art_19_dsv_url}">${text}</a>)</span>`,
           art_25_dsg,
-          art_19_vdsg
+          art_19_dsv
         }
       })}
   </p>
@@ -86,7 +86,7 @@
   <p>
     {$_("further_steps_p1", { default: "Bleibt eine Antwort aus oder ist sie unvollständig, kann mit einem zweiten Brief nachgefasst und darauf hingewiesen werden. Im Anschluss kann gegen private Inhaber von Datensammlungen am Wohnsitz der betroffenen Person oder am Wohnsitz des Inhabers der Datensammlung eine gerichtliche Klage zur Durchsetzung des Auskunftsrechts eingereicht werden" })}
     {@html $_(
-      "url_art_25_vdsg",
+      "url_art_25_dsg",
       {
         default: "<art_25_dsg_url>{art_25_dsg}</art_25_dsg_url>",
         values: {
