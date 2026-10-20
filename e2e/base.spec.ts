@@ -107,3 +107,28 @@ test('Gesetzesverweise in den Credits werden nicht umgebrochen', async ({ page }
     await expect(reference).toHaveCSS('white-space', 'nowrap');
   }
 });
+
+test('Credits verweisen auf die Datenschutzverordnung (DSV) statt auf die VDSG', async ({ page }) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="credits-button"]').click();
+
+  const credits = page.locator('.credits');
+  await expect(credits.getByRole('link', { name: 'Art. 18 DSV' })).toHaveAttribute('href', 'https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_18');
+  await expect(credits.getByRole('link', { name: 'Art. 19 DSV' })).toHaveAttribute('href', 'https://www.fedlex.admin.ch/eli/oc/2022/568/de#art_19');
+  await expect(credits).not.toContainText('VDSG');
+});
+
+test('Credits verweisen auf Französisch auf die OPDo statt auf die OLPD', async ({ page }) => {
+  await page.goto('');
+
+  await page.locator('[data-qa="language-switch-button"]').click();
+  await page.locator('input[name="ui-language"][value="fr"]').click();
+  await page.locator('[data-qa="overlay-close-button"]').click();
+  await page.locator('[data-qa="credits-button"]').click();
+
+  const credits = page.locator('.credits');
+  await expect(credits.getByRole('link', { name: 'Art. 18 OPDo' })).toHaveAttribute('href', 'https://www.fedlex.admin.ch/eli/oc/2022/568/fr#art_18');
+  await expect(credits.getByRole('link', { name: 'Art. 19 OPDo' })).toHaveAttribute('href', 'https://www.fedlex.admin.ch/eli/oc/2022/568/fr#art_19');
+  await expect(credits).not.toContainText('OLPD');
+});

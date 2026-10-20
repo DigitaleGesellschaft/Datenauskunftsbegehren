@@ -211,3 +211,17 @@ test('Fehlermeldung zur unbekannten Organisation wird übersetzt (FR)', async ({
   const messages = page.locator('.messages');
   await expect(messages).toContainText("L'organisation NichtExistierendeOrg12345 ne fait plus partie du jeu de données. Votre saisie a été réinitialisée.");
 });
+
+test('Französische Nachfassbriefe verweisen auf die OPDo', async ({ page }) => {
+  const followUpUrl = (desire: string) =>
+    `#{"v":1,"langUi":"fr","langCor":"fr","step":"${desire}","entry":"followup","desire":"${desire}","name":"E2E Person","date":"28.7.2025","orgAddressEntry":"E2E Empfänger","address":"E2E Absender"}`;
+
+  for (const desire of ['unanswered', 'incomplete_answer']) {
+    await page.goto(followUpUrl(desire));
+    const letter = page.locator('[data-qa="letter"]');
+
+    await expect(letter).toContainText(/art\.\s18\sOPDo/);
+    await expect(letter).not.toContainText('oLPD');
+    await expect(letter).not.toContainText('donnnées');
+  }
+});
