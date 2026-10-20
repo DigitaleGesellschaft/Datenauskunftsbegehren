@@ -1,2 +1,1 @@
-- fix(release): build after the version bump and redeploy GitHub Pages
-- chore(credits): replace campaign entry with testing credit (#234)
+- fix(i18n): reference the DSV/OPDo instead of the repealed VDSG/OLPD (#237)
